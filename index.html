@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gardener & Son — Ecological Design Studio</title>
+
+  <meta name="description" content="Gardener & Son designs ecological gardens and builds the systems around them — measurement, registry, and incentive layers that allow private land to function as connected ecological infrastructure." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Abril Fatface"', "serif"],
+            sans: ['"IBM Plex Sans"', "sans-serif"],
+          },
+          colors: {
+            "gardener-green": "#3d4535",
+            "nostalgic-beige": "#fff0dc",
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: "IBM Plex Sans", sans-serif; }
+    h1, h2, h3, .font-serif { font-family: "Abril Fatface", serif; font-weight: 400; }
+
+    /* Small quality-of-life */
+    :focus-visible { outline: 2px solid rgba(61, 69, 53, 0.55); outline-offset: 3px; }
+  </style>
+</head>
+
+<body class="bg-nostalgic-beige text-gardener-green">
+  <!-- Skip link -->
+  <a href="#content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-nostalgic-beige border border-gardener-green px-4 py-2 text-sm">
+    Skip to content
+  </a>
+
+  <!-- Navigation -->
+  <nav class="border-b border-gardener-green/10 sticky top-0 bg-nostalgic-beige/90 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <a href="#top" class="font-serif text-xl tracking-tight hover:opacity-70 transition-opacity">Gardener & Son</a>
+      <div class="flex flex-wrap gap-6 md:gap-8 text-sm">
+        <a href="#about" class="hover:opacity-60 transition-opacity">About</a>
+        <a href="#gardens" class="hover:opacity-60 transition-opacity">Gardens</a>
+        <a href="#objects" class="hover:opacity-60 transition-opacity">Objects</a>
+        <a href="#stories" class="hover:opacity-60 transition-opacity">Stories</a>
+        <a href="#system" class="hover:opacity-60 transition-opacity">The System</a>
+        <a href="#studio" class="hover:opacity-60 transition-opacity">Studio</a>
+        <a href="#contact" class="hover:opacity-60 transition-opacity">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="content">
+    <!-- Hero -->
+    <section id="top" class="max-w-5xl mx-auto px-6 pt-14 md:pt-24 pb-12 md:pb-16">
+      <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-8">
+        Designing ecological gardens.<br />
+        Building the systems around them.
+      </h1>
+
+      <p class="text-xl md:text-2xl leading-relaxed max-w-3xl mt-10 font-light">
+        Gardener & Son designs ecological gardens — tuned to soil, water, canopy, and habitat — and builds the measurement and registry layers that allow private land to function as connected ecological infrastructure.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 mt-10">
+        <a href="#contact" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors text-center">
+          Start a conversation
+        </a>
+        <a href="#gardens" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors text-center">
+          View garden work
+        </a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="max-w-4xl mx-auto px-6 py-16 md:py-20 border-t border-gardener-green/10">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-10 leading-tight">
+        A studio operating in two directions.
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-12 md:gap-16">
+        <div class="space-y-5 text-base leading-relaxed">
+          <p>
+            The work begins in real gardens: reading a site, shaping land, building soil, and planting for long time.
+            Beauty is treated as a by-product of alignment — not decoration.
+          </p>
+          <p>
+            From there, the work extends outward: classification, measurement, registry, incentives — the
+            infrastructure that allows ecological gardening to be recognised, valued, and repeated.
+          </p>
+        </div>
+
+        <div class="space-y-5 text-base leading-relaxed">
+          <p>
+            Private land is one of the largest land classes in cities. When it is treated as a disconnected surface,
+            ecological value stays invisible.
+          </p>
+          <p>
+            When it becomes legible — recorded and connected — a new kind of ecological economy becomes possible:
+            stewardship with proof, and restoration that can scale.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Three Pillars -->
+    <section class="border-t border-gardener-green/10 py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-12">
+          <!-- Gardens -->
+          <div class="space-y-6">
+            <div class="aspect-[4/5] bg-gardener-green/5 border border-gardener-green/10"></div>
+            <h3 class="font-serif text-3xl">Gardens</h3>
+            <p class="text-base leading-relaxed">
+              Site-specific ecological design — habitat, soil formation, water cycle, canopy, and seasonal depth.
+              Built to feel calm, grounded, and alive.
+            </p>
+            <a href="#gardens" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors">
+              Explore gardens
+            </a>
+          </div>
+
+          <!-- Objects -->
+          <div class="space-y-6">
+            <div class="aspect-[4/5] bg-gardener-green/5 border border-gardener-green/10"></div>
+            <h3 class="font-serif text-3xl">Objects</h3>
+            <p class="text-base leading-relaxed">
+              Tools, vessels, and materials that support the work. Chosen for durability, repairability, and use —
+              a physical culture of care.
+            </p>
+            <a href="#objects" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors">
+              View objects
+            </a>
+          </div>
+
+          <!-- Stories -->
+          <div class="space-y-6">
+            <div class="aspect-[4/5] bg-gardener-green/5 border border-gardener-green/10"></div>
+            <h3 class="font-serif text-3xl">Stories</h3>
+            <p class="text-base leading-relaxed">
+              Writing on ecology, culture, infrastructure, and time — the narrative layer that helps the work
+              move beyond individual sites.
+            </p>
+            <a href="#stories" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors">
+              Read writing
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gardens -->
+    <section id="gardens" class="border-t border-gardener-green/10 py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12">
+          <h2 class="font-serif text-4xl md:text-5xl">Gardens</h2>
+          <p class="max-w-xl text-base leading-relaxed opacity-80">
+            Ecological gardens built for beauty under real conditions: drought, shade, slope, clay, wind, pets, and family life.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <article class="border border-gardener-green/10 bg-gardener-green/5 p-6">
+            <div class="aspect-[4/3] bg-gardener-green/10 mb-5"></div>
+            <h3 class="font-medium mb-2">Ecological Garden Installations</h3>
+            <p class="text-sm leading-relaxed opacity-70">
+              Soil, water, canopy, habitat — with a strong aesthetic line. Built to mature, not to peak on day one.
+            </p>
+          </article>
+
+          <article class="border border-gardener-green/10 bg-gardener-green/5 p-6">
+            <div class="aspect-[4/3] bg-gardener-green/10 mb-5"></div>
+            <h3 class="font-medium mb-2">Indigenous + Place-based Planting</h3>
+            <p class="text-sm leading-relaxed opacity-70">
+              Planting that belongs to the land it sits on, supporting local birds, insects, and soil life.
+            </p>
+          </article>
+
+          <article class="border border-gardener-green/10 bg-gardener-green/5 p-6">
+            <div class="aspect-[4/3] bg-gardener-green/10 mb-5"></div>
+            <h3 class="font-medium mb-2">Living Infrastructure</h3>
+            <p class="text-sm leading-relaxed opacity-70">
+              Permeable paths, contour logic, micro-catchments, habitat logs, and long-time maintenance pathways.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Objects -->
+    <section id="objects" class="border-t border-gardener-green/10 py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
+          <div>
+            <h2 class="font-serif text-4xl md:text-5xl mb-8">Objects</h2>
+            <div class="space-y-6 text-base leading-relaxed opacity-90">
+              <p>
+                The studio holds a curated collection of tools and vessels that support ecological work — chosen for durability, repair, and the quiet pleasure of use.
+              </p>
+              <p>
+                Objects are treated as companions to long time: things that carry patina, sharpen well, and become better through care.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div class="aspect-[4/5] bg-gardener-green/5 border border-gardener-green/10"></div>
+            <div class="aspect-[4/5] bg-gardener-green/5 border border-gardener-green/10"></div>
+            <div class="aspect-[4/5] bg-gardener-green/5 border border-gardener-green/10"></div>
+            <div class="aspect-[4/5] bg-gardener-green/5 border border-gardener-green/10"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stories -->
+    <section id="stories" class="border-t border-gardener-green/10 py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12">
+          <h2 class="font-serif text-4xl md:text-5xl">Stories</h2>
+          <p class="max-w-xl text-base leading-relaxed opacity-80">
+            Essays and notes on ecological gardening, systems, and culture — written to clarify the work, not to decorate it.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <a href="#" class="block border border-gardener-green/10 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
+            <div class="text-xs uppercase tracking-wide opacity-60 mb-2">Essay</div>
+            <div class="font-medium mb-2">Beauty Under Real Conditions</div>
+            <p class="text-sm leading-relaxed opacity-70">Why resilience and ecological depth can produce richer beauty over time.</p>
+          </a>
+
+          <a href="#" class="block border border-gardener-green/10 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
+            <div class="text-xs uppercase tracking-wide opacity-60 mb-2">Note</div>
+            <div class="font-medium mb-2">Gardens as Infrastructure</div>
+            <p class="text-sm leading-relaxed opacity-70">What changes when a garden becomes measurable and connected.</p>
+          </a>
+
+          <a href="#" class="block border border-gardener-green/10 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
+            <div class="text-xs uppercase tracking-wide opacity-60 mb-2">Essay</div>
+            <div class="font-medium mb-2">The Ecological Economy</div>
+            <p class="text-sm leading-relaxed opacity-70">Stewardship with proof, and restoration pathways that can scale.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- The System -->
+    <section id="system" class="max-w-4xl mx-auto px-6 py-20 md:py-28 border-t border-gardener-green/10">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">The System</h2>
+
+      <div class="space-y-6 text-base leading-relaxed mb-14">
+        <p>
+          Individual gardens matter — but systemic change requires infrastructure around them.
+          Classification, measurement, registry, incentives, and aggregation are the layers that make private ecological work visible and durable.
+        </p>
+      </div>
+
+      <div class="space-y-8 text-sm">
+        <div class="border-l-2 border-gardener-green/20 pl-6">
+          <h3 class="font-medium mb-2">Find My EVC</h3>
+          <p class="leading-relaxed opacity-70">Classification layer — ecological context for an address.</p>
+        </div>
+
+        <div class="border-l-2 border-gardener-green/20 pl-6">
+          <h3 class="font-medium mb-2">Find My Ecological Garden</h3>
+          <p class="leading-relaxed opacity-70">Translation layer — plant assemblages matched to habitat and site conditions.</p>
+        </div>
+
+        <div class="border-l-2 border-gardener-green/20 pl-6">
+          <h3 class="font-medium mb-2">The Ecological Registry</h3>
+          <p class="leading-relaxed opacity-70">Registry layer — baseline records, change over time, and verification pathways.</p>
+        </div>
+
+        <div class="border-l-2 border-gardener-green/20 pl-6">
+          <h3 class="font-medium mb-2">YIELD</h3>
+          <p class="leading-relaxed opacity-70">Incentive layer — mechanisms that reward ecological stewardship.</p>
+        </div>
+
+        <div class="border-l-2 border-gardener-green/20 pl-6">
+          <h3 class="font-medium mb-2">Curbing</h3>
+          <p class="leading-relaxed opacity-70">Aggregation layer — connects many gardens into credible, city-scale ecological value.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio / People -->
+    <section id="studio" class="border-t border-gardener-green/10 py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
+          <div>
+            <h2 class="font-serif text-4xl mb-8">Studio</h2>
+            <div class="space-y-6 text-base leading-relaxed">
+              <p>
+                Gardener & Son was founded by Tyson and Natasha in Melbourne. The studio brings together ecological design, systems thinking, and the economic architecture required to scale restoration through private land.
+              </p>
+              <p>
+                The work spans gardens, measurement frameworks, registry infrastructure, and the cultural narrative required to shift how cities understand private ecology.
+              </p>
+            </div>
+          </div>
+
+          <div class="aspect-[4/3] bg-gardener-green/5 border border-gardener-green/10"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ecological Economy Statement -->
+    <section class="max-w-4xl mx-auto px-6 py-20 md:py-28 border-t border-gardener-green/10">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">
+        Building the private ecological infrastructure layer for cities.
+      </h2>
+
+      <div class="space-y-6 text-base leading-relaxed mt-10">
+        <p>
+          This requires more than gardens. It requires registry infrastructure and economic frameworks that can recognise, value, and connect private ecological work — without losing the craft and beauty of the garden itself.
+        </p>
+        <p>
+          This is the ecological economy: stewardship with proof, and restoration that can compound across neighbourhoods.
+          Long-horizon work. Built steadily.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="max-w-4xl mx-auto px-6 py-20 md:py-28 border-t border-gardener-green/10">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">Contact</h2>
+
+      <p class="text-lg leading-relaxed mb-10">
+        For garden projects, collaborations, or system-layer conversations — reach out.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-10">
+        <div class="space-y-4 text-base leading-relaxed">
+          <div class="text-sm uppercase tracking-wide opacity-60">Email</div>
+          <a href="mailto:hello@gardenerandson.com.au" class="inline-block border border-gardener-green px-6 py-3 text-sm hover:bg-gardener-green hover:text-nostalgic-beige transition-colors">
+            hello@gardenerandson.com.au
+          </a>
+
+          <div class="pt-6">
+            <div class="text-sm uppercase tracking-wide opacity-60 mb-2">Studio</div>
+            <p class="opacity-80">
+              2 Churchill Street<br />
+              Mont Albert 3127<br />
+              Victoria, Australia
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="text-sm uppercase tracking-wide opacity-60">Next steps</div>
+
+          <a href="#gardens" class="block border border-gardener-green/30 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
+            <div class="font-medium mb-1">Building a garden</div>
+            <div class="text-sm opacity-70">Ecological design + installation pathways.</div>
+          </a>
+
+          <a href="#system" class="block border border-gardener-green/30 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
+            <div class="font-medium mb-1">Building the system layer</div>
+            <div class="text-sm opacity-70">Registry, measurement, incentives, and aggregation.</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gardener-green/10 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-sm">
+        <div class="col-span-2 md:col-span-1">
+          <div class="font-serif text-lg mb-4">Gardener & Son</div>
+          <p class="text-xs leading-relaxed opacity-60">
+            Ecological design studio<br />
+            Melbourne
+          </p>
+        </div>
+
+        <div>
+          <div class="font-medium mb-3">Studio</div>
+          <div class="space-y-2 text-xs opacity-60">
+            <p>2 Churchill Street</p>
+            <p>Mont Albert 3127</p>
+            <p>Victoria, Australia</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="font-medium mb-3">Connect</div>
+          <div class="space-y-2 text-xs">
+            <a href="#contact" class="block hover:opacity-60 transition-opacity">Contact</a>
+            <a href="#studio" class="block hover:opacity-60 transition-opacity">Visit</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="font-medium mb-3">Systems</div>
+          <div class="space-y-2 text-xs">
+            <a href="https://findmyecologicalgarden.com" class="block hover:opacity-60 transition-opacity">Find My Ecological Garden</a>
+            <a href="https://findmyevc.com" class="block hover:opacity-60 transition-opacity">Find My EVC</a>
+            <a href="#system" class="block hover:opacity-60 transition-opacity">The Ecological Registry</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-gardener-green/10 text-xs opacity-40">
+        <p>© <span id="year"></span> Gardener & Son. Designing ecological infrastructure.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        const target = document.querySelector(href);
+        if (!target) return;
+
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+  </script>
+</body>
+</html>
