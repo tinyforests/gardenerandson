@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gardener & Son — Gardens</title>
+
+  <meta name="description" content="Ecological garden design and installation — tuned to site, built for habitat, soil, water, and long time." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Abril Fatface"', "serif"],
+            sans: ['"IBM Plex Sans"', "sans-serif"],
+          },
+          colors: {
+            "gardener-green": "#3d4535",
+            "nostalgic-beige": "#fff0dc",
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: "IBM Plex Sans", sans-serif; }
+    h1, h2, h3, .font-serif { font-family: "Abril Fatface", serif; font-weight: 400; }
+    :focus-visible { outline: 2px solid rgba(61, 69, 53, 0.55); outline-offset: 3px; }
+  </style>
+</head>
+
+<body class="bg-nostalgic-beige text-gardener-green">
+  <!-- Navigation -->
+  <nav class="border-b border-gardener-green/10 sticky top-0 bg-nostalgic-beige/90 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <a href="index.html" class="font-serif text-xl tracking-tight hover:opacity-70 transition-opacity">Gardener & Son</a>
+      <div class="flex flex-wrap gap-6 md:gap-8 text-sm">
+        <a href="gardens.html" class="hover:opacity-60 transition-opacity">Gardens</a>
+        <a href="systems.html" class="hover:opacity-60 transition-opacity">The System</a>
+        <a href="index.html#studio" class="hover:opacity-60 transition-opacity">Studio</a>
+        <a href="#contact" class="hover:opacity-60 transition-opacity">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="max-w-5xl mx-auto px-6 pt-14 md:pt-24 pb-12 md:pb-16">
+    <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-8">
+      We design gardens that<br />
+      <span class="relative inline-block align-baseline">
+        <span id="hero-rotator" class="inline-block transition-opacity duration-500">
+          connect people to nature
+        </span>
+        <span class="absolute left-0 -bottom-2 w-full h-px bg-gardener-green/25"></span>
+      </span>
+    </h1>
+
+    <p class="text-xl md:text-2xl leading-relaxed max-w-3xl mt-1
