@@ -1,3 +1,4 @@
+<!-- gardens.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,4 +66,169 @@
       </span>
     </h1>
 
-    <p class="text-xl md:text-2xl leading-relaxed max-w-3xl mt-1
+    <p class="text-xl md:text-2xl leading-relaxed max-w-3xl mt-10 font-light">
+      Ecological garden design and installation — tuned to site, built for habitat, soil, water, and long time.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 mt-10">
+      <a href="#contact" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors text-center">
+        Start a garden conversation
+      </a>
+      <a href="#work" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors text-center">
+        View work
+      </a>
+    </div>
+  </section>
+
+  <!-- What this means -->
+  <section class="max-w-4xl mx-auto px-6 py-16 md:py-20 border-t border-gardener-green/10">
+    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-10 leading-tight">
+      Beauty under real conditions.
+    </h2>
+    <div class="space-y-6 text-base leading-relaxed opacity-90">
+      <p>
+        These gardens are designed to thrive in the actual conditions of a home: drought, shade, clay, slope, wind, pets, kids, and limited time.
+      </p>
+      <p>
+        The aim is not performance on day one. The aim is a garden that matures into depth — building soil, holding water, supporting life, and feeling better every season.
+      </p>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="border-t border-gardener-green/10 py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12">
+        <h2 class="font-serif text-4xl md:text-5xl">Selected work</h2>
+        <p class="max-w-xl text-base leading-relaxed opacity-80">
+          Replace the tiles below with real imagery + captions as you collect it. The structure is ready.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <article class="border border-gardener-green/10 bg-gardener-green/5 p-6">
+          <div class="aspect-[4/3] bg-gardener-green/10 mb-5"></div>
+          <h3 class="font-medium mb-2">Garden Installation</h3>
+          <p class="text-sm leading-relaxed opacity-70">Contour logic, permeable paths, habitat, and long-time planting.</p>
+        </article>
+
+        <article class="border border-gardener-green/10 bg-gardener-green/5 p-6">
+          <div class="aspect-[4/3] bg-gardener-green/10 mb-5"></div>
+          <h3 class="font-medium mb-2">Indigenous + Place-based</h3>
+          <p class="text-sm leading-relaxed opacity-70">Planting that belongs — supporting local birds, insects, and soil life.</p>
+        </article>
+
+        <article class="border border-gardener-green/10 bg-gardener-green/5 p-6">
+          <div class="aspect-[4/3] bg-gardener-green/10 mb-5"></div>
+          <h3 class="font-medium mb-2">Habitat + Microclimate</h3>
+          <p class="text-sm leading-relaxed opacity-70">Shade, canopy, water-holding, and seasonal richness.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="max-w-4xl mx-auto px-6 py-20 md:py-28 border-t border-gardener-green/10">
+    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">Contact</h2>
+
+    <p class="text-lg leading-relaxed mb-10">
+      For garden projects, collaborations, or studio visits — reach out.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="space-y-4 text-base leading-relaxed">
+        <div class="text-sm uppercase tracking-wide opacity-60">Email</div>
+        <a href="mailto:hello@gardenerandson.com.au" class="inline-block border border-gardener-green px-6 py-3 text-sm hover:bg-gardener-green hover:text-nostalgic-beige transition-colors">
+          hello@gardenerandson.com.au
+        </a>
+
+        <div class="pt-6">
+          <div class="text-sm uppercase tracking-wide opacity-60 mb-2">Studio</div>
+          <p class="opacity-80">
+            2 Churchill Street<br />
+            Mont Albert 3127<br />
+            Victoria, Australia
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="text-sm uppercase tracking-wide opacity-60">Also</div>
+
+        <a href="systems.html" class="block border border-gardener-green/30 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
+          <div class="font-medium mb-1">The System layer</div>
+          <div class="text-sm opacity-70">Measurement, registry, incentives, aggregation.</div>
+        </a>
+
+        <a href="index.html" class="block border border-gardener-green/30 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
+          <div class="font-medium mb-1">Back to the studio overview</div>
+          <div class="text-sm opacity-70">The full one-page index.</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-gardener-green/10 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between gap-6 text-xs opacity-60">
+        <p>© <span id="year"></span> Gardener & Son</p>
+        <p>Ecological gardens · Melbourne</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Year
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Hero rotator (robust + does NOT auto-disable for reduced motion)
+      const el = document.getElementById("hero-rotator");
+      if (!el) {
+        console.warn("Hero rotator: element #hero-rotator not found.");
+        return;
+      }
+
+      const phrases = [
+        "connect people to nature",
+        "restore habitat and local biodiversity",
+        "build soil and water resilience",
+        "create shade, canopy, and microclimate",
+        "feel beautiful under real conditions",
+        "support birds, insects, and soil life",
+        "mature into depth over time"
+      ];
+
+      // Set true if you want to respect reduced-motion preferences
+      const respectReducedMotion = false;
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (respectReducedMotion && prefersReduced) {
+        el.textContent = phrases[0];
+        return;
+      }
+
+      let i = 0;
+      const intervalMs = 2600;
+      const fadeMs = 350;
+
+      el.style.opacity = "1";
+
+      function next() {
+        el.style.opacity = "0";
+        setTimeout(() => {
+          i = (i + 1) % phrases.length;
+          el.textContent = phrases[i];
+          el.style.opacity = "1";
+        }, fadeMs);
+      }
+
+      setTimeout(() => {
+        next();
+        setInterval(next, intervalMs);
+      }, 1400);
+    });
+  </script>
+</body>
+</html>
