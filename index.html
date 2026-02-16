@@ -36,8 +36,30 @@
     body { font-family: "IBM Plex Sans", sans-serif; }
     h1, h2, h3, .font-serif { font-family: "Abril Fatface", serif; font-weight: 400; }
 
+    /* Scroll snap */
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+    
+    .snap-section {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     /* Small quality-of-life */
     :focus-visible { outline: 2px solid rgba(61, 69, 53, 0.55); outline-offset: 3px; }
+    
+    /* Hero text treatment */
+    .hero-text {
+      font-size: clamp(3rem, 12vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
   </style>
 </head>
 
@@ -65,59 +87,63 @@
 
   <main id="content">
     <!-- Hero -->
-    <section id="top" class="max-w-5xl mx-auto px-6 pt-14 md:pt-24 pb-12 md:pb-16">
-      <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-8">
-        Designing ecological gardens.<br />
-        Building the systems around them.
-      </h1>
+    <section id="top" class="snap-section max-w-5xl mx-auto px-6">
+      <div>
+        <h1 class="font-serif hero-text mb-12">
+          Designing ecological gardens.<br />
+          Building the systems around them.
+        </h1>
 
-      <p class="text-xl md:text-2xl leading-relaxed max-w-3xl mt-10 font-light">
-        Gardener & Son designs ecological gardens — tuned to soil, water, canopy, and habitat — and builds the measurement and registry layers that allow private land to function as connected ecological infrastructure.
-      </p>
+        <p class="text-xl md:text-2xl leading-relaxed max-w-3xl font-light">
+          Gardener & Son designs ecological gardens — tuned to soil, water, canopy, and habitat — and builds the measurement and registry layers that allow private land to function as connected ecological infrastructure.
+        </p>
 
-      <div class="flex flex-col sm:flex-row gap-4 mt-10">
-        <a href="#contact" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors text-center">
-          Start a conversation
-        </a>
-        <a href="#gardens" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors text-center">
-          View garden work
-        </a>
+        <div class="flex flex-col sm:flex-row gap-4 mt-10">
+          <a href="#contact" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors text-center">
+            Start a conversation
+          </a>
+          <a href="#gardens" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors text-center">
+            View garden work
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- About -->
-    <section id="about" class="max-w-4xl mx-auto px-6 py-16 md:py-20 border-t border-gardener-green/10">
-      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-10 leading-tight">
-        A studio operating in two directions.
-      </h2>
+    <section id="about" class="snap-section max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
+      <div>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-10 leading-tight">
+          A studio operating in two directions.
+        </h2>
 
-      <div class="grid md:grid-cols-2 gap-12 md:gap-16">
-        <div class="space-y-5 text-base leading-relaxed">
-          <p>
-            The work begins in real gardens: reading a site, shaping land, building soil, and planting for long time.
-            Beauty is treated as a by-product of alignment — not decoration.
-          </p>
-          <p>
-            From there, the work extends outward: classification, measurement, registry, incentives — the
-            infrastructure that allows ecological gardening to be recognised, valued, and repeated.
-          </p>
-        </div>
+        <div class="grid md:grid-cols-2 gap-12 md:gap-16">
+          <div class="space-y-5 text-base leading-relaxed">
+            <p>
+              The work begins in real gardens: reading a site, shaping land, building soil, and planting for long time.
+              Beauty is treated as a by-product of alignment — not decoration.
+            </p>
+            <p>
+              From there, the work extends outward: classification, measurement, registry, incentives — the
+              infrastructure that allows ecological gardening to be recognised, valued, and repeated.
+            </p>
+          </div>
 
-        <div class="space-y-5 text-base leading-relaxed">
-          <p>
-            Private land is one of the largest land classes in cities. When it is treated as a disconnected surface,
-            ecological value stays invisible.
-          </p>
-          <p>
-            When it becomes legible — recorded and connected — a new kind of ecological economy becomes possible:
-            stewardship with proof, and restoration that can scale.
-          </p>
+          <div class="space-y-5 text-base leading-relaxed">
+            <p>
+              Private land is one of the largest land classes in cities. When it is treated as a disconnected surface,
+              ecological value stays invisible.
+            </p>
+            <p>
+              When it becomes legible — recorded and connected — a new kind of ecological economy becomes possible:
+              stewardship with proof, and restoration that can scale.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Three Pillars -->
-    <section class="border-t border-gardener-green/10 py-16 md:py-20">
+    <section class="snap-section border-t border-gardener-green/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-3 gap-12">
           <!-- Gardens -->
@@ -259,8 +285,9 @@
     </section>
 
     <!-- The System -->
-    <section id="system" class="max-w-4xl mx-auto px-6 py-20 md:py-28 border-t border-gardener-green/10">
-      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">The System</h2>
+    <section id="system" class="snap-section max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
+      <div>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">The System</h2>
 
       <div class="space-y-6 text-base leading-relaxed mb-14">
         <p>
@@ -295,10 +322,11 @@
           <p class="leading-relaxed opacity-70">Aggregation layer — connects many gardens into credible, city-scale ecological value.</p>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- Studio / People -->
-    <section id="studio" class="border-t border-gardener-green/10 py-16 md:py-20">
+    <section id="studio" class="snap-section border-t border-gardener-green/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
           <div>
@@ -319,25 +347,28 @@
     </section>
 
     <!-- Ecological Economy Statement -->
-    <section class="max-w-4xl mx-auto px-6 py-20 md:py-28 border-t border-gardener-green/10">
-      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">
-        Building the private ecological infrastructure layer for cities.
-      </h2>
+    <section class="snap-section max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
+      <div>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">
+          Building the private ecological infrastructure layer for cities.
+        </h2>
 
-      <div class="space-y-6 text-base leading-relaxed mt-10">
-        <p>
-          This requires more than gardens. It requires registry infrastructure and economic frameworks that can recognise, value, and connect private ecological work — without losing the craft and beauty of the garden itself.
-        </p>
-        <p>
-          This is the ecological economy: stewardship with proof, and restoration that can compound across neighbourhoods.
-          Long-horizon work. Built steadily.
-        </p>
+        <div class="space-y-6 text-base leading-relaxed mt-10">
+          <p>
+            This requires more than gardens. It requires registry infrastructure and economic frameworks that can recognise, value, and connect private ecological work — without losing the craft and beauty of the garden itself.
+          </p>
+          <p>
+            This is the ecological economy: stewardship with proof, and restoration that can compound across neighbourhoods.
+            Long-horizon work. Built steadily.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="max-w-4xl mx-auto px-6 py-20 md:py-28 border-t border-gardener-green/10">
-      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">Contact</h2>
+    <section id="contact" class="snap-section max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
+      <div>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">Contact</h2>
 
       <p class="text-lg leading-relaxed mb-10">
         For garden projects, collaborations, or system-layer conversations — reach out.
@@ -373,6 +404,7 @@
             <div class="text-sm opacity-70">Registry, measurement, incentives, and aggregation.</div>
           </a>
         </div>
+      </div>
       </div>
     </section>
   </main>
