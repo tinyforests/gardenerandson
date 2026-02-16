@@ -36,6 +36,32 @@
     body { font-family: "IBM Plex Sans", sans-serif; }
     h1, h2, h3, .font-serif { font-family: "Abril Fatface", serif; font-weight: 400; }
 
+    /* Dark mode - default */
+    :root {
+      --bg-color: #3d4535;
+      --bg-alternate: #4a5140;
+      --text-color: #fff0dc;
+      --border-color: rgba(255, 240, 220, 0.1);
+      --bg-secondary: rgba(255, 240, 220, 0.05);
+      --bg-tertiary: rgba(255, 240, 220, 0.1);
+    }
+
+    /* Light mode */
+    body.light-mode {
+      --bg-color: #fff0dc;
+      --bg-alternate: #f5e8d3;
+      --text-color: #3d4535;
+      --border-color: rgba(61, 69, 53, 0.1);
+      --bg-secondary: rgba(61, 69, 53, 0.05);
+      --bg-tertiary: rgba(61, 69, 53, 0.1);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
     /* Scroll snap */
     html {
       scroll-snap-type: y mandatory;
@@ -51,6 +77,10 @@
       justify-content: center;
     }
 
+    .snap-section-alt {
+      background-color: var(--bg-alternate);
+    }
+
     /* Small quality-of-life */
     :focus-visible { outline: 2px solid rgba(61, 69, 53, 0.55); outline-offset: 3px; }
     
@@ -60,17 +90,67 @@
       line-height: 0.95;
       letter-spacing: -0.02em;
     }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .theme-toggle:hover {
+      opacity: 0.7;
+    }
+
+    /* Button and border overrides for theme support */
+    .border-gardener-green { border-color: var(--text-color) !important; }
+    .border-gardener-green\/10 { border-color: var(--border-color) !important; }
+    .border-gardener-green\/20 { border-color: rgba(255, 240, 220, 0.2) !important; }
+    .border-gardener-green\/30 { border-color: rgba(255, 240, 220, 0.3) !important; }
+    body.light-mode .border-gardener-green\/20 { border-color: rgba(61, 69, 53, 0.2) !important; }
+    body.light-mode .border-gardener-green\/30 { border-color: rgba(61, 69, 53, 0.3) !important; }
+    
+    .bg-gardener-green\/5 { background-color: var(--bg-secondary) !important; }
+    .bg-gardener-green\/10 { background-color: var(--bg-tertiary) !important; }
+    
+    .text-gardener-green { color: var(--text-color) !important; }
+    .text-nostalgic-beige { color: var(--text-color) !important; }
+    
+    /* Button hover states */
+    a.border-gardener-green:hover,
+    button.border-gardener-green:hover {
+      background-color: var(--text-color) !important;
+      color: var(--bg-color) !important;
+    }
   </style>
 </head>
 
-<body class="bg-nostalgic-beige text-gardener-green">
+<body>
+  <!-- Theme toggle -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+    <span id="theme-text">LIGHT</span>
+  </button>
+
   <!-- Skip link -->
   <a href="#content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-nostalgic-beige border border-gardener-green px-4 py-2 text-sm">
     Skip to content
   </a>
 
   <!-- Navigation -->
-  <nav class="border-b border-gardener-green/10 sticky top-0 bg-nostalgic-beige/90 backdrop-blur">
+  <nav class="border-b sticky top-0 backdrop-blur" style="border-color: var(--border-color); background-color: var(--bg-color);">
     <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <a href="#top" class="font-serif text-xl tracking-tight hover:opacity-70 transition-opacity">Gardener & Son</a>
       <div class="flex flex-wrap gap-6 md:gap-8 text-sm">
@@ -111,7 +191,7 @@
     </section>
 
     <!-- Studio -->
-    <section id="studio" class="snap-section max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
+    <section id="studio" class="snap-section snap-section-alt max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
       <div>
         <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-10 leading-tight">
           A studio operating in two directions.
@@ -190,7 +270,7 @@
     </section>
 
     <!-- Gardens -->
-    <section id="gardens" class="snap-section border-t border-gardener-green/10">
+    <section id="gardens" class="snap-section snap-section-alt border-t border-gardener-green/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12">
           <h2 class="font-serif text-4xl md:text-5xl">Gardens</h2>
@@ -254,7 +334,7 @@
     </section>
 
     <!-- Stories -->
-    <section id="stories" class="snap-section border-t border-gardener-green/10">
+    <section id="stories" class="snap-section snap-section-alt border-t border-gardener-green/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12">
           <h2 class="font-serif text-4xl md:text-5xl">Stories</h2>
@@ -327,7 +407,7 @@
     </section>
 
     <!-- About / People -->
-    <section id="about" class="snap-section border-t border-gardener-green/10">
+    <section id="about" class="snap-section snap-section-alt border-t border-gardener-green/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
           <div>
@@ -367,7 +447,7 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="snap-section max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
+    <section id="contact" class="snap-section snap-section-alt max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
       <div>
         <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">Contact</h2>
 
@@ -456,6 +536,36 @@
   </footer>
 
   <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeText = document.getElementById('theme-text');
+    const body = document.body;
+
+    // Check for saved theme preference or default to dark mode
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    
+    // Apply theme on load
+    if (currentTheme === 'light') {
+      body.classList.add('light-mode');
+      themeText.textContent = 'DARK';
+    } else {
+      body.classList.remove('light-mode');
+      themeText.textContent = 'LIGHT';
+    }
+
+    // Toggle theme
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      
+      if (body.classList.contains('light-mode')) {
+        themeText.textContent = 'DARK';
+        localStorage.setItem('theme', 'light');
+      } else {
+        themeText.textContent = 'LIGHT';
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
     // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
 
