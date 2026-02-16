@@ -36,29 +36,25 @@
     body { font-family: "IBM Plex Sans", sans-serif; }
     h1, h2, h3, .font-serif { font-family: "Abril Fatface", serif; font-weight: 400; }
 
-    /* Dark mode - default */
+    /* Dark mode - default (starts with green) */
     :root {
-      --bg-color: #3d4535;
-      --bg-alternate: #4a5140;
-      --text-color: #fff0dc;
-      --border-color: rgba(255, 240, 220, 0.1);
-      --bg-secondary: rgba(255, 240, 220, 0.05);
-      --bg-tertiary: rgba(255, 240, 220, 0.1);
+      --section-primary-bg: #3d4535;
+      --section-primary-text: #fff0dc;
+      --section-secondary-bg: #fff0dc;
+      --section-secondary-text: #3d4535;
     }
 
-    /* Light mode */
+    /* Light mode (starts with beige) */
     body.light-mode {
-      --bg-color: #fff0dc;
-      --bg-alternate: #f5e8d3;
-      --text-color: #3d4535;
-      --border-color: rgba(61, 69, 53, 0.1);
-      --bg-secondary: rgba(61, 69, 53, 0.05);
-      --bg-tertiary: rgba(61, 69, 53, 0.1);
+      --section-primary-bg: #fff0dc;
+      --section-primary-text: #3d4535;
+      --section-secondary-bg: #3d4535;
+      --section-secondary-text: #fff0dc;
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background-color: var(--section-primary-bg);
+      color: var(--section-primary-text);
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
@@ -77,8 +73,67 @@
       justify-content: center;
     }
 
-    .snap-section-alt {
-      background-color: var(--bg-alternate);
+    .section-primary {
+      background-color: var(--section-primary-bg);
+      color: var(--section-primary-text);
+    }
+
+    .section-secondary {
+      background-color: var(--section-secondary-bg);
+      color: var(--section-secondary-text);
+    }
+
+    /* Border colors for each section type */
+    .section-primary .border-gardener-green,
+    .section-primary .border-gardener-green\/10,
+    .section-primary .border-gardener-green\/20,
+    .section-primary .border-gardener-green\/30 {
+      border-color: var(--section-primary-text) !important;
+      opacity: 0.2;
+    }
+
+    .section-secondary .border-gardener-green,
+    .section-secondary .border-gardener-green\/10,
+    .section-secondary .border-gardener-green\/20,
+    .section-secondary .border-gardener-green\/30 {
+      border-color: var(--section-secondary-text) !important;
+      opacity: 0.2;
+    }
+
+    /* Background tints for each section type */
+    .section-primary .bg-gardener-green\/5,
+    .section-primary .bg-gardener-green\/10 {
+      background-color: rgba(255, 240, 220, 0.05) !important;
+    }
+
+    .section-secondary .bg-gardener-green\/5,
+    .section-secondary .bg-gardener-green\/10 {
+      background-color: rgba(61, 69, 53, 0.05) !important;
+    }
+
+    /* Button styles for each section */
+    .section-primary a.border-gardener-green:hover,
+    .section-primary button.border-gardener-green:hover {
+      background-color: var(--section-primary-text) !important;
+      color: var(--section-primary-bg) !important;
+    }
+
+    .section-secondary a.border-gardener-green:hover,
+    .section-secondary button.border-gardener-green:hover {
+      background-color: var(--section-secondary-text) !important;
+      color: var(--section-secondary-bg) !important;
+    }
+
+    .section-primary a.border-gardener-green,
+    .section-primary button.border-gardener-green {
+      border-color: var(--section-primary-text) !important;
+      color: var(--section-primary-text) !important;
+    }
+
+    .section-secondary a.border-gardener-green,
+    .section-secondary button.border-gardener-green {
+      border-color: var(--section-secondary-text) !important;
+      color: var(--section-secondary-text) !important;
     }
 
     /* Small quality-of-life */
@@ -98,9 +153,9 @@
       right: 2rem;
       padding: 0.5rem 1rem;
       border-radius: 0.25rem;
-      border: 1px solid var(--border-color);
-      background: var(--bg-color);
-      color: var(--text-color);
+      border: 1px solid var(--section-primary-text);
+      background: var(--section-primary-bg);
+      color: var(--section-primary-text);
       cursor: pointer;
       font-size: 0.75rem;
       font-weight: 500;
@@ -113,27 +168,6 @@
 
     .theme-toggle:hover {
       opacity: 0.7;
-    }
-
-    /* Button and border overrides for theme support */
-    .border-gardener-green { border-color: var(--text-color) !important; }
-    .border-gardener-green\/10 { border-color: var(--border-color) !important; }
-    .border-gardener-green\/20 { border-color: rgba(255, 240, 220, 0.2) !important; }
-    .border-gardener-green\/30 { border-color: rgba(255, 240, 220, 0.3) !important; }
-    body.light-mode .border-gardener-green\/20 { border-color: rgba(61, 69, 53, 0.2) !important; }
-    body.light-mode .border-gardener-green\/30 { border-color: rgba(61, 69, 53, 0.3) !important; }
-    
-    .bg-gardener-green\/5 { background-color: var(--bg-secondary) !important; }
-    .bg-gardener-green\/10 { background-color: var(--bg-tertiary) !important; }
-    
-    .text-gardener-green { color: var(--text-color) !important; }
-    .text-nostalgic-beige { color: var(--text-color) !important; }
-    
-    /* Button hover states */
-    a.border-gardener-green:hover,
-    button.border-gardener-green:hover {
-      background-color: var(--text-color) !important;
-      color: var(--bg-color) !important;
     }
   </style>
 </head>
@@ -150,7 +184,7 @@
   </a>
 
   <!-- Navigation -->
-  <nav class="border-b sticky top-0 backdrop-blur" style="border-color: var(--border-color); background-color: var(--bg-color);">
+  <nav class="border-b sticky top-0 backdrop-blur section-primary" style="border-color: rgba(255, 240, 220, 0.2);">
     <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <a href="#top" class="font-serif text-xl tracking-tight hover:opacity-70 transition-opacity">Gardener & Son</a>
       <div class="flex flex-wrap gap-6 md:gap-8 text-sm">
@@ -168,7 +202,7 @@
 
   <main id="content">
     <!-- Hero -->
-    <section id="top" class="snap-section max-w-5xl mx-auto px-6">
+    <section id="top" class="snap-section section-primary max-w-5xl mx-auto px-6">
       <div>
         <h1 class="font-serif hero-text mb-8">
           Designing ecological gardens.<br />
@@ -191,7 +225,7 @@
     </section>
 
     <!-- Studio -->
-    <section id="studio" class="snap-section snap-section-alt max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
+    <section id="studio" class="snap-section section-secondary max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
       <div>
         <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-10 leading-tight">
           A studio operating in two directions.
@@ -224,7 +258,7 @@
     </section>
 
     <!-- Three Pillars / Browse -->
-    <section id="browse" class="snap-section border-t border-gardener-green/10">
+    <section id="browse" class="snap-section section-primary border-t border-gardener-green/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-3 gap-12">
           <!-- Gardens -->
@@ -270,7 +304,7 @@
     </section>
 
     <!-- Gardens -->
-    <section id="gardens" class="snap-section snap-section-alt border-t border-gardener-green/10">
+    <section id="gardens" class="snap-section section-secondary border-t border-gardener-green/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12">
           <h2 class="font-serif text-4xl md:text-5xl">Gardens</h2>
@@ -308,7 +342,7 @@
     </section>
 
     <!-- Objects -->
-    <section id="objects" class="snap-section border-t border-gardener-green/10">
+    <section id="objects" class="snap-section section-primary border-t border-gardener-green/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
           <div>
@@ -334,7 +368,7 @@
     </section>
 
     <!-- Stories -->
-    <section id="stories" class="snap-section snap-section-alt border-t border-gardener-green/10">
+    <section id="stories" class="snap-section section-secondary border-t border-gardener-green/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12">
           <h2 class="font-serif text-4xl md:text-5xl">Stories</h2>
@@ -366,7 +400,7 @@
     </section>
 
     <!-- The System -->
-    <section id="system" class="snap-section max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
+    <section id="system" class="snap-section section-primary max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
       <div>
         <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">The System</h2>
 
@@ -407,7 +441,7 @@
     </section>
 
     <!-- About / People -->
-    <section id="about" class="snap-section snap-section-alt border-t border-gardener-green/10">
+    <section id="about" class="snap-section section-secondary border-t border-gardener-green/10">
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
           <div>
@@ -428,7 +462,7 @@
     </section>
 
     <!-- Ecological Economy Statement -->
-    <section class="snap-section max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
+    <section class="snap-section section-primary max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
       <div>
         <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">
           Building the private ecological infrastructure layer for cities.
@@ -447,7 +481,7 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="snap-section snap-section-alt max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
+    <section id="contact" class="snap-section section-secondary max-w-4xl mx-auto px-6 border-t border-gardener-green/10">
       <div>
         <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">Contact</h2>
 
