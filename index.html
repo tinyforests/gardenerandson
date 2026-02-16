@@ -169,6 +169,41 @@
     .theme-toggle:hover {
       opacity: 0.7;
     }
+
+    /* Active menu item */
+    nav a.active {
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+    }
+
+    /* Scroll arrow */
+    .scroll-arrow {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+      font-size: 1.25rem;
+    }
+
+    .scroll-arrow:hover {
+      opacity: 1;
+    }
+
+    /* Active nav link state */
+    nav a.active {
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+    }
   </style>
 </head>
 
@@ -223,6 +258,7 @@
           </a>
         </div>
       </div>
+      <button class="scroll-arrow" onclick="document.querySelector('#studio').scrollIntoView({behavior: 'smooth'})">↓</button>
       </div>
     </section>
 
@@ -258,6 +294,7 @@
           </div>
         </div>
       </div>
+      <button class="scroll-arrow" onclick="document.querySelector('#browse').scrollIntoView({behavior: 'smooth'})">↓</button>
       </div>
     </section>
 
@@ -304,10 +341,10 @@
             </a>
           </div>
 
-          <!-- Plants of Place -->
+          <!-- Plants -->
           <div class="space-y-6">
             <div class="aspect-[4/3] bg-gardener-green/5 border border-gardener-green/10"></div>
-            <h3 class="font-serif text-3xl">Plants of Place</h3>
+            <h3 class="font-serif text-3xl">Plants</h3>
             <p class="text-base leading-relaxed">
               Indigenous plant nursery at the studio. Locally sourced, ecologically appropriate plants for Melbourne gardens.
             </p>
@@ -317,6 +354,7 @@
           </div>
         </div>
       </div>
+      <button class="scroll-arrow" onclick="document.querySelector('#gardens').scrollIntoView({behavior: 'smooth'})">↓</button>
     </section>
 
     <!-- Gardens -->
@@ -355,6 +393,7 @@
           </article>
         </div>
       </div>
+      <button class="scroll-arrow" onclick="document.querySelector('#objects').scrollIntoView({behavior: 'smooth'})">↓</button>
     </section>
 
     <!-- Objects -->
@@ -381,6 +420,7 @@
           </div>
         </div>
       </div>
+      <button class="scroll-arrow" onclick="document.querySelector('#stories').scrollIntoView({behavior: 'smooth'})">↓</button>
     </section>
 
     <!-- Stories -->
@@ -413,6 +453,7 @@
           </a>
         </div>
       </div>
+      <button class="scroll-arrow" onclick="document.querySelector('#system').scrollIntoView({behavior: 'smooth'})">↓</button>
     </section>
 
     <!-- The System -->
@@ -456,6 +497,7 @@
         </div>
       </div>
       </div>
+      <button class="scroll-arrow" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">↓</button>
     </section>
 
     <!-- About / People -->
@@ -477,6 +519,7 @@
           <div class="aspect-[4/3] bg-gardener-green/5 border border-gardener-green/10"></div>
         </div>
       </div>
+      <button class="scroll-arrow" onclick="document.querySelectorAll('section')[8].scrollIntoView({behavior: 'smooth'})">↓</button>
     </section>
 
     <!-- Ecological Economy Statement -->
@@ -498,6 +541,7 @@
         </div>
       </div>
       </div>
+      <button class="scroll-arrow" onclick="document.querySelector('#contact').scrollIntoView({behavior: 'smooth'})">↓</button>
     </section>
 
     <!-- Contact -->
@@ -620,6 +664,32 @@
         localStorage.setItem('theme', 'dark');
       }
     });
+
+    // Active menu tracking
+    const sections = document.querySelectorAll('.snap-section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    
+    function updateActiveMenu() {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', updateActiveMenu);
+    window.addEventListener('load', updateActiveMenu);
 
     // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
