@@ -323,39 +323,30 @@
 </head>
 
 <body>
-  <!-- Skip link -->
   <a href="#content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 px-4 py-2 text-sm z-[200]"
      style="background:var(--bg); border:1px solid var(--hair);">
     Skip to content
   </a>
 
-  <!-- Gardener & Son Badge -->
   <a href="https://www.gardenerandson.com" class="gs-badge" target="_blank" rel="noopener noreferrer">
     Gardener &amp; Son
   </a>
 
-  <!-- CONFIG -->
   <script>
     window.BEGIN = {
-      // Where to send submissions (optional). If empty, a mailto draft is generated.
       submitEndpoint: "",
 
-      // Where the download button should point after submission
       guidePdfUrl: "https://www.gardenerandson.com/assets/Where-Gardens-Begin-First-Steps.pdf",
 
-      // Contact fallback
       contactEmail: "hello@gardenerandson.com.au",
 
-      // Back links
       studioUrl: "https://www.gardenerandson.com",
       registryUrl: "https://tinyforests.github.io/reg/",
 
-      // Call booking link (optional; used on the final screen)
       bookCallUrl: ""
     };
   </script>
 
-  <!-- NAV (fixed, REG-like) -->
   <nav class="backdrop-blur nav-border" style="background: var(--bg);">
     <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
       <div class="flex items-center gap-3">
@@ -369,6 +360,7 @@
         <a href="#q1" class="hover:opacity-60 transition-opacity">Feeling</a>
         <a href="#q2" class="hover:opacity-60 transition-opacity">Hope</a>
         <a href="#q3" class="hover:opacity-60 transition-opacity">Help</a>
+        <a href="#q3b" class="hover:opacity-60 transition-opacity">Easy</a>
         <a href="#q4" class="hover:opacity-60 transition-opacity">Use</a>
         <a href="#q5" class="hover:opacity-60 transition-opacity">Site</a>
         <a href="#photos" class="hover:opacity-60 transition-opacity">Photos</a>
@@ -385,7 +377,6 @@
   </nav>
 
   <main id="content">
-    <!-- HERO -->
     <section id="top" class="screen">
       <div class="max-w-7xl mx-auto px-6 w-full">
         <div class="max-w-4xl">
@@ -398,7 +389,7 @@
           </h1>
 
           <p class="text-base md:text-lg leading-relaxed mt-4 font-light muted max-w-3xl">
-            Share a little about the space, upload a few photos, and receive a clear first step — calm, practical, and designed to reduce overwhelm.
+            This takes 2–3 minutes. No prep. No judgement. A few answers and a couple of photos is enough to begin.
           </p>
 
           <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
@@ -419,23 +410,11 @@
             </a>
           </div>
 
-          <div class="mt-5 flex items-center gap-2">
-            <span class="progress-dot active" data-dot="0"></span>
-            <span class="progress-dot" data-dot="1"></span>
-            <span class="progress-dot" data-dot="2"></span>
-            <span class="progress-dot" data-dot="3"></span>
-            <span class="progress-dot" data-dot="4"></span>
-            <span class="progress-dot" data-dot="5"></span>
-            <span class="progress-dot" data-dot="6"></span>
-            <span class="progress-dot" data-dot="7"></span>
-            <span class="progress-dot" data-dot="8"></span>
-          </div>
-
           <div class="mt-5 text-sm muted flex flex-wrap gap-x-3 gap-y-2">
-            <span>Soft questions</span><span aria-hidden="true">·</span>
-            <span>Interactive snapshot</span><span aria-hidden="true">·</span>
-            <span>Photo-friendly</span><span aria-hidden="true">·</span>
-            <span>Downloadable guide</span>
+            <span>Easy</span><span aria-hidden="true">·</span>
+            <span>Staged</span><span aria-hidden="true">·</span>
+            <span>Approachable</span><span aria-hidden="true">·</span>
+            <span>Clear next step</span>
           </div>
         </div>
       </div>
@@ -449,11 +428,9 @@
     <!-- Q1 -->
     <section id="q1" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
-          What feels unfinished?
-        </h2>
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What feels unfinished?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
-          Choose the closest fit. This simply helps shape the first step.
+          Choose the closest fit — there is no wrong answer.
         </p>
 
         <div class="grid md:grid-cols-2 gap-3">
@@ -466,11 +443,7 @@
         </div>
 
         <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#q2"
-             class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
-             style="background:var(--fg); color:var(--bg);">
-            Continue
-          </a>
+          <a href="#q2" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
           <a href="#top" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
         </div>
       </div>
@@ -484,12 +457,8 @@
     <!-- Q2 -->
     <section id="q2" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
-          What is hoped for — over time?
-        </h2>
-        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
-          Choose one or two.
-        </p>
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What is hoped for — over time?</h2>
+        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">Choose one or two.</p>
 
         <div class="grid md:grid-cols-2 gap-3">
           <button class="choice-btn" data-group="q2" data-value="A quiet retreat">A quiet retreat</button>
@@ -501,11 +470,7 @@
         </div>
 
         <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#q3"
-             class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
-             style="background:var(--fg); color:var(--bg);">
-            Continue
-          </a>
+          <a href="#q3" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
           <a href="#q1" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
         </div>
       </div>
@@ -519,11 +484,9 @@
     <!-- Q3 -->
     <section id="q3" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
-          What kind of help is wanted?
-        </h2>
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What kind of help is wanted?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
-          This helps match the right starting point — a plan, a focused fix, or a full redesign.
+          This simply helps match the right starting point.
         </p>
 
         <div class="grid md:grid-cols-2 gap-3">
@@ -536,12 +499,42 @@
         </div>
 
         <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#q4"
-             class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
-             style="background:var(--fg); color:var(--bg);">
+          <a href="#q3b" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
+          <a href="#q2" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+        </div>
+      </div>
+
+      <a href="#q3b" class="next-section">
+        <span class="next-section-arrow">↓</span>
+        <span class="next-section-label">Easy</span>
+      </a>
+    </section>
+
+    <!-- Q3B (EASY / STAGED / AFFORDABLE) -->
+    <section id="q3b" class="screen">
+      <div class="max-w-4xl mx-auto px-6 w-full">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
+          What feels like an easy beginning?
+        </h2>
+
+        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
+          Most gardens change in stages. A first step can be small, affordable, and still meaningful.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-3">
+          <button class="choice-btn" data-group="comfort" data-value="Just a clear plan (low cost)">Just a clear plan (low cost)</button>
+          <button class="choice-btn" data-group="comfort" data-value="Small upgrades first">Small upgrades first</button>
+          <button class="choice-btn" data-group="comfort" data-value="A medium transformation">A medium transformation</button>
+          <button class="choice-btn" data-group="comfort" data-value="A full transformation">A full transformation</button>
+          <button class="choice-btn" data-group="comfort" data-value="Not sure yet">Not sure yet</button>
+          <button class="choice-btn" data-group="comfort" data-value="Prefer to talk it through">Prefer to talk it through</button>
+        </div>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
+          <a href="#q4" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">
             Continue
           </a>
-          <a href="#q2" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <a href="#q3" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
         </div>
       </div>
 
@@ -554,12 +547,8 @@
     <!-- Q4 -->
     <section id="q4" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
-          How will the garden be used most?
-        </h2>
-        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
-          Choose up to two. (Life shapes the garden.)
-        </p>
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">How will the garden be used most?</h2>
+        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">Choose up to two.</p>
 
         <div class="grid md:grid-cols-2 gap-3">
           <button class="choice-btn" data-group="use" data-value="Quiet mornings / retreat">Quiet mornings / retreat</button>
@@ -572,7 +561,7 @@
 
         <div class="mt-6 range-wrap">
           <div class="flex items-center justify-between gap-3 mb-3">
-            <div class="text-xs uppercase tracking-[0.18em] opacity-60">Stewardship comfort</div>
+            <div class="text-xs uppercase tracking-[0.18em] opacity-60">How hands-on feels comfortable?</div>
             <div class="pill" id="handsOnLabel">Balanced</div>
           </div>
 
@@ -586,12 +575,8 @@
         </div>
 
         <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#q5"
-             class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
-             style="background:var(--fg); color:var(--bg);">
-            Continue
-          </a>
-          <a href="#q3" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <a href="#q5" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
+          <a href="#q3b" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
         </div>
       </div>
 
@@ -604,11 +589,9 @@
     <!-- Q5 -->
     <section id="q5" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
-          What is the site like?
-        </h2>
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What is the site like?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
-          No need to be sure. Best guess is enough.
+          Best guess is enough.
         </p>
 
         <div class="grid md:grid-cols-2 gap-5">
@@ -634,11 +617,7 @@
         </div>
 
         <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#photos"
-             class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
-             style="background:var(--fg); color:var(--bg);">
-            Continue
-          </a>
+          <a href="#photos" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
           <a href="#q4" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
         </div>
       </div>
@@ -652,11 +631,9 @@
     <!-- PHOTOS -->
     <section id="photos" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
-          Share a glimpse of the garden
-        </h2>
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">Share a glimpse of the garden</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
-          Two or three photos are perfect. No preparation needed.
+          No prep. A quick glimpse is enough. Two or three photos is perfect.
         </p>
 
         <div id="dropzone" class="dropzone">
@@ -672,9 +649,7 @@
                 Choose photos
                 <input id="photoInput" type="file" accept="image/*" multiple class="sr-only" />
               </label>
-              <button id="clearPhotos" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">
-                Clear
-              </button>
+              <button id="clearPhotos" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Clear</button>
             </div>
           </div>
 
@@ -682,11 +657,7 @@
         </div>
 
         <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#details"
-             class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
-             style="background:var(--fg); color:var(--bg);">
-            Continue
-          </a>
+          <a href="#details" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
           <a href="#q5" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
         </div>
       </div>
@@ -700,11 +671,9 @@
     <!-- DETAILS -->
     <section id="details" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
-          Send a first step
-        </h2>
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">Where should the guide be sent?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
-          A short guide will be delivered, aligned to what was shared. A conversation can be offered if it feels appropriate.
+          A short guide is prepared based on what was shared. A quick chat is optional — only if it helps.
         </p>
 
         <div class="grid md:grid-cols-2 gap-4">
@@ -728,20 +697,18 @@
           <div class="space-y-3">
             <div class="card-hover border border-subtle-strong bg-subtle p-4 rounded-sm">
               <div class="text-xs uppercase tracking-[0.18em] opacity-60 mb-2">A note (optional)</div>
-              <textarea id="note" class="input" rows="6" placeholder="Anything that feels important — light is fine."></textarea>
+              <textarea id="note" class="input" rows="6" placeholder="Any detail that feels important — light is fine."></textarea>
             </div>
 
             <div class="text-xs muted">
-              Submissions are treated with care. If no submission endpoint is configured, a draft email opens instead of uploading files.
+              If no submission endpoint is configured, a tidy email draft opens instead (so nothing is lost).
             </div>
           </div>
         </div>
 
         <div class="mt-5 flex flex-col sm:flex-row gap-2.5 items-center">
-          <button id="submitBtn"
-            class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
-            style="background:var(--fg); color:var(--bg);">
-            Submit
+          <button id="submitBtn" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">
+            Send my first step
           </button>
 
           <a href="#photos" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
@@ -768,7 +735,7 @@
         </h2>
 
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl" id="snapshotIntro">
-          A clear first step is ready below.
+          Gardens don’t need to be perfect to begin. Most change happens through a few calm, well-chosen steps — staged to suit time and budget.
         </p>
 
         <div class="grid md:grid-cols-2 gap-4">
@@ -779,7 +746,7 @@
           </div>
 
           <div class="card-hover border border-subtle-strong bg-subtle p-5 rounded-sm">
-            <div class="text-xs uppercase tracking-[0.18em] opacity-60 mb-2">First step</div>
+            <div class="text-xs uppercase tracking-[0.18em] opacity-60 mb-2">An easy first step</div>
             <div class="font-medium mb-2" id="snapshotFirstStepHead">—</div>
             <p class="text-sm leading-relaxed opacity-75" id="snapshotFirstStep">—</p>
           </div>
@@ -790,16 +757,27 @@
           <div class="text-sm leading-relaxed opacity-80" id="snapshotHeard">—</div>
         </div>
 
+        <div class="mt-4 card-hover border border-subtle-strong bg-subtle p-5 rounded-sm" id="photoNudge" style="display:none;">
+          <div class="text-xs uppercase tracking-[0.18em] opacity-60 mb-2">Optional</div>
+          <div class="font-medium mb-2">Two photos makes everything easier.</div>
+          <div class="text-sm leading-relaxed opacity-75">
+            If it feels okay, add 2–3 photos and the guide can be more specific.
+          </div>
+          <div class="mt-3">
+            <a href="#photos" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Add photos</a>
+          </div>
+        </div>
+
         <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
           <a id="downloadGuide" href="#" target="_blank" rel="noopener noreferrer"
              class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
              style="background:var(--fg); color:var(--bg);">
-            Download First Steps (PDF)
+            Download the guide
           </a>
 
           <a id="bookCall" href="#"
              class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">
-            Arrange a conversation
+            Quick chat (optional)
           </a>
 
           <a href="#top" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">
@@ -808,7 +786,7 @@
         </div>
 
         <div class="mt-5 text-xs muted">
-          If a booking link is not configured, the conversation button opens email instead.
+          If a booking link is not configured, the chat button opens email instead.
         </div>
       </div>
     </section>
@@ -829,10 +807,10 @@
 
     // Book call link fallback
     const contactEmail = cfg.contactEmail || "hello@gardenerandson.com.au";
-    const bookFallbackMailto = `mailto:${contactEmail}?subject=${encodeURIComponent("Garden conversation")}&body=${encodeURIComponent("Hello — a garden conversation is requested.\n\nName:\nSuburb:\nBest number:\n\nA few times that work:")}`;
+    const bookFallbackMailto = `mailto:${contactEmail}?subject=${encodeURIComponent("Quick garden chat")}&body=${encodeURIComponent("Hello — a quick garden chat is requested.\n\nName:\nSuburb:\nBest number:\n\nA few times that work:")}`;
     setHref("bookCall", (cfg.bookCallUrl && cfg.bookCallUrl.trim()) ? cfg.bookCallUrl : bookFallbackMailto);
 
-    // ---------- Theme (match REG) ----------
+    // ---------- Theme ----------
     const root = document.documentElement;
     const themeBtn = document.getElementById("themeToggle");
 
@@ -870,32 +848,15 @@
     // ---------- State ----------
     const state = {
       q1: null,
-      q2: [],         // hopes (max 2)
-      q3: null,       // help wanted
-      use: [],        // use (max 2)
-      handsOn: 50,    // 0..100
+      q2: [],
+      q3: null,
+      comfort: null,
+      use: [],
+      handsOn: 50,
       light: null,
       slope: null,
-      photos: []      // File objects
+      photos: []
     };
-
-    // ---------- Progress dots ----------
-    const sectionOrder = ["top","q1","q2","q3","q4","q5","photos","details","done"];
-    function updateDots(activeIdx){
-      document.querySelectorAll(".progress-dot").forEach((d) => {
-        const idx = Number(d.getAttribute("data-dot"));
-        d.classList.toggle("active", idx === activeIdx);
-      });
-    }
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const id = entry.target.getAttribute("id");
-        const idx = sectionOrder.indexOf(id);
-        if (idx >= 0) updateDots(idx);
-      });
-    }, { root: null, rootMargin: "-100px 0px -60% 0px", threshold: 0 });
-    document.querySelectorAll(".screen").forEach(s => obs.observe(s));
 
     // ---------- Choice buttons ----------
     const maxTwo = 2;
@@ -933,31 +894,32 @@
           btn.dataset.selected = "true";
           return;
         }
-
         if (group === "q2") {
           toggleMulti("q2", state.q2, value, maxTwo);
           return;
         }
-
         if (group === "q3") {
           state.q3 = value;
           clearGroup("q3");
           btn.dataset.selected = "true";
           return;
         }
-
+        if (group === "comfort") {
+          state.comfort = value;
+          clearGroup("comfort");
+          btn.dataset.selected = "true";
+          return;
+        }
         if (group === "use") {
           toggleMulti("use", state.use, value, maxTwo);
           return;
         }
-
         if (group === "light") {
           state.light = value;
           clearGroup("light");
           btn.dataset.selected = "true";
           return;
         }
-
         if (group === "slope") {
           state.slope = value;
           clearGroup("slope");
@@ -1033,7 +995,6 @@
     }
 
     input.addEventListener("change", (e) => addFiles(e.target.files));
-
     clearBtn.addEventListener("click", (e) => {
       e.preventDefault();
       state.photos = [];
@@ -1061,16 +1022,13 @@
     });
 
     // ---------- Snapshot generator ----------
-    function computeDirection(){
-      const hope = state.q2.join(", ");
-      const use = state.use.join(", ");
+    function computeSnapshot(){
       const isHabitat = state.q2.includes("Habitat, birds, and life") || state.use.includes("Wildlife / habitat");
       const isGather = state.q2.includes("A place to gather") || state.use.includes("Entertaining / gatherings");
       const isRetreat = state.q2.includes("A quiet retreat") || state.use.includes("Quiet mornings / retreat");
       const isKids = state.q2.includes("Space for children (and play)") || state.use.includes("Kids / play");
       const isFood = state.q2.includes("Productive garden (food / herbs)") || state.use.includes("Growing food / herbs");
 
-      // Direction label (two-part if possible)
       const parts = [];
       if (isHabitat) parts.push("Habitat");
       if (isRetreat) parts.push("Retreat");
@@ -1080,60 +1038,62 @@
 
       const direction = parts.length ? parts.slice(0,2).join(" + ") : "Clarity + calm";
 
-      // Direction text
       const rhythm = labelHandsOn(state.handsOn).label;
-      const light = state.light || "—";
-      const slope = state.slope || "—";
+      const light = state.light || "Not sure";
+      const slope = state.slope || "Not sure";
 
       let directionText = `A direction is forming: ${direction}. `;
-      directionText += `The garden can be shaped to a ${rhythm.toLowerCase()} rhythm, `;
+      directionText += `This can be designed to a ${rhythm.toLowerCase()} rhythm, `;
       directionText += `with a site that feels like "${light.toLowerCase()}" and "${slope.toLowerCase()}".`;
 
-      // First step suggestion
-      let head = "Define the first layer.";
-      let step = "Begin by clarifying structure (where shade, shelter, and movement will live), then choose planting that supports that structure. A good garden starts with a few right decisions, not many rushed ones.";
+      let head = "Start small, choose well.";
+      let step = "Begin by clarifying one or two anchor moves (often shade, edges, and groundcover continuity). Small decisions, made well, make everything feel easier and more affordable.";
 
-      if (state.q3 === "Help fixing one problem") {
+      if (state.comfort === "Just a clear plan (low cost)") {
+        head = "Begin with a plan.";
+        step = "A clear plan is the lowest-cost way to reduce overwhelm. It sets priorities, sequencing, and a staged pathway that can be implemented over time.";
+      } else if (state.comfort === "Small upgrades first") {
+        head = "Make one upgrade that lifts the whole garden.";
+        step = "Choose one improvement that changes how the space feels: a small seating edge, a shade tree (or future canopy), a path that makes movement easy, or a planting bed that replaces maintenance with structure.";
+      } else if (state.q3 === "Help fixing one problem") {
         head = "Solve one thing properly.";
-        step = "Name the single pressure point (maintenance, exposure, emptiness, drainage, privacy). Then design one strong intervention that lifts the whole space — often shade, edges, and groundcover continuity.";
+        step = "Name the single pressure point (maintenance, exposure, emptiness, privacy). Then design one strong intervention that lifts the whole space.";
       } else if (state.q3 === "A clear plan to follow") {
-        head = "Build a calm plan.";
-        step = "Create a simple staged pathway: structure first, then planting, then details. The goal is confidence — knowing what matters now, and what can wait.";
+        head = "Build a calm staged pathway.";
+        step = "Structure first, then planting, then details. A staged pathway keeps the work affordable and prevents redoing decisions later.";
       } else if (state.q3 === "Planting / habitat uplift" || isHabitat) {
-        head = "Increase living structure.";
-        step = "Add layered habitat: canopy (or future canopy), midstorey shelter, and a living ground layer. Even incremental additions can shift birds, insects, and resilience over seasons.";
+        head = "Increase living structure (gently).";
+        step = "Add layered habitat: canopy (or future canopy), midstorey shelter, and a living ground layer. Even incremental changes can shift what returns to the garden.";
       } else if (state.q3 === "A complete redesign") {
-        head = "Reframe the whole space.";
-        step = "Start with a clear story: how it will be used, where it will feel calm, and what it will hold. Then shape paths, edges, and structure so the garden matures with integrity over years.";
+        head = "Reframe the whole space (without rush).";
+        step = "A redesign doesn’t have to happen all at once. Start with the story of use and feeling, then stage the build so it stays calm and controlled.";
       }
 
-      // Heard summary
       const heardBits = [];
       if (state.q1) heardBits.push(`Unfinished: <strong>${state.q1}</strong>.`);
-      if (state.q2.length) heardBits.push(`Hoped for: <strong>${hope}</strong>.`);
-      if (state.q3) heardBits.push(`Help wanted: <strong>${state.q3}</strong>.`);
-      if (state.use.length) heardBits.push(`Use: <strong>${use}</strong>.`);
-      heardBits.push(`Stewardship: <strong>${labelHandsOn(state.handsOn).label}</strong>.`);
-      if (state.light) heardBits.push(`Light: <strong>${state.light}</strong>.`);
-      if (state.slope) heardBits.push(`Slope: <strong>${state.slope}</strong>.`);
-      heardBits.push(`Photos selected: <strong>${state.photos.length}</strong>.`);
+      if (state.q2.length) heardBits.push(`Hoped for: <strong>${state.q2.join(", ")}</strong>.`);
+      if (state.q3) heardBits.push(`Help: <strong>${state.q3}</strong>.`);
+      if (state.comfort) heardBits.push(`Easy beginning: <strong>${state.comfort}</strong>.`);
+      if (state.use.length) heardBits.push(`Use: <strong>${state.use.join(", ")}</strong>.`);
+      heardBits.push(`Rhythm: <strong>${labelHandsOn(state.handsOn).label}</strong>.`);
+      heardBits.push(`Light: <strong>${light}</strong>.`);
+      heardBits.push(`Slope: <strong>${slope}</strong>.`);
+      heardBits.push(`Photos: <strong>${state.photos.length}</strong>.`);
 
       return { direction, directionText, head, step, heard: heardBits.join(" ") };
     }
 
     function renderSnapshot(){
-      const s = computeDirection();
-      document.getElementById("snapshotTitle").textContent = "A beginning has been recorded.";
-      document.getElementById("snapshotIntro").textContent =
-        "Below is a small, personalised first step — designed to make the next move feel calmer.";
-
+      const s = computeSnapshot();
       document.getElementById("snapshotDirection").textContent = s.direction;
       document.getElementById("snapshotDirectionText").textContent = s.directionText;
-
       document.getElementById("snapshotFirstStepHead").textContent = s.head;
       document.getElementById("snapshotFirstStep").textContent = s.step;
-
       document.getElementById("snapshotHeard").innerHTML = s.heard;
+
+      const nudge = document.getElementById("photoNudge");
+      if (nudge) nudge.style.display = state.photos.length ? "none" : "block";
+
       return s;
     }
 
@@ -1152,6 +1112,7 @@
         q1: state.q1,
         hopes: state.q2.slice(),
         help: state.q3,
+        easyBeginning: state.comfort,
         use: state.use.slice(),
         handsOn: state.handsOn,
         light: state.light,
@@ -1162,9 +1123,9 @@
     }
 
     function validate(summary){
-      if (!summary.email) return "Email is required.";
-      if (!summary.name) return "Name is required.";
-      if (!summary.suburb) return "Suburb is required.";
+      if (!summary.email) return "An email helps send the guide.";
+      if (!summary.name) return "A first name is enough.";
+      if (!summary.suburb) return "A suburb helps us understand place.";
       return null;
     }
 
@@ -1178,21 +1139,20 @@
         "",
         `Unfinished: ${summary.q1 || "—"}`,
         `Hoped for: ${summary.hopes.length ? summary.hopes.join(", ") : "—"}`,
-        `Help wanted: ${summary.help || "—"}`,
+        `Help: ${summary.help || "—"}`,
+        `Easy beginning: ${summary.easyBeginning || "—"}`,
         `Use: ${summary.use.length ? summary.use.join(", ") : "—"}`,
-        `Stewardship comfort (0–100): ${summary.handsOn}`,
+        `Hands-on (0–100): ${summary.handsOn}`,
         `Light: ${summary.light || "—"}`,
         `Slope: ${summary.slope || "—"}`,
         `Photos selected: ${summary.photoCount}`,
         "",
         "Snapshot",
         `Direction: ${snapshot.direction}`,
-        `First step: ${snapshot.head} — ${snapshot.step}`,
+        `Easy first step: ${snapshot.head} — ${snapshot.step}`,
         "",
         "Note:",
-        summary.note || "—",
-        "",
-        "If photos are not attached (browser limitation), a reply can request images."
+        summary.note || "—"
       ];
       const subject = `Where Gardens Begin — ${summary.name} (${summary.suburb})`;
       const body = lines.join("\n");
@@ -1202,7 +1162,6 @@
     async function postToEndpoint(summary, snapshot){
       const fd = new FormData();
       fd.append("payload", JSON.stringify({ summary, snapshot }));
-
       state.photos.forEach((file, i) => fd.append(`photo_${i+1}`, file, file.name));
 
       const res = await fetch(cfg.submitEndpoint, { method: "POST", body: fd });
@@ -1217,7 +1176,7 @@
 
       statusEl.textContent = "Sending…";
 
-      // Prepare snapshot now (even if email fallback)
+      // Prepare snapshot now
       const snapshot = renderSnapshot();
 
       try {
@@ -1226,32 +1185,21 @@
           await postToEndpoint(summary, snapshot);
           statusEl.textContent = "Sent.";
         } else {
-          statusEl.textContent = "Opening email…";
+          statusEl.textContent = "Opening a tidy email…";
           window.location.href = mailtoFallback(summary, snapshot);
         }
 
-        try {
-          localStorage.setItem("where_gardens_begin_last", JSON.stringify({ summary, snapshot }));
-        } catch(e){}
+        try { localStorage.setItem("where_gardens_begin_last", JSON.stringify({ summary, snapshot })); } catch(e){}
 
         // Move to done screen
         const done = document.getElementById("done");
         done && done.scrollIntoView({ behavior: "smooth", block: "start" });
 
       } catch (e) {
-        statusEl.textContent = "Could not send. Email fallback is available.";
+        statusEl.textContent = "Could not send. Opening email instead…";
         window.location.href = mailtoFallback(summary, snapshot);
       }
     });
-
-    // If returning later, show last snapshot (nice touch)
-    try {
-      const last = JSON.parse(localStorage.getItem("where_gardens_begin_last") || "null");
-      if (last && last.snapshot) {
-        // don't auto-scroll, just allow the done section to render if they navigate
-        document.getElementById("snapshotDirection").textContent = last.snapshot.direction || "—";
-      }
-    } catch(e){}
   </script>
 </body>
 </html>
