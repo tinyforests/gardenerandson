@@ -279,16 +279,6 @@
       background: rgba(255,240,220,0.10);
     }
 
-    /* Tiny progress */
-    .progress-dot{
-      width: 6px; height: 6px;
-      border-radius: 99px;
-      background: rgba(61,69,53,0.25);
-    }
-    html.dark .progress-dot{ background: rgba(255,240,220,0.25); }
-    .progress-dot.active{ background: var(--fg); }
-    html.dark .progress-dot.active{ background: var(--fg); }
-
     /* Slider */
     .range-wrap{
       border: 1px solid rgba(61,69,53,0.15);
@@ -319,6 +309,17 @@
       border: 1px solid rgba(255,240,220,0.22);
       background: rgba(255,240,220,0.06);
     }
+
+    /* Back left, Continue right (site-wide) */
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .nav-actions .spacer{ flex: 1; }
+    @media (max-width: 640px){
+      .nav-actions{ flex-wrap: wrap; }
+    }
   </style>
 </head>
 
@@ -335,14 +336,10 @@
   <script>
     window.BEGIN = {
       submitEndpoint: "",
-
       guidePdfUrl: "https://www.gardenerandson.com/assets/Where-Gardens-Begin-First-Steps.pdf",
-
       contactEmail: "hello@gardenerandson.com.au",
-
       studioUrl: "https://www.gardenerandson.com",
       registryUrl: "https://tinyforests.github.io/reg/",
-
       bookCallUrl: ""
     };
   </script>
@@ -377,6 +374,7 @@
   </nav>
 
   <main id="content">
+    <!-- HERO -->
     <section id="top" class="screen">
       <div class="max-w-7xl mx-auto px-6 w-full">
         <div class="max-w-4xl">
@@ -442,9 +440,10 @@
           <button class="choice-btn" data-group="q1" data-value="Just exploring">Just exploring</button>
         </div>
 
-        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#q2" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
+        <div class="mt-5 nav-actions">
           <a href="#top" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <span class="spacer"></span>
+          <a href="#q2" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -469,9 +468,10 @@
           <button class="choice-btn" data-group="q2" data-value="A complete transformation">A complete transformation</button>
         </div>
 
-        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#q3" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
+        <div class="mt-5 nav-actions">
           <a href="#q1" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <span class="spacer"></span>
+          <a href="#q3" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -498,9 +498,10 @@
           <button class="choice-btn" data-group="q3" data-value="Just exploring possibilities">Just exploring possibilities</button>
         </div>
 
-        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#q3b" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
+        <div class="mt-5 nav-actions">
           <a href="#q2" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <span class="spacer"></span>
+          <a href="#q3b" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -510,7 +511,7 @@
       </a>
     </section>
 
-    <!-- Q3B (EASY / STAGED / AFFORDABLE) -->
+    <!-- Q3B -->
     <section id="q3b" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
@@ -530,11 +531,10 @@
           <button class="choice-btn" data-group="comfort" data-value="Prefer to talk it through">Prefer to talk it through</button>
         </div>
 
-        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#q4" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">
-            Continue
-          </a>
+        <div class="mt-5 nav-actions">
           <a href="#q3" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <span class="spacer"></span>
+          <a href="#q4" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -574,9 +574,10 @@
           <div class="text-xs muted mt-2" id="handsOnHint">A garden can be designed to match the rhythm of life.</div>
         </div>
 
-        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#q5" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
+        <div class="mt-5 nav-actions">
           <a href="#q3b" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <span class="spacer"></span>
+          <a href="#q5" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -616,9 +617,10 @@
           </div>
         </div>
 
-        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#photos" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
+        <div class="mt-5 nav-actions">
           <a href="#q4" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <span class="spacer"></span>
+          <a href="#photos" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -656,9 +658,10 @@
           <div id="photoPreview" class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3"></div>
         </div>
 
-        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#details" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
+        <div class="mt-5 nav-actions">
           <a href="#q5" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <span class="spacer"></span>
+          <a href="#details" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -706,13 +709,12 @@
           </div>
         </div>
 
-        <div class="mt-5 flex flex-col sm:flex-row gap-2.5 items-center">
+        <div class="mt-5 nav-actions">
+          <a href="#photos" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <span class="spacer"></span>
           <button id="submitBtn" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">
             Send my first step
           </button>
-
-          <a href="#photos" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
-
           <span id="status" class="text-sm muted"></span>
         </div>
       </div>
