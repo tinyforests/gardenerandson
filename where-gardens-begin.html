@@ -288,6 +288,37 @@
     html.dark .progress-dot{ background: rgba(255,240,220,0.25); }
     .progress-dot.active{ background: var(--fg); }
     html.dark .progress-dot.active{ background: var(--fg); }
+
+    /* Slider */
+    .range-wrap{
+      border: 1px solid rgba(61,69,53,0.15);
+      background: rgba(61,69,53,0.05);
+      border-radius: 2px;
+      padding: 16px;
+    }
+    html.dark .range-wrap{
+      border: 1px solid rgba(255,240,220,0.20);
+      background: rgba(255,240,220,0.08);
+    }
+    input[type="range"]{
+      width: 100%;
+      accent-color: var(--fg);
+    }
+    .pill{
+      display:inline-block;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      opacity: .7;
+      border: 1px solid rgba(61,69,53,0.18);
+      padding: 6px 10px;
+      border-radius: 2px;
+      background: rgba(61,69,53,0.03);
+    }
+    html.dark .pill{
+      border: 1px solid rgba(255,240,220,0.22);
+      background: rgba(255,240,220,0.06);
+    }
   </style>
 </head>
 
@@ -337,9 +368,12 @@
         <a href="#top" class="hover:opacity-60 transition-opacity">Start</a>
         <a href="#q1" class="hover:opacity-60 transition-opacity">Feeling</a>
         <a href="#q2" class="hover:opacity-60 transition-opacity">Hope</a>
+        <a href="#q3" class="hover:opacity-60 transition-opacity">Help</a>
+        <a href="#q4" class="hover:opacity-60 transition-opacity">Use</a>
+        <a href="#q5" class="hover:opacity-60 transition-opacity">Site</a>
         <a href="#photos" class="hover:opacity-60 transition-opacity">Photos</a>
         <a href="#details" class="hover:opacity-60 transition-opacity">Send</a>
-        <a href="#done" class="hover:opacity-60 transition-opacity">Download</a>
+        <a href="#done" class="hover:opacity-60 transition-opacity">Snapshot</a>
 
         <button id="themeToggle"
           class="text-xs tracking-[0.18em] uppercase hover:opacity-70 transition-opacity"
@@ -392,13 +426,16 @@
             <span class="progress-dot" data-dot="3"></span>
             <span class="progress-dot" data-dot="4"></span>
             <span class="progress-dot" data-dot="5"></span>
+            <span class="progress-dot" data-dot="6"></span>
+            <span class="progress-dot" data-dot="7"></span>
+            <span class="progress-dot" data-dot="8"></span>
           </div>
 
           <div class="mt-5 text-sm muted flex flex-wrap gap-x-3 gap-y-2">
             <span>Soft questions</span><span aria-hidden="true">·</span>
+            <span>Interactive snapshot</span><span aria-hidden="true">·</span>
             <span>Photo-friendly</span><span aria-hidden="true">·</span>
-            <span>Downloadable guide</span><span aria-hidden="true">·</span>
-            <span>Optional conversation</span>
+            <span>Downloadable guide</span>
           </div>
         </div>
       </div>
@@ -464,12 +501,145 @@
         </div>
 
         <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
-          <a href="#photos"
+          <a href="#q3"
              class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
              style="background:var(--fg); color:var(--bg);">
             Continue
           </a>
           <a href="#q1" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+        </div>
+      </div>
+
+      <a href="#q3" class="next-section">
+        <span class="next-section-arrow">↓</span>
+        <span class="next-section-label">Help</span>
+      </a>
+    </section>
+
+    <!-- Q3 -->
+    <section id="q3" class="screen">
+      <div class="max-w-4xl mx-auto px-6 w-full">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
+          What kind of help is wanted?
+        </h2>
+        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
+          This helps match the right starting point — a plan, a focused fix, or a full redesign.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-3">
+          <button class="choice-btn" data-group="q3" data-value="A complete redesign">A complete redesign</button>
+          <button class="choice-btn" data-group="q3" data-value="A clear plan to follow">A clear plan to follow</button>
+          <button class="choice-btn" data-group="q3" data-value="Help fixing one problem">Help fixing one problem</button>
+          <button class="choice-btn" data-group="q3" data-value="Planting / habitat uplift">Planting / habitat uplift</button>
+          <button class="choice-btn" data-group="q3" data-value="Not sure yet">Not sure yet</button>
+          <button class="choice-btn" data-group="q3" data-value="Just exploring possibilities">Just exploring possibilities</button>
+        </div>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
+          <a href="#q4"
+             class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
+             style="background:var(--fg); color:var(--bg);">
+            Continue
+          </a>
+          <a href="#q2" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+        </div>
+      </div>
+
+      <a href="#q4" class="next-section">
+        <span class="next-section-arrow">↓</span>
+        <span class="next-section-label">Use</span>
+      </a>
+    </section>
+
+    <!-- Q4 -->
+    <section id="q4" class="screen">
+      <div class="max-w-4xl mx-auto px-6 w-full">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
+          How will the garden be used most?
+        </h2>
+        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
+          Choose up to two. (Life shapes the garden.)
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-3">
+          <button class="choice-btn" data-group="use" data-value="Quiet mornings / retreat">Quiet mornings / retreat</button>
+          <button class="choice-btn" data-group="use" data-value="Entertaining / gatherings">Entertaining / gatherings</button>
+          <button class="choice-btn" data-group="use" data-value="Kids / play">Kids / play</button>
+          <button class="choice-btn" data-group="use" data-value="Dog-friendly">Dog-friendly</button>
+          <button class="choice-btn" data-group="use" data-value="Growing food / herbs">Growing food / herbs</button>
+          <button class="choice-btn" data-group="use" data-value="Wildlife / habitat">Wildlife / habitat</button>
+        </div>
+
+        <div class="mt-6 range-wrap">
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <div class="text-xs uppercase tracking-[0.18em] opacity-60">Stewardship comfort</div>
+            <div class="pill" id="handsOnLabel">Balanced</div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs muted mb-2">
+            <span>Low maintenance</span>
+            <span>Happy to garden</span>
+          </div>
+
+          <input id="handsOn" type="range" min="0" max="100" value="50" />
+          <div class="text-xs muted mt-2" id="handsOnHint">A garden can be designed to match the rhythm of life.</div>
+        </div>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
+          <a href="#q5"
+             class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
+             style="background:var(--fg); color:var(--bg);">
+            Continue
+          </a>
+          <a href="#q3" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+        </div>
+      </div>
+
+      <a href="#q5" class="next-section">
+        <span class="next-section-arrow">↓</span>
+        <span class="next-section-label">Site</span>
+      </a>
+    </section>
+
+    <!-- Q5 -->
+    <section id="q5" class="screen">
+      <div class="max-w-4xl mx-auto px-6 w-full">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
+          What is the site like?
+        </h2>
+        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
+          No need to be sure. Best guess is enough.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <div>
+            <div class="text-xs uppercase tracking-[0.18em] opacity-60 mb-2">Light</div>
+            <div class="space-y-3">
+              <button class="choice-btn" data-group="light" data-value="Mostly sun">Mostly sun</button>
+              <button class="choice-btn" data-group="light" data-value="Mostly shade">Mostly shade</button>
+              <button class="choice-btn" data-group="light" data-value="A mix">A mix</button>
+              <button class="choice-btn" data-group="light" data-value="Not sure">Not sure</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="text-xs uppercase tracking-[0.18em] opacity-60 mb-2">Slope</div>
+            <div class="space-y-3">
+              <button class="choice-btn" data-group="slope" data-value="Mostly flat">Mostly flat</button>
+              <button class="choice-btn" data-group="slope" data-value="Gently sloped">Gently sloped</button>
+              <button class="choice-btn" data-group="slope" data-value="Clearly sloped">Clearly sloped</button>
+              <button class="choice-btn" data-group="slope" data-value="Not sure">Not sure</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
+          <a href="#photos"
+             class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
+             style="background:var(--fg); color:var(--bg);">
+            Continue
+          </a>
+          <a href="#q4" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
         </div>
       </div>
 
@@ -517,7 +687,7 @@
              style="background:var(--fg); color:var(--bg);">
             Continue
           </a>
-          <a href="#q2" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <a href="#q5" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
         </div>
       </div>
 
@@ -582,7 +752,7 @@
 
       <a href="#done" class="next-section">
         <span class="next-section-arrow">↓</span>
-        <span class="next-section-label">Download</span>
+        <span class="next-section-label">Snapshot</span>
       </a>
     </section>
 
@@ -590,18 +760,37 @@
     <section id="done" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
         <div class="text-[11px] md:text-xs tracking-[0.22em] uppercase muted mb-4">
-          Thank you
+          Your Garden Path Snapshot
         </div>
 
-        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight" id="snapshotTitle">
           A beginning has been recorded.
         </h2>
 
-        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
-          The guide below outlines what typically comes next — simple steps, calmer decisions, and a clearer picture of what is possible.
+        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl" id="snapshotIntro">
+          A clear first step is ready below.
         </p>
 
-        <div class="mt-2 flex flex-col sm:flex-row gap-2.5">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card-hover border border-subtle-strong bg-subtle p-5 rounded-sm">
+            <div class="text-xs uppercase tracking-[0.18em] opacity-60 mb-2">Direction</div>
+            <div class="font-medium mb-2" id="snapshotDirection">—</div>
+            <p class="text-sm leading-relaxed opacity-75" id="snapshotDirectionText">—</p>
+          </div>
+
+          <div class="card-hover border border-subtle-strong bg-subtle p-5 rounded-sm">
+            <div class="text-xs uppercase tracking-[0.18em] opacity-60 mb-2">First step</div>
+            <div class="font-medium mb-2" id="snapshotFirstStepHead">—</div>
+            <p class="text-sm leading-relaxed opacity-75" id="snapshotFirstStep">—</p>
+          </div>
+        </div>
+
+        <div class="mt-4 card-hover border border-subtle-strong bg-subtle p-5 rounded-sm">
+          <div class="text-xs uppercase tracking-[0.18em] opacity-60 mb-2">What was heard</div>
+          <div class="text-sm leading-relaxed opacity-80" id="snapshotHeard">—</div>
+        </div>
+
+        <div class="mt-5 flex flex-col sm:flex-row gap-2.5">
           <a id="downloadGuide" href="#" target="_blank" rel="noopener noreferrer"
              class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70"
              style="background:var(--fg); color:var(--bg);">
@@ -639,19 +828,18 @@
     setHref("downloadGuide", cfg.guidePdfUrl || "#");
 
     // Book call link fallback
-    const bookCall = document.getElementById("bookCall");
     const contactEmail = cfg.contactEmail || "hello@gardenerandson.com.au";
     const bookFallbackMailto = `mailto:${contactEmail}?subject=${encodeURIComponent("Garden conversation")}&body=${encodeURIComponent("Hello — a garden conversation is requested.\n\nName:\nSuburb:\nBest number:\n\nA few times that work:")}`;
     setHref("bookCall", (cfg.bookCallUrl && cfg.bookCallUrl.trim()) ? cfg.bookCallUrl : bookFallbackMailto);
 
     // ---------- Theme (match REG) ----------
     const root = document.documentElement;
-    const btn = document.getElementById("themeToggle");
+    const themeBtn = document.getElementById("themeToggle");
 
     const applyTheme = (mode) => {
       const isDark = mode === "dark";
       root.classList.toggle("dark", isDark);
-      if (btn) btn.textContent = isDark ? "Light" : "Dark";
+      if (themeBtn) themeBtn.textContent = isDark ? "Light" : "Dark";
       try { localStorage.setItem("begin_theme", mode); } catch(e){}
     };
 
@@ -663,7 +851,7 @@
       applyTheme(prefersDark ? "dark" : "light");
     }
 
-    btn && btn.addEventListener("click", () => {
+    themeBtn && themeBtn.addEventListener("click", () => {
       const nowDark = root.classList.contains("dark");
       applyTheme(nowDark ? "light" : "dark");
     });
@@ -682,22 +870,23 @@
     // ---------- State ----------
     const state = {
       q1: null,
-      q2: [],
-      photos: [] // File objects
+      q2: [],         // hopes (max 2)
+      q3: null,       // help wanted
+      use: [],        // use (max 2)
+      handsOn: 50,    // 0..100
+      light: null,
+      slope: null,
+      photos: []      // File objects
     };
 
-    // Multi-select helper for q2 (up to 2 is a nice constraint; leaving open but can clamp)
-    const maxQ2 = 2;
-
+    // ---------- Progress dots ----------
+    const sectionOrder = ["top","q1","q2","q3","q4","q5","photos","details","done"];
     function updateDots(activeIdx){
       document.querySelectorAll(".progress-dot").forEach((d) => {
         const idx = Number(d.getAttribute("data-dot"));
         d.classList.toggle("active", idx === activeIdx);
       });
     }
-
-    // Rough section → dot mapping
-    const sectionOrder = ["top","q1","q2","photos","details","done"];
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -706,10 +895,33 @@
         if (idx >= 0) updateDots(idx);
       });
     }, { root: null, rootMargin: "-100px 0px -60% 0px", threshold: 0 });
-
     document.querySelectorAll(".screen").forEach(s => obs.observe(s));
 
     // ---------- Choice buttons ----------
+    const maxTwo = 2;
+
+    function clearGroup(group){
+      document.querySelectorAll(`.choice-btn[data-group="${group}"]`).forEach(b => b.dataset.selected = "false");
+    }
+
+    function toggleMulti(group, arr, value, max){
+      const i = arr.indexOf(value);
+      if (i >= 0) {
+        arr.splice(i, 1);
+        const btn = document.querySelector(`.choice-btn[data-group="${group}"][data-value="${CSS.escape(value)}"]`);
+        if (btn) btn.dataset.selected = "false";
+      } else {
+        if (arr.length >= max) {
+          const removed = arr.shift();
+          const removedBtn = document.querySelector(`.choice-btn[data-group="${group}"][data-value="${CSS.escape(removed)}"]`);
+          if (removedBtn) removedBtn.dataset.selected = "false";
+        }
+        arr.push(value);
+        const btn = document.querySelector(`.choice-btn[data-group="${group}"][data-value="${CSS.escape(value)}"]`);
+        if (btn) btn.dataset.selected = "true";
+      }
+    }
+
     document.querySelectorAll(".choice-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const group = btn.getAttribute("data-group");
@@ -717,30 +929,65 @@
 
         if (group === "q1") {
           state.q1 = value;
-          document.querySelectorAll('.choice-btn[data-group="q1"]').forEach(b => b.dataset.selected = "false");
+          clearGroup("q1");
           btn.dataset.selected = "true";
           return;
         }
 
         if (group === "q2") {
-          const i = state.q2.indexOf(value);
-          if (i >= 0) {
-            state.q2.splice(i, 1);
-            btn.dataset.selected = "false";
-          } else {
-            if (state.q2.length >= maxQ2) {
-              // remove earliest selection visually
-              const removed = state.q2.shift();
-              const removedBtn = document.querySelector(`.choice-btn[data-group="q2"][data-value="${CSS.escape(removed)}"]`);
-              if (removedBtn) removedBtn.dataset.selected = "false";
-            }
-            state.q2.push(value);
-            btn.dataset.selected = "true";
-          }
+          toggleMulti("q2", state.q2, value, maxTwo);
+          return;
+        }
+
+        if (group === "q3") {
+          state.q3 = value;
+          clearGroup("q3");
+          btn.dataset.selected = "true";
+          return;
+        }
+
+        if (group === "use") {
+          toggleMulti("use", state.use, value, maxTwo);
+          return;
+        }
+
+        if (group === "light") {
+          state.light = value;
+          clearGroup("light");
+          btn.dataset.selected = "true";
+          return;
+        }
+
+        if (group === "slope") {
+          state.slope = value;
+          clearGroup("slope");
+          btn.dataset.selected = "true";
           return;
         }
       });
     });
+
+    // ---------- Slider ----------
+    const handsOn = document.getElementById("handsOn");
+    const handsOnLabel = document.getElementById("handsOnLabel");
+    const handsOnHint = document.getElementById("handsOnHint");
+
+    function labelHandsOn(v){
+      if (v <= 25) return { label: "Low maintenance", hint: "Design can reduce weekly effort through structure and calm planting logic." };
+      if (v <= 55) return { label: "Balanced", hint: "A garden can be lively without becoming a second job." };
+      if (v <= 80) return { label: "Hands-on", hint: "A richer rhythm is possible — seasonal tasks, small rituals, good tools." };
+      return { label: "Garden joy", hint: "A garden can become a practice — layered, detailed, and deeply rewarding." };
+    }
+
+    function syncHandsOn(){
+      const v = Number(handsOn.value || 50);
+      state.handsOn = v;
+      const { label, hint } = labelHandsOn(v);
+      handsOnLabel.textContent = label;
+      handsOnHint.textContent = hint;
+    }
+    handsOn.addEventListener("input", syncHandsOn);
+    syncHandsOn();
 
     // ---------- Photo upload ----------
     const input = document.getElementById("photoInput");
@@ -780,7 +1027,6 @@
 
     function addFiles(fileList){
       const files = Array.from(fileList || []).filter(f => f && f.type && f.type.startsWith("image/"));
-      // Keep it light: cap at 6
       const combined = state.photos.concat(files).slice(0, 6);
       state.photos = combined;
       renderPreviews();
@@ -795,7 +1041,6 @@
       renderPreviews();
     });
 
-    // Drag + drop
     ["dragenter","dragover"].forEach(evt => {
       drop.addEventListener(evt, (e) => {
         e.preventDefault();
@@ -815,6 +1060,83 @@
       if (dt && dt.files) addFiles(dt.files);
     });
 
+    // ---------- Snapshot generator ----------
+    function computeDirection(){
+      const hope = state.q2.join(", ");
+      const use = state.use.join(", ");
+      const isHabitat = state.q2.includes("Habitat, birds, and life") || state.use.includes("Wildlife / habitat");
+      const isGather = state.q2.includes("A place to gather") || state.use.includes("Entertaining / gatherings");
+      const isRetreat = state.q2.includes("A quiet retreat") || state.use.includes("Quiet mornings / retreat");
+      const isKids = state.q2.includes("Space for children (and play)") || state.use.includes("Kids / play");
+      const isFood = state.q2.includes("Productive garden (food / herbs)") || state.use.includes("Growing food / herbs");
+
+      // Direction label (two-part if possible)
+      const parts = [];
+      if (isHabitat) parts.push("Habitat");
+      if (isRetreat) parts.push("Retreat");
+      if (isGather) parts.push("Gathering");
+      if (isKids) parts.push("Play");
+      if (isFood) parts.push("Kitchen garden");
+
+      const direction = parts.length ? parts.slice(0,2).join(" + ") : "Clarity + calm";
+
+      // Direction text
+      const rhythm = labelHandsOn(state.handsOn).label;
+      const light = state.light || "—";
+      const slope = state.slope || "—";
+
+      let directionText = `A direction is forming: ${direction}. `;
+      directionText += `The garden can be shaped to a ${rhythm.toLowerCase()} rhythm, `;
+      directionText += `with a site that feels like "${light.toLowerCase()}" and "${slope.toLowerCase()}".`;
+
+      // First step suggestion
+      let head = "Define the first layer.";
+      let step = "Begin by clarifying structure (where shade, shelter, and movement will live), then choose planting that supports that structure. A good garden starts with a few right decisions, not many rushed ones.";
+
+      if (state.q3 === "Help fixing one problem") {
+        head = "Solve one thing properly.";
+        step = "Name the single pressure point (maintenance, exposure, emptiness, drainage, privacy). Then design one strong intervention that lifts the whole space — often shade, edges, and groundcover continuity.";
+      } else if (state.q3 === "A clear plan to follow") {
+        head = "Build a calm plan.";
+        step = "Create a simple staged pathway: structure first, then planting, then details. The goal is confidence — knowing what matters now, and what can wait.";
+      } else if (state.q3 === "Planting / habitat uplift" || isHabitat) {
+        head = "Increase living structure.";
+        step = "Add layered habitat: canopy (or future canopy), midstorey shelter, and a living ground layer. Even incremental additions can shift birds, insects, and resilience over seasons.";
+      } else if (state.q3 === "A complete redesign") {
+        head = "Reframe the whole space.";
+        step = "Start with a clear story: how it will be used, where it will feel calm, and what it will hold. Then shape paths, edges, and structure so the garden matures with integrity over years.";
+      }
+
+      // Heard summary
+      const heardBits = [];
+      if (state.q1) heardBits.push(`Unfinished: <strong>${state.q1}</strong>.`);
+      if (state.q2.length) heardBits.push(`Hoped for: <strong>${hope}</strong>.`);
+      if (state.q3) heardBits.push(`Help wanted: <strong>${state.q3}</strong>.`);
+      if (state.use.length) heardBits.push(`Use: <strong>${use}</strong>.`);
+      heardBits.push(`Stewardship: <strong>${labelHandsOn(state.handsOn).label}</strong>.`);
+      if (state.light) heardBits.push(`Light: <strong>${state.light}</strong>.`);
+      if (state.slope) heardBits.push(`Slope: <strong>${state.slope}</strong>.`);
+      heardBits.push(`Photos selected: <strong>${state.photos.length}</strong>.`);
+
+      return { direction, directionText, head, step, heard: heardBits.join(" ") };
+    }
+
+    function renderSnapshot(){
+      const s = computeDirection();
+      document.getElementById("snapshotTitle").textContent = "A beginning has been recorded.";
+      document.getElementById("snapshotIntro").textContent =
+        "Below is a small, personalised first step — designed to make the next move feel calmer.";
+
+      document.getElementById("snapshotDirection").textContent = s.direction;
+      document.getElementById("snapshotDirectionText").textContent = s.directionText;
+
+      document.getElementById("snapshotFirstStepHead").textContent = s.head;
+      document.getElementById("snapshotFirstStep").textContent = s.step;
+
+      document.getElementById("snapshotHeard").innerHTML = s.heard;
+      return s;
+    }
+
     // ---------- Submit ----------
     const submitBtn = document.getElementById("submitBtn");
     const statusEl = document.getElementById("status");
@@ -828,7 +1150,12 @@
       return {
         name, email, suburb, note,
         q1: state.q1,
-        q2: state.q2.slice(),
+        hopes: state.q2.slice(),
+        help: state.q3,
+        use: state.use.slice(),
+        handsOn: state.handsOn,
+        light: state.light,
+        slope: state.slope,
         photoCount: state.photos.length,
         timestamp: new Date().toISOString()
       };
@@ -841,7 +1168,7 @@
       return null;
     }
 
-    function mailtoFallback(summary){
+    function mailtoFallback(summary, snapshot){
       const lines = [
         "Where Gardens Begin — submission",
         "",
@@ -849,9 +1176,18 @@
         `Email: ${summary.email}`,
         `Suburb: ${summary.suburb}`,
         "",
-        `What feels unfinished: ${summary.q1 || "—"}`,
-        `Hoped for (over time): ${summary.q2.length ? summary.q2.join(", ") : "—"}`,
+        `Unfinished: ${summary.q1 || "—"}`,
+        `Hoped for: ${summary.hopes.length ? summary.hopes.join(", ") : "—"}`,
+        `Help wanted: ${summary.help || "—"}`,
+        `Use: ${summary.use.length ? summary.use.join(", ") : "—"}`,
+        `Stewardship comfort (0–100): ${summary.handsOn}`,
+        `Light: ${summary.light || "—"}`,
+        `Slope: ${summary.slope || "—"}`,
         `Photos selected: ${summary.photoCount}`,
+        "",
+        "Snapshot",
+        `Direction: ${snapshot.direction}`,
+        `First step: ${snapshot.head} — ${snapshot.step}`,
         "",
         "Note:",
         summary.note || "—",
@@ -863,11 +1199,10 @@
       return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
-    async function postToEndpoint(summary){
+    async function postToEndpoint(summary, snapshot){
       const fd = new FormData();
-      fd.append("payload", JSON.stringify(summary));
+      fd.append("payload", JSON.stringify({ summary, snapshot }));
 
-      // Attach photos if endpoint exists
       state.photos.forEach((file, i) => fd.append(`photo_${i+1}`, file, file.name));
 
       const res = await fetch(cfg.submitEndpoint, { method: "POST", body: fd });
@@ -878,25 +1213,26 @@
     submitBtn.addEventListener("click", async () => {
       const summary = buildSummary();
       const err = validate(summary);
-      if (err) {
-        statusEl.textContent = err;
-        return;
-      }
+      if (err) { statusEl.textContent = err; return; }
 
       statusEl.textContent = "Sending…";
+
+      // Prepare snapshot now (even if email fallback)
+      const snapshot = renderSnapshot();
 
       try {
         const endpoint = (cfg.submitEndpoint || "").trim();
         if (endpoint) {
-          await postToEndpoint(summary);
+          await postToEndpoint(summary, snapshot);
           statusEl.textContent = "Sent.";
         } else {
           statusEl.textContent = "Opening email…";
-          window.location.href = mailtoFallback(summary);
+          window.location.href = mailtoFallback(summary, snapshot);
         }
 
-        // Persist locally (useful even with endpoint)
-        try { localStorage.setItem("where_gardens_begin_last", JSON.stringify(summary)); } catch(e){}
+        try {
+          localStorage.setItem("where_gardens_begin_last", JSON.stringify({ summary, snapshot }));
+        } catch(e){}
 
         // Move to done screen
         const done = document.getElementById("done");
@@ -904,10 +1240,18 @@
 
       } catch (e) {
         statusEl.textContent = "Could not send. Email fallback is available.";
-        // hard fallback
-        window.location.href = mailtoFallback(summary);
+        window.location.href = mailtoFallback(summary, snapshot);
       }
     });
+
+    // If returning later, show last snapshot (nice touch)
+    try {
+      const last = JSON.parse(localStorage.getItem("where_gardens_begin_last") || "null");
+      if (last && last.snapshot) {
+        // don't auto-scroll, just allow the done section to render if they navigate
+        document.getElementById("snapshotDirection").textContent = last.snapshot.direction || "—";
+      }
+    } catch(e){}
   </script>
 </body>
 </html>
