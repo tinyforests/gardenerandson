@@ -4,782 +4,1488 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gardener & Son — Ecological Design Studio</title>
-
   <meta name="description" content="Gardener & Son designs ecological gardens and builds the systems around them — measurement, registry, and incentive layers that allow private land to function as connected ecological infrastructure." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.gardenerandson.com/" />
 
-  <!-- Fonts -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gardener & Son — Ecological Design Studio" />
+  <meta property="og:description" content="Ecological gardens built for beauty under real conditions. Designing the private ecological infrastructure layer for cities." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.gardenerandson.com/" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['"Abril Fatface"', "serif"],
-            sans: ['"IBM Plex Sans"', "sans-serif"],
-          },
-          colors: {
-            "gardener-green": "#3d4535",
-            "nostalgic-beige": "#fff0dc",
-          },
-        },
-      },
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
 
   <style>
-    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    body { font-family: "IBM Plex Sans", sans-serif; }
-    h1, h2, h3, .font-serif { font-family: "Abril Fatface", serif; font-weight: 400; }
+    /* ─── RESET ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    img { display: block; max-width: 100%; }
 
-    /* REG-style flooded green default */
+    /* ─── TOKENS ─────────────────────────────────────────── */
     :root {
-      --section-primary-bg: #3d4535;
-      --section-primary-text: #fff0dc;
-      --section-secondary-bg: #465040;
-      --section-secondary-text: #fff0dc;
+      --green: #3d4535;
+      --beige: #fff0dc;
+      --accent: #a8c285;
+      --green-subtle: #465040;
+      --green-deep: #2a2f25;
 
-      --panel-primary: rgba(255, 240, 220, 0.05);
-      --panel-primary-strong: rgba(255, 240, 220, 0.08);
-      --line-primary: rgba(255, 240, 220, 0.10);
-      --line-primary-strong: rgba(255, 240, 220, 0.20);
+      --bg: var(--green);
+      --fg: var(--beige);
+      --bg-alt: var(--green-subtle);
+      --line: rgba(255,240,220,0.12);
+      --line-strong: rgba(255,240,220,0.22);
+      --panel: rgba(255,240,220,0.05);
+      --panel-strong: rgba(255,240,220,0.09);
 
-      --panel-secondary: rgba(255, 240, 220, 0.05);
-      --panel-secondary-strong: rgba(255, 240, 220, 0.08);
-      --line-secondary: rgba(255, 240, 220, 0.10);
-      --line-secondary-strong: rgba(255, 240, 220, 0.20);
+      --font-serif: 'Abril Fatface', serif;
+      --font-sans: 'IBM Plex Sans', sans-serif;
+
+      --max-w: 1280px;
+      --pad-x: clamp(1.5rem, 5vw, 5rem);
+      --section-py: clamp(5rem, 10vh, 8rem);
     }
 
-    /* Light mode */
-    body.light-mode {
-      --section-primary-bg: #fff0dc;
-      --section-primary-text: #3d4535;
-      --section-secondary-bg: #f7ead4;
-      --section-secondary-text: #3d4535;
-
-      --panel-primary: rgba(61, 69, 53, 0.05);
-      --panel-primary-strong: rgba(61, 69, 53, 0.08);
-      --line-primary: rgba(61, 69, 53, 0.10);
-      --line-primary-strong: rgba(61, 69, 53, 0.20);
-
-      --panel-secondary: rgba(61, 69, 53, 0.05);
-      --panel-secondary-strong: rgba(61, 69, 53, 0.08);
-      --line-secondary: rgba(61, 69, 53, 0.10);
-      --line-secondary-strong: rgba(61, 69, 53, 0.20);
+    body.light {
+      --bg: var(--beige);
+      --fg: var(--green);
+      --bg-alt: #f5e8cf;
+      --line: rgba(61,69,53,0.12);
+      --line-strong: rgba(61,69,53,0.22);
+      --panel: rgba(61,69,53,0.05);
+      --panel-strong: rgba(61,69,53,0.09);
     }
 
+    /* ─── BASE ───────────────────────────────────────────── */
     body {
-      background-color: var(--section-primary-bg);
-      color: var(--section-primary-text);
-      transition: background-color 0.3s ease, color 0.3s ease;
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.35s, color 0.35s;
+      overflow-x: hidden;
     }
 
-    /* Scroll snap */
-    html {
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
+    /* ─── NOISE TEXTURE ──────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
     }
-    
-    .snap-section {
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      min-height: 100vh;
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+    h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; }
+
+    .display { font-size: clamp(3rem, 8vw, 6rem); line-height: 1.0; }
+    .h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+    .h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+    .h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+    .h4 { font-size: clamp(1.1rem, 2vw, 1.5rem); }
+
+    .label {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+
+    p { line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding-left: var(--pad-x); padding-right: var(--pad-x); }
+    .section { padding-top: var(--section-py); padding-bottom: var(--section-py); position: relative; }
+    .section + .section { border-top: 1px solid var(--line); }
+    .alt { background-color: var(--bg-alt); }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background-color 0.35s;
+    }
+
+    nav.scrolled {
+      background-color: rgba(61,69,53,0.96);
+    }
+
+    body.light nav.scrolled {
+      background-color: rgba(255,240,220,0.96);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 1.25rem var(--pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.8125rem;
+      opacity: 0.65;
+      transition: opacity 0.2s;
+      font-weight: 400;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { opacity: 1; }
+    .nav-links a.active { border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+    .nav-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+
+    /* ─── BUTTONS ────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--fg);
+      color: var(--fg);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, opacity 0.2s;
+      background: transparent;
+      font-family: var(--font-sans);
+    }
+
+    .btn:hover { background: var(--fg); color: var(--bg); }
+
+    .btn-ghost {
+      border-color: var(--line-strong);
+      opacity: 0.75;
+    }
+    .btn-ghost:hover { opacity: 1; }
+
+    .btn-accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--green-deep);
+    }
+    .btn-accent:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+
+    .btn-sm { padding: 0.5rem 1rem; font-size: 0.75rem; }
+
+    /* ─── THEME TOGGLE ───────────────────────────────────── */
+    #theme-btn {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      color: var(--fg);
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: all 0.2s;
+    }
+    #theme-btn:hover { background: var(--fg); color: var(--bg); }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    #top {
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
+      padding-bottom: 5rem;
       position: relative;
+      overflow: hidden;
     }
 
-    .section-primary {
-      background-color: var(--section-primary-bg);
-      color: var(--section-primary-text);
+    .hero-geo {
+      position: absolute;
+      top: 50%;
+      right: -10vw;
+      transform: translateY(-50%);
+      width: clamp(320px, 50vw, 640px);
+      height: clamp(320px, 50vw, 640px);
+      pointer-events: none;
+      opacity: 0.07;
     }
 
-    .section-secondary {
-      background-color: var(--section-secondary-bg);
-      color: var(--section-secondary-text);
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
     }
 
-    /* Border colors for section dividers only */
-    .section-primary .border-gardener-green\/10 {
-      border-color: var(--line-primary) !important;
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2.5rem;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.45;
     }
 
-    .section-secondary .border-gardener-green\/10 {
-      border-color: var(--line-secondary) !important;
+    .hero-title {
+      font-size: clamp(3rem, 7.5vw, 5.5rem);
+      line-height: 1.02;
+      max-width: 18ch;
+      margin-bottom: 2.5rem;
     }
 
-    .section-primary .border-gardener-green\/20 {
-      border-color: var(--line-primary-strong) !important;
+    .hero-body {
+      max-width: 52ch;
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      line-height: 1.75;
+      font-weight: 300;
+      opacity: 0.85;
+      margin-bottom: 3rem;
     }
 
-    .section-secondary .border-gardener-green\/20 {
-      border-color: var(--line-secondary-strong) !important;
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
     }
 
-    .section-primary .border-gardener-green\/30 {
-      border-color: rgba(255, 240, 220, 0.28) !important;
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: var(--pad-x);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0.45;
     }
 
-    .section-secondary .border-gardener-green\/30 {
-      border-color: rgba(255, 240, 220, 0.28) !important;
+    .hero-scroll span { font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; writing-mode: vertical-rl; }
+    .hero-scroll::after { content: ''; display: block; width: 1px; height: 3rem; background: currentColor; }
+
+    /* ─── ICEBREAKER SECTION ────────────────────────────── */
+    #begin {
+      background-color: var(--green-deep);
+      position: relative;
+      overflow: hidden;
     }
 
-    body.light-mode .section-primary .border-gardener-green\/30,
-    body.light-mode .section-secondary .border-gardener-green\/30 {
-      border-color: rgba(61, 69, 53, 0.28) !important;
+    body.light #begin { background-color: #f0e4cc; }
+
+    .icebreaker-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
     }
 
-    /* Background tints for each section type */
-    .section-primary .bg-gardener-green\/5 {
-      background-color: var(--panel-primary) !important;
+    @media (max-width: 760px) {
+      .icebreaker-inner { grid-template-columns: 1fr; gap: 3rem; }
     }
 
-    .section-primary .bg-gardener-green\/10 {
-      background-color: var(--panel-primary-strong) !important;
+    .icebreaker-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 3rem;
     }
 
-    .section-secondary .bg-gardener-green\/5 {
-      background-color: var(--panel-secondary) !important;
-    }
-
-    .section-secondary .bg-gardener-green\/10 {
-      background-color: var(--panel-secondary-strong) !important;
-    }
-
-    /* Button styles for each section */
-    .section-primary a.border-gardener-green:hover,
-    .section-primary button.border-gardener-green:hover {
-      background-color: var(--section-primary-text) !important;
-      color: var(--section-primary-bg) !important;
-    }
-
-    .section-secondary a.border-gardener-green:hover,
-    .section-secondary button.border-gardener-green:hover {
-      background-color: var(--section-secondary-text) !important;
-      color: var(--section-secondary-bg) !important;
-    }
-
-    .section-primary a.border-gardener-green,
-    .section-primary button.border-gardener-green {
-      border-color: var(--section-primary-text) !important;
-      color: var(--section-primary-text) !important;
-    }
-
-    .section-secondary a.border-gardener-green,
-    .section-secondary button.border-gardener-green {
-      border-color: var(--section-secondary-text) !important;
-      color: var(--section-secondary-text) !important;
-    }
-
-    /* Small quality-of-life */
-    :focus-visible { outline: 2px solid rgba(255, 240, 220, 0.45); outline-offset: 3px; }
-    body.light-mode :focus-visible { outline: 2px solid rgba(61, 69, 53, 0.45); }
-    
-    /* Hero text treatment */
-    .hero-text {
-      font-size: clamp(2.5rem, 8vw, 3.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-    }
-
-    /* Theme toggle button */
-    .theme-toggle {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      padding: 0.5rem 1rem;
-      border-radius: 0;
-      border: 1px solid var(--section-primary-text);
-      background: var(--section-primary-bg);
-      color: var(--section-primary-text);
-      cursor: pointer;
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-    }
-
-    .theme-toggle:hover {
+    .tag {
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--line-strong);
       opacity: 0.7;
     }
 
-    /* Active menu item */
-    nav a.active {
-      border-bottom: 1px solid currentColor;
-      padding-bottom: 2px;
+    .icebreaker-visual {
+      position: relative;
+      aspect-ratio: 1;
+      max-width: 400px;
     }
 
-    /* Scroll arrow */
-    .scroll-arrow {
+    .icebreaker-circles {
       position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      border: 1px solid currentColor;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      opacity: 0.6;
-      transition: opacity 0.3s ease, background-color 0.3s ease;
+    }
+
+    .icebreaker-circles svg { width: 100%; height: 100%; }
+
+    .icebreaker-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .icebreaker-center .num {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      opacity: 0.9;
+    }
+
+    .icebreaker-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .icebreaker-step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      font-family: var(--font-serif);
       font-size: 1.25rem;
-      background-color: transparent;
+      line-height: 1;
+      opacity: 0.35;
+      flex-shrink: 0;
+      padding-top: 0.1em;
     }
 
-    .scroll-arrow:hover {
-      opacity: 1;
-      background-color: rgba(255, 240, 220, 0.05);
+    .step-text { font-size: 0.875rem; line-height: 1.65; opacity: 0.85; }
+
+    /* ─── MARQUEE ────────────────────────────────────────── */
+    .marquee-wrap {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      padding: 1rem 0;
     }
 
-    body.light-mode .scroll-arrow:hover {
-      background-color: rgba(61, 69, 53, 0.05);
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: marquee 32s linear infinite;
     }
 
-    /* Active nav link state */
-    nav a.active {
-      border-bottom: 1px solid currentColor;
-      padding-bottom: 2px;
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 2rem;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    .marquee-item::after {
+      content: '·';
+      font-size: 1.25rem;
+      opacity: 0.4;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ─── SECTION: STUDIO ────────────────────────────────── */
+    .studio-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: clamp(3rem, 6vw, 7rem);
+      align-items: start;
+    }
+
+    @media (max-width: 760px) { .studio-grid { grid-template-columns: 1fr; } }
+
+    .studio-sidebar { padding-top: 0.35rem; }
+
+    .studio-sidebar .label { margin-bottom: 1.5rem; display: block; }
+
+    .studio-meta { display: flex; flex-direction: column; gap: 0.5rem; }
+    .studio-meta-item { font-size: 0.8125rem; opacity: 0.6; }
+
+    .studio-body { max-width: 60ch; }
+    .studio-body p + p { margin-top: 1.5rem; }
+
+    .studio-body p {
+      font-size: clamp(1rem, 1.4vw, 1.0625rem);
+      font-weight: 300;
+      line-height: 1.8;
+      opacity: 0.88;
+    }
+
+    .pullquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+      line-height: 1.35;
+      border-left: 2px solid var(--accent);
+      padding-left: 1.75rem;
+      margin: 2.5rem 0;
+      opacity: 0.9;
+    }
+
+    /* ─── SECTION: HOW WE WORK ───────────────────────────── */
+    .method-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      margin-top: 3.5rem;
+    }
+
+    @media (max-width: 760px) { .method-grid { grid-template-columns: 1fr; } }
+
+    .method-item { padding-top: 1.5rem; border-top: 1px solid var(--line); }
+    .method-num { font-family: var(--font-serif); font-size: 0.875rem; opacity: 0.3; margin-bottom: 1rem; }
+    .method-title { font-size: 1.0625rem; font-weight: 500; margin-bottom: 0.75rem; }
+    .method-body { font-size: 0.875rem; line-height: 1.75; opacity: 0.72; font-weight: 300; }
+
+    /* ─── SECTION: BROWSE PILLARS ────────────────────────── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    @media (max-width: 1024px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+    .pillar {
+      border: 1px solid var(--line);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .pillar:hover::before { transform: scaleX(1); }
+    .pillar:hover { background: var(--panel-strong); border-color: var(--line-strong); }
+
+    .pillar-thumb {
+      aspect-ratio: 4/3;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .pillar h3 { font-size: 1.625rem; }
+    .pillar p { font-size: 0.875rem; line-height: 1.7; opacity: 0.7; font-weight: 300; }
+
+    /* ─── SECTION: GARDENS ───────────────────────────────── */
+    .gardens-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .gardens-header p { max-width: 46ch; font-size: 0.9375rem; opacity: 0.75; font-weight: 300; line-height: 1.7; }
+
+    .gardens-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) { .gardens-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .gardens-grid { grid-template-columns: 1fr; } }
+
+    .garden-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+
+    .garden-card:hover { background: var(--panel-strong); }
+
+    .garden-thumb { aspect-ratio: 4/3; background: var(--panel-strong); border-bottom: 1px solid var(--line); }
+    .garden-info { padding: 1.5rem; }
+    .garden-info h3 { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .garden-info p { font-size: 0.8125rem; opacity: 0.65; line-height: 1.65; font-weight: 300; }
+
+    /* ─── SECTION: OBJECTS ───────────────────────────────── */
+    .objects-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 7rem);
+      align-items: start;
+    }
+
+    @media (max-width: 760px) { .objects-inner { grid-template-columns: 1fr; } }
+
+    .objects-prose p + p { margin-top: 1.5rem; }
+    .objects-prose p { font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); font-weight: 300; line-height: 1.8; opacity: 0.85; }
+
+    .objects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.875rem;
+    }
+
+    .object-thumb { aspect-ratio: 1; background: var(--panel); border: 1px solid var(--line); }
+
+    /* ─── SECTION: STORIES ───────────────────────────────── */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 900px) { .stories-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .stories-grid { grid-template-columns: 1fr; } }
+
+    .story-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+
+    .story-card:hover { background: var(--panel-strong); }
+    .story-type { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.5; }
+    .story-title { font-size: 1.0625rem; font-weight: 500; line-height: 1.4; }
+    .story-body { font-size: 0.8125rem; line-height: 1.7; opacity: 0.65; font-weight: 300; margin-top: auto; }
+
+    /* ─── SECTION: THE SYSTEM ────────────────────────────── */
+    .system-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: clamp(3rem, 6vw, 7rem);
+      align-items: start;
+    }
+
+    @media (max-width: 760px) { .system-grid { grid-template-columns: 1fr; } }
+
+    .system-layers { display: flex; flex-direction: column; }
+
+    .system-layer {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+      transition: background 0.2s;
+    }
+
+    .system-layer:first-child { border-top: 1px solid var(--line); }
+
+    .layer-num {
+      font-family: var(--font-serif);
+      font-size: 0.75rem;
+      opacity: 0.28;
+      padding-top: 0.2rem;
+    }
+
+    .layer-name { font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.375rem; }
+    .layer-desc { font-size: 0.8125rem; line-height: 1.65; opacity: 0.62; font-weight: 300; }
+    .layer-link { font-size: 0.75rem; margin-top: 0.75rem; opacity: 0.55; display: inline-block; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: opacity 0.2s; }
+    .layer-link:hover { opacity: 1; }
+
+    /* ─── SECTION: ABOUT ─────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 7rem);
+    }
+
+    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-prose p + p { margin-top: 1.5rem; }
+    .about-prose p { font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); font-weight: 300; line-height: 1.8; opacity: 0.85; }
+    .about-image { aspect-ratio: 3/4; background: var(--panel); border: 1px solid var(--line); }
+
+    /* ─── SECTION: ECO ECONOMY STATEMENT ────────────────── */
+    #ecology-statement {
+      border-top: 1px solid var(--line);
+    }
+
+    .statement-inner { max-width: 72ch; }
+    .statement-title { font-size: clamp(1.875rem, 4vw, 3rem); line-height: 1.15; margin-bottom: 2.5rem; }
+    .statement-body p + p { margin-top: 1.5rem; }
+    .statement-body p { font-size: clamp(0.9375rem, 1.4vw, 1.0625rem); font-weight: 300; line-height: 1.8; opacity: 0.82; }
+
+    /* ─── SECTION: CONTACT ───────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 7rem);
+      align-items: start;
+    }
+
+    @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    .contact-email {
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      opacity: 0.9;
+      border-bottom: 1px solid var(--line-strong);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+
+    .contact-email:hover { opacity: 0.65; }
+
+    .contact-address { font-size: 0.875rem; line-height: 2; opacity: 0.65; font-weight: 300; }
+
+    .contact-cards { display: flex; flex-direction: column; gap: 0.875rem; }
+
+    .contact-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 1.5rem 1.75rem;
+      transition: background 0.2s, border-color 0.2s;
+      display: block;
+    }
+
+    .contact-card:hover { background: var(--panel-strong); border-color: var(--line-strong); }
+    .contact-card-title { font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.375rem; }
+    .contact-card-sub { font-size: 0.8125rem; opacity: 0.6; font-weight: 300; }
+
+    /* Begin card — accent treatment */
+    .contact-card-begin {
+      border-color: var(--accent);
+      background: rgba(168,194,133,0.07);
+    }
+
+    .contact-card-begin:hover { background: rgba(168,194,133,0.14); }
+
+    .contact-card-begin .contact-card-title { color: var(--accent); }
+
+    body.light .contact-card-begin .contact-card-title { color: #5a7a3a; }
+    body.light .contact-card-begin { border-color: #5a7a3a; background: rgba(90,122,58,0.07); }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 4rem 0 3rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    @media (max-width: 760px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    .footer-brand-name { font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 0.875rem; }
+    .footer-brand-desc { font-size: 0.75rem; line-height: 1.7; opacity: 0.5; max-width: 26ch; }
+
+    .footer-col-title { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45; margin-bottom: 1.25rem; }
+
+    .footer-links { display: flex; flex-direction: column; gap: 0.625rem; }
+    .footer-links a { font-size: 0.8125rem; opacity: 0.6; transition: opacity 0.2s; }
+    .footer-links a:hover { opacity: 1; }
+
+    .footer-bottom {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom p { font-size: 0.6875rem; opacity: 0.35; }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+    .reveal-d5 { transition-delay: 0.40s; }
+
+    /* ─── ACCENT BAR UTILITY ─────────────────────────────── */
+    .accent-rule {
+      display: block;
+      width: 2.5rem;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 1.75rem;
+    }
+
+    /* ─── MOBILE HELPERS ─────────────────────────────────── */
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .hero-geo { display: none; }
+    }
+
+    /* ─── PRINT / A11Y ───────────────────────────────────── */
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
   </style>
 </head>
 
 <body>
-  <!-- Theme toggle -->
-  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-    <span id="theme-text">LIGHT</span>
-  </button>
 
-  <!-- Skip link -->
-  <a href="#content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 px-4 py-2 text-sm" style="background: var(--section-primary-bg); color: var(--section-primary-text); border: 1px solid var(--section-primary-text);">
-    Skip to content
-  </a>
+  <!-- ─────────────────────────────────────────────
+       NAVIGATION
+  ───────────────────────────────────────────── -->
+  <a href="#content" class="sr-only focus:not-sr-only">Skip to content</a>
 
-  <!-- Navigation -->
-  <nav class="border-b sticky top-0 backdrop-blur section-primary" style="border-color: var(--line-primary-strong);">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-      <a href="#top" class="font-serif text-xl tracking-tight hover:opacity-70 transition-opacity">Gardener & Son</a>
-      <div class="flex flex-wrap gap-6 md:gap-8 text-sm">
-        <a href="#studio" class="hover:opacity-60 transition-opacity">Studio</a>
-        <a href="#how-we-work" class="hover:opacity-60 transition-opacity">How We Work</a>
-        <a href="#browse" class="hover:opacity-60 transition-opacity">Browse</a>
-        <a href="#gardens" class="hover:opacity-60 transition-opacity">Gardens</a>
-        <a href="#objects" class="hover:opacity-60 transition-opacity">Objects</a>
-        <a href="#stories" class="hover:opacity-60 transition-opacity">Stories</a>
-        <a href="#system" class="hover:opacity-60 transition-opacity">The System</a>
-        <a href="#about" class="hover:opacity-60 transition-opacity">About</a>
-        <a href="#contact" class="hover:opacity-60 transition-opacity">Contact</a>
+  <nav id="site-nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">Gardener &amp; Son</a>
+
+      <ul class="nav-links">
+        <li><a href="#studio">Studio</a></li>
+        <li><a href="#how-we-work">Practice</a></li>
+        <li><a href="#gardens">Gardens</a></li>
+        <li><a href="#system">The System</a></li>
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn btn-sm btn-accent" style="letter-spacing:0.05em;">
+          Where Gardens Begin →
+        </a>
+        <button id="theme-btn" aria-label="Toggle colour mode"><span id="theme-label">Light</span></button>
       </div>
     </div>
   </nav>
 
+  <!-- ─────────────────────────────────────────────
+       HERO
+  ───────────────────────────────────────────── -->
   <main id="content">
-    <!-- Hero -->
-    <section id="top" class="snap-section section-primary">
-      <div class="max-w-5xl mx-auto px-6">
-      <div>
-        <h1 class="font-serif hero-text mb-8">
-          Designing ecological gardens.<br />
-          Building the systems around them.
-        </h1>
+  <section id="top">
+    <!-- Concentric circle geometry, right side -->
+    <svg class="hero-geo" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="300" cy="300" r="290" stroke="currentColor" stroke-width="1"/>
+      <circle cx="300" cy="300" r="230" stroke="currentColor" stroke-width="1"/>
+      <circle cx="300" cy="300" r="170" stroke="currentColor" stroke-width="1"/>
+      <circle cx="300" cy="300" r="110" stroke="currentColor" stroke-width="1"/>
+      <circle cx="300" cy="300" r="55" stroke="currentColor" stroke-width="1"/>
+      <circle cx="300" cy="300" r="20" fill="currentColor" opacity="0.3"/>
+      <line x1="300" y1="10" x2="300" y2="590" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+      <line x1="10" y1="300" x2="590" y2="300" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+    </svg>
 
-        <p class="text-lg md:text-xl leading-relaxed max-w-3xl font-light">
-          Gardener & Son is a transdisciplinary design studio that brings together ecological science, cultural knowledge, and spatial craft — reframing private gardens as measurable ecological assets.
-        </p>
+    <div class="container">
+      <div class="hero-eyebrow reveal">
+        <span class="label">Melbourne · Est. 2015</span>
+      </div>
 
-        <div class="flex flex-col sm:flex-row gap-4 mt-8">
-          <a href="#contact" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors text-center">
-            Start a conversation
+      <h1 class="hero-title reveal reveal-d1">
+        Designing ecological gardens.<br/>
+        Building the systems<br/>around them.
+      </h1>
+
+      <p class="hero-body reveal reveal-d2">
+        Gardener &amp; Son is a transdisciplinary ecological design studio — reframing private gardens as measurable ecological assets, and private land as connected ecological infrastructure.
+      </p>
+
+      <div class="hero-ctas reveal reveal-d3">
+        <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn btn-accent">
+          Where Gardens Begin →
+        </a>
+        <a href="#gardens" class="btn">
+          View garden work
+        </a>
+        <a href="#system" class="btn btn-ghost">
+          The system
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────
+       MARQUEE
+  ───────────────────────────────────────────── -->
+  <div class="marquee-wrap">
+    <div class="marquee-track" aria-hidden="true">
+      <!-- doubled for seamless loop -->
+      <span class="marquee-item">Ecological Design</span>
+      <span class="marquee-item">Indigenous Planting</span>
+      <span class="marquee-item">Habitat Formation</span>
+      <span class="marquee-item">Ecological Registry</span>
+      <span class="marquee-item">Place-based Practice</span>
+      <span class="marquee-item">Living Infrastructure</span>
+      <span class="marquee-item">Soil Science</span>
+      <span class="marquee-item">Canopy Design</span>
+      <span class="marquee-item">Carbon & Biodiversity</span>
+      <span class="marquee-item">Systems Thinking</span>
+      <span class="marquee-item">Regenerative Gardens</span>
+      <span class="marquee-item">Mont Albert Studio</span>
+      <span class="marquee-item">Ecological Design</span>
+      <span class="marquee-item">Indigenous Planting</span>
+      <span class="marquee-item">Habitat Formation</span>
+      <span class="marquee-item">Ecological Registry</span>
+      <span class="marquee-item">Place-based Practice</span>
+      <span class="marquee-item">Living Infrastructure</span>
+      <span class="marquee-item">Soil Science</span>
+      <span class="marquee-item">Canopy Design</span>
+      <span class="marquee-item">Carbon & Biodiversity</span>
+      <span class="marquee-item">Systems Thinking</span>
+      <span class="marquee-item">Regenerative Gardens</span>
+      <span class="marquee-item">Mont Albert Studio</span>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────
+       WHERE GARDENS BEGIN — ICEBREAKER SECTION
+  ───────────────────────────────────────────── -->
+  <section id="begin" class="section">
+    <div class="container">
+      <div class="icebreaker-inner">
+        <!-- Left: copy -->
+        <div>
+          <span class="accent-rule"></span>
+          <span class="label reveal" style="display:block; margin-bottom:1.5rem;">A gentle beginning</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; line-height:1.1; margin-bottom:1.75rem;">
+            Every garden begins somewhere.
+          </h2>
+
+          <p class="reveal reveal-d2" style="max-width:48ch; font-size:1rem; font-weight:300; line-height:1.8; opacity:0.82; margin-bottom:0.75rem;">
+            Starting a garden conversation can feel difficult — especially when you're not sure what you want, or where to start. We made a better way in.
+          </p>
+
+          <p class="reveal reveal-d2" style="max-width:48ch; font-size:1rem; font-weight:300; line-height:1.8; opacity:0.82;">
+            Two or three minutes. A few questions and a couple of photos. No prep, no pressure, no jargon. Just a clear first step.
+          </p>
+
+          <div class="icebreaker-tags reveal reveal-d3">
+            <span class="tag">2–3 minutes</span>
+            <span class="tag">No prep required</span>
+            <span class="tag">No commitment</span>
+            <span class="tag">Staged & gentle</span>
+          </div>
+
+          <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn btn-accent reveal reveal-d4" style="font-size:0.875rem;">
+            Begin — Where Gardens Begin →
           </a>
-          <a href="#gardens" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors text-center">
-            View garden work
-          </a>
-        </div>
-      </div>
-      <button class="scroll-arrow" onclick="document.querySelector('#studio').scrollIntoView({behavior: 'smooth'})">↓</button>
-      </div>
-    </section>
-
-    <!-- Studio -->
-    <section id="studio" class="snap-section section-secondary border-t border-gardener-green/10">
-      <div class="max-w-4xl mx-auto px-6">
-      <div>
-        <h2 class="font-serif text-4xl md:text-5xl mb-10">The Studio</h2>
-
-        <div class="space-y-5 text-base leading-relaxed max-w-2xl">
-          <p>
-            Gardener & Son is an ecological design studio based in Melbourne. We design gardens — and the living systems within them.
-          </p>
-          <p>
-            Each project begins with place: soil, slope, climate, culture, and the ecological community that once thrived there. We study context carefully, observing before we intervene. We work with contours rather than against them.
-          </p>
-          <p>
-            Gardens are not decorative backdrops. They are fragments of a larger ecological whole.
-          </p>
-          <p>
-            They are also personal spaces — places of retreat, play, nourishment, and renewal.
-          </p>
-          <p>
-            When people feel connected to their garden, care deepens. As care deepens, biodiversity follows.
-          </p>
-          <p>
-            Time spent in a living garden restores clarity, improves wellbeing, and fosters belonging. The garden becomes not something to maintain, but something to participate in.
-          </p>
-        </div>
-      </div>
-      <button class="scroll-arrow" onclick="document.querySelector('#how-we-work').scrollIntoView({behavior: 'smooth'})">↓</button>
-      </div>
-    </section>
-
-    <!-- How We Work -->
-    <section id="how-we-work" class="snap-section section-primary border-t border-gardener-green/10">
-      <div class="max-w-4xl mx-auto px-6">
-      <div>
-        <h2 class="font-serif text-4xl md:text-5xl mb-10">How We Work</h2>
-
-        <div class="space-y-5 text-base leading-relaxed max-w-2xl">
-          <p>
-            Design begins on site — walking, observing, reading slope, soil, light, and remnant pattern.
-          </p>
-          <p>
-            Form emerges from context. Materials are chosen for honesty and longevity. Planting is layered and ecological. Structure supports life.
-          </p>
-          <p>
-            We favour long-term thinking over short-term trends.
-          </p>
-          <p>
-            Gardens are designed to mature — to grow, and to be connected with over years. Season by season, they settle. Plants find rhythm. Soil deepens. Shade shifts. What begins as structure becomes relationship.
-          </p>
-          <p>
-            We consider what existed before intervention. Remnant vegetation, local geology, indigenous systems, and subtle cultural traces inform the work. Continuity is favoured over novelty.
-          </p>
-          <p>
-            Story is carried through restraint. The result feels grounded and considered.
-          </p>
-          <p>
-            Culturally, Gardener & Son values craft, integrity, and systemic beauty. Ecological science is integrated with design sensitivity. Indigenous knowledge informs plant selection. Regenerative principles guide construction. Measurement and documentation sit beside intuition and artistry.
-          </p>
-        </div>
-      </div>
-      <button class="scroll-arrow" onclick="document.querySelector('#browse').scrollIntoView({behavior: 'smooth'})">↓</button>
-      </div>
-    </section>
-
-    <!-- Three Pillars / Browse -->
-    <section id="browse" class="snap-section section-secondary border-t border-gardener-green/10">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="grid md:grid-cols-4 gap-12">
-          <!-- Gardens -->
-          <div class="space-y-6">
-            <div class="aspect-[4/3] bg-gardener-green/5 border border-gardener-green/10"></div>
-            <h3 class="font-serif text-3xl">Gardens</h3>
-            <p class="text-base leading-relaxed">
-              Site-specific ecological design — habitat, soil formation, water cycle, canopy, and seasonal depth.
-              Built to feel calm, grounded, and alive.
-            </p>
-            <a href="#gardens" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors">
-              Explore gardens
-            </a>
-          </div>
-
-          <!-- Objects -->
-          <div class="space-y-6">
-            <div class="aspect-[4/3] bg-gardener-green/5 border border-gardener-green/10"></div>
-            <h3 class="font-serif text-3xl">Objects</h3>
-            <p class="text-base leading-relaxed">
-              Tools, vessels, and materials that support the work. Chosen for durability, repairability, and use —
-              a physical culture of care.
-            </p>
-            <a href="#objects" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors">
-              View objects
-            </a>
-          </div>
-
-          <!-- Stories -->
-          <div class="space-y-6">
-            <div class="aspect-[4/3] bg-gardener-green/5 border border-gardener-green/10"></div>
-            <h3 class="font-serif text-3xl">Stories</h3>
-            <p class="text-base leading-relaxed">
-              Writing on ecology, culture, infrastructure, and time — the narrative layer that helps the work
-              move beyond individual sites.
-            </p>
-            <a href="#stories" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors">
-              Read writing
-            </a>
-          </div>
-
-          <!-- Plants -->
-          <div class="space-y-6">
-            <div class="aspect-[4/3] bg-gardener-green/5 border border-gardener-green/10"></div>
-            <h3 class="font-serif text-3xl">Plants</h3>
-            <p class="text-base leading-relaxed">
-              Indigenous plant nursery at the studio. Locally sourced, ecologically appropriate plants for Melbourne gardens.
-            </p>
-            <a href="#studio" class="inline-block text-sm border border-gardener-green px-6 py-3 hover:bg-gardener-green hover:text-nostalgic-beige transition-colors">
-              Visit nursery
-            </a>
-          </div>
-        </div>
-      </div>
-      <button class="scroll-arrow" onclick="document.querySelector('#gardens').scrollIntoView({behavior: 'smooth'})">↓</button>
-    </section>
-
-    <!-- Gardens -->
-    <section id="gardens" class="snap-section section-primary border-t border-gardener-green/10">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12">
-          <h2 class="font-serif text-4xl md:text-5xl">Gardens</h2>
-          <p class="max-w-xl text-base leading-relaxed opacity-80">
-            Ecological gardens built for beauty under real conditions: drought, shade, slope, clay, wind, pets, and family life.
-          </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <article class="border border-gardener-green/10 bg-gardener-green/5 p-6">
-            <div class="aspect-[4/3] bg-gardener-green/10 mb-5"></div>
-            <h3 class="font-medium mb-2">Ecological Garden Installations</h3>
-            <p class="text-sm leading-relaxed opacity-70">
-              Soil, water, canopy, habitat — with a strong aesthetic line. Built to mature, not to peak on day one.
-            </p>
-          </article>
-
-          <article class="border border-gardener-green/10 bg-gardener-green/5 p-6">
-            <div class="aspect-[4/3] bg-gardener-green/10 mb-5"></div>
-            <h3 class="font-medium mb-2">Indigenous + Place-based Planting</h3>
-            <p class="text-sm leading-relaxed opacity-70">
-              Planting that belongs to the land it sits on, supporting local birds, insects, and soil life.
-            </p>
-          </article>
-
-          <article class="border border-gardener-green/10 bg-gardener-green/5 p-6">
-            <div class="aspect-[4/3] bg-gardener-green/10 mb-5"></div>
-            <h3 class="font-medium mb-2">Living Infrastructure</h3>
-            <p class="text-sm leading-relaxed opacity-70">
-              Permeable paths, contour logic, micro-catchments, habitat logs, and long-time maintenance pathways.
-            </p>
-          </article>
-        </div>
-      </div>
-      <button class="scroll-arrow" onclick="document.querySelector('#objects').scrollIntoView({behavior: 'smooth'})">↓</button>
-    </section>
-
-    <!-- Objects -->
-    <section id="objects" class="snap-section section-secondary border-t border-gardener-green/10">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
-          <div class="mt-12">
-            <h2 class="font-serif text-4xl md:text-5xl mb-8">Objects</h2>
-            <div class="space-y-6 text-base leading-relaxed opacity-90">
-              <p>
-                The studio holds a curated collection of tools and vessels that support ecological work — chosen for durability, repair, and the quiet pleasure of use.
-              </p>
-              <p>
-                Objects are treated as companions to long time: things that carry patina, sharpen well, and become better through care.
-              </p>
+        <!-- Right: visual / steps -->
+        <div>
+          <div class="icebreaker-steps reveal reveal-d2">
+            <div class="icebreaker-step">
+              <span class="step-num">01</span>
+              <div>
+                <div class="step-text" style="font-weight:500; margin-bottom:0.25rem;">What feels unfinished?</div>
+                <div class="step-text">Tell us what the garden feels like right now — no wrong answers.</div>
+              </div>
+            </div>
+            <div class="icebreaker-step">
+              <span class="step-num">02</span>
+              <div>
+                <div class="step-text" style="font-weight:500; margin-bottom:0.25rem;">What's hoped for over time?</div>
+                <div class="step-text">Retreat, habitat, gathering space, food, play — or simply transformation.</div>
+              </div>
+            </div>
+            <div class="icebreaker-step">
+              <span class="step-num">03</span>
+              <div>
+                <div class="step-text" style="font-weight:500; margin-bottom:0.25rem;">A glimpse of the garden</div>
+                <div class="step-text">Two or three photos from your phone is enough to begin. No staging needed.</div>
+              </div>
+            </div>
+            <div class="icebreaker-step">
+              <span class="step-num">04</span>
+              <div>
+                <div class="step-text" style="font-weight:500; margin-bottom:0.25rem;">Your Garden Path Snapshot</div>
+                <div class="step-text">A clear, tailored first step — sent to you. A gentle next move, not a sales call.</div>
+              </div>
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-6">
-            <div class="aspect-square bg-gardener-green/5 border border-gardener-green/10"></div>
-            <div class="aspect-square bg-gardener-green/5 border border-gardener-green/10"></div>
-            <div class="aspect-square bg-gardener-green/5 border border-gardener-green/10"></div>
-            <div class="aspect-square bg-gardener-green/5 border border-gardener-green/10"></div>
+          <div style="margin-top:3rem; padding:1.5rem 2rem; border:1px solid var(--line-strong); background:var(--panel);" class="reveal reveal-d3">
+            <p style="font-family:var(--font-serif); font-size:1.125rem; line-height:1.4; opacity:0.88; margin-bottom:1rem;">
+              "Most gardens change in stages. A first step can be small, affordable, and still meaningful."
+            </p>
+            <span class="label">Tyson — Ecological Designer</span>
           </div>
         </div>
       </div>
-      <button class="scroll-arrow" onclick="document.querySelector('#stories').scrollIntoView({behavior: 'smooth'})">↓</button>
-    </section>
+    </div>
+  </section>
 
-    <!-- Stories -->
-    <section id="stories" class="snap-section section-primary border-t border-gardener-green/10">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12">
-          <h2 class="font-serif text-4xl md:text-5xl">Stories</h2>
-          <p class="max-w-xl text-base leading-relaxed opacity-80">
-            Essays and notes on ecological gardening, systems, and culture — written to clarify the work, not to decorate it.
-          </p>
+  <!-- ─────────────────────────────────────────────
+       STUDIO
+  ───────────────────────────────────────────── -->
+  <section id="studio" class="section alt">
+    <div class="container">
+      <div class="studio-grid">
+        <div class="studio-sidebar">
+          <span class="label reveal" style="display:block; margin-bottom:1.75rem;">The Studio</span>
+          <div class="studio-meta reveal reveal-d1">
+            <div class="studio-meta-item">Ecological Design</div>
+            <div class="studio-meta-item">Systems Architecture</div>
+            <div class="studio-meta-item">Indigenous Planting</div>
+            <div class="studio-meta-item">Habitat Restoration</div>
+            <div class="studio-meta-item">Mont Albert, Melbourne</div>
+          </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <a href="#" class="block border border-gardener-green/10 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
-            <div class="text-xs uppercase tracking-wide opacity-60 mb-2">Essay</div>
-            <div class="font-medium mb-2">Beauty Under Real Conditions</div>
-            <p class="text-sm leading-relaxed opacity-70">Why resilience and ecological depth can produce richer beauty over time.</p>
-          </a>
+        <div class="studio-body">
+          <span class="accent-rule reveal"></span>
+          <h2 class="h2 reveal reveal-d1" style="margin-bottom:2rem; max-width:14ch;">
+            Designed from the inside out.
+          </h2>
 
-          <a href="#" class="block border border-gardener-green/10 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
-            <div class="text-xs uppercase tracking-wide opacity-60 mb-2">Note</div>
-            <div class="font-medium mb-2">Gardens as Infrastructure</div>
-            <p class="text-sm leading-relaxed opacity-70">What changes when a garden becomes measurable and connected.</p>
-          </a>
+          <div class="reveal reveal-d2">
+            <p>
+              Gardener &amp; Son is an ecological design studio based in Melbourne. We design gardens — and the living systems within them.
+            </p>
+            <p>
+              Each project begins with place: soil, slope, climate, culture, and the ecological community that once thrived there. We study context carefully, observing before we intervene. We work with contours rather than against them.
+            </p>
 
-          <a href="#" class="block border border-gardener-green/10 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
-            <div class="text-xs uppercase tracking-wide opacity-60 mb-2">Essay</div>
-            <div class="font-medium mb-2">The Ecological Economy</div>
-            <p class="text-sm leading-relaxed opacity-70">Stewardship with proof, and restoration pathways that can scale.</p>
-          </a>
+            <blockquote class="pullquote">
+              Gardens are not decorative backdrops.<br/>They are fragments of a larger ecological whole.
+            </blockquote>
+
+            <p>
+              They are also personal spaces — places of retreat, play, nourishment, and renewal. When people feel connected to their garden, care deepens. As care deepens, biodiversity follows.
+            </p>
+            <p>
+              Time spent in a living garden restores clarity, improves wellbeing, and fosters belonging. The garden becomes not something to maintain, but something to participate in.
+            </p>
+          </div>
         </div>
       </div>
-      <button class="scroll-arrow" onclick="document.querySelector('#system').scrollIntoView({behavior: 'smooth'})">↓</button>
-    </section>
+    </div>
+  </section>
 
-    <!-- The System -->
-    <section id="system" class="snap-section section-secondary border-t border-gardener-green/10">
-      <div class="max-w-4xl mx-auto px-6">
-      <div>
-        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">The System</h2>
-
-      <div class="space-y-6 text-base leading-relaxed mb-14">
-        <p>
-          Individual gardens matter — but systemic change requires infrastructure around them.
-          Classification, measurement, registry, incentives, and aggregation are the layers that make private ecological work visible and durable.
+  <!-- ─────────────────────────────────────────────
+       HOW WE WORK
+  ───────────────────────────────────────────── -->
+  <section id="how-we-work" class="section">
+    <div class="container">
+      <span class="accent-rule reveal"></span>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;">
+        <h2 class="h2 reveal reveal-d1" style="max-width:12ch; line-height:1.1;">How We Work</h2>
+        <p class="reveal reveal-d1" style="max-width:44ch; font-size:0.9375rem; opacity:0.7; font-weight:300; line-height:1.75;">
+          Every site is read before it is designed. Every material is chosen for honesty. Every garden is built to mature.
         </p>
       </div>
 
-      <div class="space-y-8 text-sm">
-        <div class="border-l-2 border-gardener-green/20 pl-6">
-          <h3 class="font-medium mb-2">Find My EVC</h3>
-          <p class="leading-relaxed opacity-70">Classification layer — ecological context for an address.</p>
+      <div class="method-grid">
+        <div class="method-item reveal reveal-d1">
+          <div class="method-num">01</div>
+          <div class="method-title">Begin on site</div>
+          <p class="method-body">Design begins walking — reading slope, soil, light, and remnant pattern. Form emerges from context rather than being imposed upon it.</p>
         </div>
-
-        <div class="border-l-2 border-gardener-green/20 pl-6">
-          <h3 class="font-medium mb-2">Find My Ecological Garden</h3>
-          <p class="leading-relaxed opacity-70">Translation layer — plant assemblages matched to habitat and site conditions.</p>
+        <div class="method-item reveal reveal-d2">
+          <div class="method-num">02</div>
+          <div class="method-title">Favour continuity</div>
+          <p class="method-body">Remnant vegetation, local geology, indigenous systems, and subtle cultural traces inform the work. We favour continuity over novelty.</p>
         </div>
-
-        <div class="border-l-2 border-gardener-green/20 pl-6">
-          <h3 class="font-medium mb-2">The Ecological Registry</h3>
-          <p class="leading-relaxed opacity-70">Registry layer — baseline records, change over time, and verification pathways.</p>
+        <div class="method-item reveal reveal-d3">
+          <div class="method-num">03</div>
+          <div class="method-title">Design to mature</div>
+          <p class="method-body">Gardens are designed to grow over years. Season by season, they settle. Plants find rhythm. Soil deepens. Shade shifts. What begins as structure becomes relationship.</p>
         </div>
-
-        <div class="border-l-2 border-gardener-green/20 pl-6">
-          <h3 class="font-medium mb-2">YIELD</h3>
-          <p class="leading-relaxed opacity-70">Incentive layer — mechanisms that reward ecological stewardship.</p>
-        </div>
-
-        <div class="border-l-2 border-gardener-green/20 pl-6">
-          <h3 class="font-medium mb-2">Curbing</h3>
-          <p class="leading-relaxed opacity-70">Aggregation layer — connects many gardens into credible, city-scale ecological value.</p>
-        </div>
+        <div class="method-item reveal reveal-d4">
+          <div class="method-num">04</div>
+          <div class="method-title">Measure and document</div>
+          <p class="method-body">Measurement and documentation sit beside intuition and artistry. Craft, integrity, and systemic beauty guide how we work — and how we record what we've made.</p>
         </div>
       </div>
-      </div>
-      <button class="scroll-arrow" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">↓</button>
-    </section>
+    </div>
+  </section>
 
-    <!-- About / People -->
-    <section id="about" class="snap-section section-primary border-t border-gardener-green/10">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
-          <div>
-            <h2 class="font-serif text-4xl mb-8">About</h2>
-            <div class="space-y-6 text-base leading-relaxed">
-              <p>
-                Gardener & Son was founded by Tyson and Natasha in Melbourne. The studio brings together ecological design, systems thinking, and the economic architecture required to scale restoration through private land.
-              </p>
-              <p>
-                The work spans gardens, measurement frameworks, registry infrastructure, and the cultural narrative required to shift how cities understand private ecology.
-              </p>
+  <!-- ─────────────────────────────────────────────
+       BROWSE PILLARS
+  ───────────────────────────────────────────── -->
+  <section id="browse" class="section alt">
+    <div class="container">
+      <span class="accent-rule reveal"></span>
+      <h2 class="h2 reveal reveal-d1" style="margin-bottom:0.5rem;">The Studio's Work</h2>
+      <p class="reveal reveal-d2" style="max-width:54ch; font-size:0.9375rem; opacity:0.65; font-weight:300; line-height:1.7; margin-bottom:0;">Gardens, objects, writing, and plants — a physical and cultural practice rooted in ecology.</p>
+
+      <div class="pillars-grid">
+        <div class="pillar reveal reveal-d1">
+          <div class="pillar-thumb"></div>
+          <h3>Gardens</h3>
+          <p>Site-specific ecological design — habitat, soil formation, water cycle, canopy, and seasonal depth. Built to feel calm, grounded, and alive.</p>
+          <a href="#gardens" class="btn btn-sm" style="align-self:flex-start; margin-top:auto;">Explore gardens</a>
+        </div>
+        <div class="pillar reveal reveal-d2">
+          <div class="pillar-thumb"></div>
+          <h3>Objects</h3>
+          <p>Tools, vessels, and materials that support the work. Chosen for durability, repairability, and use — a physical culture of care.</p>
+          <a href="#objects" class="btn btn-sm" style="align-self:flex-start; margin-top:auto;">View objects</a>
+        </div>
+        <div class="pillar reveal reveal-d3">
+          <div class="pillar-thumb"></div>
+          <h3>Stories</h3>
+          <p>Writing on ecology, culture, infrastructure, and time — the narrative layer that helps the work move beyond individual sites.</p>
+          <a href="#stories" class="btn btn-sm" style="align-self:flex-start; margin-top:auto;">Read writing</a>
+        </div>
+        <div class="pillar reveal reveal-d4">
+          <div class="pillar-thumb"></div>
+          <h3>Plants</h3>
+          <p>Indigenous plant nursery at the studio. Locally sourced, ecologically appropriate species for Melbourne gardens.</p>
+          <a href="#studio" class="btn btn-sm" style="align-self:flex-start; margin-top:auto;">Visit nursery</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────
+       GARDENS
+  ───────────────────────────────────────────── -->
+  <section id="gardens" class="section">
+    <div class="container">
+      <span class="accent-rule reveal"></span>
+      <div class="gardens-header">
+        <h2 class="h2 reveal reveal-d1">Gardens</h2>
+        <p class="reveal reveal-d1">Ecological gardens built for beauty under real conditions: drought, shade, slope, clay, wind, pets, and family life.</p>
+      </div>
+
+      <div class="gardens-grid">
+        <article class="garden-card reveal reveal-d1">
+          <div class="garden-thumb"></div>
+          <div class="garden-info">
+            <span class="label" style="display:block; margin-bottom:0.75rem;">Installation</span>
+            <h3>Ecological Garden Installations</h3>
+            <p>Soil, water, canopy, habitat — with a strong aesthetic line. Built to mature, not to peak on day one.</p>
+          </div>
+        </article>
+        <article class="garden-card reveal reveal-d2">
+          <div class="garden-thumb"></div>
+          <div class="garden-info">
+            <span class="label" style="display:block; margin-bottom:0.75rem;">Planting</span>
+            <h3>Indigenous + Place-based Planting</h3>
+            <p>Planting that belongs to the land it sits on, supporting local birds, insects, and soil life.</p>
+          </div>
+        </article>
+        <article class="garden-card reveal reveal-d3">
+          <div class="garden-thumb"></div>
+          <div class="garden-info">
+            <span class="label" style="display:block; margin-bottom:0.75rem;">Infrastructure</span>
+            <h3>Living Infrastructure</h3>
+            <p>Permeable paths, contour logic, micro-catchments, habitat logs, and long-time maintenance pathways.</p>
+          </div>
+        </article>
+      </div>
+
+      <div style="margin-top:3rem;" class="reveal">
+        <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn">
+          Begin your garden conversation →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────
+       OBJECTS
+  ───────────────────────────────────────────── -->
+  <section id="objects" class="section alt">
+    <div class="container">
+      <div class="objects-inner">
+        <div>
+          <span class="accent-rule reveal"></span>
+          <span class="label reveal" style="display:block; margin-bottom:1.5rem;">Objects</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:12ch; margin-bottom:2rem;">Tools with a long memory.</h2>
+          <div class="objects-prose reveal reveal-d2">
+            <p>
+              The studio holds a curated collection of tools and vessels that support ecological work — chosen for durability, repair, and the quiet pleasure of use.
+            </p>
+            <p>
+              Objects are treated as companions to long time: things that carry patina, sharpen well, and become better through care.
+            </p>
+          </div>
+          <a href="#contact" class="btn reveal reveal-d3" style="margin-top:2.5rem;">Enquire about objects</a>
+        </div>
+        <div class="objects-grid reveal reveal-d2">
+          <div class="object-thumb"></div>
+          <div class="object-thumb"></div>
+          <div class="object-thumb"></div>
+          <div class="object-thumb"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────
+       STORIES
+  ───────────────────────────────────────────── -->
+  <section id="stories" class="section">
+    <div class="container">
+      <span class="accent-rule reveal"></span>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;">
+        <h2 class="h2 reveal reveal-d1">Stories</h2>
+        <p class="reveal reveal-d1" style="max-width:44ch; font-size:0.9375rem; opacity:0.7; font-weight:300; line-height:1.75;">
+          Essays and field notes on ecological gardening, systems, and culture — written to clarify the work, not to decorate it.
+        </p>
+      </div>
+
+      <div class="stories-grid">
+        <a href="#" class="story-card reveal reveal-d1">
+          <span class="story-type">Essay</span>
+          <div class="story-title">Beauty Under Real Conditions</div>
+          <p class="story-body">Why resilience and ecological depth produce richer beauty over time — and how this challenges conventional garden aesthetics.</p>
+        </a>
+        <a href="#" class="story-card reveal reveal-d2">
+          <span class="story-type">Note</span>
+          <div class="story-title">Gardens as Infrastructure</div>
+          <p class="story-body">What changes when a garden becomes measurable and connected — and how private land becomes part of the city's ecological fabric.</p>
+        </a>
+        <a href="#" class="story-card reveal reveal-d3">
+          <span class="story-type">Essay</span>
+          <div class="story-title">The Ecological Economy</div>
+          <p class="story-body">Stewardship with proof, and restoration pathways that compound across neighbourhoods. The long horizon of urban ecological design.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────
+       THE SYSTEM
+  ───────────────────────────────────────────── -->
+  <section id="system" class="section alt">
+    <div class="container">
+      <div class="system-grid">
+        <div>
+          <span class="accent-rule reveal"></span>
+          <span class="label reveal" style="display:block; margin-bottom:1.5rem;">The System</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; line-height:1.1; margin-bottom:2rem;">
+            Infrastructure for private ecology.
+          </h2>
+          <p class="reveal reveal-d2" style="max-width:42ch; font-size:0.9375rem; font-weight:300; line-height:1.8; opacity:0.8;">
+            Individual gardens matter — but systemic change requires infrastructure around them. Classification, measurement, registry, incentives, and aggregation are the layers that make private ecological work visible and durable.
+          </p>
+        </div>
+
+        <div class="system-layers reveal reveal-d2">
+          <div class="system-layer">
+            <span class="layer-num">01</span>
+            <div>
+              <div class="layer-name">Find My EVC</div>
+              <div class="layer-desc">Classification layer — ecological context for an address. The first question: what once grew here?</div>
+              <a href="https://findmyevc.com" class="layer-link" target="_blank" rel="noopener">findmyevc.com ↗</a>
             </div>
           </div>
-
-          <div class="aspect-[4/3] bg-gardener-green/5 border border-gardener-green/10"></div>
+          <div class="system-layer">
+            <span class="layer-num">02</span>
+            <div>
+              <div class="layer-name">Find My Ecological Garden</div>
+              <div class="layer-desc">Translation layer — plant assemblages matched to habitat and site conditions.</div>
+              <a href="https://findmyecologicalgarden.com" class="layer-link" target="_blank" rel="noopener">findmyecologicalgarden.com ↗</a>
+            </div>
+          </div>
+          <div class="system-layer">
+            <span class="layer-num">03</span>
+            <div>
+              <div class="layer-name">The Ecological Registry</div>
+              <div class="layer-desc">Registry layer — baseline records, change over time, and verification pathways for ecological gardens.</div>
+              <a href="https://ecologicalregistry.org" class="layer-link" target="_blank" rel="noopener">ecologicalregistry.org ↗</a>
+            </div>
+          </div>
+          <div class="system-layer">
+            <span class="layer-num">04</span>
+            <div>
+              <div class="layer-name">YIELD</div>
+              <div class="layer-desc">Incentive layer — mechanisms that reward ecological stewardship and return value to landowners.</div>
+            </div>
+          </div>
+          <div class="system-layer">
+            <span class="layer-num">05</span>
+            <div>
+              <div class="layer-name">Curbing</div>
+              <div class="layer-desc">Aggregation layer — connecting many gardens into credible, city-scale ecological value.</div>
+            </div>
+          </div>
         </div>
       </div>
-      <button class="scroll-arrow" onclick="document.querySelectorAll('section')[8].scrollIntoView({behavior: 'smooth'})">↓</button>
-    </section>
+    </div>
+  </section>
 
-    <!-- Ecological Economy Statement -->
-    <section class="snap-section section-secondary border-t border-gardener-green/10">
-      <div class="max-w-4xl mx-auto px-6">
-      <div>
-        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">
+  <!-- ─────────────────────────────────────────────
+       ABOUT
+  ───────────────────────────────────────────── -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <span class="accent-rule reveal"></span>
+          <span class="label reveal" style="display:block; margin-bottom:1.5rem;">About</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; line-height:1.1; margin-bottom:2rem;">
+            Tyson &amp; Natasha, Melbourne.
+          </h2>
+          <div class="about-prose reveal reveal-d2">
+            <p>
+              Gardener &amp; Son was founded by Tyson and Natasha in Melbourne. The studio brings together ecological design, systems thinking, and the economic architecture required to scale restoration through private land.
+            </p>
+            <p>
+              Tyson works as ecological designer and systems thinker. Natasha as plant stylist and aesthetic visionary. Together the studio operates across garden design, measurement frameworks, registry infrastructure, and the cultural narrative required to shift how cities understand private ecology.
+            </p>
+            <p>
+              The studio is based at Churchill Street, Mont Albert — with a new studio space opening soon, including an indigenous plant nursery and laneway wine bar.
+            </p>
+          </div>
+        </div>
+        <div class="about-image reveal reveal-d2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────
+       ECOLOGICAL ECONOMY STATEMENT
+  ───────────────────────────────────────────── -->
+  <section id="ecology-statement" class="section alt">
+    <div class="container">
+      <div class="statement-inner">
+        <span class="accent-rule reveal"></span>
+        <h2 class="statement-title reveal reveal-d1">
           Building the private ecological infrastructure layer for cities.
         </h2>
-
-        <div class="space-y-6 text-base leading-relaxed mt-10">
+        <div class="statement-body reveal reveal-d2">
           <p>
             This requires more than gardens. It requires registry infrastructure and economic frameworks that can recognise, value, and connect private ecological work — without losing the craft and beauty of the garden itself.
           </p>
           <p>
-            This is the ecological economy: stewardship with proof, and restoration that can compound across neighbourhoods.
-            Long-horizon work. Built steadily.
+            This is the ecological economy: stewardship with proof, and restoration that can compound across neighbourhoods. Long-horizon work. Built steadily.
           </p>
         </div>
+        <div style="margin-top:3rem;" class="reveal reveal-d3">
+          <a href="#system" class="btn">Learn about the system →</a>
+        </div>
       </div>
-      </div>
-      <button class="scroll-arrow" onclick="document.querySelector('#contact').scrollIntoView({behavior: 'smooth'})">↓</button>
-    </section>
+    </div>
+  </section>
 
-    <!-- Contact -->
-    <section id="contact" class="snap-section section-primary border-t border-gardener-green/10">
-      <div class="max-w-4xl mx-auto px-6">
-      <div>
-        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">Contact</h2>
+  <!-- ─────────────────────────────────────────────
+       CONTACT
+  ───────────────────────────────────────────── -->
+  <section id="contact" class="section">
+    <div class="container">
+      <span class="accent-rule reveal"></span>
+      <span class="label reveal" style="display:block; margin-bottom:1.5rem;">Contact</span>
+      <h2 class="h2 reveal reveal-d1" style="max-width:16ch; line-height:1.1; margin-bottom:3rem;">
+        Start a conversation about your garden.
+      </h2>
 
-      <p class="text-lg leading-relaxed mb-10">
-        For garden projects, collaborations, or system-layer conversations — reach out.
-      </p>
-
-      <div class="grid md:grid-cols-2 gap-10">
-        <div class="space-y-4 text-base leading-relaxed">
-          <div class="text-sm uppercase tracking-wide opacity-60">Email</div>
-          <a href="mailto:hello@gardenerandson.com.au" class="inline-block border border-gardener-green px-6 py-3 text-sm hover:bg-gardener-green hover:text-nostalgic-beige transition-colors">
+      <div class="contact-grid">
+        <div>
+          <div class="label reveal" style="margin-bottom:1rem; display:block;">Email</div>
+          <a href="mailto:hello@gardenerandson.com.au" class="contact-email reveal reveal-d1">
             hello@gardenerandson.com.au
           </a>
-
-          <div class="pt-6">
-            <div class="text-sm uppercase tracking-wide opacity-60 mb-2">Studio</div>
-            <p class="opacity-80">
-              2 Churchill Street<br />
-              Mont Albert 3127<br />
-              Victoria, Australia
-            </p>
+          <div class="contact-address reveal reveal-d2">
+            <span class="label" style="display:block; margin-bottom:0.75rem;">Studio</span>
+            2 Churchill Street<br/>
+            Mont Albert 3127<br/>
+            Victoria, Australia
           </div>
         </div>
 
-        <div class="space-y-4">
-          <div class="text-sm uppercase tracking-wide opacity-60">Next steps</div>
-
-          <a href="#gardens" class="block border border-gardener-green/30 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
-            <div class="font-medium mb-1">Building a garden</div>
-            <div class="text-sm opacity-70">Ecological design + installation pathways.</div>
+        <div class="contact-cards">
+          <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="contact-card contact-card-begin reveal reveal-d1">
+            <div class="contact-card-title">Not sure where to start? Begin here →</div>
+            <div class="contact-card-sub">2–3 minutes. A gentle first step. No pressure. Where Gardens Begin takes the difficulty out of making contact.</div>
           </a>
-
-          <a href="#system" class="block border border-gardener-green/30 bg-gardener-green/5 p-6 hover:bg-gardener-green/10 transition-colors">
-            <div class="font-medium mb-1">Building the system layer</div>
-            <div class="text-sm opacity-70">Registry, measurement, incentives, and aggregation.</div>
+          <a href="#gardens" class="contact-card reveal reveal-d2">
+            <div class="contact-card-title">Building a garden</div>
+            <div class="contact-card-sub">Ecological design + installation pathways for Melbourne.</div>
+          </a>
+          <a href="#system" class="contact-card reveal reveal-d3">
+            <div class="contact-card-title">Building the system layer</div>
+            <div class="contact-card-sub">Registry, measurement, incentives, and aggregation — for councils, partners, and collaborators.</div>
           </a>
         </div>
       </div>
-      </div>
-    </section>
+    </div>
+  </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-gardener-green/10 py-12 section-primary">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-sm">
-        <div class="col-span-2 md:col-span-1">
-          <div class="font-serif text-lg mb-4">Gardener & Son</div>
-          <p class="text-xs leading-relaxed opacity-60">
-            Ecological design studio<br />
-            Melbourne
-          </p>
+  <!-- ─────────────────────────────────────────────
+       FOOTER
+  ───────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-name">Gardener &amp; Son</div>
+          <p class="footer-brand-desc">Ecological design studio.<br/>Melbourne, Australia.<br/>Designing the ecological infrastructure layer for cities.</p>
         </div>
 
         <div>
-          <div class="font-medium mb-3">Studio</div>
-          <div class="space-y-2 text-xs opacity-60">
-            <p>2 Churchill Street</p>
-            <p>Mont Albert 3127</p>
-            <p>Victoria, Australia</p>
+          <div class="footer-col-title">Studio</div>
+          <div class="footer-links">
+            <a href="#studio">The Studio</a>
+            <a href="#how-we-work">Practice</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
           </div>
         </div>
 
         <div>
-          <div class="font-medium mb-3">Connect</div>
-          <div class="space-y-2 text-xs">
-            <a href="#contact" class="block hover:opacity-60 transition-opacity">Contact</a>
-            <a href="#studio" class="block hover:opacity-60 transition-opacity">Visit</a>
+          <div class="footer-col-title">Systems</div>
+          <div class="footer-links">
+            <a href="https://findmyecologicalgarden.com" target="_blank" rel="noopener">Find My Ecological Garden</a>
+            <a href="https://findmyevc.com" target="_blank" rel="noopener">Find My EVC</a>
+            <a href="https://ecologicalregistry.org" target="_blank" rel="noopener">Ecological Registry</a>
+            <a href="#system">YIELD</a>
+            <a href="#system">Curbing</a>
           </div>
         </div>
 
         <div>
-          <div class="font-medium mb-3">Systems</div>
-          <div class="space-y-2 text-xs">
-            <a href="https://findmyecologicalgarden.com" class="block hover:opacity-60 transition-opacity">Find My Ecological Garden</a>
-            <a href="https://findmyevc.com" class="block hover:opacity-60 transition-opacity">Find My EVC</a>
-            <a href="#system" class="block hover:opacity-60 transition-opacity">The Ecological Registry</a>
+          <div class="footer-col-title">Begin</div>
+          <div class="footer-links">
+            <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html">Where Gardens Begin →</a>
+            <a href="#gardens">Garden Work</a>
+            <a href="#stories">Stories</a>
           </div>
         </div>
       </div>
 
-      <div class="mt-12 pt-6 border-t border-gardener-green/10 text-xs opacity-40">
-        <p>© <span id="year"></span> Gardener & Son. Designing ecological infrastructure.</p>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Gardener &amp; Son. Designing ecological infrastructure.</p>
+        <p>Mont Albert, Melbourne · Victoria, Australia</p>
       </div>
     </div>
   </footer>
 
+  <!-- ─────────────────────────────────────────────
+       SCRIPTS
+  ───────────────────────────────────────────── -->
   <script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeText = document.getElementById('theme-text');
+    // ── Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ── Theme
     const body = document.body;
+    const themeBtn = document.getElementById('theme-btn');
+    const themeLabel = document.getElementById('theme-label');
 
-    // Check for saved theme preference or default to dark mode
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-    
-    // Apply theme on load
-    if (currentTheme === 'light') {
-      body.classList.add('light-mode');
-      themeText.textContent = 'DARK';
-    } else {
-      body.classList.remove('light-mode');
-      themeText.textContent = 'LIGHT';
-    }
+    const saved = localStorage.getItem('gs-theme') || 'dark';
+    if (saved === 'light') { body.classList.add('light'); themeLabel.textContent = 'Dark'; }
 
-    // Toggle theme
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('light-mode');
-      
-      if (body.classList.contains('light-mode')) {
-        themeText.textContent = 'DARK';
-        localStorage.setItem('theme', 'light');
-      } else {
-        themeText.textContent = 'LIGHT';
-        localStorage.setItem('theme', 'dark');
-      }
+    themeBtn.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const isLight = body.classList.contains('light');
+      themeLabel.textContent = isLight ? 'Dark' : 'Light';
+      localStorage.setItem('gs-theme', isLight ? 'light' : 'dark');
     });
 
-    // Active menu tracking
-    const sections = document.querySelectorAll('.snap-section[id]');
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
-    
-    function updateActiveMenu() {
-      let current = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop - 100) {
-          current = section.getAttribute('id');
+    // ── Nav scrolled state
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── Active nav
+    const sections = document.querySelectorAll('section[id], main[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
         }
       });
-      
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-          link.classList.add('active');
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+
+    // ── Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
         }
       });
-    }
-    
-    window.addEventListener('scroll', updateActiveMenu);
-    window.addEventListener('load', updateActiveMenu);
+    }, { threshold: 0.08 });
 
-    // Set current year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    revealEls.forEach(el => revealObs.observe(el));
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        const href = this.getAttribute("href");
-        const target = document.querySelector(href);
+    // ── Smooth scroll anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
         if (!target) return;
-
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth" });
+        target.scrollIntoView({ behavior: 'smooth' });
       });
     });
   </script>
