@@ -754,9 +754,15 @@
 
     /* ─── SCROLL REVEAL ──────────────────────────────────── */
     .reveal {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    /* JS adds .js-reveal to body, then we hide elements until observed */
+    .js-reveal .reveal {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
     }
 
     .reveal.visible { opacity: 1; transform: none; }
@@ -1159,17 +1165,17 @@
       <div class="objects-inner">
         <div>
           <span class="accent-rule reveal"></span>
-          <span class="label reveal" style="display:block; margin-bottom:1.5rem;">Objects</span>
-          <h2 class="h2 reveal reveal-d1" style="max-width:12ch; margin-bottom:2rem;">Tools with a long memory.</h2>
+          <span class="label reveal" style="display:block; margin-bottom:1.5rem;">Heirloom</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:12ch; margin-bottom:2rem;">Objects with a long memory.</h2>
           <div class="objects-prose reveal reveal-d2">
             <p>
-              The studio holds a curated collection of tools and vessels that support ecological work — chosen for durability, repair, and the quiet pleasure of use.
+              The studio holds a curated collection of objects, vessels and tools that support ecological work — chosen for durability, repair, and the quiet pleasure of use.
             </p>
             <p>
               Objects are treated as companions to long time: things that carry patina, sharpen well, and become better through care.
             </p>
           </div>
-          <a href="#contact" class="btn reveal reveal-d3" style="margin-top:2.5rem;">Enquire about objects</a>
+          <a href="https://tinyforests.github.io/heirloom/" class="btn reveal reveal-d3" style="margin-top:2.5rem;" target="_blank" rel="noopener">Visit Heirloom →</a>
         </div>
         <div class="objects-grid reveal reveal-d2">
           <div class="object-thumb"></div>
@@ -1343,8 +1349,8 @@
       <div class="contact-grid">
         <div>
           <div class="label reveal" style="margin-bottom:1rem; display:block;">Email</div>
-          <a href="mailto:hello@gardenerandson.com.au" class="contact-email reveal reveal-d1">
-            hello@gardenerandson.com.au
+          <a href="/cdn-cgi/l/email-protection#b5ddd0d9d9daf5d2d4c7d1d0dbd0c7d4dbd1c6dadb9bd6dad89bd4c0" class="contact-email reveal reveal-d1">
+            <span class="__cf_email__" data-cfemail="94fcf1f8f8fbd4f3f5e6f0f1faf1e6f5faf0e7fbfabaf7fbf9baf5e1">[email&#160;protected]</span>
           </a>
           <div class="contact-address reveal reveal-d2">
             <span class="label" style="display:block; margin-bottom:0.75rem;">Studio</span>
@@ -1425,7 +1431,10 @@
   <!-- ─────────────────────────────────────────────
        SCRIPTS
   ───────────────────────────────────────────── -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // ── Enable reveal animations (content visible by default without this)
+    document.body.classList.add('js-reveal');
+
     // ── Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1475,19 +1484,15 @@
           revealObs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08 });
+    }, { threshold: 0.04, rootMargin: '0px 0px -40px 0px' });
 
     revealEls.forEach(el => revealObs.observe(el));
 
+    // Fallback: reveal everything if observer hasn't fired (preview / iframe / no scroll)
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+    }, 600);
+
     // ── Smooth scroll anchors
     document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-  </script>
-</body>
-</html>
+      a.add
