@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gardener & Son — Ecological Design Studio</title>
-  <meta name="description" content="Gardener & Son designs ecological gardens and builds the systems around them — measurement, registry, and incentive layers that allow private land to function as connected ecological infrastructure." />
+  <title>Gardener & Son — Ecological Design Studio, Melbourne</title>
+  <meta name="description" content="Gardener & Son designs and builds ecological gardens across Melbourne — places of habitat, retreat, and long-term beauty. We also develop the measurement and registry systems around them." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.gardenerandson.com/" />
-
-  <!-- Open Graph -->
   <meta property="og:title" content="Gardener & Son — Ecological Design Studio" />
-  <meta property="og:description" content="Ecological gardens built for beauty under real conditions. Designing the private ecological infrastructure layer for cities." />
+  <meta property="og:description" content="Ecological gardens designed and built across Melbourne. Grounded in place, shaped over time." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.gardenerandson.com/" />
 
@@ -26,35 +24,36 @@
 
     /* ─── TOKENS ─────────────────────────────────────────── */
     :root {
-      --green: #3d4535;
-      --beige: #fff0dc;
-      --accent: #a8c285;
+      --green:        #3d4535;
+      --beige:        #fff0dc;
+      --accent:       #a8c285;
       --green-subtle: #465040;
-      --green-deep: #2a2f25;
+      --green-deep:   #2a2f25;
 
-      --bg: var(--green);
-      --fg: var(--beige);
-      --bg-alt: var(--green-subtle);
-      --line: rgba(255,240,220,0.12);
-      --line-strong: rgba(255,240,220,0.22);
-      --panel: rgba(255,240,220,0.05);
+      --bg:           var(--green);
+      --fg:           var(--beige);
+      --bg-alt:       var(--green-subtle);
+      --line:         rgba(255,240,220,0.12);
+      --line-strong:  rgba(255,240,220,0.22);
+      --panel:        rgba(255,240,220,0.05);
       --panel-strong: rgba(255,240,220,0.09);
 
       --font-serif: 'Abril Fatface', serif;
-      --font-sans: 'IBM Plex Sans', sans-serif;
+      --font-sans:  'IBM Plex Sans', sans-serif;
 
-      --max-w: 1280px;
-      --pad-x: clamp(1.5rem, 5vw, 5rem);
+      --max-w:      1280px;
+      --pad-x:      clamp(1.5rem, 5vw, 5rem);
       --section-py: clamp(5rem, 10vh, 8rem);
+      --nav-h:      68px;
     }
 
     body.light {
-      --bg: var(--beige);
-      --fg: var(--green);
-      --bg-alt: #f5e8cf;
-      --line: rgba(61,69,53,0.12);
-      --line-strong: rgba(61,69,53,0.22);
-      --panel: rgba(61,69,53,0.05);
+      --bg:           var(--beige);
+      --fg:           var(--green);
+      --bg-alt:       #f5e8cf;
+      --line:         rgba(61,69,53,0.12);
+      --line-strong:  rgba(61,69,53,0.22);
+      --panel:        rgba(61,69,53,0.05);
       --panel-strong: rgba(61,69,53,0.09);
     }
 
@@ -74,7 +73,7 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 9000;
       opacity: 0.028;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
       background-repeat: repeat;
@@ -83,21 +82,8 @@
 
     /* ─── TYPOGRAPHY ─────────────────────────────────────── */
     h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; }
-
-    .display { font-size: clamp(3rem, 8vw, 6rem); line-height: 1.0; }
-    .h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
     .h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
-    .h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
-    .h4 { font-size: clamp(1.1rem, 2vw, 1.5rem); }
-
-    .label {
-      font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.55;
-    }
-
+    .label { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.55; }
     p { line-height: 1.7; }
     a { color: inherit; text-decoration: none; }
 
@@ -107,711 +93,328 @@
     .section + .section { border-top: 1px solid var(--line); }
     .alt { background-color: var(--bg-alt); }
 
-    /* ─── NAV ────────────────────────────────────────────── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background-color: var(--bg);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: background-color 0.35s;
+    /* Scroll offset for fixed nav */
+    section[id] { scroll-margin-top: var(--nav-h); }
+
+    /* ─── FIXED NAV ──────────────────────────────────────── */
+    #site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      /* Hidden on load */
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease, background 0.4s, border-color 0.4s;
     }
 
-    nav.scrolled {
-      background-color: rgba(61,69,53,0.96);
+    #site-nav.visible {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
     }
 
-    body.light nav.scrolled {
-      background-color: rgba(255,240,220,0.96);
+    #site-nav.scrolled {
+      background: rgba(61,69,53,0.97);
+      border-color: var(--line);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
+
+    body.light #site-nav.scrolled { background: rgba(255,240,220,0.97); }
 
     .nav-inner {
       max-width: var(--max-w);
+      width: 100%;
       margin: 0 auto;
-      padding: 1.25rem var(--pad-x);
+      padding: 0 var(--pad-x);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 2rem;
     }
 
-    .nav-logo {
-      font-family: var(--font-serif);
-      font-size: 1.125rem;
-      letter-spacing: -0.01em;
-      flex-shrink: 0;
+    .nav-brand { display: flex; flex-direction: column; gap: 1px; flex-shrink: 0; }
+    .nav-wordmark { font-family: var(--font-serif); font-size: 1.0625rem; line-height: 1; letter-spacing: -0.01em; }
+    .nav-sub { font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.35; font-weight: 400; }
+
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 400; opacity: 0.6; transition: opacity 0.2s; white-space: nowrap; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a.active { opacity: 1; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+    .nav-right { display: flex; align-items: center; gap: 0.875rem; flex-shrink: 0; }
+
+    #theme-btn {
+      font-size: 0.5625rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      background: transparent; border: 1px solid var(--line-strong); color: var(--fg);
+      padding: 0.3rem 0.65rem; cursor: pointer; font-family: var(--font-sans);
+      transition: all 0.2s; opacity: 0.7;
     }
+    #theme-btn:hover { background: var(--fg); color: var(--bg); opacity: 1; }
 
-    .nav-links {
-      display: flex;
-      gap: 1.75rem;
-      list-style: none;
-      flex-wrap: wrap;
+    /* Hamburger */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
     }
+    .nav-hamburger span { display: block; width: 22px; height: 1px; background: var(--fg); transition: transform 0.25s, opacity 0.25s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-    .nav-links a {
-      font-size: 0.8125rem;
-      opacity: 0.65;
-      transition: opacity 0.2s;
-      font-weight: 400;
+    /* Mobile menu */
+    .nav-mobile {
+      display: none;
+      position: fixed; top: var(--nav-h); left: 0; right: 0;
+      background: rgba(42,47,37,0.98); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      padding: 2rem var(--pad-x) 2.5rem;
+      z-index: 490;
+      transform: translateY(-8px); opacity: 0; pointer-events: none;
+      transition: transform 0.25s ease, opacity 0.25s ease;
     }
+    body.light .nav-mobile { background: rgba(245,232,207,0.98); }
+    .nav-mobile.open { display: block; transform: none; opacity: 1; pointer-events: auto; }
+    .nav-mobile ul { list-style: none; display: flex; flex-direction: column; }
+    .nav-mobile ul li { border-bottom: 1px solid var(--line); }
+    .nav-mobile ul a { display: block; padding: 1rem 0; font-size: 0.9375rem; opacity: 0.75; transition: opacity 0.2s; }
+    .nav-mobile ul a:hover { opacity: 1; }
+    .nav-mobile-cta { margin-top: 1.75rem; }
 
-    .nav-links a:hover,
-    .nav-links a.active { opacity: 1; }
-    .nav-links a.active { border-bottom: 1px solid currentColor; padding-bottom: 1px; }
-
-    .nav-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      #theme-btn { display: none; }
+    }
 
     /* ─── BUTTONS ────────────────────────────────────────── */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8125rem;
-      font-weight: 400;
-      letter-spacing: 0.03em;
-      padding: 0.75rem 1.5rem;
-      border: 1px solid var(--fg);
-      color: var(--fg);
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, opacity 0.2s;
-      background: transparent;
-      font-family: var(--font-sans);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.03em;
+      padding: 0.75rem 1.5rem; border: 1px solid var(--fg); color: var(--fg);
+      cursor: pointer; transition: background 0.2s, color 0.2s, opacity 0.2s;
+      background: transparent; font-family: var(--font-sans);
     }
-
     .btn:hover { background: var(--fg); color: var(--bg); }
-
-    .btn-ghost {
-      border-color: var(--line-strong);
-      opacity: 0.75;
-    }
+    .btn-ghost { border-color: var(--line-strong); opacity: 0.7; }
     .btn-ghost:hover { opacity: 1; }
-
-    .btn-accent {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--green-deep);
-    }
+    .btn-accent { background: var(--accent); border-color: var(--accent); color: var(--green-deep); }
     .btn-accent:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+    .btn-sm { padding: 0.5rem 1.1rem; font-size: 0.75rem; }
 
-    .btn-sm { padding: 0.5rem 1rem; font-size: 0.75rem; }
-
-    /* ─── THEME TOGGLE ───────────────────────────────────── */
-    #theme-btn {
-      font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: transparent;
-      border: 1px solid var(--line-strong);
-      color: var(--fg);
-      padding: 0.35rem 0.75rem;
-      cursor: pointer;
-      font-family: var(--font-sans);
-      transition: all 0.2s;
-    }
-    #theme-btn:hover { background: var(--fg); color: var(--bg); }
+    /* ─── ACCENT RULE ────────────────────────────────────── */
+    .accent-rule { display: block; width: 2.5rem; height: 2px; background: var(--accent); margin-bottom: 1.75rem; }
 
     /* ─── HERO ───────────────────────────────────────────── */
     #top {
       min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding-bottom: 5rem;
-      position: relative;
-      overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding-bottom: 5rem; position: relative; overflow: hidden;
     }
 
     .hero-geo {
-      position: absolute;
-      top: 50%;
-      right: -10vw;
-      transform: translateY(-50%);
-      width: clamp(320px, 50vw, 640px);
-      height: clamp(320px, 50vw, 640px);
-      pointer-events: none;
-      opacity: 0.07;
+      position: absolute; top: 50%; right: -8vw; transform: translateY(-50%);
+      width: clamp(300px, 48vw, 620px); height: clamp(300px, 48vw, 620px);
+      pointer-events: none; opacity: 0.065;
     }
 
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-    }
+    .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.25rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 2.5rem; height: 1px; background: currentColor; opacity: 0.4; }
 
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 2.5rem;
-      height: 1px;
-      background: currentColor;
-      opacity: 0.45;
-    }
+    .hero-title { font-size: clamp(2.75rem, 7.5vw, 5.5rem); line-height: 1.02; max-width: 18ch; margin-bottom: 2rem; }
+    .hero-body { max-width: 50ch; font-size: clamp(0.9375rem, 1.4vw, 1.0625rem); line-height: 1.8; font-weight: 300; opacity: 0.82; margin-bottom: 2.75rem; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.875rem; align-items: center; }
 
-    .hero-title {
-      font-size: clamp(3rem, 7.5vw, 5.5rem);
-      line-height: 1.02;
-      max-width: 18ch;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-body {
-      max-width: 52ch;
-      font-size: clamp(1rem, 1.5vw, 1.125rem);
-      line-height: 1.75;
-      font-weight: 300;
-      opacity: 0.85;
-      margin-bottom: 3rem;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      right: var(--pad-x);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-      opacity: 0.45;
-    }
-
-    .hero-scroll span { font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; writing-mode: vertical-rl; }
+    .hero-scroll { position: absolute; bottom: 2.5rem; right: var(--pad-x); display: flex; flex-direction: column; align-items: center; gap: 0.75rem; opacity: 0.4; }
+    .hero-scroll span { font-size: 0.5625rem; letter-spacing: 0.18em; text-transform: uppercase; writing-mode: vertical-rl; }
     .hero-scroll::after { content: ''; display: block; width: 1px; height: 3rem; background: currentColor; }
 
-    /* ─── ICEBREAKER SECTION ────────────────────────────── */
-    #begin {
-      background-color: var(--green-deep);
-      position: relative;
-      overflow: hidden;
-    }
-
-    body.light #begin { background-color: #f0e4cc; }
-
-    .icebreaker-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    @media (max-width: 760px) {
-      .icebreaker-inner { grid-template-columns: 1fr; gap: 3rem; }
-    }
-
-    .icebreaker-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 2.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .tag {
-      font-size: 0.6875rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      padding: 0.3rem 0.75rem;
-      border: 1px solid var(--line-strong);
-      opacity: 0.7;
-    }
-
-    .icebreaker-visual {
-      position: relative;
-      aspect-ratio: 1;
-      max-width: 400px;
-    }
-
-    .icebreaker-circles {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .icebreaker-circles svg { width: 100%; height: 100%; }
-
-    .icebreaker-center {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .icebreaker-center .num {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      opacity: 0.9;
-    }
-
-    .icebreaker-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      margin-top: 2rem;
-    }
-
-    .icebreaker-step {
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-    }
-
-    .step-num {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      line-height: 1;
-      opacity: 0.35;
-      flex-shrink: 0;
-      padding-top: 0.1em;
-    }
-
-    .step-text { font-size: 0.875rem; line-height: 1.65; opacity: 0.85; }
+    @media (max-width: 760px) { .hero-geo { display: none; } }
 
     /* ─── MARQUEE ────────────────────────────────────────── */
-    .marquee-wrap {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      overflow: hidden;
-      padding: 1rem 0;
-    }
+    .marquee-wrap { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; padding: 0.875rem 0; }
+    .marquee-track { display: flex; white-space: nowrap; animation: marquee 36s linear infinite; }
+    .marquee-item { display: inline-flex; align-items: center; gap: 1.5rem; padding: 0 2rem; font-size: 0.6875rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.45; }
+    .marquee-item::after { content: '·'; font-size: 1.1rem; opacity: 0.4; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    .marquee-track {
-      display: flex;
-      gap: 0;
-      white-space: nowrap;
-      animation: marquee 32s linear infinite;
-    }
-
-    .marquee-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 0 2rem;
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0.5;
-    }
-
-    .marquee-item::after {
-      content: '·';
-      font-size: 1.25rem;
-      opacity: 0.4;
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* ─── SECTION: STUDIO ────────────────────────────────── */
-    .studio-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: clamp(3rem, 6vw, 7rem);
-      align-items: start;
-    }
-
-    @media (max-width: 760px) { .studio-grid { grid-template-columns: 1fr; } }
-
-    .studio-sidebar { padding-top: 0.35rem; }
-
-    .studio-sidebar .label { margin-bottom: 1.5rem; display: block; }
-
-    .studio-meta { display: flex; flex-direction: column; gap: 0.5rem; }
-    .studio-meta-item { font-size: 0.8125rem; opacity: 0.6; }
-
-    .studio-body { max-width: 60ch; }
-    .studio-body p + p { margin-top: 1.5rem; }
-
-    .studio-body p {
-      font-size: clamp(1rem, 1.4vw, 1.0625rem);
-      font-weight: 300;
-      line-height: 1.8;
-      opacity: 0.88;
-    }
-
-    .pullquote {
-      font-family: var(--font-serif);
-      font-size: clamp(1.25rem, 2.5vw, 1.875rem);
-      line-height: 1.35;
-      border-left: 2px solid var(--accent);
-      padding-left: 1.75rem;
-      margin: 2.5rem 0;
-      opacity: 0.9;
-    }
-
-    /* ─── SECTION: HOW WE WORK ───────────────────────────── */
-    .method-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 5vw, 5rem);
-      margin-top: 3.5rem;
-    }
-
-    @media (max-width: 760px) { .method-grid { grid-template-columns: 1fr; } }
-
-    .method-item { padding-top: 1.5rem; border-top: 1px solid var(--line); }
-    .method-num { font-family: var(--font-serif); font-size: 0.875rem; opacity: 0.3; margin-bottom: 1rem; }
-    .method-title { font-size: 1.0625rem; font-weight: 500; margin-bottom: 0.75rem; }
-    .method-body { font-size: 0.875rem; line-height: 1.75; opacity: 0.72; font-weight: 300; }
-
-    /* ─── SECTION: BROWSE PILLARS ────────────────────────── */
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-    }
-
+    /* ─── BROWSE PILLARS ─────────────────────────────────── */
+    .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 3rem; }
     @media (max-width: 1024px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 540px) { .pillars-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 480px)  { .pillars-grid { grid-template-columns: 1fr; } }
 
-    .pillar {
-      border: 1px solid var(--line);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      transition: background 0.2s, border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pillar::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s;
-    }
-
+    .pillar { border: 1px solid var(--line); padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; transition: background 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
+    .pillar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
     .pillar:hover::before { transform: scaleX(1); }
     .pillar:hover { background: var(--panel-strong); border-color: var(--line-strong); }
+    .pillar-thumb { aspect-ratio: 4/3; background: var(--panel); border: 1px solid var(--line); }
+    .pillar h3 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; line-height: 1.1; }
+    .pillar p { font-size: 0.875rem; line-height: 1.7; opacity: 0.68; font-weight: 300; }
+    .pillar .btn-sm { align-self: flex-start; margin-top: auto; }
 
-    .pillar-thumb {
-      aspect-ratio: 4/3;
-      background: var(--panel);
-      border: 1px solid var(--line);
-    }
+    /* ─── ICEBREAKER ─────────────────────────────────────── */
+    #begin { background-color: var(--green-deep); }
+    body.light #begin { background-color: #ede1ca; }
 
-    .pillar h3 { font-size: 1.625rem; }
-    .pillar p { font-size: 0.875rem; line-height: 1.7; opacity: 0.7; font-weight: 300; }
+    .icebreaker-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 6rem); align-items: start; }
+    @media (max-width: 760px) { .icebreaker-inner { grid-template-columns: 1fr; } }
 
-    /* ─── SECTION: GARDENS ───────────────────────────────── */
-    .gardens-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 2rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
+    .icebreaker-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; margin-bottom: 2.5rem; }
+    .tag { font-size: 0.6875rem; letter-spacing: 0.08em; padding: 0.3rem 0.75rem; border: 1px solid var(--line-strong); opacity: 0.65; }
 
-    .gardens-header p { max-width: 46ch; font-size: 0.9375rem; opacity: 0.75; font-weight: 300; line-height: 1.7; }
+    .icebreaker-steps { display: flex; flex-direction: column; gap: 0; }
+    .icebreaker-step { display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+    .icebreaker-step:first-child { padding-top: 0; }
+    .icebreaker-step:last-child { border-bottom: none; }
+    .step-num { font-family: var(--font-serif); font-size: 1.1rem; line-height: 1; opacity: 0.28; flex-shrink: 0; padding-top: 0.15em; }
+    .step-title { font-weight: 500; font-size: 0.9375rem; margin-bottom: 0.2rem; }
+    .step-text { font-size: 0.875rem; line-height: 1.7; opacity: 0.78; }
 
-    .gardens-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
+    .icebreaker-quote { margin-top: 2.5rem; padding: 1.5rem 2rem; border: 1px solid var(--line-strong); background: var(--panel); }
+    .icebreaker-quote p { font-family: var(--font-serif); font-size: 1.0625rem; line-height: 1.45; opacity: 0.88; margin-bottom: 0.875rem; }
 
+    /* ─── STUDIO ─────────────────────────────────────────── */
+    .studio-grid { display: grid; grid-template-columns: 1fr 2fr; gap: clamp(3rem, 6vw, 7rem); align-items: start; }
+    @media (max-width: 760px) { .studio-grid { grid-template-columns: 1fr; } }
+
+    .studio-meta { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.75rem; }
+    .studio-meta-item { font-size: 0.8125rem; opacity: 0.58; }
+
+    .studio-body p { font-size: clamp(0.9375rem, 1.4vw, 1.0625rem); font-weight: 300; line-height: 1.85; opacity: 0.87; }
+    .studio-body p + p { margin-top: 1.5rem; }
+    .pullquote { font-family: var(--font-serif); font-size: clamp(1.125rem, 2.5vw, 1.75rem); line-height: 1.35; border-left: 2px solid var(--accent); padding-left: 1.75rem; margin: 2.5rem 0; opacity: 0.88; }
+
+    /* ─── HOW WE WORK ────────────────────────────────────── */
+    .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); margin-top: 3.5rem; }
+    @media (max-width: 760px) { .method-grid { grid-template-columns: 1fr; } }
+    .method-item { padding-top: 1.5rem; border-top: 1px solid var(--line); }
+    .method-num { font-family: var(--font-serif); font-size: 0.875rem; opacity: 0.28; margin-bottom: 0.875rem; }
+    .method-title { font-size: 1.0625rem; font-weight: 500; margin-bottom: 0.625rem; }
+    .method-body { font-size: 0.875rem; line-height: 1.75; opacity: 0.7; font-weight: 300; }
+
+    /* ─── GARDENS ────────────────────────────────────────── */
+    .gardens-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 2.75rem; flex-wrap: wrap; }
+    .gardens-header p { max-width: 46ch; font-size: 0.9375rem; opacity: 0.72; font-weight: 300; line-height: 1.7; }
+    .gardens-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     @media (max-width: 900px) { .gardens-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 540px) { .gardens-grid { grid-template-columns: 1fr; } }
-
-    .garden-card {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      overflow: hidden;
-      transition: background 0.2s;
-    }
-
+    .garden-card { border: 1px solid var(--line); background: var(--panel); overflow: hidden; transition: background 0.2s; }
     .garden-card:hover { background: var(--panel-strong); }
-
     .garden-thumb { aspect-ratio: 4/3; background: var(--panel-strong); border-bottom: 1px solid var(--line); }
     .garden-info { padding: 1.5rem; }
     .garden-info h3 { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.5rem; }
-    .garden-info p { font-size: 0.8125rem; opacity: 0.65; line-height: 1.65; font-weight: 300; }
+    .garden-info p { font-size: 0.8125rem; opacity: 0.62; line-height: 1.65; font-weight: 300; }
 
-    /* ─── SECTION: OBJECTS ───────────────────────────────── */
-    .objects-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 6vw, 7rem);
-      align-items: start;
-    }
-
+    /* ─── OBJECTS ────────────────────────────────────────── */
+    .objects-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 7rem); align-items: start; }
     @media (max-width: 760px) { .objects-inner { grid-template-columns: 1fr; } }
-
-    .objects-prose p + p { margin-top: 1.5rem; }
     .objects-prose p { font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); font-weight: 300; line-height: 1.8; opacity: 0.85; }
-
-    .objects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.875rem;
-    }
-
+    .objects-prose p + p { margin-top: 1.5rem; }
+    .objects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
     .object-thumb { aspect-ratio: 1; background: var(--panel); border: 1px solid var(--line); }
 
-    /* ─── SECTION: STORIES ───────────────────────────────── */
-    .stories-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
+    /* ─── STORIES ────────────────────────────────────────── */
+    .stories-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; }
+    .stories-header p { max-width: 44ch; font-size: 0.9375rem; opacity: 0.68; font-weight: 300; line-height: 1.75; }
+    .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.75rem; }
     @media (max-width: 900px) { .stories-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 540px) { .stories-grid { grid-template-columns: 1fr; } }
-
-    .story-card {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      transition: background 0.2s;
-      cursor: pointer;
-    }
-
+    .story-card { border: 1px solid var(--line); background: var(--panel); padding: 1.75rem; display: flex; flex-direction: column; gap: 0.625rem; transition: background 0.2s; }
     .story-card:hover { background: var(--panel-strong); }
-    .story-type { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.5; }
-    .story-title { font-size: 1.0625rem; font-weight: 500; line-height: 1.4; }
-    .story-body { font-size: 0.8125rem; line-height: 1.7; opacity: 0.65; font-weight: 300; margin-top: auto; }
+    .story-type { font-size: 0.5625rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.45; }
+    .story-title { font-size: 1rem; font-weight: 500; line-height: 1.4; }
+    .story-body { font-size: 0.8125rem; line-height: 1.7; opacity: 0.62; font-weight: 300; margin-top: auto; }
 
-    /* ─── SECTION: THE SYSTEM ────────────────────────────── */
-    .system-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: clamp(3rem, 6vw, 7rem);
-      align-items: start;
-    }
-
+    /* ─── SYSTEM ─────────────────────────────────────────── */
+    .system-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(3rem, 6vw, 7rem); align-items: start; }
     @media (max-width: 760px) { .system-grid { grid-template-columns: 1fr; } }
-
     .system-layers { display: flex; flex-direction: column; }
-
-    .system-layer {
-      display: grid;
-      grid-template-columns: 2rem 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--line);
-      align-items: start;
-      transition: background 0.2s;
-    }
-
+    .system-layer { display: grid; grid-template-columns: 2rem 1fr; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--line); align-items: start; }
     .system-layer:first-child { border-top: 1px solid var(--line); }
-
-    .layer-num {
-      font-family: var(--font-serif);
-      font-size: 0.75rem;
-      opacity: 0.28;
-      padding-top: 0.2rem;
-    }
-
-    .layer-name { font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.375rem; }
-    .layer-desc { font-size: 0.8125rem; line-height: 1.65; opacity: 0.62; font-weight: 300; }
-    .layer-link { font-size: 0.75rem; margin-top: 0.75rem; opacity: 0.55; display: inline-block; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: opacity 0.2s; }
+    .layer-num { font-family: var(--font-serif); font-size: 0.75rem; opacity: 0.25; padding-top: 0.2rem; }
+    .layer-name { font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.3rem; }
+    .layer-desc { font-size: 0.8125rem; line-height: 1.65; opacity: 0.6; font-weight: 300; }
+    .layer-link { font-size: 0.75rem; margin-top: 0.75rem; opacity: 0.5; display: inline-block; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: opacity 0.2s; }
     .layer-link:hover { opacity: 1; }
 
-    /* ─── SECTION: ABOUT ─────────────────────────────────── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 6vw, 7rem);
-    }
-
+    /* ─── ABOUT ──────────────────────────────────────────── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 7rem); }
     @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-prose p { font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); font-weight: 300; line-height: 1.85; opacity: 0.85; }
     .about-prose p + p { margin-top: 1.5rem; }
-    .about-prose p { font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); font-weight: 300; line-height: 1.8; opacity: 0.85; }
     .about-image { aspect-ratio: 3/4; background: var(--panel); border: 1px solid var(--line); }
 
-    /* ─── SECTION: ECO ECONOMY STATEMENT ────────────────── */
-    #ecology-statement {
-      border-top: 1px solid var(--line);
-    }
-
-    .statement-inner { max-width: 72ch; }
-    .statement-title { font-size: clamp(1.875rem, 4vw, 3rem); line-height: 1.15; margin-bottom: 2.5rem; }
+    /* ─── ECO STATEMENT ──────────────────────────────────── */
+    .statement-inner { max-width: 68ch; }
+    .statement-title { font-size: clamp(1.75rem, 4vw, 2.875rem); line-height: 1.15; margin-bottom: 2.25rem; }
+    .statement-body p { font-size: clamp(0.9375rem, 1.4vw, 1.0625rem); font-weight: 300; line-height: 1.85; opacity: 0.8; }
     .statement-body p + p { margin-top: 1.5rem; }
-    .statement-body p { font-size: clamp(0.9375rem, 1.4vw, 1.0625rem); font-weight: 300; line-height: 1.8; opacity: 0.82; }
 
-    /* ─── SECTION: CONTACT ───────────────────────────────── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 6vw, 7rem);
-      align-items: start;
-    }
-
+    /* ─── CONTACT ────────────────────────────────────────── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 7rem); align-items: start; }
     @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
-
-    .contact-email {
-      font-family: var(--font-serif);
-      font-size: clamp(1rem, 2vw, 1.5rem);
-      opacity: 0.9;
-      border-bottom: 1px solid var(--line-strong);
-      padding-bottom: 1rem;
-      margin-bottom: 2rem;
-      display: inline-block;
-      transition: opacity 0.2s;
-    }
-
-    .contact-email:hover { opacity: 0.65; }
-
-    .contact-address { font-size: 0.875rem; line-height: 2; opacity: 0.65; font-weight: 300; }
-
-    .contact-cards { display: flex; flex-direction: column; gap: 0.875rem; }
-
-    .contact-card {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 1.5rem 1.75rem;
-      transition: background 0.2s, border-color 0.2s;
-      display: block;
-    }
-
+    .contact-email { font-family: var(--font-serif); font-size: clamp(1rem, 2vw, 1.4375rem); opacity: 0.9; border-bottom: 1px solid var(--line-strong); padding-bottom: 1rem; margin-bottom: 2rem; display: inline-block; transition: opacity 0.2s; }
+    .contact-email:hover { opacity: 0.6; }
+    .contact-address { font-size: 0.875rem; line-height: 2.1; opacity: 0.6; font-weight: 300; }
+    .contact-cards { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-card { border: 1px solid var(--line); background: var(--panel); padding: 1.5rem 1.75rem; transition: background 0.2s, border-color 0.2s; display: block; }
     .contact-card:hover { background: var(--panel-strong); border-color: var(--line-strong); }
     .contact-card-title { font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.375rem; }
-    .contact-card-sub { font-size: 0.8125rem; opacity: 0.6; font-weight: 300; }
-
-    /* Begin card — accent treatment */
-    .contact-card-begin {
-      border-color: var(--accent);
-      background: rgba(168,194,133,0.07);
-    }
-
-    .contact-card-begin:hover { background: rgba(168,194,133,0.14); }
-
+    .contact-card-sub { font-size: 0.8125rem; opacity: 0.58; font-weight: 300; }
+    .contact-card-begin { border-color: var(--accent); background: rgba(168,194,133,0.07); }
+    .contact-card-begin:hover { background: rgba(168,194,133,0.13); }
     .contact-card-begin .contact-card-title { color: var(--accent); }
-
-    body.light .contact-card-begin .contact-card-title { color: #5a7a3a; }
-    body.light .contact-card-begin { border-color: #5a7a3a; background: rgba(90,122,58,0.07); }
+    body.light .contact-card-begin .contact-card-title { color: #527035; }
+    body.light .contact-card-begin { border-color: #527035; background: rgba(82,112,53,0.06); }
 
     /* ─── FOOTER ─────────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 4rem 0 3rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-    }
-
-    @media (max-width: 760px) {
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .footer-brand { grid-column: 1 / -1; }
-    }
-
-    .footer-brand-name { font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 0.875rem; }
-    .footer-brand-desc { font-size: 0.75rem; line-height: 1.7; opacity: 0.5; max-width: 26ch; }
-
-    .footer-col-title { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.45; margin-bottom: 1.25rem; }
-
+    footer { border-top: 1px solid var(--line); padding: 4rem 0 3rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } .footer-brand { grid-column: 1 / -1; } }
+    .footer-brand-name { font-family: var(--font-serif); font-size: 1.125rem; margin-bottom: 0.75rem; }
+    .footer-brand-desc { font-size: 0.75rem; line-height: 1.75; opacity: 0.45; max-width: 26ch; }
+    .footer-col-title { font-size: 0.6125rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.4; margin-bottom: 1.25rem; }
     .footer-links { display: flex; flex-direction: column; gap: 0.625rem; }
-    .footer-links a { font-size: 0.8125rem; opacity: 0.6; transition: opacity 0.2s; }
+    .footer-links a { font-size: 0.8125rem; opacity: 0.58; transition: opacity 0.2s; }
     .footer-links a:hover { opacity: 1; }
-
-    .footer-bottom {
-      margin-top: 3.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-bottom p { font-size: 0.6875rem; opacity: 0.35; }
+    .footer-bottom { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .footer-bottom p { font-size: 0.6875rem; opacity: 0.32; }
 
     /* ─── SCROLL REVEAL ──────────────────────────────────── */
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
-    }
-
-    /* JS adds .js-reveal to body, then we hide elements until observed */
-    .js-reveal .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-
+    .reveal { opacity: 1; transform: none; transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .js-reveal .reveal { opacity: 0; transform: translateY(20px); }
     .reveal.visible { opacity: 1; transform: none; }
-
     .reveal-d1 { transition-delay: 0.08s; }
     .reveal-d2 { transition-delay: 0.16s; }
     .reveal-d3 { transition-delay: 0.24s; }
     .reveal-d4 { transition-delay: 0.32s; }
-    .reveal-d5 { transition-delay: 0.40s; }
 
-    /* ─── ACCENT BAR UTILITY ─────────────────────────────── */
-    .accent-rule {
-      display: block;
-      width: 2.5rem;
-      height: 2px;
-      background: var(--accent);
-      margin-bottom: 1.75rem;
-    }
-
-    /* ─── MOBILE HELPERS ─────────────────────────────────── */
-    @media (max-width: 760px) {
-      .nav-links { display: none; }
-      .hero-geo { display: none; }
-    }
-
-    /* ─── PRINT / A11Y ───────────────────────────────────── */
+    /* ─── A11Y ───────────────────────────────────────────── */
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
-
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-    }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   </style>
 </head>
 
 <body>
+  <a href="#content" class="sr-only">Skip to content</a>
 
-  <!-- ─────────────────────────────────────────────
-       NAVIGATION
-  ───────────────────────────────────────────── -->
-  <a href="#content" class="sr-only focus:not-sr-only">Skip to content</a>
-
-  <nav id="site-nav">
+  <!-- ─── FIXED NAV ──────────────────────────────────────── -->
+  <nav id="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <a href="#top" class="nav-logo">Gardener &amp; Son</a>
+      <a href="#top" class="nav-brand">
+        <span class="nav-wordmark">Gardener &amp; Son</span>
+        <span class="nav-sub">Ecological Design Studio</span>
+      </a>
 
       <ul class="nav-links">
+        <li><a href="#browse">Work</a></li>
         <li><a href="#studio">Studio</a></li>
-        <li><a href="#how-we-work">Practice</a></li>
         <li><a href="#gardens">Gardens</a></li>
         <li><a href="#system">The System</a></li>
         <li><a href="#stories">Stories</a></li>
@@ -820,167 +423,193 @@
       </ul>
 
       <div class="nav-right">
-        <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn btn-sm btn-accent" style="letter-spacing:0.05em;">
+        <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html"
+           class="btn btn-sm btn-accent" style="letter-spacing:0.04em; white-space:nowrap;">
           Where Gardens Begin →
         </a>
         <button id="theme-btn" aria-label="Toggle colour mode"><span id="theme-label">Light</span></button>
+        <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
 
-  <!-- ─────────────────────────────────────────────
-       HERO
-  ───────────────────────────────────────────── -->
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="mobile-menu" aria-hidden="true">
+    <ul>
+      <li><a href="#browse"  onclick="closeMobile()">Work</a></li>
+      <li><a href="#studio"  onclick="closeMobile()">Studio</a></li>
+      <li><a href="#gardens" onclick="closeMobile()">Gardens</a></li>
+      <li><a href="#system"  onclick="closeMobile()">The System</a></li>
+      <li><a href="#stories" onclick="closeMobile()">Stories</a></li>
+      <li><a href="#about"   onclick="closeMobile()">About</a></li>
+      <li><a href="#contact" onclick="closeMobile()">Contact</a></li>
+    </ul>
+    <div class="nav-mobile-cta">
+      <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html"
+         class="btn btn-accent" onclick="closeMobile()">
+        Where Gardens Begin →
+      </a>
+    </div>
+  </div>
+
   <main id="content">
+
+  <!-- ═══════ 1. HERO ══════════════════════════════════════ -->
   <section id="top">
-    <!-- Concentric circle geometry, right side -->
     <svg class="hero-geo" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <circle cx="300" cy="300" r="290" stroke="currentColor" stroke-width="1"/>
       <circle cx="300" cy="300" r="230" stroke="currentColor" stroke-width="1"/>
       <circle cx="300" cy="300" r="170" stroke="currentColor" stroke-width="1"/>
       <circle cx="300" cy="300" r="110" stroke="currentColor" stroke-width="1"/>
-      <circle cx="300" cy="300" r="55" stroke="currentColor" stroke-width="1"/>
-      <circle cx="300" cy="300" r="20" fill="currentColor" opacity="0.3"/>
-      <line x1="300" y1="10" x2="300" y2="590" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-      <line x1="10" y1="300" x2="590" y2="300" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+      <circle cx="300" cy="300" r="55"  stroke="currentColor" stroke-width="1"/>
+      <circle cx="300" cy="300" r="20"  fill="currentColor" opacity="0.3"/>
+      <line x1="300" y1="10"  x2="300" y2="590" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+      <line x1="10"  y1="300" x2="590" y2="300" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
     </svg>
 
     <div class="container">
       <div class="hero-eyebrow reveal">
         <span class="label">Melbourne · Est. 2015</span>
       </div>
-
       <h1 class="hero-title reveal reveal-d1">
         Designing ecological gardens.<br/>
         Building the systems<br/>around them.
       </h1>
-
       <p class="hero-body reveal reveal-d2">
-        Gardener &amp; Son is a transdisciplinary ecological design studio — reframing private gardens as measurable ecological assets, and private land as connected ecological infrastructure.
+        Gardener &amp; Son designs and builds ecological gardens across Melbourne — places of habitat, retreat, and long-term beauty, grounded in place and shaped over time.
       </p>
-
       <div class="hero-ctas reveal reveal-d3">
         <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn btn-accent">
           Where Gardens Begin →
         </a>
-        <a href="#gardens" class="btn">
-          View garden work
-        </a>
-        <a href="#system" class="btn btn-ghost">
-          The system
-        </a>
+        <a href="#gardens" class="btn">View garden work</a>
+        <a href="#system"  class="btn btn-ghost">The system</a>
       </div>
     </div>
-
-    <div class="hero-scroll" aria-hidden="true">
-      <span>Scroll</span>
-    </div>
+    <div class="hero-scroll" aria-hidden="true"><span>Scroll</span></div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
-       MARQUEE
-  ───────────────────────────────────────────── -->
-  <div class="marquee-wrap">
-    <div class="marquee-track" aria-hidden="true">
-      <!-- doubled for seamless loop -->
-      <span class="marquee-item">Ecological Design</span>
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Ecological Garden Design</span>
       <span class="marquee-item">Indigenous Planting</span>
       <span class="marquee-item">Habitat Formation</span>
-      <span class="marquee-item">Ecological Registry</span>
+      <span class="marquee-item">Find My Ecological Garden</span>
       <span class="marquee-item">Place-based Practice</span>
       <span class="marquee-item">Living Infrastructure</span>
       <span class="marquee-item">Soil Science</span>
       <span class="marquee-item">Canopy Design</span>
-      <span class="marquee-item">Carbon & Biodiversity</span>
-      <span class="marquee-item">Systems Thinking</span>
+      <span class="marquee-item">Carbon &amp; Biodiversity</span>
+      <span class="marquee-item">Ecological Registry</span>
       <span class="marquee-item">Regenerative Gardens</span>
-      <span class="marquee-item">Mont Albert Studio</span>
-      <span class="marquee-item">Ecological Design</span>
+      <span class="marquee-item">Mont Albert &amp; Hawthorn</span>
+      <span class="marquee-item">Ecological Garden Design</span>
       <span class="marquee-item">Indigenous Planting</span>
       <span class="marquee-item">Habitat Formation</span>
-      <span class="marquee-item">Ecological Registry</span>
+      <span class="marquee-item">Find My Ecological Garden</span>
       <span class="marquee-item">Place-based Practice</span>
       <span class="marquee-item">Living Infrastructure</span>
       <span class="marquee-item">Soil Science</span>
       <span class="marquee-item">Canopy Design</span>
-      <span class="marquee-item">Carbon & Biodiversity</span>
-      <span class="marquee-item">Systems Thinking</span>
+      <span class="marquee-item">Carbon &amp; Biodiversity</span>
+      <span class="marquee-item">Ecological Registry</span>
       <span class="marquee-item">Regenerative Gardens</span>
-      <span class="marquee-item">Mont Albert Studio</span>
+      <span class="marquee-item">Mont Albert &amp; Hawthorn</span>
     </div>
   </div>
 
-  <!-- ─────────────────────────────────────────────
-       WHERE GARDENS BEGIN — ICEBREAKER SECTION
-  ───────────────────────────────────────────── -->
+  <!-- ═══════ 2. THE STUDIO'S WORK ════════════════════════ -->
+  <section id="browse" class="section alt">
+    <div class="container">
+      <span class="accent-rule reveal"></span>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;">
+        <h2 class="h2 reveal reveal-d1">The Studio's Work</h2>
+        <p class="reveal reveal-d1" style="max-width:52ch; font-size:0.9375rem; opacity:0.65; font-weight:300; line-height:1.75;">
+          Gardens, plants, objects, and writing — a physical and cultural practice rooted in ecology.
+        </p>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar reveal reveal-d1">
+          <div class="pillar-thumb"></div>
+          <h3>Gardens</h3>
+          <p>Site-specific ecological design and installation — habitat, soil, water, canopy, and seasonal depth. Built for real conditions and real life.</p>
+          <a href="#gardens" class="btn btn-sm">Explore gardens</a>
+        </div>
+        <div class="pillar reveal reveal-d2">
+          <div class="pillar-thumb"></div>
+          <h3>Plants</h3>
+          <p>Indigenous plant nursery at the Hawthorn studio. Locally sourced, ecologically appropriate species for Melbourne gardens and their EVCs.</p>
+          <a href="#contact" class="btn btn-sm">Visit nursery</a>
+        </div>
+        <div class="pillar reveal reveal-d3">
+          <div class="pillar-thumb"></div>
+          <h3>Objects</h3>
+          <p>Tools, vessels, and materials chosen for durability, repairability, and the quiet pleasure of use. A physical culture of care.</p>
+          <a href="https://tinyforests.github.io/heirloom/" class="btn btn-sm" target="_blank" rel="noopener">Visit Heirloom</a>
+        </div>
+        <div class="pillar reveal reveal-d4">
+          <div class="pillar-thumb"></div>
+          <h3>Stories</h3>
+          <p>Writing on ecology, culture, and place — the narrative layer that helps the work move beyond individual sites.</p>
+          <a href="#stories" class="btn btn-sm">Read writing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 3. WHERE GARDENS BEGIN ══════════════════════ -->
   <section id="begin" class="section">
     <div class="container">
       <div class="icebreaker-inner">
-        <!-- Left: copy -->
         <div>
-          <span class="accent-rule"></span>
-          <span class="label reveal" style="display:block; margin-bottom:1.5rem;">A gentle beginning</span>
-          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; line-height:1.1; margin-bottom:1.75rem;">
+          <span class="accent-rule reveal"></span>
+          <span class="label reveal" style="display:block; margin-bottom:1.25rem;">A gentle beginning</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; line-height:1.1; margin-bottom:1.5rem;">
             Every garden begins somewhere.
           </h2>
-
-          <p class="reveal reveal-d2" style="max-width:48ch; font-size:1rem; font-weight:300; line-height:1.8; opacity:0.82; margin-bottom:0.75rem;">
-            Starting a garden conversation can feel difficult — especially when you're not sure what you want, or where to start. We made a better way in.
+          <p class="reveal reveal-d2" style="max-width:46ch; font-size:1rem; font-weight:300; line-height:1.8; opacity:0.82; margin-bottom:0.75rem;">
+            Starting a garden conversation can feel difficult — especially when you're not sure where to begin. We made a better way in.
           </p>
-
-          <p class="reveal reveal-d2" style="max-width:48ch; font-size:1rem; font-weight:300; line-height:1.8; opacity:0.82;">
-            Two or three minutes. A few questions and a couple of photos. No prep, no pressure, no jargon. Just a clear first step.
+          <p class="reveal reveal-d2" style="max-width:46ch; font-size:1rem; font-weight:300; line-height:1.8; opacity:0.82;">
+            Two or three minutes. A few questions and a couple of photos. No prep, no pressure. Just a clear first step.
           </p>
-
           <div class="icebreaker-tags reveal reveal-d3">
             <span class="tag">2–3 minutes</span>
             <span class="tag">No prep required</span>
             <span class="tag">No commitment</span>
-            <span class="tag">Staged & gentle</span>
+            <span class="tag">Staged &amp; gentle</span>
           </div>
-
-          <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn btn-accent reveal reveal-d4" style="font-size:0.875rem;">
+          <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html"
+             class="btn btn-accent reveal reveal-d4" style="font-size:0.875rem;">
             Begin — Where Gardens Begin →
           </a>
         </div>
 
-        <!-- Right: visual / steps -->
-        <div>
-          <div class="icebreaker-steps reveal reveal-d2">
+        <div class="reveal reveal-d2">
+          <div class="icebreaker-steps">
             <div class="icebreaker-step">
               <span class="step-num">01</span>
-              <div>
-                <div class="step-text" style="font-weight:500; margin-bottom:0.25rem;">What feels unfinished?</div>
-                <div class="step-text">Tell us what the garden feels like right now — no wrong answers.</div>
-              </div>
+              <div><div class="step-title">What feels unfinished?</div><div class="step-text">Tell us what the garden feels like right now — no wrong answers.</div></div>
             </div>
             <div class="icebreaker-step">
               <span class="step-num">02</span>
-              <div>
-                <div class="step-text" style="font-weight:500; margin-bottom:0.25rem;">What's hoped for over time?</div>
-                <div class="step-text">Retreat, habitat, gathering space, food, play — or simply transformation.</div>
-              </div>
+              <div><div class="step-title">What is hoped for over time?</div><div class="step-text">Retreat, habitat, gathering space, food, play — or simply transformation.</div></div>
             </div>
             <div class="icebreaker-step">
               <span class="step-num">03</span>
-              <div>
-                <div class="step-text" style="font-weight:500; margin-bottom:0.25rem;">A glimpse of the garden</div>
-                <div class="step-text">Two or three photos from your phone is enough to begin. No staging needed.</div>
-              </div>
+              <div><div class="step-title">A glimpse of the garden</div><div class="step-text">Two or three photos from your phone is enough. No staging needed.</div></div>
             </div>
             <div class="icebreaker-step">
               <span class="step-num">04</span>
-              <div>
-                <div class="step-text" style="font-weight:500; margin-bottom:0.25rem;">Your Garden Path Snapshot</div>
-                <div class="step-text">A clear, tailored first step — sent to you. A gentle next move, not a sales call.</div>
-              </div>
+              <div><div class="step-title">Your Garden Path Snapshot</div><div class="step-text">A clear, tailored first step — sent to you. A gentle next move, not a sales call.</div></div>
             </div>
           </div>
-
-          <div style="margin-top:3rem; padding:1.5rem 2rem; border:1px solid var(--line-strong); background:var(--panel);" class="reveal reveal-d3">
-            <p style="font-family:var(--font-serif); font-size:1.125rem; line-height:1.4; opacity:0.88; margin-bottom:1rem;">
-              "Most gardens change in stages. A first step can be small, affordable, and still meaningful."
-            </p>
+          <div class="icebreaker-quote">
+            <p>"Most gardens change in stages. A first step can be small, affordable, and still meaningful."</p>
             <span class="label">Tyson — Ecological Designer</span>
           </div>
         </div>
@@ -988,14 +617,12 @@
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
-       STUDIO
-  ───────────────────────────────────────────── -->
+  <!-- ═══════ 4. THE STUDIO ════════════════════════════════ -->
   <section id="studio" class="section alt">
     <div class="container">
       <div class="studio-grid">
-        <div class="studio-sidebar">
-          <span class="label reveal" style="display:block; margin-bottom:1.75rem;">The Studio</span>
+        <div>
+          <span class="label reveal" style="display:block; margin-bottom:0;">The Studio</span>
           <div class="studio-meta reveal reveal-d1">
             <div class="studio-meta-item">Ecological Design</div>
             <div class="studio-meta-item">Systems Architecture</div>
@@ -1004,50 +631,32 @@
             <div class="studio-meta-item">Mont Albert &amp; Hawthorn, Melbourne</div>
           </div>
         </div>
-
         <div class="studio-body">
           <span class="accent-rule reveal"></span>
-          <h2 class="h2 reveal reveal-d1" style="margin-bottom:2rem; max-width:14ch;">
-            Designed from the inside out.
-          </h2>
-
+          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; margin-bottom:2rem;">Designed from the inside out.</h2>
           <div class="reveal reveal-d2">
-            <p>
-              Gardener &amp; Son is an ecological design studio based in Melbourne. We design gardens — and the living systems within them.
-            </p>
-            <p>
-              Each project begins with place: soil, slope, climate, culture, and the ecological community that once thrived there. We study context carefully, observing before we intervene. We work with contours rather than against them.
-            </p>
-
+            <p>Gardener &amp; Son is an ecological design studio based in Melbourne. We design gardens — and the living systems within them.</p>
+            <p>Each project begins with place: soil, slope, climate, culture, and the ecological community that once thrived there. We study context carefully, observing before we intervene.</p>
             <blockquote class="pullquote">
               Gardens are not decorative backdrops.<br/>They are fragments of a larger ecological whole.
             </blockquote>
-
-            <p>
-              They are also personal spaces — places of retreat, play, nourishment, and renewal. When people feel connected to their garden, care deepens. As care deepens, biodiversity follows.
-            </p>
-            <p>
-              Time spent in a living garden restores clarity, improves wellbeing, and fosters belonging. The garden becomes not something to maintain, but something to participate in.
-            </p>
+            <p>They are also personal spaces — places of retreat, play, nourishment, and renewal. When people feel connected to their garden, care deepens. As care deepens, biodiversity follows.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
-       HOW WE WORK
-  ───────────────────────────────────────────── -->
+  <!-- ═══════ 5. HOW WE WORK ════════════════════════════════ -->
   <section id="how-we-work" class="section">
     <div class="container">
       <span class="accent-rule reveal"></span>
       <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;">
         <h2 class="h2 reveal reveal-d1" style="max-width:12ch; line-height:1.1;">How We Work</h2>
-        <p class="reveal reveal-d1" style="max-width:44ch; font-size:0.9375rem; opacity:0.7; font-weight:300; line-height:1.75;">
+        <p class="reveal reveal-d1" style="max-width:44ch; font-size:0.9375rem; opacity:0.68; font-weight:300; line-height:1.75;">
           Every site is read before it is designed. Every material is chosen for honesty. Every garden is built to mature.
         </p>
       </div>
-
       <div class="method-grid">
         <div class="method-item reveal reveal-d1">
           <div class="method-num">01</div>
@@ -1062,7 +671,7 @@
         <div class="method-item reveal reveal-d3">
           <div class="method-num">03</div>
           <div class="method-title">Design to mature</div>
-          <p class="method-body">Gardens are designed to grow over years. Season by season, they settle. Plants find rhythm. Soil deepens. Shade shifts. What begins as structure becomes relationship.</p>
+          <p class="method-body">Gardens are designed to grow over years. Season by season, they settle. Plants find rhythm. Soil deepens. What begins as structure becomes relationship.</p>
         </div>
         <div class="method-item reveal reveal-d4">
           <div class="method-num">04</div>
@@ -1073,60 +682,19 @@
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
-       BROWSE PILLARS
-  ───────────────────────────────────────────── -->
-  <section id="browse" class="section alt">
-    <div class="container">
-      <span class="accent-rule reveal"></span>
-      <h2 class="h2 reveal reveal-d1" style="margin-bottom:0.5rem;">The Studio's Work</h2>
-      <p class="reveal reveal-d2" style="max-width:54ch; font-size:0.9375rem; opacity:0.65; font-weight:300; line-height:1.7; margin-bottom:0;">Gardens, objects, writing, and plants — a physical and cultural practice rooted in ecology.</p>
-
-      <div class="pillars-grid">
-        <div class="pillar reveal reveal-d1">
-          <div class="pillar-thumb"></div>
-          <h3>Gardens</h3>
-          <p>Site-specific ecological design — habitat, soil formation, water cycle, canopy, and seasonal depth. Built to feel calm, grounded, and alive.</p>
-          <a href="#gardens" class="btn btn-sm" style="align-self:flex-start; margin-top:auto;">Explore gardens</a>
-        </div>
-        <div class="pillar reveal reveal-d2">
-          <div class="pillar-thumb"></div>
-          <h3>Objects</h3>
-          <p>Tools, vessels, and materials that support the work. Chosen for durability, repairability, and use — a physical culture of care.</p>
-          <a href="#objects" class="btn btn-sm" style="align-self:flex-start; margin-top:auto;">View objects</a>
-        </div>
-        <div class="pillar reveal reveal-d3">
-          <div class="pillar-thumb"></div>
-          <h3>Stories</h3>
-          <p>Writing on ecology, culture, infrastructure, and time — the narrative layer that helps the work move beyond individual sites.</p>
-          <a href="#stories" class="btn btn-sm" style="align-self:flex-start; margin-top:auto;">Read writing</a>
-        </div>
-        <div class="pillar reveal reveal-d4">
-          <div class="pillar-thumb"></div>
-          <h3>Plants</h3>
-          <p>Indigenous plant nursery at the studio. Locally sourced, ecologically appropriate species for Melbourne gardens.</p>
-          <a href="#studio" class="btn btn-sm" style="align-self:flex-start; margin-top:auto;">Visit nursery</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────────────────────────────────────────────
-       GARDENS
-  ───────────────────────────────────────────── -->
-  <section id="gardens" class="section">
+  <!-- ═══════ 6. GARDENS ════════════════════════════════════ -->
+  <section id="gardens" class="section alt">
     <div class="container">
       <span class="accent-rule reveal"></span>
       <div class="gardens-header">
         <h2 class="h2 reveal reveal-d1">Gardens</h2>
         <p class="reveal reveal-d1">Ecological gardens built for beauty under real conditions: drought, shade, slope, clay, wind, pets, and family life.</p>
       </div>
-
       <div class="gardens-grid">
         <article class="garden-card reveal reveal-d1">
           <div class="garden-thumb"></div>
           <div class="garden-info">
-            <span class="label" style="display:block; margin-bottom:0.75rem;">Installation</span>
+            <span class="label" style="display:block; margin-bottom:0.625rem;">Installation</span>
             <h3>Ecological Garden Installations</h3>
             <p>Soil, water, canopy, habitat — with a strong aesthetic line. Built to mature, not to peak on day one.</p>
           </div>
@@ -1134,7 +702,7 @@
         <article class="garden-card reveal reveal-d2">
           <div class="garden-thumb"></div>
           <div class="garden-info">
-            <span class="label" style="display:block; margin-bottom:0.75rem;">Planting</span>
+            <span class="label" style="display:block; margin-bottom:0.625rem;">Planting</span>
             <h3>Indigenous + Place-based Planting</h3>
             <p>Planting that belongs to the land it sits on, supporting local birds, insects, and soil life.</p>
           </div>
@@ -1142,14 +710,13 @@
         <article class="garden-card reveal reveal-d3">
           <div class="garden-thumb"></div>
           <div class="garden-info">
-            <span class="label" style="display:block; margin-bottom:0.75rem;">Infrastructure</span>
+            <span class="label" style="display:block; margin-bottom:0.625rem;">Infrastructure</span>
             <h3>Living Infrastructure</h3>
             <p>Permeable paths, contour logic, micro-catchments, habitat logs, and long-time maintenance pathways.</p>
           </div>
         </article>
       </div>
-
-      <div style="margin-top:3rem;" class="reveal">
+      <div style="margin-top:2.75rem;" class="reveal">
         <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn">
           Begin your garden conversation →
         </a>
@@ -1157,25 +724,20 @@
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
-       OBJECTS
-  ───────────────────────────────────────────── -->
-  <section id="objects" class="section alt">
+  <!-- ═══════ 7. OBJECTS — Heirloom ═══════════════════════ -->
+  <section id="objects" class="section">
     <div class="container">
       <div class="objects-inner">
         <div>
           <span class="accent-rule reveal"></span>
-          <span class="label reveal" style="display:block; margin-bottom:1.5rem;">Heirloom</span>
-          <h2 class="h2 reveal reveal-d1" style="max-width:12ch; margin-bottom:2rem;">Objects with a long memory.</h2>
+          <span class="label reveal" style="display:block; margin-bottom:1.25rem;">Heirloom</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:12ch; margin-bottom:1.75rem;">Objects with a long memory.</h2>
           <div class="objects-prose reveal reveal-d2">
-            <p>
-              The studio holds a curated collection of objects, vessels and tools that support ecological work — chosen for durability, repair, and the quiet pleasure of use.
-            </p>
-            <p>
-              Objects are treated as companions to long time: things that carry patina, sharpen well, and become better through care.
-            </p>
+            <p>The studio holds a curated collection of objects, vessels and tools that support ecological work — chosen for durability, repair, and the quiet pleasure of use.</p>
+            <p>Objects are treated as companions to long time: things that carry patina, sharpen well, and become better through care.</p>
           </div>
-          <a href="https://tinyforests.github.io/heirloom/" class="btn reveal reveal-d3" style="margin-top:2.5rem;" target="_blank" rel="noopener">Visit Heirloom →</a>
+          <a href="https://tinyforests.github.io/heirloom/" class="btn reveal reveal-d3"
+             style="margin-top:2.25rem;" target="_blank" rel="noopener">Visit Heirloom →</a>
         </div>
         <div class="objects-grid reveal reveal-d2">
           <div class="object-thumb"></div>
@@ -1187,19 +749,14 @@
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
-       STORIES
-  ───────────────────────────────────────────── -->
-  <section id="stories" class="section">
+  <!-- ═══════ 8. STORIES ════════════════════════════════════ -->
+  <section id="stories" class="section alt">
     <div class="container">
       <span class="accent-rule reveal"></span>
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;">
+      <div class="stories-header">
         <h2 class="h2 reveal reveal-d1">Stories</h2>
-        <p class="reveal reveal-d1" style="max-width:44ch; font-size:0.9375rem; opacity:0.7; font-weight:300; line-height:1.75;">
-          Essays and field notes on ecological gardening, systems, and culture — written to clarify the work, not to decorate it.
-        </p>
+        <p class="reveal reveal-d1">Essays and field notes on ecological gardening, systems, and culture — written to clarify the work, not to decorate it.</p>
       </div>
-
       <div class="stories-grid">
         <a href="#" class="story-card reveal reveal-d1">
           <span class="story-type">Essay</span>
@@ -1220,23 +777,20 @@
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
-       THE SYSTEM
-  ───────────────────────────────────────────── -->
-  <section id="system" class="section alt">
+  <!-- ═══════ 9. THE SYSTEM ════════════════════════════════ -->
+  <section id="system" class="section">
     <div class="container">
       <div class="system-grid">
         <div>
           <span class="accent-rule reveal"></span>
-          <span class="label reveal" style="display:block; margin-bottom:1.5rem;">The System</span>
-          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; line-height:1.1; margin-bottom:2rem;">
+          <span class="label reveal" style="display:block; margin-bottom:1.25rem;">The System</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; line-height:1.1; margin-bottom:1.75rem;">
             Infrastructure for private ecology.
           </h2>
-          <p class="reveal reveal-d2" style="max-width:42ch; font-size:0.9375rem; font-weight:300; line-height:1.8; opacity:0.8;">
+          <p class="reveal reveal-d2" style="max-width:42ch; font-size:0.9375rem; font-weight:300; line-height:1.85; opacity:0.78;">
             Individual gardens matter — but systemic change requires infrastructure around them. Classification, measurement, registry, incentives, and aggregation are the layers that make private ecological work visible and durable.
           </p>
         </div>
-
         <div class="system-layers reveal reveal-d2">
           <div class="system-layer">
             <span class="layer-num">01</span>
@@ -1281,28 +835,20 @@
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
-       ABOUT
-  ───────────────────────────────────────────── -->
-  <section id="about" class="section">
+  <!-- ═══════ 10. ABOUT ════════════════════════════════════ -->
+  <section id="about" class="section alt">
     <div class="container">
       <div class="about-grid">
         <div>
           <span class="accent-rule reveal"></span>
-          <span class="label reveal" style="display:block; margin-bottom:1.5rem;">About</span>
-          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; line-height:1.1; margin-bottom:2rem;">
+          <span class="label reveal" style="display:block; margin-bottom:1.25rem;">About</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; line-height:1.1; margin-bottom:1.75rem;">
             Tyson &amp; Natasha, Melbourne.
           </h2>
           <div class="about-prose reveal reveal-d2">
-            <p>
-              Gardener &amp; Son was founded by Tyson and Natasha in Melbourne. The studio brings together ecological design, systems thinking, and the economic architecture required to scale restoration through private land.
-            </p>
-            <p>
-              Tyson works as ecological designer and systems thinker. Natasha as plant stylist and aesthetic visionary. Together the studio operates across garden design, measurement frameworks, registry infrastructure, and the cultural narrative required to shift how cities understand private ecology.
-            </p>
-            <p>
-              The studio operates across two spaces — Churchill Street, Mont Albert and Auburn Road, Hawthorn — with an indigenous plant nursery opening soon at Auburn Road, and a laneway wine bar at Mason Lane, off Churchill Street.
-            </p>
+            <p>Gardener &amp; Son was founded by Tyson and Natasha in Melbourne. The studio brings together ecological design, systems thinking, and the economic architecture required to scale restoration through private land.</p>
+            <p>Tyson works as ecological designer and systems thinker. Natasha as plant stylist and aesthetic visionary. Together the studio operates across garden design, measurement frameworks, registry infrastructure, and the cultural narrative required to shift how cities understand private ecology.</p>
+            <p>The studio operates across two spaces — Churchill Street, Mont Albert and Auburn Road, Hawthorn — with an indigenous plant nursery opening soon at Auburn Road, and a laneway wine bar at Mason Lane, off Churchill Street.</p>
           </div>
         </div>
         <div class="about-image reveal reveal-d2"></div>
@@ -1310,10 +856,8 @@
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
-       ECOLOGICAL ECONOMY STATEMENT
-  ───────────────────────────────────────────── -->
-  <section id="ecology-statement" class="section alt">
+  <!-- ═══════ 11. ECOLOGICAL ECONOMY STATEMENT ════════════ -->
+  <section id="ecology-statement" class="section">
     <div class="container">
       <div class="statement-inner">
         <span class="accent-rule reveal"></span>
@@ -1321,39 +865,32 @@
           Building the private ecological infrastructure layer for cities.
         </h2>
         <div class="statement-body reveal reveal-d2">
-          <p>
-            This requires more than gardens. It requires registry infrastructure and economic frameworks that can recognise, value, and connect private ecological work — without losing the craft and beauty of the garden itself.
-          </p>
-          <p>
-            This is the ecological economy: stewardship with proof, and restoration that can compound across neighbourhoods. Long-horizon work. Built steadily.
-          </p>
+          <p>This requires more than gardens. It requires registry infrastructure and economic frameworks that can recognise, value, and connect private ecological work — without losing the craft and beauty of the garden itself.</p>
+          <p>This is the ecological economy: stewardship with proof, and restoration that can compound across neighbourhoods. Long-horizon work. Built steadily.</p>
         </div>
-        <div style="margin-top:3rem;" class="reveal reveal-d3">
+        <div style="margin-top:2.75rem;" class="reveal reveal-d3">
           <a href="#system" class="btn">Learn about the system →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─────────────────────────────────────────────
-       CONTACT
-  ───────────────────────────────────────────── -->
-  <section id="contact" class="section">
+  <!-- ═══════ 12. CONTACT ══════════════════════════════════ -->
+  <section id="contact" class="section alt">
     <div class="container">
       <span class="accent-rule reveal"></span>
-      <span class="label reveal" style="display:block; margin-bottom:1.5rem;">Contact</span>
+      <span class="label reveal" style="display:block; margin-bottom:1.25rem;">Contact</span>
       <h2 class="h2 reveal reveal-d1" style="max-width:16ch; line-height:1.1; margin-bottom:3rem;">
         Start a conversation about your garden.
       </h2>
-
       <div class="contact-grid">
         <div>
-          <div class="label reveal" style="margin-bottom:1rem; display:block;">Email</div>
-          <a href="/cdn-cgi/l/email-protection#b5ddd0d9d9daf5d2d4c7d1d0dbd0c7d4dbd1c6dadb9bd6dad89bd4c0" class="contact-email reveal reveal-d1">
-            <span class="__cf_email__" data-cfemail="94fcf1f8f8fbd4f3f5e6f0f1faf1e6f5faf0e7fbfabaf7fbf9baf5e1">[email&#160;protected]</span>
+          <div class="label reveal" style="margin-bottom:0.875rem; display:block;">Email</div>
+          <a href="mailto:hello@gardenerandson.com.au" class="contact-email reveal reveal-d1">
+            hello@gardenerandson.com.au
           </a>
           <div class="contact-address reveal reveal-d2">
-            <span class="label" style="display:block; margin-bottom:0.75rem;">Studios</span>
+            <span class="label" style="display:block; margin-bottom:0.625rem;">Studios</span>
             2 Churchill Street<br/>
             Mont Albert 3127<br/>
             <br/>
@@ -1362,9 +899,9 @@
             Victoria, Australia
           </div>
         </div>
-
         <div class="contact-cards">
-          <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="contact-card contact-card-begin reveal reveal-d1">
+          <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html"
+             class="contact-card contact-card-begin reveal reveal-d1">
             <div class="contact-card-title">Not sure where to start? Begin here →</div>
             <div class="contact-card-sub">2–3 minutes. A gentle first step. No pressure. Where Gardens Begin takes the difficulty out of making contact.</div>
           </a>
@@ -1380,11 +917,10 @@
       </div>
     </div>
   </section>
+
   </main>
 
-  <!-- ─────────────────────────────────────────────
-       FOOTER
-  ───────────────────────────────────────────── -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -1392,7 +928,6 @@
           <div class="footer-brand-name">Gardener &amp; Son</div>
           <p class="footer-brand-desc">Ecological design studio.<br/>Melbourne, Australia.<br/>Designing the ecological infrastructure layer for cities.</p>
         </div>
-
         <div>
           <div class="footer-col-title">Studios</div>
           <div class="footer-links">
@@ -1402,7 +937,6 @@
             <a href="#contact">Contact</a>
           </div>
         </div>
-
         <div>
           <div class="footer-col-title">Systems</div>
           <div class="footer-links">
@@ -1413,17 +947,16 @@
             <a href="#system">Curbing</a>
           </div>
         </div>
-
         <div>
           <div class="footer-col-title">Begin</div>
           <div class="footer-links">
             <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html">Where Gardens Begin →</a>
             <a href="#gardens">Garden Work</a>
             <a href="#stories">Stories</a>
+            <a href="https://tinyforests.github.io/heirloom/" target="_blank" rel="noopener">Heirloom</a>
           </div>
         </div>
       </div>
-
       <div class="footer-bottom">
         <p>© <span id="year"></span> Gardener &amp; Son. Designing ecological infrastructure.</p>
         <p>Mont Albert · Hawthorn, Melbourne · Victoria, Australia</p>
@@ -1431,71 +964,87 @@
     </div>
   </footer>
 
-  <!-- ─────────────────────────────────────────────
-       SCRIPTS
-  ───────────────────────────────────────────── -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ── Enable reveal animations (content visible by default without this)
+  <script>
+    // ── Reveal animations — content visible by default, animated when JS present
     document.body.classList.add('js-reveal');
 
     // ── Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // ── Theme
-    const body = document.body;
+    const body     = document.body;
     const themeBtn = document.getElementById('theme-btn');
-    const themeLabel = document.getElementById('theme-label');
-
-    const saved = localStorage.getItem('gs-theme') || 'dark';
-    if (saved === 'light') { body.classList.add('light'); themeLabel.textContent = 'Dark'; }
-
+    const themeLbl = document.getElementById('theme-label');
+    const saved    = localStorage.getItem('gs-theme') || 'dark';
+    if (saved === 'light') { body.classList.add('light'); themeLbl.textContent = 'Dark'; }
     themeBtn.addEventListener('click', () => {
       body.classList.toggle('light');
       const isLight = body.classList.contains('light');
-      themeLabel.textContent = isLight ? 'Dark' : 'Light';
+      themeLbl.textContent = isLight ? 'Dark' : 'Light';
       localStorage.setItem('gs-theme', isLight ? 'light' : 'dark');
     });
 
-    // ── Nav scrolled state
+    // ── Fixed nav: hidden on load, appears + gets bg on scroll
     const nav = document.getElementById('site-nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
+    function updateNav() {
+      const scrolled = window.scrollY > 40;
+      nav.classList.toggle('visible', scrolled);
+      nav.classList.toggle('scrolled', scrolled);
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // ── Mobile hamburger
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    function closeMobile() {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      mobileMenu.classList.toggle('open', isOpen);
+      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    });
 
     // ── Active nav
-    const sections = document.querySelectorAll('section[id], main[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks  = document.querySelectorAll('.nav-links a');
+    const secObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
           navLinks.forEach(a => a.classList.remove('active'));
-          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
           if (active) active.classList.add('active');
         }
       });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-
-    sections.forEach(s => observer.observe(s));
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    sections.forEach(s => secObs.observe(s));
 
     // ── Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal');
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObs.unobserve(entry.target);
-        }
+    const revObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
       });
-    }, { threshold: 0.04, rootMargin: '0px 0px -40px 0px' });
-
-    revealEls.forEach(el => revealObs.observe(el));
-
-    // Fallback: reveal everything if observer hasn't fired (preview / iframe / no scroll)
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
     setTimeout(() => {
       document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
-    }, 600);
+    }, 700);
 
-    // ── Smooth scroll anchors
+    // ── Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.add
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        closeMobile();
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
