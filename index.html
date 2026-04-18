@@ -234,16 +234,17 @@
 
     /* ─── HERO ───────────────────────────────────────────── */
     #top {
-      min-height: 82svh;
-      display: grid;
-      align-items: end;
-      justify-items: start;
-      padding-bottom: 4rem;
+      height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       position: relative;
       overflow: hidden;
     }
 
-    #top .container { width: 100%; }
+    #top .container { width: 100%; padding-bottom: 0; }
+    #top .marquee-wrap { margin-top: auto; } /* pins marquee to bottom */
+    .hero-spacer { display: none; }
 
     .hero-geo {
       position: absolute; top: 50%; right: -8vw; transform: translateY(-50%);
@@ -265,7 +266,7 @@
     @media (max-width: 760px) { .hero-geo { display: none; } }
 
     /* ─── MARQUEE ────────────────────────────────────────── */
-    .marquee-wrap { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; padding: 0.875rem 0; }
+    .marquee-wrap { border-top: 1px solid var(--line); overflow: hidden; padding: 0.875rem 0; background: var(--bg); }
     .marquee-track { display: flex; white-space: nowrap; animation: marquee 36s linear infinite; }
     .marquee-item { display: inline-flex; align-items: center; gap: 1.5rem; padding: 0 2rem; font-size: 0.6875rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.45; }
     .marquee-item::after { content: '·'; font-size: 1.1rem; opacity: 0.4; }
@@ -496,6 +497,9 @@
       <line x1="10"  y1="300" x2="590" y2="300" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
     </svg>
 
+    <!-- Spacer pushes content to bottom -->
+    <div class="hero-spacer"></div>
+
     <div class="container">
       <div class="hero-eyebrow reveal">
         <span class="label">Melbourne · Est. 2015</span>
@@ -515,38 +519,37 @@
         <a href="#system"  class="btn btn-ghost">The system</a>
       </div>
     </div>
-    <div class="hero-scroll" aria-hidden="true"><span>Scroll</span></div>
-  </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-wrap" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item">Ecological Garden Design</span>
-      <span class="marquee-item">Indigenous Planting</span>
-      <span class="marquee-item">Habitat Formation</span>
-      <span class="marquee-item">Find My Ecological Garden</span>
-      <span class="marquee-item">Place-based Practice</span>
-      <span class="marquee-item">Living Infrastructure</span>
-      <span class="marquee-item">Soil Science</span>
-      <span class="marquee-item">Canopy Design</span>
-      <span class="marquee-item">Carbon &amp; Biodiversity</span>
-      <span class="marquee-item">Ecological Registry</span>
-      <span class="marquee-item">Regenerative Gardens</span>
-      <span class="marquee-item">Mont Albert &amp; Hawthorn</span>
-      <span class="marquee-item">Ecological Garden Design</span>
-      <span class="marquee-item">Indigenous Planting</span>
-      <span class="marquee-item">Habitat Formation</span>
-      <span class="marquee-item">Find My Ecological Garden</span>
-      <span class="marquee-item">Place-based Practice</span>
-      <span class="marquee-item">Living Infrastructure</span>
-      <span class="marquee-item">Soil Science</span>
-      <span class="marquee-item">Canopy Design</span>
-      <span class="marquee-item">Carbon &amp; Biodiversity</span>
-      <span class="marquee-item">Ecological Registry</span>
-      <span class="marquee-item">Regenerative Gardens</span>
-      <span class="marquee-item">Mont Albert &amp; Hawthorn</span>
+    <!-- Marquee lives inside the hero so it's always on screen -->
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">Ecological Garden Design</span>
+        <span class="marquee-item">Indigenous Planting</span>
+        <span class="marquee-item">Habitat Formation</span>
+        <span class="marquee-item">Find My Ecological Garden</span>
+        <span class="marquee-item">Place-based Practice</span>
+        <span class="marquee-item">Living Infrastructure</span>
+        <span class="marquee-item">Soil Science</span>
+        <span class="marquee-item">Canopy Design</span>
+        <span class="marquee-item">Carbon &amp; Biodiversity</span>
+        <span class="marquee-item">Ecological Registry</span>
+        <span class="marquee-item">Regenerative Gardens</span>
+        <span class="marquee-item">Mont Albert &amp; Hawthorn</span>
+        <span class="marquee-item">Ecological Garden Design</span>
+        <span class="marquee-item">Indigenous Planting</span>
+        <span class="marquee-item">Habitat Formation</span>
+        <span class="marquee-item">Find My Ecological Garden</span>
+        <span class="marquee-item">Place-based Practice</span>
+        <span class="marquee-item">Living Infrastructure</span>
+        <span class="marquee-item">Soil Science</span>
+        <span class="marquee-item">Canopy Design</span>
+        <span class="marquee-item">Carbon &amp; Biodiversity</span>
+        <span class="marquee-item">Ecological Registry</span>
+        <span class="marquee-item">Regenerative Gardens</span>
+        <span class="marquee-item">Mont Albert &amp; Hawthorn</span>
+      </div>
     </div>
-  </div>
+  </section>
 
   <!-- ═══════ 2. THE STUDIO'S WORK ════════════════════════ -->
   <section id="browse" class="section alt">
