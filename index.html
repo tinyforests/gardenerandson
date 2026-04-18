@@ -19,7 +19,10 @@
   <style>
     /* ─── RESET ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
     img { display: block; max-width: 100%; }
 
     /* ─── TOKENS ─────────────────────────────────────────── */
@@ -43,7 +46,7 @@
 
       --max-w:      1280px;
       --pad-x:      clamp(1.5rem, 5vw, 5rem);
-      --section-py: clamp(5rem, 10vh, 8rem);
+      --section-py: clamp(3.5rem, 7vh, 6rem);
       --nav-h:      68px;
     }
 
@@ -89,9 +92,27 @@
 
     /* ─── LAYOUT ─────────────────────────────────────────── */
     .container { max-width: var(--max-w); margin: 0 auto; padding-left: var(--pad-x); padding-right: var(--pad-x); }
-    .section { padding-top: var(--section-py); padding-bottom: var(--section-py); position: relative; }
+
+    .section {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: var(--section-py);
+      padding-bottom: var(--section-py);
+      position: relative;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
     .section + .section { border-top: 1px solid var(--line); }
     .alt { background-color: var(--bg-alt); }
+
+    /* Hero snaps too */
+    #top { scroll-snap-align: start; scroll-snap-stop: always; }
+
+    /* Marquee sits between hero and first section — no snap */
+    .marquee-wrap { scroll-snap-align: none; }
 
     /* Scroll offset for fixed nav */
     section[id] { scroll-margin-top: var(--nav-h); }
