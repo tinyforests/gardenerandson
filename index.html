@@ -237,10 +237,13 @@
       min-height: 82svh;
       display: grid;
       align-items: end;
+      justify-items: start;
       padding-bottom: 4rem;
       position: relative;
       overflow: hidden;
     }
+
+    #top .container { width: 100%; }
 
     .hero-geo {
       position: absolute; top: 50%; right: -8vw; transform: translateY(-50%);
@@ -251,7 +254,7 @@
     .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem; padding-top: clamp(4rem, 12vh, 7rem); }
     .hero-eyebrow::before { content: ''; display: block; width: 2.5rem; height: 2px; background: var(--accent); opacity: 1; flex-shrink: 0; }
 
-    .hero-title { font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.04; max-width: 18ch; margin-bottom: 1.25rem; }
+    .hero-title { font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.04; margin-bottom: 1.25rem; white-space: nowrap; }
     .hero-body { max-width: 48ch; font-size: clamp(0.875rem, 1.1vw, 0.9375rem); line-height: 1.75; font-weight: 300; opacity: 0.82; margin-bottom: 2rem; }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.875rem; align-items: center; }
 
@@ -499,7 +502,7 @@
       </div>
       <h1 class="hero-title reveal reveal-d1">
         Designing ecological gardens.<br/>
-        Building the systems<br/>around them.
+        Building the systems around them.
       </h1>
       <p class="hero-body reveal reveal-d2">
         Gardener &amp; Son designs and builds ecological gardens across Melbourne — places of habitat, retreat, and long-term beauty, grounded in place and shaped over time.
