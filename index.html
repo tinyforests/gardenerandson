@@ -22,6 +22,7 @@
     html {
       scroll-behavior: smooth;
       scroll-snap-type: y proximity;
+      scroll-padding-top: var(--nav-h);
     }
     img { display: block; max-width: 100%; }
 
@@ -114,8 +115,7 @@
     /* Marquee sits between hero and first section — no snap */
     .marquee-wrap { scroll-snap-align: none; }
 
-    /* Scroll offset for fixed nav */
-    section[id] { scroll-margin-top: var(--nav-h); }
+    /* Scroll offset for fixed nav is handled by scroll-padding-top on <html> */
 
     /* ─── FIXED NAV ──────────────────────────────────────── */
     #site-nav {
