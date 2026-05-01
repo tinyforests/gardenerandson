@@ -244,9 +244,9 @@
     .hero-spacer { display: none; }
 
     .hero-geo {
-      position: absolute; top: 50%; right: -8vw; transform: translateY(-50%);
-      width: clamp(300px, 48vw, 620px); height: clamp(300px, 48vw, 620px);
-      pointer-events: none; opacity: 0.065;
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; opacity: 0.085;
     }
 
     .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem; padding-top: clamp(4rem, 12vh, 7rem); }
@@ -622,15 +622,45 @@
 
   <!-- ═══════ 1. HERO ══════════════════════════════════════ -->
   <section id="top">
-    <svg class="hero-geo" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="300" cy="300" r="290" stroke="currentColor" stroke-width="1"/>
-      <circle cx="300" cy="300" r="230" stroke="currentColor" stroke-width="1"/>
-      <circle cx="300" cy="300" r="170" stroke="currentColor" stroke-width="1"/>
-      <circle cx="300" cy="300" r="110" stroke="currentColor" stroke-width="1"/>
-      <circle cx="300" cy="300" r="55"  stroke="currentColor" stroke-width="1"/>
-      <circle cx="300" cy="300" r="20"  fill="currentColor" opacity="0.3"/>
-      <line x1="300" y1="10"  x2="300" y2="590" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-      <line x1="10"  y1="300" x2="590" y2="300" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+    <svg class="hero-geo"
+         viewBox="0 0 1600 700"
+         preserveAspectRatio="xMidYMax slice"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="1"
+         xmlns="http://www.w3.org/2000/svg"
+         aria-hidden="true">
+
+      <!-- Distant background contours — gentle high relief sweeping across -->
+      <path d="M -20,100 C 180,70 350,100 540,80 C 740,55 920,90 1120,75 C 1300,60 1480,80 1620,110" stroke-width="0.7"/>
+      <path d="M -20,170 C 200,140 380,170 580,150 C 770,125 940,160 1140,140 C 1320,120 1490,140 1620,180" stroke-width="0.8"/>
+      <path d="M -20,260 C 180,220 380,250 560,220 C 740,185 930,225 1110,200 C 1290,170 1470,195 1620,230" stroke-width="0.9"/>
+
+      <!-- Distant isolated peak (upper-left) -->
+      <path d="M 200,135 C 240,120 320,120 350,140 C 360,165 320,180 270,178 C 215,170 185,150 200,135 Z" stroke-width="0.8"/>
+      <path d="M 230,145 C 260,135 320,135 340,150 C 340,165 310,170 275,165 C 240,160 220,153 230,145 Z" stroke-width="0.8"/>
+      <path d="M 260,155 C 280,150 315,150 325,158 C 322,167 305,168 285,164 C 265,160 254,158 260,155 Z" stroke-width="0.8"/>
+
+      <!-- LEFT LANDFORM — small hill, peak ~ (350, 470) -->
+      <path d="M 80,510 C 130,430 270,395 410,410 C 530,425 555,490 480,545 C 370,585 200,585 110,545 C 75,525 70,520 80,510 Z"/>
+      <path d="M 150,495 C 200,440 310,415 410,435 C 480,455 480,490 420,520 C 320,550 200,550 155,525 C 130,515 135,505 150,495 Z"/>
+      <path d="M 230,480 C 270,450 350,445 405,465 C 435,485 410,505 355,515 C 290,520 230,510 220,495 C 215,488 220,484 230,480 Z"/>
+      <path d="M 290,470 C 320,455 370,455 390,470 C 395,485 370,495 335,495 C 305,495 280,482 290,470 Z"/>
+      <path d="M 330,470 C 345,463 365,463 370,472 C 365,480 350,482 338,478 C 330,475 327,472 330,470 Z"/>
+
+      <!-- RIGHT LANDFORM — larger mountain ridge, peak ~ (1170, 380) -->
+      <path d="M 720,470 C 770,355 990,290 1230,285 C 1410,290 1505,365 1465,440 C 1395,510 1180,520 970,495 C 820,475 705,495 720,470 Z"/>
+      <path d="M 810,450 C 870,360 1050,310 1240,315 C 1390,325 1450,375 1410,425 C 1330,475 1145,478 990,465 C 870,455 800,465 810,450 Z"/>
+      <path d="M 905,425 C 960,360 1095,330 1245,340 C 1350,355 1380,390 1330,420 C 1245,450 1100,450 1005,435 C 945,425 895,435 905,425 Z"/>
+      <path d="M 985,400 C 1030,355 1135,335 1235,355 C 1300,370 1295,400 1245,415 C 1170,430 1080,420 1015,415 C 985,410 980,405 985,400 Z"/>
+      <path d="M 1055,388 C 1090,360 1165,355 1215,370 C 1245,385 1225,400 1185,405 C 1135,408 1080,400 1060,395 C 1050,392 1050,390 1055,388 Z"/>
+      <path d="M 1110,378 C 1135,365 1180,365 1200,375 C 1205,388 1180,392 1155,388 C 1130,385 1108,382 1110,378 Z"/>
+      <path d="M 1140,378 C 1155,372 1180,372 1185,378 C 1182,385 1170,385 1158,383 C 1145,381 1138,380 1140,378 Z"/>
+
+      <!-- Valley contours — flow between the landforms along the lower edge -->
+      <path d="M -20,580 C 150,560 320,590 480,580 C 620,575 720,540 850,540 C 1000,545 1180,565 1380,560 C 1500,555 1580,560 1620,580" stroke-width="0.9"/>
+      <path d="M -20,640 C 200,620 400,650 580,640 C 760,635 880,615 1050,615 C 1230,620 1430,640 1620,640" stroke-width="0.8"/>
+
     </svg>
 
     <div class="hero-spacer"></div>
