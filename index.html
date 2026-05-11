@@ -252,13 +252,13 @@
     .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem; padding-top: clamp(4rem, 12vh, 7rem); }
     .hero-eyebrow::before { content: ''; display: block; width: 2.5rem; height: 2px; background: var(--accent); opacity: 1; flex-shrink: 0; }
 
-    .hero-title { font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.04; margin-bottom: 1.25rem; white-space: nowrap; }
+    .hero-title { font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.04; margin-bottom: 1.25rem; }
     .hero-body { max-width: 52ch; font-size: clamp(0.875rem, 1.1vw, 0.9375rem); line-height: 1.75; font-weight: 300; opacity: 0.82; margin-bottom: 2rem; }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.875rem; align-items: center; }
 
     @media (max-width: 760px) {
       .hero-geo { display: none; }
-      .hero-title { font-size: clamp(2.25rem, 9vw, 3.25rem); white-space: normal; line-height: 1.06; }
+      .hero-title { font-size: clamp(2.25rem, 9vw, 3.25rem); line-height: 1.06; }
       .hero-body { font-size: 0.9375rem; max-width: 100%; }
       .hero-ctas { flex-direction: column; align-items: flex-start; }
       .hero-ctas .btn { width: 100%; justify-content: center; }
@@ -277,9 +277,9 @@
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* ─── BROWSE PILLARS ─────────────────────────────────── */
-    .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.25rem; }
-    @media (max-width: 1024px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px)  { .pillars-grid { grid-template-columns: 1fr; } }
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.25rem; }
+    @media (max-width: 900px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .pillars-grid { grid-template-columns: 1fr; } }
 
     .pillar { border: 1px solid var(--line); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.875rem; transition: background 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
     .pillar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
@@ -576,19 +576,19 @@
 
       <ul class="nav-links">
         <li><a href="#browse">Work</a></li>
-        <li><a href="#studios">Studios</a></li>
         <li><a href="#gardens">Gardens</a></li>
         <li><a href="#objects">Objects</a></li>
         <li><a href="#plants">Plants</a></li>
-        <li><a href="#system">System</a></li>
         <li><a href="#stories">Stories</a></li>
+        <li><a href="#studios">Studios</a></li>
+        <li><a href="#system">System</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
 
       <div class="nav-right">
         <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html"
            class="btn btn-sm btn-accent" style="letter-spacing:0.04em; white-space:nowrap;">
-          Where Gardens Begin →
+          Start Your Journey →
         </a>
         <button id="theme-btn" aria-label="Toggle colour mode"><span id="theme-label">Light</span></button>
         <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -602,18 +602,18 @@
   <div class="nav-mobile" id="mobile-menu" aria-hidden="true">
     <ul>
       <li><a href="#browse"  onclick="closeMobile()">Work</a></li>
-      <li><a href="#studios" onclick="closeMobile()">Studios</a></li>
       <li><a href="#gardens" onclick="closeMobile()">Gardens</a></li>
       <li><a href="#objects" onclick="closeMobile()">Objects</a></li>
       <li><a href="#plants"  onclick="closeMobile()">Plants</a></li>
-      <li><a href="#system"  onclick="closeMobile()">System</a></li>
       <li><a href="#stories" onclick="closeMobile()">Stories</a></li>
+      <li><a href="#studios" onclick="closeMobile()">Studios</a></li>
+      <li><a href="#system"  onclick="closeMobile()">System</a></li>
       <li><a href="#contact" onclick="closeMobile()">Contact</a></li>
     </ul>
     <div class="nav-mobile-cta">
       <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html"
          class="btn btn-accent" onclick="closeMobile()">
-        Where Gardens Begin →
+        Start Your Journey →
       </a>
     </div>
   </div>
@@ -670,18 +670,17 @@
         <span class="label">Melbourne · Est. 2015</span>
       </div>
       <h1 class="hero-title reveal reveal-d1">
-        Designing ecological gardens.<br/>
-        Building the systems around them.
+        Your garden design journey starts here.
       </h1>
       <p class="hero-body reveal reveal-d2">
-        Gardener &amp; Son is one ecological practice — gardens, plants, objects, stories, and the systems that hold them together. Studios in Mont Albert and Hawthorn, Melbourne.
+        Gardener &amp; Son is an ecological garden design studio working across Melbourne. Site-responsive design, indigenous planting, beauty under real conditions — built to mature into living systems. Studios in Mont Albert and Hawthorn.
       </p>
       <div class="hero-ctas reveal reveal-d3">
         <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn btn-accent">
-          Where Gardens Begin →
+          Start Your Journey →
         </a>
-        <a href="#gardens" class="btn">View garden work</a>
-        <a href="#studios" class="btn btn-ghost">Visit a studio</a>
+        <a href="#gardens" class="btn">View Garden Work</a>
+        <a href="#studios" class="btn btn-ghost">Visit A Studio</a>
       </div>
     </div>
 
@@ -735,25 +734,19 @@
           <div class="pillar-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/gardens.jpeg'); background-size:cover; background-position:center;"></div>
           <h3>Gardens</h3>
           <p>Site-specific ecological design and installation — habitat, soil, water, canopy, and seasonal depth. Built for real conditions and real life.</p>
-          <a href="#gardens" class="btn btn-sm">Explore gardens</a>
+          <a href="#gardens" class="btn btn-sm">Explore Gardens</a>
         </div>
         <div class="pillar reveal reveal-d2">
+          <div class="pillar-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/objects.jpeg'); background-size:cover; background-position:center;"></div>
+          <h3>Objects</h3>
+          <p>Heirloom — pots, vessels, tools, references and material fragments. Vintage and rescued things with a past, finding their next life in another garden.</p>
+          <a href="#objects" class="btn btn-sm">Visit Heirloom</a>
+        </div>
+        <div class="pillar reveal reveal-d3">
           <div class="pillar-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/plants.jpeg'); background-size:cover; background-position:center;"></div>
           <h3>Plants</h3>
           <p>Plants of Place — the studio's indigenous micro-nursery at Hawthorn. Locally provenanced species, grown for the gardens they're going into.</p>
-          <a href="#plants" class="btn btn-sm">See the nursery</a>
-        </div>
-        <div class="pillar reveal reveal-d3">
-          <div class="pillar-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/objects.jpeg'); background-size:cover; background-position:center;"></div>
-          <h3>Objects</h3>
-          <p>Heirloom — tools, vessels, references and material fragments. Companions to the garden, chosen because they help people live with their land.</p>
-          <a href="#objects" class="btn btn-sm">Visit Heirloom</a>
-        </div>
-        <div class="pillar reveal reveal-d4">
-          <div class="pillar-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/stories.jpeg'); background-size:cover; background-position:center;"></div>
-          <h3>Stories</h3>
-          <p>Field notes and essays on ecology, place, and practice — the writing that helps the work move beyond individual sites.</p>
-          <a href="#stories" class="btn btn-sm">Read writing</a>
+          <a href="#plants" class="btn btn-sm">See The Nursery</a>
         </div>
       </div>
     </div>
@@ -783,7 +776,7 @@
           </div>
           <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html"
              class="btn btn-accent reveal reveal-d4" style="font-size:0.875rem;">
-            Begin — Where Gardens Begin →
+            Start Your Garden Design Journey →
           </a>
         </div>
 
@@ -815,8 +808,208 @@
     </div>
   </section>
 
-  <!-- ═══════ 4. STUDIOS — Discovery Centres ═══════════════ -->
-  <section id="studios" class="section alt">
+  <!-- ═══════ 4. HOW WE WORK ════════════════════════════════ -->
+  <section id="how-we-work" class="section alt">
+    <div class="container">
+      <span class="accent-rule reveal"></span>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;">
+        <h2 class="h2 reveal reveal-d1" style="max-width:12ch; line-height:1.1;">How We Work</h2>
+        <p class="reveal reveal-d1" style="max-width:44ch; font-size:0.9375rem; opacity:0.68; font-weight:300; line-height:1.75;">
+          Every site is read before it is designed. Every material is chosen for honesty. Every garden is built to mature.
+        </p>
+      </div>
+      <div class="method-grid">
+        <div class="method-item reveal reveal-d1">
+          <div class="method-num">01</div>
+          <div class="method-title">Begin on site</div>
+          <p class="method-body">Design begins walking — reading slope, soil, light, and remnant pattern. Form emerges from context rather than being imposed upon it.</p>
+        </div>
+        <div class="method-item reveal reveal-d2">
+          <div class="method-num">02</div>
+          <div class="method-title">Favour continuity</div>
+          <p class="method-body">Remnant vegetation, local geology, indigenous systems, and subtle cultural traces inform the work. We favour continuity over novelty.</p>
+        </div>
+        <div class="method-item reveal reveal-d3">
+          <div class="method-num">03</div>
+          <div class="method-title">Design to mature</div>
+          <p class="method-body">Gardens are designed to grow over years. Season by season, they settle. Plants find rhythm. Soil deepens. What begins as structure becomes relationship.</p>
+        </div>
+        <div class="method-item reveal reveal-d4">
+          <div class="method-num">04</div>
+          <div class="method-title">Measure and document</div>
+          <p class="method-body">Measurement and documentation sit beside intuition and artistry. Craft, integrity, and systemic beauty guide how we work — and how we record what we've made.</p>
+        </div>
+      </div>
+
+      <blockquote class="pullquote reveal reveal-d2">
+        Gardens are not decorative backdrops.<br/>They are fragments of a larger ecological whole.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ═══════ 5. GARDENS ════════════════════════════════════ -->
+  <section id="gardens" class="section">
+    <div class="container">
+      <span class="accent-rule reveal"></span>
+      <div class="gardens-header">
+        <h2 class="h2 reveal reveal-d1">Gardens</h2>
+        <p class="reveal reveal-d1">Ecological gardens built for beauty under real conditions: drought, shade, slope, clay, wind, pets, and family life.</p>
+      </div>
+      <div class="gardens-grid">
+        <article class="garden-card reveal reveal-d1">
+          <div class="garden-thumb" style="background-image:url('https://gardenerandson.notion.site/image/attachment%3A70253934-2f30-49a8-b6f6-091d29f40d6f%3AIMG_0466.webp?table=block&amp;id=2cc62f60-b604-8117-8fcd-f442a1b26027&amp;spaceId=dae52f28-d26b-4ba6-8bb1-9d405fc64b36&amp;width=1420&amp;userId=&amp;cache=v2'); background-size:cover; background-position:center;"></div>
+          <div class="garden-info">
+            <span class="label" style="display:block; margin-bottom:0.625rem;">Installation</span>
+            <h3>The Ecological Garden</h3>
+            <p>A place-responsive ecological garden blending beauty, biodiversity, and resilience, designed to reconnect people with living systems.</p>
+            <a href="https://gardenerandson.notion.site/The-Ecological-Garden-2cc62f60b60480479b96c80f1ad0f561" class="layer-link" target="_blank" rel="noopener" style="margin-top:0.75rem;">View project ↗</a>
+          </div>
+        </article>
+        <article class="garden-card reveal reveal-d2">
+          <div class="garden-thumb" style="background-image:url('https://substackcdn.com/image/fetch/$s_!MIro!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78a72216-f0e6-46dc-95ad-2603e589fe54_730x730.avif'); background-size:cover; background-position:center;"></div>
+          <div class="garden-info">
+            <span class="label" style="display:block; margin-bottom:0.625rem;">Planting</span>
+            <h3>The Sensory Garden</h3>
+            <p>A garden designed to boost biodiversity and enhance biophilic responses whilst maximising real estate market appeal.</p>
+            <a href="https://gardenerandson.substack.com/p/the-sensory-garden" class="layer-link" target="_blank" rel="noopener" style="margin-top:0.75rem;">Read story ↗</a>
+          </div>
+        </article>
+        <article class="garden-card reveal reveal-d3">
+          <div class="garden-thumb" style="background-image:url('https://substackcdn.com/image/fetch/$s_!l2JD!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8283b37b-1d37-4d7c-bf45-1084bce8ca55_966x1287.jpeg'); background-size:cover; background-position:center;"></div>
+          <div class="garden-info">
+            <span class="label" style="display:block; margin-bottom:0.625rem;">Installation</span>
+            <h3>The Wild Cottage Garden</h3>
+            <p>A radical urban garden that speaks volumes.</p>
+            <a href="https://gardenerandson.substack.com/p/the-wild-urban-cottage-garden" class="layer-link" target="_blank" rel="noopener" style="margin-top:0.75rem;">Read story ↗</a>
+          </div>
+        </article>
+        <article class="garden-card reveal reveal-d4">
+          <div class="garden-thumb" style="background-image:url('https://substackcdn.com/image/fetch/$s_!fwNu!,w_960,h_639,c_fill,f_webp,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F20102f3a-6674-4c1c-a9ce-01a0c454b6ab_730x730.jpeg'); background-size:cover; background-position:center;"></div>
+          <div class="garden-info">
+            <span class="label" style="display:block; margin-bottom:0.625rem;">Installation</span>
+            <h3>The Resilient Garden</h3>
+            <p>A forward-thinking garden designed to flourish for future generations.</p>
+            <a href="https://gardenerandson.substack.com/p/current-project-the-resilient-garden" class="layer-link" target="_blank" rel="noopener" style="margin-top:0.75rem;">Read story ↗</a>
+          </div>
+        </article>
+      </div>
+      <div style="margin-top:2.75rem;" class="reveal">
+        <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn">
+          Start Your Garden Design Journey →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 6. OBJECTS — Heirloom ════════════════════════ -->
+  <section id="objects" class="section alt">
+    <div class="container">
+      <div class="objects-inner">
+        <div>
+          <span class="accent-rule reveal"></span>
+          <span class="label reveal" style="display:block; margin-bottom:1.25rem;">Heirloom</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; margin-bottom:1.75rem;">
+            Things Worth Keeping.
+          </h2>
+          <div class="objects-prose reveal reveal-d2">
+            <p>Heirloom holds a curated collection of objects — pots, vessels, tools, references and material fragments — gathered with care, chosen for their beauty, uniqueness, style, patina and age. All vintage or rescued: things with a past, finding their next life in another garden.</p>
+            <p>Less a shop than a quiet way of thinking about what we keep, what we mend, and what we pass on. Objects that are useful, repairable, and beautiful in the way good things become beautiful — through use, time, and care.</p>
+          </div>
+
+          <div class="objects-categories reveal reveal-d3">
+            <div class="objects-cat">
+              <div class="objects-cat-name">Pots &amp; Vessels</div>
+              <div class="objects-cat-desc">For planting, cuttings, propagation — chosen for patina and proportion.</div>
+            </div>
+            <div class="objects-cat">
+              <div class="objects-cat-name">Tools</div>
+              <div class="objects-cat-desc">For pruning, planting, observing — built to sharpen, mend and last.</div>
+            </div>
+            <div class="objects-cat">
+              <div class="objects-cat-name">References</div>
+              <div class="objects-cat-desc">Books and field guides that deepen practice over years.</div>
+            </div>
+            <div class="objects-cat">
+              <div class="objects-cat-name">Material Fragments</div>
+              <div class="objects-cat-desc">Stone, timber, fibre — things with a past, finding their next life.</div>
+            </div>
+          </div>
+
+          <a href="https://tinyforests.github.io/heirloom/" class="btn reveal reveal-d4"
+             style="margin-top:2.25rem;" target="_blank" rel="noopener">Visit Heirloom →</a>
+        </div>
+        <div class="objects-grid reveal reveal-d2">
+          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-6.png'); background-size:cover; background-position:center;"></div>
+          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-5.png'); background-size:cover; background-position:center;"></div>
+          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-4.png'); background-size:cover; background-position:center;"></div>
+          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-objects-5.png'); background-size:cover; background-position:center;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 7. PLANTS OF PLACE ═══════════════════════════ -->
+  <section id="plants" class="section">
+    <div class="container">
+      <div class="plants-inner">
+        <div>
+          <span class="accent-rule reveal"></span>
+          <span class="label reveal" style="display:block; margin-bottom:1.25rem;">Plants of Place</span>
+          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; margin-bottom:1.75rem;">
+            Local plants, grown for local ecological repair.
+          </h2>
+          <div class="plants-prose reveal reveal-d2">
+            <p><em>Plants of Place</em> is the studio's indigenous micro-nursery — opening soon at Auburn Road, Hawthorn. Locally provenanced species, grown for the soils, rainfall, and light of the gardens they're going into.</p>
+            <p>Not only native plants, but plants of <em>this place</em>: chosen by Ecological Vegetation Class, sourced from local seed where possible, and matched to the conditions a Melbourne garden actually presents.</p>
+            <p>This is the living link between classification, design, and the garden in the ground.</p>
+          </div>
+
+          <a href="#system" class="plants-system-link reveal reveal-d3">
+            <span class="label">How it fits the system</span>
+            <p>Find My EVC → Find My Ecological Garden → Plants of Place → installed gardens → the Ecological Registry. One continuous chain from classification to verified outcome.</p>
+          </a>
+
+          <a href="#contact" class="btn reveal reveal-d4" style="margin-top:2rem;">Enquire About Plants →</a>
+        </div>
+        <div class="plants-feature reveal reveal-d2">
+          <div class="plants-thumb plants-thumb-1" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/plants/plantsofplace-1.png'); background-size:cover; background-position:center;"></div>
+          <div class="plants-thumb plants-thumb-2" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/plants/plantsofplace-2.png'); background-size:cover; background-position:center;"></div>
+          <div class="plants-thumb plants-thumb-3" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/plants/plantsofplace-3.png'); background-size:cover; background-position:center;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 8. STORIES ════════════════════════════════════ -->
+  <section id="stories" class="section alt">
+    <div class="container">
+      <span class="accent-rule reveal"></span>
+      <div class="stories-header">
+        <h2 class="h2 reveal reveal-d1">Stories</h2>
+        <p class="reveal reveal-d1">Essays and field notes on ecological gardening, systems, and culture — written to clarify the work, not to decorate it.</p>
+      </div>
+      <div class="stories-grid">
+        <a href="https://gardenerandson.substack.com/p/what-were-building-this-year" target="_blank" rel="noopener" class="story-card reveal reveal-d1">
+          <span class="story-type">Essay</span>
+          <div class="story-title">What We Are Building This Year</div>
+          <p class="story-body">Most gardens are treated as private spaces — personal, aesthetic, and disconnected from the larger systems around them. Yet collectively, gardens make up one of the largest untapped ecological assets in our cities.</p>
+        </a>
+        <a href="https://gardenerandson.substack.com/p/designing-interactions-not-gardens" target="_blank" rel="noopener" class="story-card reveal reveal-d2">
+          <span class="story-type">Note</span>
+          <div class="story-title">Designing Interactions, Not Gardens</div>
+          <p class="story-body">As part of our design process, we often think about how a garden and its stewards shape one another — how it guides movement, invites pause, and supports daily use over time.</p>
+        </a>
+        <a href="https://gardenerandson.substack.com/p/why-plant-an-ecological-garden" target="_blank" rel="noopener" class="story-card reveal reveal-d3">
+          <span class="story-type">Essay</span>
+          <div class="story-title">Why Plant an Ecological Garden</div>
+          <p class="story-body">Across Melbourne, more people are discovering that a beautiful garden can also be a living system. An ecological garden restores balance, supports biodiversity, and reconnects us to the natural rhythms of place.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 9. STUDIOS — Discovery Centres ═══════════════ -->
+  <section id="studios" class="section">
     <div class="container">
       <span class="accent-rule reveal"></span>
       <span class="label reveal" style="display:block; margin-bottom:1.25rem;">Our Studios</span>
@@ -865,209 +1058,6 @@
 
       <div class="studios-meta reveal reveal-d3">
         <p>Founded in Melbourne by <strong>Tyson</strong> — ecological designer and systems thinker — and <strong>Natasha</strong> — plant stylist and aesthetic visionary. Together the studio operates across garden design, indigenous planting, measurement frameworks, registry infrastructure, and the cultural narrative required to shift how cities understand private ecology.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ 5. HOW WE WORK ════════════════════════════════ -->
-  <section id="how-we-work" class="section">
-    <div class="container">
-      <span class="accent-rule reveal"></span>
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;">
-        <h2 class="h2 reveal reveal-d1" style="max-width:12ch; line-height:1.1;">How We Work</h2>
-        <p class="reveal reveal-d1" style="max-width:44ch; font-size:0.9375rem; opacity:0.68; font-weight:300; line-height:1.75;">
-          Every site is read before it is designed. Every material is chosen for honesty. Every garden is built to mature.
-        </p>
-      </div>
-      <div class="method-grid">
-        <div class="method-item reveal reveal-d1">
-          <div class="method-num">01</div>
-          <div class="method-title">Begin on site</div>
-          <p class="method-body">Design begins walking — reading slope, soil, light, and remnant pattern. Form emerges from context rather than being imposed upon it.</p>
-        </div>
-        <div class="method-item reveal reveal-d2">
-          <div class="method-num">02</div>
-          <div class="method-title">Favour continuity</div>
-          <p class="method-body">Remnant vegetation, local geology, indigenous systems, and subtle cultural traces inform the work. We favour continuity over novelty.</p>
-        </div>
-        <div class="method-item reveal reveal-d3">
-          <div class="method-num">03</div>
-          <div class="method-title">Design to mature</div>
-          <p class="method-body">Gardens are designed to grow over years. Season by season, they settle. Plants find rhythm. Soil deepens. What begins as structure becomes relationship.</p>
-        </div>
-        <div class="method-item reveal reveal-d4">
-          <div class="method-num">04</div>
-          <div class="method-title">Measure and document</div>
-          <p class="method-body">Measurement and documentation sit beside intuition and artistry. Craft, integrity, and systemic beauty guide how we work — and how we record what we've made.</p>
-        </div>
-      </div>
-
-      <blockquote class="pullquote reveal reveal-d2">
-        Gardens are not decorative backdrops.<br/>They are fragments of a larger ecological whole.
-      </blockquote>
-    </div>
-  </section>
-
-  <!-- ═══════ 6. GARDENS ════════════════════════════════════ -->
-  <section id="gardens" class="section alt">
-    <div class="container">
-      <span class="accent-rule reveal"></span>
-      <div class="gardens-header">
-        <h2 class="h2 reveal reveal-d1">Gardens</h2>
-        <p class="reveal reveal-d1">Ecological gardens built for beauty under real conditions: drought, shade, slope, clay, wind, pets, and family life.</p>
-      </div>
-      <div class="gardens-grid">
-        <article class="garden-card reveal reveal-d1">
-          <div class="garden-thumb" style="background-image:url('https://gardenerandson.notion.site/image/attachment%3A70253934-2f30-49a8-b6f6-091d29f40d6f%3AIMG_0466.webp?table=block&amp;id=2cc62f60-b604-8117-8fcd-f442a1b26027&amp;spaceId=dae52f28-d26b-4ba6-8bb1-9d405fc64b36&amp;width=1420&amp;userId=&amp;cache=v2'); background-size:cover; background-position:center;"></div>
-          <div class="garden-info">
-            <span class="label" style="display:block; margin-bottom:0.625rem;">Installation</span>
-            <h3>The Ecological Garden</h3>
-            <p>A place-responsive ecological garden blending beauty, biodiversity, and resilience, designed to reconnect people with living systems.</p>
-            <a href="https://gardenerandson.notion.site/The-Ecological-Garden-2cc62f60b60480479b96c80f1ad0f561" class="layer-link" target="_blank" rel="noopener" style="margin-top:0.75rem;">View project ↗</a>
-          </div>
-        </article>
-        <article class="garden-card reveal reveal-d2">
-          <div class="garden-thumb" style="background-image:url('https://substackcdn.com/image/fetch/$s_!MIro!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78a72216-f0e6-46dc-95ad-2603e589fe54_730x730.avif'); background-size:cover; background-position:center;"></div>
-          <div class="garden-info">
-            <span class="label" style="display:block; margin-bottom:0.625rem;">Planting</span>
-            <h3>The Sensory Garden</h3>
-            <p>A garden designed to boost biodiversity and enhance biophilic responses whilst maximising real estate market appeal.</p>
-            <a href="https://gardenerandson.substack.com/p/the-sensory-garden" class="layer-link" target="_blank" rel="noopener" style="margin-top:0.75rem;">Read story ↗</a>
-          </div>
-        </article>
-        <article class="garden-card reveal reveal-d3">
-          <div class="garden-thumb" style="background-image:url('https://substackcdn.com/image/fetch/$s_!l2JD!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8283b37b-1d37-4d7c-bf45-1084bce8ca55_966x1287.jpeg'); background-size:cover; background-position:center;"></div>
-          <div class="garden-info">
-            <span class="label" style="display:block; margin-bottom:0.625rem;">Installation</span>
-            <h3>The Wild Cottage Garden</h3>
-            <p>A radical urban garden that speaks volumes.</p>
-            <a href="https://gardenerandson.substack.com/p/the-wild-urban-cottage-garden" class="layer-link" target="_blank" rel="noopener" style="margin-top:0.75rem;">Read story ↗</a>
-          </div>
-        </article>
-        <article class="garden-card reveal reveal-d4">
-          <div class="garden-thumb" style="background-image:url('https://substackcdn.com/image/fetch/$s_!fwNu!,w_960,h_639,c_fill,f_webp,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F20102f3a-6674-4c1c-a9ce-01a0c454b6ab_730x730.jpeg'); background-size:cover; background-position:center;"></div>
-          <div class="garden-info">
-            <span class="label" style="display:block; margin-bottom:0.625rem;">Installation</span>
-            <h3>The Resilient Garden</h3>
-            <p>A forward-thinking garden designed to flourish for future generations.</p>
-            <a href="https://gardenerandson.substack.com/p/current-project-the-resilient-garden" class="layer-link" target="_blank" rel="noopener" style="margin-top:0.75rem;">Read story ↗</a>
-          </div>
-        </article>
-      </div>
-      <div style="margin-top:2.75rem;" class="reveal">
-        <a href="https://tinyforests.github.io/gardenerandson/where-gardens-begin.html" class="btn">
-          Begin your garden conversation →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ 7. PLANTS OF PLACE ═══════════════════════════ -->
-  <section id="plants" class="section">
-    <div class="container">
-      <div class="plants-inner">
-        <div>
-          <span class="accent-rule reveal"></span>
-          <span class="label reveal" style="display:block; margin-bottom:1.25rem;">Plants of Place</span>
-          <h2 class="h2 reveal reveal-d1" style="max-width:14ch; margin-bottom:1.75rem;">
-            Local plants, grown for local ecological repair.
-          </h2>
-          <div class="plants-prose reveal reveal-d2">
-            <p><em>Plants of Place</em> is the studio's indigenous micro-nursery — opening soon at Auburn Road, Hawthorn. Locally provenanced species, grown for the soils, rainfall, and light of the gardens they're going into.</p>
-            <p>Not only native plants, but plants of <em>this place</em>: chosen by Ecological Vegetation Class, sourced from local seed where possible, and matched to the conditions a Melbourne garden actually presents.</p>
-            <p>This is the living link between classification, design, and the garden in the ground.</p>
-          </div>
-
-          <a href="#system" class="plants-system-link reveal reveal-d3">
-            <span class="label">How it fits the system</span>
-            <p>Find My EVC → Find My Ecological Garden → Plants of Place → installed gardens → the Ecological Registry. One continuous chain from classification to verified outcome.</p>
-          </a>
-
-          <a href="#contact" class="btn reveal reveal-d4" style="margin-top:2rem;">Enquire about plants →</a>
-        </div>
-        <div class="plants-feature reveal reveal-d2">
-          <div class="plants-thumb plants-thumb-1" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/plants/plantsofplace-1.png'); background-size:cover; background-position:center;"></div>
-          <div class="plants-thumb plants-thumb-2" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/plants/plantsofplace-2.png'); background-size:cover; background-position:center;"></div>
-          <div class="plants-thumb plants-thumb-3" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/plants/plantsofplace-3.png'); background-size:cover; background-position:center;"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ 8. OBJECTS — Heirloom ════════════════════════ -->
-  <section id="objects" class="section alt">
-    <div class="container">
-      <div class="objects-inner">
-        <div>
-          <span class="accent-rule reveal"></span>
-          <span class="label reveal" style="display:block; margin-bottom:1.25rem;">Heirloom Objects</span>
-<h2 class="h2 reveal reveal-d1" style="max-width:14ch; margin-bottom:1.75rem;">
-  Vintage garden objects for living with gardens.
-</h2>
-<div class="objects-prose reveal reveal-d2">
-  <p><em>Heirloom</em> is the object culture of Gardener &amp; Son — a curated collection of vintage garden ornaments, old vessels, tools, references and material fragments chosen for the way they help people live more closely with their gardens.</p>
-
-  <p>Weathered urns, concrete animals, iron plant stands, stone troughs, old hand tools, propagation vessels, books and field references — objects with age, repair, patina and use already held within them.</p>
-
-  <p>Less a shop than a material companion to ecological practice. These are pieces that sit beside planting, hold memory, invite ritual, and bring people back into daily relationship with soil, plants, weather and care.</p>
-</div>
-
-          <div class="objects-categories reveal reveal-d3">
-            <div class="objects-cat">
-  <div class="objects-cat-name">Garden Ornaments</div>
-  <div class="objects-cat-desc">Vintage urns, figures, troughs and weathered pieces that settle into gardens over time.</div>
-</div>
-<div class="objects-cat">
-  <div class="objects-cat-name">Tools</div>
-  <div class="objects-cat-desc">For pruning, planting and observing — made to be sharpened, repaired and kept.</div>
-</div>
-<div class="objects-cat">
-  <div class="objects-cat-name">Vessels</div>
-  <div class="objects-cat-desc">For cuttings, propagation, water and the quiet rituals of garden life.</div>
-</div>
-<div class="objects-cat">
-  <div class="objects-cat-name">References</div>
-  <div class="objects-cat-desc">Books, field guides and printed knowledge that deepen practice over years.</div>
-</div>
-          </div>
-
-          <a href="https://tinyforests.github.io/heirloom/" class="btn reveal reveal-d4"
-             style="margin-top:2.25rem;" target="_blank" rel="noopener">Visit Heirloom →</a>
-        </div>
-        <div class="objects-grid reveal reveal-d2">
-          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-6.png'); background-size:cover; background-position:center;"></div>
-          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-5.png'); background-size:cover; background-position:center;"></div>
-          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-4.png'); background-size:cover; background-position:center;"></div>
-          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-objects-5.png'); background-size:cover; background-position:center;"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ 9. STORIES ════════════════════════════════════ -->
-  <section id="stories" class="section">
-    <div class="container">
-      <span class="accent-rule reveal"></span>
-      <div class="stories-header">
-        <h2 class="h2 reveal reveal-d1">Stories</h2>
-        <p class="reveal reveal-d1">Essays and field notes on ecological gardening, systems, and culture — written to clarify the work, not to decorate it.</p>
-      </div>
-      <div class="stories-grid">
-        <a href="https://gardenerandson.substack.com/p/what-were-building-this-year" target="_blank" rel="noopener" class="story-card reveal reveal-d1">
-          <span class="story-type">Essay</span>
-          <div class="story-title">What We Are Building This Year</div>
-          <p class="story-body">Most gardens are treated as private spaces — personal, aesthetic, and disconnected from the larger systems around them. Yet collectively, gardens make up one of the largest untapped ecological assets in our cities.</p>
-        </a>
-        <a href="https://gardenerandson.substack.com/p/designing-interactions-not-gardens" target="_blank" rel="noopener" class="story-card reveal reveal-d2">
-          <span class="story-type">Note</span>
-          <div class="story-title">Designing Interactions, Not Gardens</div>
-          <p class="story-body">As part of our design process, we often think about how a garden and its stewards shape one another — how it guides movement, invites pause, and supports daily use over time.</p>
-        </a>
-        <a href="https://gardenerandson.substack.com/p/why-plant-an-ecological-garden" target="_blank" rel="noopener" class="story-card reveal reveal-d3">
-          <span class="story-type">Essay</span>
-          <div class="story-title">Why Plant an Ecological Garden</div>
-          <p class="story-body">Across Melbourne, more people are discovering that a beautiful garden can also be a living system. An ecological garden restores balance, supports biodiversity, and reconnects us to the natural rhythms of place.</p>
-        </a>
       </div>
     </div>
   </section>
@@ -1151,7 +1141,7 @@
           <p>This is the ecological economy: stewardship with proof, and restoration that can compound across neighbourhoods. Long-horizon work. Built steadily.</p>
         </div>
         <div style="margin-top:2.75rem;" class="reveal reveal-d3">
-          <a href="#system" class="btn">Learn about the system →</a>
+          <a href="#system" class="btn">Learn About The System →</a>
         </div>
       </div>
     </div>
