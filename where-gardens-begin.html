@@ -114,8 +114,16 @@
     }
     html.dark .gs-badge:hover { border-color: rgba(255, 240, 220, 0.35); }
 
+    /* MOBILE FIX: move badge to bottom-LEFT on mobile, clear of the centered "next" button */
     @media (max-width: 768px) {
-      .gs-badge { bottom: 16px; right: 16px; font-size: 9px; padding: 6px 10px; }
+      .gs-badge {
+        bottom: 16px;
+        left: 16px;
+        right: auto;
+        font-size: 9px;
+        padding: 6px 10px;
+        opacity: 0.45;
+      }
     }
 
     /* Next section indicator (match REG) */
@@ -130,7 +138,7 @@
       cursor: pointer;
       text-decoration: none;
       color: var(--fg);
-      z-index: 10;
+      z-index: 60; /* sits above badge to be safe */
     }
     .next-section:hover { opacity: 1; }
     .next-section-arrow {
@@ -320,6 +328,37 @@
     @media (max-width: 640px){
       .nav-actions{ flex-wrap: wrap; }
     }
+
+    /* Loading + success states for submit */
+    .submit-loading {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .submit-loading::after {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-left: 8px;
+      border: 1.5px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: -1px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .success-banner {
+      border-left: 2px solid var(--fg);
+      padding: 12px 14px;
+      background: rgba(61,69,53,0.05);
+      border-radius: 2px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    html.dark .success-banner {
+      background: rgba(255,240,220,0.08);
+    }
   </style>
 </head>
 
@@ -334,10 +373,15 @@
   </a>
 
   <script>
+    // ─────────────────────────────────────────────────────────────
+    //  CONFIG
+    //  - submitEndpoint: live Google Apps Script Web App URL
+    //  - All other values feed nav links + the mailto fallback
+    // ─────────────────────────────────────────────────────────────
     window.BEGIN = {
-      submitEndpoint: "",
+      submitEndpoint: "https://script.google.com/macros/s/AKfycbwIe03Dd0ZY0VL64dPskd6N24_h2RZECYFIt4zNkwHjuhS9eqzDlwLLZlj-Vf_XHJbE/exec",
       guidePdfUrl: "https://www.gardenerandson.com/assets/Where-Gardens-Begin-First-Steps.pdf",
-      contactEmail: "hello@gardenerandson.com.au",
+      contactEmail: "hello@gardenerandson.com",
       studioUrl: "https://www.gardenerandson.com",
       registryUrl: "https://tinyforests.github.io/reg/",
       bookCallUrl: ""
@@ -704,7 +748,7 @@
             </div>
 
             <div class="text-xs muted">
-              If no submission endpoint is configured, a tidy email draft opens instead (so nothing is lost).
+              The guide arrives by email shortly. If anything seems missing, just reply to it.
             </div>
           </div>
         </div>
@@ -715,8 +759,9 @@
           <button id="submitBtn" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">
             Send my first step
           </button>
-          <span id="status" class="text-sm muted"></span>
         </div>
+
+        <div id="status" class="mt-3 text-sm" style="display:none;"></div>
       </div>
 
       <a href="#done" class="next-section">
@@ -739,6 +784,10 @@
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl" id="snapshotIntro">
           Gardens don’t need to be perfect to begin. Most change happens through a few calm, well-chosen steps — staged to suit time and budget.
         </p>
+
+        <div id="emailConfirm" class="success-banner mb-5" style="display:none;">
+          A short confirmation is on its way to <strong id="confirmEmailAddr">your inbox</strong>, with the guide attached.
+        </div>
 
         <div class="grid md:grid-cols-2 gap-4">
           <div class="card-hover border border-subtle-strong bg-subtle p-5 rounded-sm">
@@ -786,10 +835,6 @@
             Start again
           </a>
         </div>
-
-        <div class="mt-5 text-xs muted">
-          If a booking link is not configured, the chat button opens email instead.
-        </div>
       </div>
     </section>
   </main>
@@ -808,7 +853,7 @@
     setHref("downloadGuide", cfg.guidePdfUrl || "#");
 
     // Book call link fallback
-    const contactEmail = cfg.contactEmail || "hello@gardenerandson.com.au";
+    const contactEmail = cfg.contactEmail || "hello@gardenerandson.com";
     const bookFallbackMailto = `mailto:${contactEmail}?subject=${encodeURIComponent("Quick garden chat")}&body=${encodeURIComponent("Hello — a quick garden chat is requested.\n\nName:\nSuburb:\nBest number:\n\nA few times that work:")}`;
     setHref("bookCall", (cfg.bookCallUrl && cfg.bookCallUrl.trim()) ? cfg.bookCallUrl : bookFallbackMailto);
 
@@ -1099,9 +1144,34 @@
       return s;
     }
 
+    // ---------- File → base64 helper ----------
+    function fileToBase64(file){
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = String(reader.result || "");
+          const base64 = result.includes(",") ? result.split(",")[1] : result;
+          resolve({ name: file.name, type: file.type || "image/jpeg", size: file.size, data: base64 });
+        };
+        reader.onerror = () => reject(new Error("Could not read " + file.name));
+        reader.readAsDataURL(file);
+      });
+    }
+
     // ---------- Submit ----------
     const submitBtn = document.getElementById("submitBtn");
     const statusEl = document.getElementById("status");
+
+    function showStatus(text, isError){
+      statusEl.style.display = "block";
+      statusEl.textContent = text;
+      statusEl.style.color = isError ? "#b3261e" : "";
+      statusEl.style.opacity = isError ? "1" : "0.75";
+    }
+    function hideStatus(){
+      statusEl.style.display = "none";
+      statusEl.textContent = "";
+    }
 
     function buildSummary(){
       const name = (document.getElementById("name").value || "").trim();
@@ -1120,12 +1190,15 @@
         light: state.light,
         slope: state.slope,
         photoCount: state.photos.length,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        pageUrl: location.href
       };
     }
 
     function validate(summary){
       if (!summary.email) return "An email helps send the guide.";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(summary.email)) return "That email looks incomplete.";
       if (!summary.name) return "A first name is enough.";
       if (!summary.suburb) return "A suburb helps us understand place.";
       return null;
@@ -1147,7 +1220,7 @@
         `Hands-on (0–100): ${summary.handsOn}`,
         `Light: ${summary.light || "—"}`,
         `Slope: ${summary.slope || "—"}`,
-        `Photos selected: ${summary.photoCount}`,
+        `Photos selected: ${summary.photoCount} (please attach manually)`,
         "",
         "Snapshot",
         `Direction: ${snapshot.direction}`,
@@ -1162,44 +1235,79 @@
     }
 
     async function postToEndpoint(summary, snapshot){
-      const fd = new FormData();
-      fd.append("payload", JSON.stringify({ summary, snapshot }));
-      state.photos.forEach((file, i) => fd.append(`photo_${i+1}`, file, file.name));
+      // Encode photos as base64 so they survive a single JSON request to Google Apps Script.
+      const photos = await Promise.all(state.photos.map(fileToBase64));
 
-      const res = await fetch(cfg.submitEndpoint, { method: "POST", body: fd });
+      const body = JSON.stringify({ summary, snapshot, photos });
+
+      // text/plain avoids CORS preflight on Google Apps Script web apps.
+      const res = await fetch(cfg.submitEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: body,
+        redirect: "follow"
+      });
+
       if (!res.ok) throw new Error(`Submit failed (${res.status})`);
+
+      // GAS returns JSON; ignore parse errors and treat 200 as success.
+      try {
+        const data = await res.json();
+        if (data && data.ok === false) throw new Error(data.error || "Submit rejected");
+      } catch(e) {
+        // non-fatal — if parsing fails but HTTP was OK, accept it.
+      }
       return true;
     }
 
     submitBtn.addEventListener("click", async () => {
       const summary = buildSummary();
       const err = validate(summary);
-      if (err) { statusEl.textContent = err; return; }
+      if (err) { showStatus(err, true); return; }
 
-      statusEl.textContent = "Sending…";
+      hideStatus();
+      submitBtn.classList.add("submit-loading");
+      submitBtn.textContent = "Sending";
 
-      // Prepare snapshot now
       const snapshot = renderSnapshot();
+      const endpoint = (cfg.submitEndpoint || "").trim();
 
       try {
-        const endpoint = (cfg.submitEndpoint || "").trim();
         if (endpoint) {
           await postToEndpoint(summary, snapshot);
-          statusEl.textContent = "Sent.";
+
+          // Show inbox confirmation banner on the done screen
+          const banner = document.getElementById("emailConfirm");
+          const addr = document.getElementById("confirmEmailAddr");
+          if (banner && addr) {
+            addr.textContent = summary.email;
+            banner.style.display = "block";
+          }
+
+          submitBtn.classList.remove("submit-loading");
+          submitBtn.textContent = "Sent ✓";
+          submitBtn.style.opacity = "0.8";
+
+          try { localStorage.setItem("where_gardens_begin_last", JSON.stringify({ summary, snapshot })); } catch(e){}
+
+          document.getElementById("done").scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
-          statusEl.textContent = "Opening a tidy email…";
+          // No endpoint configured — open mailto draft.
+          submitBtn.classList.remove("submit-loading");
+          submitBtn.textContent = "Opening email…";
           window.location.href = mailtoFallback(summary, snapshot);
+
+          setTimeout(() => {
+            submitBtn.textContent = "Send my first step";
+            document.getElementById("done").scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 800);
         }
-
-        try { localStorage.setItem("where_gardens_begin_last", JSON.stringify({ summary, snapshot })); } catch(e){}
-
-        // Move to done screen
-        const done = document.getElementById("done");
-        done && done.scrollIntoView({ behavior: "smooth", block: "start" });
-
       } catch (e) {
-        statusEl.textContent = "Could not send. Opening email instead…";
-        window.location.href = mailtoFallback(summary, snapshot);
+        console.error(e);
+        submitBtn.classList.remove("submit-loading");
+        submitBtn.textContent = "Send my first step";
+        showStatus("Could not send right now — opening an email draft instead.", true);
+        setTimeout(() => { window.location.href = mailtoFallback(summary, snapshot); }, 600);
       }
     });
   </script>
