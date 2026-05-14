@@ -488,6 +488,29 @@
     .objects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
     .object-thumb { aspect-ratio: 1; background: var(--panel); border: 1px solid var(--line); }
 
+    /* Side-column categories variant: single column, no top border */
+    .objects-categories-side {
+      grid-template-columns: 1fr;
+      margin-top: 0;
+      border-top: none;
+      padding-top: 0.5rem;
+    }
+    .objects-categories-side .objects-cat { padding: 1.25rem 0; }
+    .objects-categories-side .objects-cat:first-child { padding-top: 0; }
+    .objects-categories-side .objects-cat:last-child { border-bottom: none; }
+    .objects-categories-side .objects-cat:nth-child(odd) { padding-right: 0; }
+    .objects-categories-side .objects-cat-name {
+      font-family: var(--font-serif);
+      font-size: 1.0625rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+    }
+    .objects-categories-side .objects-cat-desc {
+      font-size: 0.875rem;
+      opacity: 0.7;
+      line-height: 1.7;
+    }
+
     /* ─── EMBEDDED STUDIOS (inside Heirloom) ─────────────── */
     .heirloom-studios {
       margin-top: 4rem;
@@ -995,33 +1018,26 @@
             <p>Less a shop than a quiet way of thinking about what we keep, what we mend, and what we pass on. Objects that are useful, repairable, and beautiful in the way good things become beautiful — through use, time, and care.</p>
           </div>
 
-          <div class="objects-categories reveal reveal-d3">
-            <div class="objects-cat">
-              <div class="objects-cat-name">Pots &amp; Vessels</div>
-              <div class="objects-cat-desc">For planting, cuttings, propagation — chosen for patina and proportion.</div>
-            </div>
-            <div class="objects-cat">
-              <div class="objects-cat-name">Tools</div>
-              <div class="objects-cat-desc">For pruning, planting, observing — built to sharpen, mend and last.</div>
-            </div>
-            <div class="objects-cat">
-              <div class="objects-cat-name">References</div>
-              <div class="objects-cat-desc">Books and field guides that deepen practice over years.</div>
-            </div>
-            <div class="objects-cat">
-              <div class="objects-cat-name">Material Fragments</div>
-              <div class="objects-cat-desc">Stone, timber, fibre — things with a past, finding their next life.</div>
-            </div>
-          </div>
-
           <a href="https://tinyforests.github.io/heirloom/" class="btn reveal reveal-d4"
              style="margin-top:2.25rem;" target="_blank" rel="noopener">Visit Heirloom →</a>
         </div>
-        <div class="objects-grid reveal reveal-d2">
-          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-6.png'); background-size:cover; background-position:center;"></div>
-          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-5.png'); background-size:cover; background-position:center;"></div>
-          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-4.png'); background-size:cover; background-position:center;"></div>
-          <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-objects-5.png'); background-size:cover; background-position:center;"></div>
+        <div class="objects-categories objects-categories-side reveal reveal-d2">
+          <div class="objects-cat">
+            <div class="objects-cat-name">Pots &amp; Vessels</div>
+            <div class="objects-cat-desc">For planting, cuttings, propagation — chosen for patina and proportion.</div>
+          </div>
+          <div class="objects-cat">
+            <div class="objects-cat-name">Tools</div>
+            <div class="objects-cat-desc">For pruning, planting, observing — built to sharpen, mend and last.</div>
+          </div>
+          <div class="objects-cat">
+            <div class="objects-cat-name">References</div>
+            <div class="objects-cat-desc">Books and field guides that deepen practice over years.</div>
+          </div>
+          <div class="objects-cat">
+            <div class="objects-cat-name">Material Fragments</div>
+            <div class="objects-cat-desc">Stone, timber, fibre — things with a past, finding their next life.</div>
+          </div>
         </div>
       </div>
 
