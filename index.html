@@ -488,6 +488,90 @@
     .objects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
     .object-thumb { aspect-ratio: 1; background: var(--panel); border: 1px solid var(--line); }
 
+    /* ─── EMBEDDED STUDIOS (inside Heirloom) ─────────────── */
+    .heirloom-studios {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--line);
+    }
+    .heirloom-studios-intro {
+      max-width: 56ch;
+      margin-bottom: 2.5rem;
+    }
+    .heirloom-studios-intro .label { display: block; margin-bottom: 0.875rem; }
+    .heirloom-studios-intro h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .heirloom-studios-intro p {
+      font-size: clamp(0.9375rem, 1.2vw, 1rem);
+      line-height: 1.75;
+      opacity: 0.78;
+      font-weight: 300;
+    }
+    .heirloom-studios-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 3rem);
+    }
+    @media (max-width: 760px) { .heirloom-studios-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .heirloom-studio {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .heirloom-studio-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0.5rem;
+      aspect-ratio: 1;
+    }
+    .heirloom-studio-thumb { background: var(--panel); border: 1px solid var(--line); }
+    .heirloom-studio-thumb-tall { grid-column: 1 / 2; grid-row: 1 / 3; }
+    .heirloom-studio-thumb-1 { grid-column: 2 / 3; grid-row: 1 / 2; }
+    .heirloom-studio-thumb-2 { grid-column: 2 / 3; grid-row: 2 / 3; }
+
+    .heirloom-studio-info { display: flex; flex-direction: column; gap: 0.625rem; }
+    .heirloom-studio-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+    .heirloom-studio-num { font-family: var(--font-serif); font-size: 1rem; opacity: 0.4; letter-spacing: 0; text-transform: none; }
+    .heirloom-studio h4 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.25rem, 1.8vw, 1.4375rem);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+    .heirloom-studio-address {
+      font-size: 0.8125rem;
+      opacity: 0.6;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .heirloom-studio-link {
+      font-size: 0.75rem;
+      opacity: 0.65;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+      display: inline-block;
+      align-self: flex-start;
+      margin-top: 0.25rem;
+      transition: opacity 0.2s;
+    }
+    .heirloom-studio-link:hover { opacity: 1; }
+
     /* ─── STORIES ────────────────────────────────────────── */
     .stories-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; }
     .stories-header p { max-width: 44ch; font-size: 0.9375rem; opacity: 0.68; font-weight: 300; line-height: 1.75; }
@@ -679,6 +763,7 @@
           Start Your Journey →
         </a>
         <a href="#gardens" class="btn">View Garden Work</a>
+        <a href="#objects" class="btn btn-ghost">Heirloom Objects</a>
       </div>
     </div>
 
@@ -938,6 +1023,50 @@
           <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-5.png'); background-size:cover; background-position:center;"></div>
           <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-4.png'); background-size:cover; background-position:center;"></div>
           <div class="object-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-objects-5.png'); background-size:cover; background-position:center;"></div>
+        </div>
+      </div>
+
+      <div class="heirloom-studios reveal">
+        <div class="heirloom-studios-intro">
+          <span class="label">Visit in person</span>
+          <h3>Heirloom objects can be browsed and bought at both of our studios.</h3>
+          <p>Each location holds its own changing collection of pots, vessels, tools and material fragments — different finds, different moods. Come in, take your time, take something home.</p>
+        </div>
+
+        <div class="heirloom-studios-grid">
+          <article class="heirloom-studio reveal reveal-d1">
+            <div class="heirloom-studio-images">
+              <div class="heirloom-studio-thumb heirloom-studio-thumb-tall"></div>
+              <div class="heirloom-studio-thumb heirloom-studio-thumb-1"></div>
+              <div class="heirloom-studio-thumb heirloom-studio-thumb-2"></div>
+            </div>
+            <div class="heirloom-studio-info">
+              <div class="heirloom-studio-eyebrow">
+                <span class="heirloom-studio-num">01</span>
+                <span>Mont Albert</span>
+              </div>
+              <h4>2 Churchill Street</h4>
+              <div class="heirloom-studio-address">Mont Albert 3127 · Victoria<br/>Open by appointment</div>
+              <a href="https://maps.google.com/?q=2+Churchill+Street+Mont+Albert" target="_blank" rel="noopener" class="heirloom-studio-link">Get directions ↗</a>
+            </div>
+          </article>
+
+          <article class="heirloom-studio reveal reveal-d2">
+            <div class="heirloom-studio-images">
+              <div class="heirloom-studio-thumb heirloom-studio-thumb-tall" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-6.png'); background-size:cover; background-position:center;"></div>
+              <div class="heirloom-studio-thumb heirloom-studio-thumb-1" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-5.png'); background-size:cover; background-position:center;"></div>
+              <div class="heirloom-studio-thumb heirloom-studio-thumb-2" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-objects-5.png'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="heirloom-studio-info">
+              <div class="heirloom-studio-eyebrow">
+                <span class="heirloom-studio-num">02</span>
+                <span>Hawthorn</span>
+              </div>
+              <h4>140 Auburn Road</h4>
+              <div class="heirloom-studio-address">Hawthorn 3122 · Victoria<br/>Alongside <em>Plants of Place</em></div>
+              <a href="https://maps.google.com/?q=140+Auburn+Road+Hawthorn" target="_blank" rel="noopener" class="heirloom-studio-link">Get directions ↗</a>
+            </div>
+          </article>
         </div>
       </div>
     </div>
