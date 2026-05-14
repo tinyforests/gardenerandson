@@ -43,7 +43,8 @@
       --muted: rgba(61,69,53,.72);
       --hair: rgba(61,69,53,.10);
       --wash: rgba(61,69,53,.05);
-      --navh: 80px;
+      /* No nav anymore — give a small top breathing room */
+      --topgap: 32px;
     }
     html.dark{
       --bg: #3d4535;
@@ -57,10 +58,10 @@
     .muted{ color: var(--muted); }
     .wash{ background: var(--wash); }
 
-    /* Contrast rhythm (REG-like subtle wash) */
+    /* Contrast rhythm */
     .screen:nth-child(even) { background: var(--wash); }
 
-    /* Borders + fills (REG-like) */
+    /* Borders + fills */
     .border-subtle { border-color: rgba(61, 69, 53, 0.12); }
     html.dark .border-subtle { border-color: rgba(255, 240, 220, 0.18); }
 
@@ -82,18 +83,22 @@
       border-color: var(--fg);
     }
 
-    .nav-border { border-bottom: 1px solid rgba(61, 69, 53, 0.10); }
-    html.dark .nav-border { border-bottom: 1px solid rgba(255, 240, 220, 0.15); }
-
     :focus-visible { outline: 2px solid rgba(61, 69, 53, 0.55); outline-offset: 3px; }
     html.dark :focus-visible { outline: 2px solid rgba(255, 240, 220, 0.55); }
 
-    /* Badge (match REG) */
-    .gs-badge {
+    /* Bottom-corner controls (badge + theme toggle) */
+    .corner-controls {
       position: fixed;
       bottom: 24px;
       right: 24px;
       z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gs-badge,
+    .theme-mini {
       background: var(--bg);
       border: 1px solid rgba(61, 69, 53, 0.15);
       border-radius: 2px;
@@ -106,27 +111,35 @@
       color: var(--fg);
       text-decoration: none;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      line-height: 1;
     }
-    .gs-badge:hover { opacity: 1; border-color: rgba(61, 69, 53, 0.25); }
-    html.dark .gs-badge {
+    .gs-badge:hover,
+    .theme-mini:hover { opacity: 1; border-color: rgba(61, 69, 53, 0.25); }
+    html.dark .gs-badge,
+    html.dark .theme-mini {
       border-color: rgba(255, 240, 220, 0.15);
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     }
-    html.dark .gs-badge:hover { border-color: rgba(255, 240, 220, 0.35); }
+    html.dark .gs-badge:hover,
+    html.dark .theme-mini:hover { border-color: rgba(255, 240, 220, 0.35); }
 
-    /* MOBILE FIX: move badge to bottom-LEFT on mobile, clear of the centered "next" button */
+    /* Mobile: bottom-LEFT, clear of the centered "next" arrow */
     @media (max-width: 768px) {
-      .gs-badge {
+      .corner-controls {
         bottom: 16px;
         left: 16px;
         right: auto;
+      }
+      .gs-badge,
+      .theme-mini {
         font-size: 9px;
         padding: 6px 10px;
         opacity: 0.45;
       }
     }
 
-    /* Next section indicator (match REG) */
+    /* Next-section indicator */
     .next-section {
       position: absolute;
       bottom: 80px;
@@ -138,7 +151,7 @@
       cursor: pointer;
       text-decoration: none;
       color: var(--fg);
-      z-index: 60; /* sits above badge to be safe */
+      z-index: 60;
     }
     .next-section:hover { opacity: 1; }
     .next-section-arrow {
@@ -164,9 +177,9 @@
     }
     .screen:last-of-type .next-section { display: none; }
 
-    /* FULL-SCREEN + SNAP (match REG) */
+    /* FULL-SCREEN + SNAP */
     html, body { height: 100%; scroll-behavior: smooth; }
-    main { scroll-snap-type: y proximity; scroll-padding-top: var(--navh); }
+    main { scroll-snap-type: y proximity; scroll-padding-top: var(--topgap); }
     .screen{
       min-height: 100svh;
       scroll-snap-align: start;
@@ -176,42 +189,47 @@
       align-items: center;
       justify-content: center;
 
-      padding-top: calc(var(--navh) + 20px);
-      padding-bottom: var(--navh);
+      padding-top: calc(var(--topgap) + 20px);
+      padding-bottom: 140px;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
     .screen > div { width: 100%; }
-    .screen:not(#top){
-      padding-top: calc(var(--navh) + 10px);
-      padding-bottom: 220px;
-    }
 
     @media (max-width: 768px){
-      :root{ --navh: 120px; }
       .screen{
-        padding-top: calc(var(--navh) + 20px);
-        padding-bottom: var(--navh);
+        padding-top: calc(var(--topgap) + 10px);
+        padding-bottom: 180px;
         padding-left: 1rem;
         padding-right: 1rem;
       }
-      .screen:not(#top){ padding-top: calc(var(--navh) + 20px); padding-bottom: 260px; }
       .hero-title{ line-height: 0.92; }
       h1{ font-size: 2.5rem; }
       h2{ font-size: 2rem; }
-    }
-
-    nav{
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      will-change: transform;
     }
 
     @media (prefers-reduced-motion: reduce){
       html { scroll-behavior: auto !important; }
       main { scroll-snap-type: none; }
       .next-section-arrow{ animation: none; }
+    }
+
+    /* Step indicator (small, top of each question screen) */
+    .step-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-bottom: 14px;
+    }
+    .step-pill .dot {
+      width: 4px; height: 4px;
+      background: var(--fg);
+      border-radius: 50%;
+      opacity: 0.4;
     }
 
     /* Subtle hover enhancement for cards */
@@ -232,6 +250,7 @@
       background: rgba(61,69,53,0.05);
       border-radius: 2px;
       transition: all .18s ease;
+      cursor: pointer;
     }
     html.dark .choice-btn{
       border: 1px solid rgba(255,240,220,0.20);
@@ -249,6 +268,15 @@
       background: var(--fg);
       color: var(--bg);
       border-color: var(--fg);
+    }
+    /* Brief flash when auto-advancing */
+    .choice-btn.advancing {
+      animation: choiceFlash .35s ease forwards;
+    }
+    @keyframes choiceFlash {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.015); }
+      100% { transform: scale(1); }
     }
 
     /* Inputs */
@@ -318,7 +346,7 @@
       background: rgba(255,240,220,0.06);
     }
 
-    /* Back left, Continue right (site-wide) */
+    /* Back left, Continue right */
     .nav-actions{
       display:flex;
       align-items:center;
@@ -368,15 +396,17 @@
     Skip to content
   </a>
 
-  <a href="https://www.gardenerandson.com" class="gs-badge" target="_blank" rel="noopener noreferrer">
-    Gardener &amp; Son
-  </a>
+  <!-- Persistent corner controls: studio link + theme toggle (no nav bar) -->
+  <div class="corner-controls">
+    <button id="themeToggle" class="theme-mini" aria-label="Toggle dark mode">Dark</button>
+    <a href="https://www.gardenerandson.com" class="gs-badge" target="_blank" rel="noopener noreferrer">
+      Gardener &amp; Son
+    </a>
+  </div>
 
   <script>
     // ─────────────────────────────────────────────────────────────
     //  CONFIG
-    //  - submitEndpoint: live Google Apps Script Web App URL
-    //  - All other values feed nav links + the mailto fallback
     // ─────────────────────────────────────────────────────────────
     window.BEGIN = {
       submitEndpoint: "https://script.google.com/macros/s/AKfycbwIe03Dd0ZY0VL64dPskd6N24_h2RZECYFIt4zNkwHjuhS9eqzDlwLLZlj-Vf_XHJbE/exec",
@@ -386,36 +416,10 @@
       registryUrl: "https://tinyforests.github.io/reg/",
       bookCallUrl: ""
     };
+
+    // Total numbered question steps (used for the small "Step n of 7" pill)
+    const TOTAL_STEPS = 7;
   </script>
-
-  <nav class="backdrop-blur nav-border" style="background: var(--bg);">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-      <div class="flex items-center gap-3">
-        <a href="#top" class="text-xs tracking-[0.18em] uppercase hover:opacity-70 transition-opacity">
-          Where Gardens Begin
-        </a>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-6 md:gap-8 text-sm">
-        <a href="#top" class="hover:opacity-60 transition-opacity">Start</a>
-        <a href="#q1" class="hover:opacity-60 transition-opacity">Feeling</a>
-        <a href="#q2" class="hover:opacity-60 transition-opacity">Hope</a>
-        <a href="#q3" class="hover:opacity-60 transition-opacity">Help</a>
-        <a href="#q3b" class="hover:opacity-60 transition-opacity">Easy</a>
-        <a href="#q4" class="hover:opacity-60 transition-opacity">Use</a>
-        <a href="#q5" class="hover:opacity-60 transition-opacity">Site</a>
-        <a href="#photos" class="hover:opacity-60 transition-opacity">Photos</a>
-        <a href="#details" class="hover:opacity-60 transition-opacity">Send</a>
-        <a href="#done" class="hover:opacity-60 transition-opacity">Snapshot</a>
-
-        <button id="themeToggle"
-          class="text-xs tracking-[0.18em] uppercase hover:opacity-70 transition-opacity"
-          style="border-left:1px solid var(--hair); padding-left:14px;">
-          Dark
-        </button>
-      </div>
-    </div>
-  </nav>
 
   <main id="content">
     <!-- HERO -->
@@ -467,9 +471,11 @@
       </a>
     </section>
 
-    <!-- Q1 -->
+    <!-- Q1 — single-select, AUTO-ADVANCE -->
     <section id="q1" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
+        <div class="step-pill"><span>Step 1 of 7</span><span class="dot"></span><span>Feeling</span></div>
+
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What feels unfinished?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
           Choose the closest fit — there is no wrong answer.
@@ -486,8 +492,6 @@
 
         <div class="mt-5 nav-actions">
           <a href="#top" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
-          <span class="spacer"></span>
-          <a href="#q2" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -497,9 +501,11 @@
       </a>
     </section>
 
-    <!-- Q2 -->
+    <!-- Q2 — multi-select (1–2), keeps Continue button -->
     <section id="q2" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
+        <div class="step-pill"><span>Step 2 of 7</span><span class="dot"></span><span>Hope</span></div>
+
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What is hoped for — over time?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">Choose one or two.</p>
 
@@ -525,9 +531,11 @@
       </a>
     </section>
 
-    <!-- Q3 -->
+    <!-- Q3 — single-select, AUTO-ADVANCE -->
     <section id="q3" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
+        <div class="step-pill"><span>Step 3 of 7</span><span class="dot"></span><span>Help</span></div>
+
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What kind of help is wanted?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
           This simply helps match the right starting point.
@@ -544,8 +552,6 @@
 
         <div class="mt-5 nav-actions">
           <a href="#q2" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
-          <span class="spacer"></span>
-          <a href="#q3b" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -555,9 +561,11 @@
       </a>
     </section>
 
-    <!-- Q3B -->
+    <!-- Q3B — single-select, AUTO-ADVANCE -->
     <section id="q3b" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
+        <div class="step-pill"><span>Step 4 of 7</span><span class="dot"></span><span>Easy beginning</span></div>
+
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
           What feels like an easy beginning?
         </h2>
@@ -577,8 +585,6 @@
 
         <div class="mt-5 nav-actions">
           <a href="#q3" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
-          <span class="spacer"></span>
-          <a href="#q4" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -588,9 +594,11 @@
       </a>
     </section>
 
-    <!-- Q4 -->
+    <!-- Q4 — multi-select + slider, keeps Continue -->
     <section id="q4" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
+        <div class="step-pill"><span>Step 5 of 7</span><span class="dot"></span><span>Use &amp; rhythm</span></div>
+
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">How will the garden be used most?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">Choose up to two.</p>
 
@@ -631,9 +639,11 @@
       </a>
     </section>
 
-    <!-- Q5 -->
+    <!-- Q5 — two single-selects, AUTO-ADVANCE when BOTH chosen -->
     <section id="q5" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
+        <div class="step-pill"><span>Step 6 of 7</span><span class="dot"></span><span>Site</span></div>
+
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What is the site like?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
           Best guess is enough.
@@ -663,8 +673,6 @@
 
         <div class="mt-5 nav-actions">
           <a href="#q4" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
-          <span class="spacer"></span>
-          <a href="#photos" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
         </div>
       </div>
 
@@ -674,9 +682,11 @@
       </a>
     </section>
 
-    <!-- PHOTOS -->
+    <!-- PHOTOS — keeps Continue -->
     <section id="photos" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
+        <div class="step-pill"><span>Step 7 of 7</span><span class="dot"></span><span>Photos &amp; details</span></div>
+
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">Share a glimpse of the garden</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
           No prep. A quick glimpse is enough. Two or three photos is perfect.
@@ -715,7 +725,7 @@
       </a>
     </section>
 
-    <!-- DETAILS -->
+    <!-- DETAILS — form with submit button -->
     <section id="details" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">Where should the guide be sent?</h2>
@@ -852,7 +862,6 @@
     setHref("btnRegistry", cfg.registryUrl || "https://tinyforests.github.io/reg/");
     setHref("downloadGuide", cfg.guidePdfUrl || "#");
 
-    // Book call link fallback
     const contactEmail = cfg.contactEmail || "hello@gardenerandson.com";
     const bookFallbackMailto = `mailto:${contactEmail}?subject=${encodeURIComponent("Quick garden chat")}&body=${encodeURIComponent("Hello — a quick garden chat is requested.\n\nName:\nSuburb:\nBest number:\n\nA few times that work:")}`;
     setHref("bookCall", (cfg.bookCallUrl && cfg.bookCallUrl.trim()) ? cfg.bookCallUrl : bookFallbackMailto);
@@ -905,13 +914,67 @@
       photos: []
     };
 
-    // ---------- Choice buttons ----------
-    const maxTwo = 2;
-
+    // ---------- Helpers ----------
     function clearGroup(group){
       document.querySelectorAll(`.choice-btn[data-group="${group}"]`).forEach(b => b.dataset.selected = "false");
     }
 
+    function scrollToSection(id){
+      const target = document.querySelector(id);
+      if (!target) return;
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // Auto-advance after a brief moment so the user sees their choice register.
+    // Map of single-select group -> next section id.
+    const AUTO_NEXT = {
+      q1:      "#q2",
+      q3:      "#q3b",
+      comfort: "#q4"
+      // q5 (light + slope) handled specially: needs BOTH selected
+    };
+
+    function autoAdvance(toId, fromBtn){
+      if (fromBtn) fromBtn.classList.add("advancing");
+      setTimeout(() => {
+        if (fromBtn) fromBtn.classList.remove("advancing");
+        scrollToSection(toId);
+      }, 320);
+    }
+
+    // Reset state for a group when the user backs up.
+    // (Triggered by clicking any "Back" link — we wipe the destination group so they
+    // can re-answer and the auto-advance fires fresh.)
+    function wireBackResets(){
+      // Map: which step are we going *to* → which group needs resetting on that step
+      const groupForSection = {
+        '#q1':  ['q1'],
+        '#q2':  ['q2'],
+        '#q3':  ['q3'],
+        '#q3b': ['comfort'],
+        '#q4':  ['use'],          // (handsOn slider value is fine to keep)
+        '#q5':  ['light','slope']
+      };
+
+      document.querySelectorAll('.nav-actions a[href^="#"]').forEach(link => {
+        const href = link.getAttribute('href');
+        const text = (link.textContent || '').trim().toLowerCase();
+        if (text !== 'back') return;
+        const groups = groupForSection[href];
+        if (!groups) return;
+
+        link.addEventListener('click', () => {
+          groups.forEach(g => {
+            clearGroup(g);
+            if (Array.isArray(state[g])) state[g] = [];
+            else state[g] = null;
+          });
+        });
+      });
+    }
+
+    // ---------- Multi-select toggle (Q2, "use") ----------
+    const maxTwo = 2;
     function toggleMulti(group, arr, value, max){
       const i = arr.indexOf(value);
       if (i >= 0) {
@@ -930,51 +993,41 @@
       }
     }
 
+    // ---------- Choice button wiring ----------
     document.querySelectorAll(".choice-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const group = btn.getAttribute("data-group");
         const value = btn.getAttribute("data-value");
 
-        if (group === "q1") {
-          state.q1 = value;
-          clearGroup("q1");
+        // --- Single-select groups with auto-advance ---
+        if (group === "q1" || group === "q3" || group === "comfort") {
+          state[group] = value;
+          clearGroup(group);
           btn.dataset.selected = "true";
+          autoAdvance(AUTO_NEXT[group], btn);
           return;
         }
-        if (group === "q2") {
-          toggleMulti("q2", state.q2, value, maxTwo);
-          return;
-        }
-        if (group === "q3") {
-          state.q3 = value;
-          clearGroup("q3");
+
+        // --- Multi-select (no auto-advance — they may want to pick a second) ---
+        if (group === "q2") { toggleMulti("q2", state.q2, value, maxTwo); return; }
+        if (group === "use"){ toggleMulti("use", state.use, value, maxTwo); return; }
+
+        // --- Q5 — two sub-groups (light + slope), advance when BOTH selected ---
+        if (group === "light" || group === "slope") {
+          state[group] = value;
+          clearGroup(group);
           btn.dataset.selected = "true";
-          return;
-        }
-        if (group === "comfort") {
-          state.comfort = value;
-          clearGroup("comfort");
-          btn.dataset.selected = "true";
-          return;
-        }
-        if (group === "use") {
-          toggleMulti("use", state.use, value, maxTwo);
-          return;
-        }
-        if (group === "light") {
-          state.light = value;
-          clearGroup("light");
-          btn.dataset.selected = "true";
-          return;
-        }
-        if (group === "slope") {
-          state.slope = value;
-          clearGroup("slope");
-          btn.dataset.selected = "true";
+
+          if (state.light && state.slope) {
+            autoAdvance("#photos", btn);
+          }
           return;
         }
       });
     });
+
+    // Wire the back-button reset logic
+    wireBackResets();
 
     // ---------- Slider ----------
     const handsOn = document.getElementById("handsOn");
@@ -1235,12 +1288,9 @@
     }
 
     async function postToEndpoint(summary, snapshot){
-      // Encode photos as base64 so they survive a single JSON request to Google Apps Script.
       const photos = await Promise.all(state.photos.map(fileToBase64));
-
       const body = JSON.stringify({ summary, snapshot, photos });
 
-      // text/plain avoids CORS preflight on Google Apps Script web apps.
       const res = await fetch(cfg.submitEndpoint, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -1250,13 +1300,10 @@
 
       if (!res.ok) throw new Error(`Submit failed (${res.status})`);
 
-      // GAS returns JSON; ignore parse errors and treat 200 as success.
       try {
         const data = await res.json();
         if (data && data.ok === false) throw new Error(data.error || "Submit rejected");
-      } catch(e) {
-        // non-fatal — if parsing fails but HTTP was OK, accept it.
-      }
+      } catch(e) { /* non-fatal */ }
       return true;
     }
 
@@ -1276,7 +1323,6 @@
         if (endpoint) {
           await postToEndpoint(summary, snapshot);
 
-          // Show inbox confirmation banner on the done screen
           const banner = document.getElementById("emailConfirm");
           const addr = document.getElementById("confirmEmailAddr");
           if (banner && addr) {
@@ -1292,7 +1338,6 @@
 
           document.getElementById("done").scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
-          // No endpoint configured — open mailto draft.
           submitBtn.classList.remove("submit-loading");
           submitBtn.textContent = "Opening email…";
           window.location.href = mailtoFallback(summary, snapshot);
