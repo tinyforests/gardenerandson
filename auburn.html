@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<title>Gardener & Son · Auburn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #3d4535;
+  --ink-soft: rgba(61, 69, 53, 0.65);
+  --ink-faint: rgba(61, 69, 53, 0.25);
+  --hairline: rgba(61, 69, 53, 0.18);
+  --cream: #fff0dc;
+  --cream-deep: #f6e5cd;
+  --sage: #a8c285;
+  --sage-deep: #8aa86a;
+  --warn: #b14a32;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.24 0 0 0 0 0.27 0 0 0 0 0.21 0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+.stage {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* ─── Left panel ─── */
+.intro {
+  padding: clamp(40px, 5vh, 64px) clamp(40px, 5vw, 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--hairline);
+  position: relative;
+  overflow: hidden;
+}
+
+.intro::after {
+  content: '';
+  position: absolute;
+  right: -120px;
+  bottom: -120px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle at center, rgba(168, 194, 133, 0.18), transparent 70%);
+  pointer-events: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: 'Abril Fatface', serif;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.tag::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--sage-deep);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(168, 194, 133, 0.25);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(168, 194, 133, 0.25); }
+  50% { box-shadow: 0 0 0 8px rgba(168, 194, 133, 0.08); }
+}
+
+.intro-body {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.hello {
+  font-family: 'Abril Fatface', serif;
+  font-size: clamp(56px, 7.5vw, 92px);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+}
+
+.hello em {
+  font-style: italic;
+  color: var(--sage-deep);
+}
+
+.blurb {
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 38ch;
+  font-weight: 300;
+}
+
+.intro-foot {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ─── Right panel: form ─── */
+.form-wrap {
+  padding: clamp(40px, 5vh, 64px) clamp(40px, 5vw, 72px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 32px;
+}
+
+.form-head h2 {
+  font-family: 'Abril Fatface', serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.form-head .count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.fields {
+  display: grid;
+  gap: 22px;
+}
+
+.field {
+  position: relative;
+  padding-top: 22px;
+}
+
+.field label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  pointer-events: none;
+}
+
+.field input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  background: transparent;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink);
+  padding: 12px 0 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.field input:focus {
+  border-bottom-color: var(--ink);
+}
+
+.field input::placeholder {
+  color: var(--ink-faint);
+  font-weight: 300;
+}
+
+.row-two {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 28px;
+}
+
+/* ─── Interest cards ─── */
+.interests {
+  margin-top: 36px;
+}
+
+.interests-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.interests-label span:last-child {
+  color: var(--ink-faint);
+}
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.interest {
+  position: relative;
+  padding: 22px 22px 22px 22px;
+  border: 1px solid var(--hairline);
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  min-height: 96px;
+}
+
+.interest:active {
+  transform: scale(0.985);
+}
+
+.interest.selected {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
+.interest.selected .interest-sub {
+  color: rgba(255, 240, 220, 0.65);
+}
+
+.interest.selected .interest-icon {
+  color: var(--sage);
+}
+
+.interest-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--ink-soft);
+  transition: color 0.2s ease;
+}
+
+.interest-body {
+  flex: 1;
+}
+
+.interest-title {
+  font-family: 'Abril Fatface', serif;
+  font-size: 19px;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.interest-sub {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+
+.interest-check {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.interest.selected .interest-check {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+
+.interest-check svg {
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  color: var(--ink);
+  transition: opacity 0.15s ease;
+}
+
+.interest.selected .interest-check svg {
+  opacity: 1;
+}
+
+/* ─── Submit row ─── */
+.submit-row {
+  margin-top: auto;
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.submit {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--cream);
+  border: 0;
+  padding: 22px 44px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.12s ease, opacity 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.submit:active { transform: scale(0.98); }
+.submit:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.submit svg { width: 16px; height: 16px; }
+
+.privacy {
+  font-size: 12px;
+  color: var(--ink-faint);
+  max-width: 24ch;
+  line-height: 1.5;
+}
+
+/* ─── Validation messages ─── */
+.error-line {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warn);
+  margin-top: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  min-height: 14px;
+}
+
+.error-line.show { opacity: 1; }
+
+/* ─── Thank you state ─── */
+.thanks {
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 10;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 60px;
+  text-align: center;
+}
+
+.thanks.show {
+  display: flex;
+  animation: thanksIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes thanksIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.thanks-mark {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 36px;
+  color: var(--sage-deep);
+}
+
+.thanks h1 {
+  font-family: 'Abril Fatface', serif;
+  font-size: clamp(48px, 7vw, 84px);
+  line-height: 0.95;
+  margin-bottom: 24px;
+  max-width: 14ch;
+}
+
+.thanks p {
+  font-size: 19px;
+  color: var(--ink-soft);
+  max-width: 38ch;
+  line-height: 1.5;
+  margin-bottom: 48px;
+}
+
+.countdown {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ─── Admin (hidden) ─── */
+.admin-trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 56px;
+  z-index: 50;
+  /* invisible */
+}
+
+.admin {
+  position: fixed;
+  inset: 0;
+  background: rgba(61, 69, 53, 0.96);
+  color: var(--cream);
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.admin.show { display: flex; }
+
+.admin-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 240, 220, 0.15);
+  margin-bottom: 24px;
+}
+
+.admin-head h3 {
+  font-family: 'Abril Fatface', serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.admin-actions { display: flex; gap: 12px; }
+
+.admin-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid rgba(255, 240, 220, 0.3);
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.admin-btn:hover, .admin-btn:active {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.admin-btn.danger { color: #ffb39f; border-color: rgba(255, 179, 159, 0.4); }
+.admin-btn.danger:hover, .admin-btn.danger:active { background: #b14a32; color: var(--cream); border-color: #b14a32; }
+
+.admin-list {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 1.2fr 80px 1.4fr;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 240, 220, 0.08);
+  font-size: 13px;
+  align-items: baseline;
+}
+
+.admin-row.head {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 240, 220, 0.45);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+
+.admin-empty {
+  text-align: center;
+  padding: 60px 0;
+  color: rgba(255, 240, 220, 0.45);
+  font-style: italic;
+}
+
+/* ─── Portrait / smaller iPad ─── */
+@media (max-aspect-ratio: 9/10) {
+  .stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  .intro {
+    border-right: 0;
+    border-bottom: 1px solid var(--hairline);
+    padding: 36px 48px 32px;
+  }
+  .hello { font-size: clamp(44px, 8vw, 72px); margin-bottom: 18px; }
+  .blurb { font-size: 16px; }
+  .intro-foot { display: none; }
+  .form-wrap { padding: 36px 48px; }
+}
+
+/* Stagger fade-in */
+.fade-in > * {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+.fade-in > *:nth-child(1) { animation-delay: 0.05s; }
+.fade-in > *:nth-child(2) { animation-delay: 0.15s; }
+.fade-in > *:nth-child(3) { animation-delay: 0.25s; }
+.fade-in > *:nth-child(4) { animation-delay: 0.35s; }
+.fade-in > *:nth-child(5) { animation-delay: 0.45s; }
+
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<div class="admin-trigger" id="adminTrigger"></div>
+
+<div class="stage">
+  <!-- LEFT -->
+  <aside class="intro">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 4 C20 14, 14 18, 8 20 C14 22, 20 26, 20 36 C20 26, 26 22, 32 20 C26 18, 20 14, 20 4 Z" fill="currentColor"/>
+        <line x1="20" y1="4" x2="20" y2="36" stroke="currentColor" stroke-width="0.6" opacity="0.4"/>
+      </svg>
+      <div class="brand-name">Gardener &amp; Son</div>
+    </div>
+
+    <div class="intro-body fade-in">
+      <div class="tag">Auburn Studio · Open Today</div>
+      <h1 class="hello">Hello,<br><em>welcome in.</em></h1>
+      <p class="blurb">Leave a few details and we'll send the occasional letter — openings, plant releases, gardens we've made, and the quiet things in between.</p>
+    </div>
+
+    <div class="intro-foot">
+      <span>Auburn · Melbourne</span>
+      <span id="dateNow"></span>
+    </div>
+  </aside>
+
+  <!-- RIGHT -->
+  <section class="form-wrap">
+    <div class="form-head">
+      <h2>Sign in</h2>
+      <span class="count">No. <span id="visitNo">001</span></span>
+    </div>
+
+    <div class="fields">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" type="text" autocomplete="given-name" autocapitalize="words" autocorrect="off" spellcheck="false" placeholder="Your name">
+      </div>
+
+      <div class="row-two">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="email" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="postcode">Postcode</label>
+          <input id="postcode" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="postal-code" placeholder="3000">
+        </div>
+      </div>
+    </div>
+
+    <div class="interests">
+      <div class="interests-label">
+        <span>What's drawn you in?</span>
+        <span>Tap any that apply</span>
+      </div>
+      <div class="interest-grid" id="interestGrid">
+        <!-- cards injected -->
+      </div>
+    </div>
+
+    <div class="error-line" id="errorLine"></div>
+
+    <div class="submit-row">
+      <p class="privacy">We'll keep your details safe and only send what's worth sending.</p>
+      <button class="submit" id="submitBtn">
+        Sign in
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- THANKS -->
+<div class="thanks" id="thanks">
+  <svg class="thanks-mark" viewBox="0 0 64 64" fill="none">
+    <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1"/>
+    <path d="M20 32 L28 40 L44 24" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" fill="none"/>
+  </svg>
+  <h1 id="thanksName">Thank you.</h1>
+  <p>We've got your details. Have a wander — Natasha or Tyson will be about if you'd like a chat.</p>
+  <div class="countdown" id="countdown">Resetting in 6</div>
+</div>
+
+<!-- ADMIN -->
+<div class="admin" id="admin">
+  <div class="admin-head">
+    <h3>Sign-ins</h3>
+    <div class="admin-actions">
+      <button class="admin-btn" id="exportCsv">Export CSV</button>
+      <button class="admin-btn danger" id="clearAll">Clear All</button>
+      <button class="admin-btn" id="closeAdmin">Close</button>
+    </div>
+  </div>
+  <div class="admin-list" id="adminList"></div>
+</div>
+
+<script>
+const INTERESTS = [
+  { id: 'heirloom', title: 'Heirloom', sub: 'Vintage garden objects worth keeping',
+    icon: '<path d="M8 22 L8 12 L16 4 L24 12 L24 22 Z M14 22 L14 16 L18 16 L18 22" stroke="currentColor" stroke-width="1.5" fill="none"/>' },
+  { id: 'design', title: 'Ecological Design', sub: 'A garden made for your place',
+    icon: '<path d="M16 4 C16 12, 10 16, 6 16 C10 16, 16 20, 16 28 C16 20, 22 16, 26 16 C22 16, 16 12, 16 4 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>' },
+  { id: 'nursery', title: 'Indigenous Nursery', sub: 'Plants of Place — local natives',
+    icon: '<path d="M16 28 L16 14 M16 14 C12 14, 10 11, 10 8 C13 8, 16 10, 16 14 M16 14 C20 14, 22 11, 22 8 C19 8, 16 10, 16 14 M11 20 L21 20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="square"/>' },
+  { id: 'chat', title: 'A chat', sub: 'Just here to say hello',
+    icon: '<path d="M5 8 L27 8 L27 22 L18 22 L13 27 L13 22 L5 22 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>' }
+];
+
+const STORAGE_KEY = 'gs_auburn_signins_v1';
+const grid = document.getElementById('interestGrid');
+const selected = new Set();
+
+// Build interest cards
+INTERESTS.forEach(int => {
+  const card = document.createElement('button');
+  card.className = 'interest';
+  card.dataset.id = int.id;
+  card.type = 'button';
+  card.innerHTML = `
+    <svg class="interest-icon" viewBox="0 0 32 32">${int.icon}</svg>
+    <div class="interest-body">
+      <div class="interest-title">${int.title}</div>
+      <div class="interest-sub">${int.sub}</div>
+    </div>
+    <div class="interest-check">
+      <svg viewBox="0 0 10 10"><path d="M1 5 L4 8 L9 2" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="square"/></svg>
+    </div>
+  `;
+  card.addEventListener('click', () => {
+    card.classList.toggle('selected');
+    if (selected.has(int.id)) selected.delete(int.id);
+    else selected.add(int.id);
+  });
+  grid.appendChild(card);
+});
+
+// Date in footer
+const fmt = new Intl.DateTimeFormat('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
+document.getElementById('dateNow').textContent = fmt.format(new Date());
+
+// Visit number (today's count + 1)
+function todayCount() {
+  const all = getSubs();
+  const today = new Date().toDateString();
+  return all.filter(s => new Date(s.t).toDateString() === today).length;
+}
+function updateVisitNo() {
+  document.getElementById('visitNo').textContent = String(todayCount() + 1).padStart(3, '0');
+}
+updateVisitNo();
+
+// Storage
+function getSubs() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+  catch (e) { return []; }
+}
+function saveSub(sub) {
+  const all = getSubs();
+  all.push(sub);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+}
+
+// Submit
+const submitBtn = document.getElementById('submitBtn');
+const errorLine = document.getElementById('errorLine');
+
+function showError(msg) {
+  errorLine.textContent = msg;
+  errorLine.classList.add('show');
+  clearTimeout(showError.t);
+  showError.t = setTimeout(() => errorLine.classList.remove('show'), 3500);
+}
+
+submitBtn.addEventListener('click', () => {
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const postcode = document.getElementById('postcode').value.trim();
+
+  if (!name) return showError('Please add your name');
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError('Please add a valid email');
+  if (postcode && !/^\d{4}$/.test(postcode)) return showError('Postcode should be 4 digits');
+  if (selected.size === 0) return showError('Tap at least one interest');
+
+  const sub = {
+    t: new Date().toISOString(),
+    name, email,
+    postcode: postcode || '',
+    interests: Array.from(selected),
+  };
+  saveSub(sub);
+  showThanks(name);
+});
+
+// Thanks screen
+const thanks = document.getElementById('thanks');
+const thanksName = document.getElementById('thanksName');
+const countdownEl = document.getElementById('countdown');
+let countdownTimer;
+
+function showThanks(name) {
+  thanksName.textContent = `Thank you, ${name.split(' ')[0]}.`;
+  thanks.classList.add('show');
+  let n = 6;
+  countdownEl.textContent = `Resetting in ${n}`;
+  countdownTimer = setInterval(() => {
+    n--;
+    countdownEl.textContent = `Resetting in ${n}`;
+    if (n <= 0) {
+      clearInterval(countdownTimer);
+      resetForm();
+    }
+  }, 1000);
+}
+
+function resetForm() {
+  thanks.classList.remove('show');
+  document.getElementById('name').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('postcode').value = '';
+  selected.clear();
+  document.querySelectorAll('.interest.selected').forEach(c => c.classList.remove('selected'));
+  updateVisitNo();
+  document.getElementById('name').blur();
+}
+
+// Admin: 5 taps top-left within 3 seconds
+const adminTrigger = document.getElementById('adminTrigger');
+let tapCount = 0;
+let tapTimer;
+adminTrigger.addEventListener('click', () => {
+  tapCount++;
+  clearTimeout(tapTimer);
+  tapTimer = setTimeout(() => tapCount = 0, 3000);
+  if (tapCount >= 5) {
+    tapCount = 0;
+    openAdmin();
+  }
+});
+
+const admin = document.getElementById('admin');
+const adminList = document.getElementById('adminList');
+
+function openAdmin() {
+  renderAdmin();
+  admin.classList.add('show');
+}
+
+function renderAdmin() {
+  const subs = getSubs().slice().reverse();
+  if (subs.length === 0) {
+    adminList.innerHTML = `<div class="admin-empty">No sign-ins yet today.</div>`;
+    return;
+  }
+  const head = `<div class="admin-row head"><span>When</span><span>Name</span><span>Email</span><span>Pcode</span><span>Interests</span></div>`;
+  const rows = subs.map(s => {
+    const d = new Date(s.t);
+    const when = d.toLocaleString('en-AU', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+    const labels = s.interests.map(id => (INTERESTS.find(x => x.id === id) || {}).title || id).join(', ');
+    return `<div class="admin-row"><span>${when}</span><span>${escapeHtml(s.name)}</span><span>${escapeHtml(s.email)}</span><span>${escapeHtml(s.postcode)}</span><span>${escapeHtml(labels)}</span></div>`;
+  }).join('');
+  adminList.innerHTML = head + rows;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+document.getElementById('closeAdmin').addEventListener('click', () => admin.classList.remove('show'));
+
+document.getElementById('exportCsv').addEventListener('click', () => {
+  const subs = getSubs();
+  if (!subs.length) return;
+  const header = ['Timestamp', 'Name', 'Email', 'Postcode', 'Interests'];
+  const rows = subs.map(s => [
+    s.t, s.name, s.email, s.postcode,
+    s.interests.map(id => (INTERESTS.find(x => x.id === id) || {}).title || id).join('; ')
+  ]);
+  const csv = [header, ...rows].map(r => r.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const stamp = new Date().toISOString().split('T')[0];
+  a.download = `gs-auburn-signins-${stamp}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById('clearAll').addEventListener('click', () => {
+  if (confirm('Clear all sign-ins? This cannot be undone.')) {
+    localStorage.removeItem(STORAGE_KEY);
+    renderAdmin();
+    updateVisitNo();
+  }
+});
+
+// Prevent iOS rubber-band scrolling on the body
+document.body.addEventListener('touchmove', e => {
+  if (!e.target.closest('.form-wrap') && !e.target.closest('.admin-list')) {
+    e.preventDefault();
+  }
+}, { passive: false });
+</script>
+</body>
+</html>
