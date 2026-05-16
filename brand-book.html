@@ -6,7 +6,7 @@
   <title>Gardener & Son — Brand Book · Living Edition</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet" />
   <style>
     :root {
       /* Core palette */
@@ -38,6 +38,7 @@
       --line-dark-soft: rgba(255, 240, 220, 0.08);
 
       /* Type */
+      --display: 'Abril Fatface', 'Fraunces', 'Georgia', serif;
       --serif: 'Fraunces', 'Georgia', 'Times New Roman', serif;
       --sans:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --mono:  'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
@@ -267,14 +268,12 @@
       color: rgba(255, 240, 220, 0.55);
     }
     .part-divider .pd-number {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 300;
-      font-size: clamp(110px, 22vw, 320px);
-      letter-spacing: -0.06em;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(140px, 26vw, 380px);
+      letter-spacing: -0.02em;
       line-height: 0.84;
       color: var(--beige);
-      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
     }
     .part-divider .pd-title {
       font-family: var(--serif);
@@ -362,19 +361,21 @@
       padding: 80px 0;
     }
     .cover-title {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(68px, 14vw, 220px);
-      letter-spacing: -0.075em;
-      line-height: 0.86;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(64px, 13vw, 200px);
+      letter-spacing: -0.025em;
+      line-height: 0.92;
       color: var(--green);
       max-width: 1500px;
-      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
     }
     .cover-title em {
+      font-family: var(--serif);
       font-style: italic;
-      font-weight: 300;
+      font-weight: 400;
+      letter-spacing: -0.04em;
       color: var(--clay);
+      font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
     }
     .cover-sub {
       font-family: var(--serif);
@@ -602,18 +603,20 @@
       gap: 36px;
     }
     .specimen-large {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(68px, 11vw, 180px);
-      line-height: 0.88;
-      letter-spacing: -0.075em;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(64px, 11vw, 180px);
+      line-height: 0.92;
+      letter-spacing: -0.025em;
       color: var(--green);
-      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
     }
     .specimen-large em {
+      font-family: var(--serif);
       font-style: italic;
+      font-weight: 400;
       color: var(--clay);
-      font-weight: 300;
+      letter-spacing: -0.04em;
+      font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
     }
     .specimen-grid {
       display: grid;
@@ -638,6 +641,14 @@
       text-transform: uppercase;
       color: var(--moss);
       font-weight: 500;
+    }
+    .specimen-cell .sample-display {
+      font-family: var(--display);
+      font-size: 56px;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      color: var(--green);
+      font-weight: 400;
     }
     .specimen-cell .sample-serif {
       font-family: var(--serif);
@@ -2041,8 +2052,8 @@
         <span class="dot"></span>Typography
       </div>
       <div class="stack">
-        <h2>Three families. One voice.</h2>
-        <p>The typography is built from three families that work as a single voice: a characterful editorial serif for display, a clean humanist sans for body, and a monospace for civic and registry-style detail. Together they let the brand move between poetry, proposal, registry and retail without changing identity.</p>
+        <h2>Four families. One voice.</h2>
+        <p>The typography is built from four families that work as a single, layered voice. A statement-making didone for hero moments. A characterful editorial serif for display and long-form. A clean humanist sans for body. A monospace for civic and registry-style detail. Together they let the brand move between poetry, proposal, registry and retail without changing identity. Each face has exactly one role — and they never appear at the same size.</p>
 
         <div class="type-sample">
           <div class="specimen-large">Long horizons. <em>Living texture.</em></div>
@@ -2050,32 +2061,39 @@
 
         <div class="specimen-grid">
           <div class="specimen-cell">
+            <div class="label">Hero · Abril Fatface</div>
+            <div class="sample-display">Gardener<br/>&amp; Son</div>
+            <div class="meta">Display only · 64px+ · cover, part numerals, single statements</div>
+          </div>
+          <div class="specimen-cell">
             <div class="label">Display · Fraunces</div>
             <div class="sample-serif">A garden is the smallest unit of repair.</div>
-            <div class="meta">Variable · opsz 96–144 · 300/400 · italics on accent</div>
+            <div class="meta">Variable · opsz 60–144 · chapters, sub-display, pull quotes</div>
           </div>
           <div class="specimen-cell">
             <div class="label">Display · Fraunces italic</div>
             <div class="sample-serif italic">Soft. Editorial. Soaked in old field-guides.</div>
-            <div class="meta">Italic 300 · for accents, pull-quotes, ampersands</div>
+            <div class="meta">Italic 300/400 · accents, pull-quotes, ampersand, em emphasis</div>
           </div>
           <div class="specimen-cell">
             <div class="label">Body · IBM Plex Sans</div>
-            <div class="sample-sans">Plex Sans carries the long copy. It is humanist, neutral, sturdy and quietly Swiss in temperament — clear at every weight, never showy, never austere. It allows the serif to do the singing while the page stays calm. Use weights 300, 400 and 500. Avoid 600 unless a specific use case demands it.</div>
+            <div class="sample-sans">Plex Sans carries the long copy. It is humanist, neutral, sturdy and quietly Swiss in temperament — clear at every weight, never showy, never austere. It allows the serifs to do the singing while the page stays calm. Use weights 300, 400 and 500.</div>
             <div class="meta">300 · 400 · 500 · letter-spacing -0.015em on display sizes</div>
           </div>
-          <div class="specimen-cell">
+          <div class="specimen-cell" style="grid-column: 1 / -1;">
             <div class="label">Civic · IBM Plex Mono</div>
-            <div class="sample-mono">REGISTRY · ECO-0427 · MONT ALBERT<br/>EVC 47 · VALLEY GRASSY FOREST<br/>BASELINE — MAR 2026<br/>STEWARDS · T. & N. GARDENER<br/>SCORE · 71 / 100 · TRAJECTORY ↑</div>
+            <div class="sample-mono">REGISTRY · ECO-0427 · MONT ALBERT<br/>EVC 47 · VALLEY GRASSY FOREST<br/>BASELINE — MAR 2026<br/>STEWARDS · T. &amp; N. GARDENER<br/>SCORE · 71 / 100 · TRAJECTORY ↑</div>
             <div class="meta">Mono for labels, registry data, captions, field-guide rules</div>
           </div>
         </div>
 
-        <h5 style="margin-top: 50px;">Type rules</h5>
+        <h5 style="margin-top: 50px;">The hierarchy</h5>
         <div class="rule-list">
-          <div class="rule"><div class="num">A</div><div><strong>Headlines breathe.</strong><p>Always tight tracking on display Fraunces — minus four to minus seven percent. Generous line-height-to-size ratios. Italics only where emphasis is earned.</p></div></div>
-          <div class="rule"><div class="num">B</div><div><strong>Body is restrained.</strong><p>IBM Plex Sans at 16–19px for body. Line-height 1.55 to 1.6. Colour at 60–70% of the green for long-form reading. Never bolded for emphasis — use italic Fraunces inline instead.</p></div></div>
-          <div class="rule"><div class="num">C</div><div><strong>Mono signals system.</strong><p>IBM Plex Mono is the voice of the registry, the field note, the receipt, the plant tag and the public record. Uppercase, letter-spaced 0.12–0.16em.</p></div></div>
+          <div class="rule"><div class="num">A</div><div><strong>Abril is hero-only.</strong><p>Reserved for cover headlines, part numerals (01–09), the studio wordmark at signage scale, and single statements where the brand needs to speak loudest. Never below 64px. Never as body. Used sparingly — six to ten times across the whole book. If Abril is on every page, it stops being hero.</p></div></div>
+          <div class="rule"><div class="num">B</div><div><strong>Fraunces is the editorial workhorse.</strong><p>Chapter titles, section heads, sub-display, pull quotes, long-form serif voice, the ampersand in the wordmark. The variable optical-size axis means it sits comfortably at 14px footnotes through to 60px chapter titles. This is where the studio sounds like itself in writing.</p></div></div>
+          <div class="rule"><div class="num">C</div><div><strong>The two serifs never meet at the same size.</strong><p>If Abril is at 88px, Fraunces sits at 38–44px. A wide gap so the eye reads them as different registers, not competing siblings. Inside an Abril hero, an italic Fraunces word can carry emphasis — this is the only place they share a line.</p></div></div>
+          <div class="rule"><div class="num">D</div><div><strong>Headlines breathe, body is restrained.</strong><p>Tight tracking on display Fraunces — minus four to minus seven percent. Abril sits tighter still at minus two. IBM Plex Sans at 16–19px for body, line-height 1.55 to 1.6, colour at 60–70% of the green for long-form reading. Never bolded for emphasis — use italic Fraunces inline instead.</p></div></div>
+          <div class="rule"><div class="num">E</div><div><strong>Mono signals system.</strong><p>IBM Plex Mono is the voice of the registry, the field note, the receipt, the plant tag and the public record. Uppercase, letter-spaced 0.12–0.16em. Never decorative — always carrying data.</p></div></div>
         </div>
       </div>
     </div>
@@ -2391,7 +2409,7 @@
       </div>
       <div class="stack">
         <h2>The web is where the system lives.</h2>
-        <p>The Gardener & Son web standard is anchored by the Village Rewards landing page: a sandwich of dark and light sections, accent-bar cards, scroll-reveal animation, a sticky nav that compresses on scroll, a marquee strip in green, and noise-textured backgrounds. The palette is G&S. The display face is Fraunces (substituting elsewhere as Abril Fatface where Fraunces is unavailable). Body is IBM Plex Sans. Border radius is zero. Border weight is 1px.</p>
+        <p>The Gardener & Son web standard is anchored by the Village Rewards landing page: a sandwich of dark and light sections, accent-bar cards, scroll-reveal animation, a sticky nav that compresses on scroll, a marquee strip in green, and noise-textured backgrounds. The palette is G&S. Hero typography is Abril Fatface (covers, statements). Display is Fraunces (chapters, sub-display). Body is IBM Plex Sans. Civic data is IBM Plex Mono. Border radius is zero. Border weight is 1px.</p>
 
         <div class="app-grid">
           <div class="app-tile">
@@ -2881,7 +2899,7 @@
       </div>
       <div>
         <strong>Type</strong>
-        <p>Display: Fraunces (variable, soft, characterful) · Body: IBM Plex Sans · Civic: IBM Plex Mono · Designed for uncoated paper and quiet screens</p>
+        <p>Hero: Abril Fatface (display didone, statement moments) · Display: Fraunces (variable, soft, characterful) · Body: IBM Plex Sans · Civic: IBM Plex Mono · Designed for uncoated paper and quiet screens</p>
       </div>
       <div>
         <strong>Note</strong>
