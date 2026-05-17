@@ -46,6 +46,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    .section, .part-divider, .closing { scroll-margin-top: 70px; }
 
     body {
       margin: 0;
@@ -422,6 +423,15 @@
       border-bottom: 1px solid var(--line);
     }
     .toc-part:nth-child(3n) { border-right: none; }
+    .toc-part-head {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      margin-bottom: 18px;
+      transition: opacity .15s;
+    }
+    .toc-part-head:hover { opacity: 0.65; }
+    .toc-part-head:hover .toc-part-title { color: var(--clay); }
     .toc-part-num {
       font-family: var(--mono);
       font-size: 11px;
@@ -436,8 +446,8 @@
       line-height: 1;
       letter-spacing: -0.035em;
       color: var(--green);
-      margin-bottom: 18px;
       font-weight: 400;
+      transition: color .15s;
     }
     .toc-part ul {
       margin: 0;
@@ -445,21 +455,33 @@
       list-style: none;
     }
     .toc-part li {
+      border-bottom: 1px dotted var(--line-soft);
+    }
+    .toc-part li a {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       gap: 10px;
-      padding: 5px 0;
-      border-bottom: 1px dotted var(--line-soft);
+      padding: 7px 0;
       font-size: 14px;
       color: var(--muted);
-      transition: color .15s;
+      text-decoration: none;
+      transition: color .15s, padding .15s;
     }
-    .toc-part li:hover { color: var(--green); }
-    .toc-part li::after {
+    .toc-part li a::after {
       content: '→';
       color: var(--gold);
-      opacity: 0.7;
+      opacity: 0.5;
+      transition: opacity .15s, transform .15s;
+      margin-left: 6px;
+    }
+    .toc-part li a:hover {
+      color: var(--green);
+      padding-left: 6px;
+    }
+    .toc-part li a:hover::after {
+      opacity: 1;
+      transform: translateX(3px);
     }
 
     /* ─────────────────────────────────────────────
@@ -1463,90 +1485,135 @@
 
         <div class="toc">
           <div class="toc-part">
-            <div class="toc-part-num">Part 01</div>
-            <div class="toc-part-title">Foundations</div>
+            <a class="toc-part-head" href="#part-01">
+
+              <div class="toc-part-num">Part 01</div>
+
+              <div class="toc-part-title">Foundations</div>
+
+            </a>
             <ul>
-              <li><span>Manifesto</span><span>01.1</span></li>
-              <li><span>Origins</span><span>01.2</span></li>
-              <li><span>Worldview</span><span>01.3</span></li>
-              <li><span>Ten Principles</span><span>01.4</span></li>
+              <li><a href="#s-01-1"><span>Manifesto</span><span>01.1</span></a></li>
+              <li><a href="#s-01-2"><span>Origins</span><span>01.2</span></a></li>
+              <li><a href="#s-01-3"><span>Worldview</span><span>01.3</span></a></li>
+              <li><a href="#s-01-4"><span>Ten Principles</span><span>01.4</span></a></li>
             </ul>
           </div>
           <div class="toc-part">
-            <div class="toc-part-num">Part 02</div>
-            <div class="toc-part-title">Structure</div>
+            <a class="toc-part-head" href="#part-02">
+
+              <div class="toc-part-num">Part 02</div>
+
+              <div class="toc-part-title">Structure</div>
+
+            </a>
             <ul>
-              <li><span>The Studios</span><span>02.1</span></li>
-              <li><span>Brand Architecture</span><span>02.2</span></li>
-              <li><span>The Three Offerings</span><span>02.3</span></li>
-              <li><span>Sub-brands</span><span>02.4</span></li>
+              <li><a href="#s-02-1"><span>The Studios</span><span>02.1</span></a></li>
+              <li><a href="#s-02-2"><span>Brand Architecture</span><span>02.2</span></a></li>
+              <li><a href="#s-02-3"><span>The Three Offerings</span><span>02.3</span></a></li>
+              <li><a href="#s-02-4"><span>Sub-brands</span><span>02.4</span></a></li>
             </ul>
           </div>
           <div class="toc-part">
-            <div class="toc-part-num">Part 03</div>
-            <div class="toc-part-title">Identity</div>
+            <a class="toc-part-head" href="#part-03">
+
+              <div class="toc-part-num">Part 03</div>
+
+              <div class="toc-part-title">Identity</div>
+
+            </a>
             <ul>
-              <li><span>Wordmark</span><span>03.1</span></li>
-              <li><span>Marks & Symbols</span><span>03.2</span></li>
-              <li><span>Colour</span><span>03.3</span></li>
-              <li><span>Typography</span><span>03.4</span></li>
-              <li><span>Grid & Pattern</span><span>03.5</span></li>
+              <li><a href="#s-03-1"><span>Wordmark</span><span>03.1</span></a></li>
+              <li><a href="#s-03-2"><span>Marks & Symbols</span><span>03.2</span></a></li>
+              <li><a href="#s-03-3"><span>Colour</span><span>03.3</span></a></li>
+              <li><a href="#s-03-4"><span>Typography</span><span>03.4</span></a></li>
+              <li><a href="#s-03-5"><span>Grid & Pattern</span><span>03.5</span></a></li>
             </ul>
           </div>
           <div class="toc-part">
-            <div class="toc-part-num">Part 04</div>
-            <div class="toc-part-title">Language</div>
+            <a class="toc-part-head" href="#part-04">
+
+              <div class="toc-part-num">Part 04</div>
+
+              <div class="toc-part-title">Language</div>
+
+            </a>
             <ul>
-              <li><span>Voice & Tone</span><span>04.1</span></li>
-              <li><span>Vocabulary</span><span>04.2</span></li>
-              <li><span>Naming Conventions</span><span>04.3</span></li>
+              <li><a href="#s-04-1"><span>Voice & Tone</span><span>04.1</span></a></li>
+              <li><a href="#s-04-2"><span>Vocabulary</span><span>04.2</span></a></li>
+              <li><a href="#s-04-3"><span>Naming Conventions</span><span>04.3</span></a></li>
             </ul>
           </div>
           <div class="toc-part">
-            <div class="toc-part-num">Part 05</div>
-            <div class="toc-part-title">Imagery</div>
+            <a class="toc-part-head" href="#part-05">
+
+              <div class="toc-part-num">Part 05</div>
+
+              <div class="toc-part-title">Imagery</div>
+
+            </a>
             <ul>
-              <li><span>Photography</span><span>05.1</span></li>
-              <li><span>Graphic Direction</span><span>05.2</span></li>
-              <li><span>Field-Guide Aesthetic</span><span>05.3</span></li>
+              <li><a href="#s-05-1"><span>Photography</span><span>05.1</span></a></li>
+              <li><a href="#s-05-2"><span>Graphic Direction</span><span>05.2</span></a></li>
+              <li><a href="#s-05-3"><span>Field-Guide Aesthetic</span><span>05.3</span></a></li>
             </ul>
           </div>
           <div class="toc-part">
-            <div class="toc-part-num">Part 06</div>
-            <div class="toc-part-title">Applications</div>
+            <a class="toc-part-head" href="#part-06">
+
+              <div class="toc-part-num">Part 06</div>
+
+              <div class="toc-part-title">Applications</div>
+
+            </a>
             <ul>
-              <li><span>Web</span><span>06.1</span></li>
-              <li><span>Print</span><span>06.2</span></li>
-              <li><span>Retail & Wayfinding</span><span>06.3</span></li>
-              <li><span>Plant Tags & Packaging</span><span>06.4</span></li>
+              <li><a href="#s-06-1"><span>Web</span><span>06.1</span></a></li>
+              <li><a href="#s-06-2"><span>Print</span><span>06.2</span></a></li>
+              <li><a href="#s-06-3"><span>Retail & Wayfinding</span><span>06.3</span></a></li>
+              <li><a href="#s-06-4"><span>Plant Tags & Packaging</span><span>06.4</span></a></li>
             </ul>
           </div>
           <div class="toc-part">
-            <div class="toc-part-num">Part 07</div>
-            <div class="toc-part-title">The System</div>
+            <a class="toc-part-head" href="#part-07">
+
+              <div class="toc-part-num">Part 07</div>
+
+              <div class="toc-part-title">The System</div>
+
+            </a>
             <ul>
-              <li><span>The Stack</span><span>07.1</span></li>
-              <li><span>The Four Roles</span><span>07.2</span></li>
-              <li><span>Stewardship Model</span><span>07.3</span></li>
+              <li><a href="#s-07-1"><span>The Stack</span><span>07.1</span></a></li>
+              <li><a href="#s-07-2"><span>The Four Roles</span><span>07.2</span></a></li>
+              <li><a href="#s-07-3"><span>Stewardship Model</span><span>07.3</span></a></li>
             </ul>
           </div>
           <div class="toc-part">
-            <div class="toc-part-num">Part 08</div>
-            <div class="toc-part-title">Behaviour</div>
+            <a class="toc-part-head" href="#part-08">
+
+              <div class="toc-part-num">Part 08</div>
+
+              <div class="toc-part-title">Behaviour</div>
+
+            </a>
             <ul>
-              <li><span>Conduct</span><span>08.1</span></li>
-              <li><span>Editorial</span><span>08.2</span></li>
-              <li><span>Partnerships</span><span>08.3</span></li>
-              <li><span>Civic Practice</span><span>08.4</span></li>
+              <li><a href="#s-08-1"><span>Conduct</span><span>08.1</span></a></li>
+              <li><a href="#s-08-2"><span>Editorial</span><span>08.2</span></a></li>
+              <li><a href="#s-08-3"><span>Partnerships</span><span>08.3</span></a></li>
+              <li><a href="#s-08-4"><span>Civic Practice</span><span>08.4</span></a></li>
             </ul>
           </div>
           <div class="toc-part">
-            <div class="toc-part-num">Part 09</div>
-            <div class="toc-part-title">Closing</div>
+            <a class="toc-part-head" href="#part-09">
+
+              <div class="toc-part-num">Part 09</div>
+
+              <div class="toc-part-title">Closing</div>
+
+            </a>
             <ul>
-              <li><span>Living Book Note</span><span>09.1</span></li>
-              <li><span>Glossary & Index</span><span>09.2</span></li>
-              <li><span>Colophon</span><span>09.3</span></li>
+              <li><a href="#s-09-1"><span>Living Book Note</span><span>09.1</span></a></li>
+              <li><a href="#glossary"><span>Glossary & Index</span><span>09.2</span></a></li>
+              <li><a href="#colophon"><span>Colophon</span><span>09.3</span></a></li>
             </ul>
           </div>
         </div>
@@ -1574,7 +1641,7 @@
   </section>
 
   <!-- 01.1 MANIFESTO -->
-  <section class="section huge">
+  <section id="s-01-1" class="section huge">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">01.1</span>
@@ -1590,7 +1657,7 @@
   </section>
 
   <!-- 01.2 ORIGINS -->
-  <section class="section green-section">
+  <section id="s-01-2" class="section green-section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">01.2</span>
@@ -1608,7 +1675,7 @@
   </section>
 
   <!-- 01.3 WORLDVIEW -->
-  <section class="section">
+  <section id="s-01-3" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">01.3</span>
@@ -1624,7 +1691,7 @@
   </section>
 
   <!-- 01.4 PRINCIPLES -->
-  <section class="section">
+  <section id="s-01-4" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">01.4</span>
@@ -1675,7 +1742,7 @@
   </section>
 
   <!-- 02.1 THE STUDIOS -->
-  <section class="section">
+  <section id="s-02-1" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">02.1</span>
@@ -1717,7 +1784,7 @@
   </section>
 
   <!-- 02.2 BRAND ARCHITECTURE -->
-  <section class="section green-section">
+  <section id="s-02-2" class="section green-section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">02.2</span>
@@ -1759,7 +1826,7 @@
   </section>
 
   <!-- 02.3 THE THREE OFFERINGS — DEEPER -->
-  <section class="section">
+  <section id="s-02-3" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">02.3</span>
@@ -1779,7 +1846,7 @@
   </section>
 
   <!-- 02.4 SUB-BRAND DIRECTORY -->
-  <section class="section">
+  <section id="s-02-4" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">02.4</span>
@@ -1875,7 +1942,7 @@
   </section>
 
   <!-- 03.1 WORDMARK -->
-  <section class="section">
+  <section id="s-03-1" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">03.1</span>
@@ -1930,7 +1997,7 @@
   </section>
 
   <!-- 03.2 MARKS & SYMBOLS -->
-  <section class="section">
+  <section id="s-03-2" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">03.2</span>
@@ -2004,7 +2071,7 @@
   </section>
 
   <!-- 03.3 COLOUR -->
-  <section class="section">
+  <section id="s-03-3" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">03.3</span>
@@ -2045,7 +2112,7 @@
   </section>
 
   <!-- 03.4 TYPOGRAPHY -->
-  <section class="section">
+  <section id="s-03-4" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">03.4</span>
@@ -2100,7 +2167,7 @@
   </section>
 
   <!-- 03.5 GRID & PATTERN -->
-  <section class="section">
+  <section id="s-03-5" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">03.5</span>
@@ -2142,7 +2209,7 @@
   </section>
 
   <!-- 04.1 VOICE & TONE -->
-  <section class="section">
+  <section id="s-04-1" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">04.1</span>
@@ -2184,7 +2251,7 @@
   </section>
 
   <!-- 04.2 VOCABULARY -->
-  <section class="section">
+  <section id="s-04-2" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">04.2</span>
@@ -2251,7 +2318,7 @@
   </section>
 
   <!-- 04.3 NAMING CONVENTIONS -->
-  <section class="section">
+  <section id="s-04-3" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">04.3</span>
@@ -2290,7 +2357,7 @@
   </section>
 
   <!-- 05.1 PHOTOGRAPHY -->
-  <section class="section">
+  <section id="s-05-1" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">05.1</span>
@@ -2328,7 +2395,7 @@
   </section>
 
   <!-- 05.2 GRAPHIC DIRECTION -->
-  <section class="section green-section">
+  <section id="s-05-2" class="section green-section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">05.2</span>
@@ -2367,7 +2434,7 @@
   </section>
 
   <!-- 05.3 FIELD GUIDE -->
-  <section class="section">
+  <section id="s-05-3" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">05.3</span>
@@ -2401,7 +2468,7 @@
   </section>
 
   <!-- 06.1 WEB -->
-  <section class="section">
+  <section id="s-06-1" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">06.1</span>
@@ -2442,7 +2509,7 @@
   </section>
 
   <!-- 06.2 PRINT -->
-  <section class="section">
+  <section id="s-06-2" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">06.2</span>
@@ -2462,7 +2529,7 @@
   </section>
 
   <!-- 06.3 RETAIL & WAYFINDING -->
-  <section class="section">
+  <section id="s-06-3" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">06.3</span>
@@ -2508,7 +2575,7 @@
   </section>
 
   <!-- 06.4 PACKAGING -->
-  <section class="section">
+  <section id="s-06-4" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">06.4</span>
@@ -2546,7 +2613,7 @@
   </section>
 
   <!-- 07.1 THE STACK -->
-  <section class="section green-section">
+  <section id="s-07-1" class="section green-section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">07.1</span>
@@ -2607,7 +2674,7 @@
   </section>
 
   <!-- 07.2 THE FOUR ROLES -->
-  <section class="section">
+  <section id="s-07-2" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">07.2</span>
@@ -2652,7 +2719,7 @@
   </section>
 
   <!-- 07.3 STEWARDSHIP MODEL -->
-  <section class="section">
+  <section id="s-07-3" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">07.3</span>
@@ -2697,7 +2764,7 @@
   </section>
 
   <!-- 08.1 CONDUCT -->
-  <section class="section">
+  <section id="s-08-1" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">08.1</span>
@@ -2718,7 +2785,7 @@
   </section>
 
   <!-- 08.2 EDITORIAL -->
-  <section class="section">
+  <section id="s-08-2" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">08.2</span>
@@ -2737,7 +2804,7 @@
   </section>
 
   <!-- 08.3 PARTNERSHIPS -->
-  <section class="section">
+  <section id="s-08-3" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">08.3</span>
@@ -2757,7 +2824,7 @@
   </section>
 
   <!-- 08.4 CIVIC -->
-  <section class="section green-section">
+  <section id="s-08-4" class="section green-section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">08.4</span>
@@ -2791,7 +2858,7 @@
   </section>
 
   <!-- 09.1 LIVING BOOK -->
-  <section class="section">
+  <section id="s-09-1" class="section">
     <div class="two-col">
       <div class="chapter-label">
         <span class="num">09.1</span>
@@ -2883,7 +2950,7 @@
   </section>
 
   <!-- 09.3 COLOPHON / CLOSING -->
-  <section class="closing green-section">
+  <section id="colophon" class="closing green-section">
     <div>
       <div class="eyebrow">A closing thought</div>
       <div class="quote">Gardener & Son is a studio for the living world — <em>designing gardens, gathering objects, telling stories, and building the systems that let ecological care scale.</em></div>
