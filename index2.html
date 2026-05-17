@@ -14,7 +14,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
 
   <style>
     /* ─── RESET ─────────────────────────────────────────── */
@@ -30,23 +30,20 @@
     :root {
       --green:        #3d4535;
       --beige:        #fff0dc;
-      --accent:       #B49A63;
-      --clay:         #9A6A4F;
+      --accent:       #a8c285;
       --green-subtle: #465040;
       --green-deep:   #2a2f25;
 
       --bg:           var(--green);
       --fg:           var(--beige);
       --bg-alt:       var(--green-subtle);
-      --line:         rgba(255,240,220,0.18);
-      --line-strong:  rgba(255,240,220,0.28);
+      --line:         rgba(255,240,220,0.12);
+      --line-strong:  rgba(255,240,220,0.22);
       --panel:        rgba(255,240,220,0.05);
       --panel-strong: rgba(255,240,220,0.09);
 
-      --font-hero:    'Abril Fatface', serif;
-      --font-serif:   'Fraunces', 'Abril Fatface', serif;
-      --font-sans:    'IBM Plex Sans', sans-serif;
-      --font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+      --font-serif: 'Abril Fatface', serif;
+      --font-sans:  'IBM Plex Sans', sans-serif;
 
       --max-w:      1280px;
       --pad-x:      clamp(1.5rem, 5vw, 5rem);
@@ -58,8 +55,8 @@
       --bg:           var(--beige);
       --fg:           var(--green);
       --bg-alt:       #f5e8cf;
-      --line:         rgba(61,69,53,0.22);
-      --line-strong:  rgba(61,69,53,0.32);
+      --line:         rgba(61,69,53,0.12);
+      --line-strong:  rgba(61,69,53,0.22);
       --panel:        rgba(61,69,53,0.05);
       --panel-strong: rgba(61,69,53,0.09);
     }
@@ -88,12 +85,9 @@
     }
 
     /* ─── TYPOGRAPHY ─────────────────────────────────────── */
-    /* Per brand book: Abril = hero only (used sparingly). Fraunces = editorial workhorse for h2-h4, pull-quotes, sub-display. */
-    h1 { font-family: var(--font-hero); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; }
-    h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; line-height: 1.1; letter-spacing: -0.015em; }
+    h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; }
     .h2 { font-size: clamp(1.875rem, 4vw, 3.125rem); }
-    /* Labels: brand book specifies IBM Plex Mono uppercase, letter-spaced 0.12-0.16em, in moss */
-    .label { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.55; }
+    .label { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.55; }
     p { line-height: 1.7; }
     a { color: inherit; text-decoration: none; }
 
@@ -114,21 +108,6 @@
 
     .section + .section { border-top: 1px solid var(--line); }
     .alt { background-color: var(--bg-alt); }
-
-    /* Brand-book "sandwich" — sections that invert to beige/cream within a green page.
-       Used sparingly at Pillars, Heirloom, and Statement to create reading rhythm. */
-    .section.light {
-      --bg:           var(--beige);
-      --fg:           var(--green);
-      --bg-alt:       #f5e8cf;
-      --line:         rgba(61,69,53,0.22);
-      --line-strong:  rgba(61,69,53,0.32);
-      --panel:        rgba(61,69,53,0.05);
-      --panel-strong: rgba(61,69,53,0.09);
-      background-color: var(--beige);
-      color: var(--green);
-    }
-    .section.light .hero-title em { color: var(--clay); }
 
     /* Hero snaps too */
     #top { scroll-snap-align: start; scroll-snap-stop: always; }
@@ -181,9 +160,8 @@
     }
 
     .nav-brand { display: flex; flex-direction: column; gap: 1px; flex-shrink: 0; }
-    .nav-wordmark { font-family: var(--font-serif); font-size: 1.0625rem; line-height: 1; letter-spacing: -0.01em; font-weight: 500; }
-    .nav-wordmark .amp { font-style: italic; font-weight: 400; color: var(--accent); padding: 0 0.05em; }
-    .nav-sub { font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.45; font-weight: 400; }
+    .nav-wordmark { font-family: var(--font-serif); font-size: 1.0625rem; line-height: 1; letter-spacing: -0.01em; }
+    .nav-sub { font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.35; font-weight: 400; }
 
     .nav-links { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
     .nav-links a { font-size: 0.78rem; font-weight: 400; opacity: 0.6; transition: opacity 0.2s; white-space: nowrap; }
@@ -274,8 +252,7 @@
     .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem; padding-top: clamp(4rem, 12vh, 7rem); }
     .hero-eyebrow::before { content: ''; display: block; width: 2.5rem; height: 2px; background: var(--accent); opacity: 1; flex-shrink: 0; }
 
-    .hero-title { font-family: var(--font-hero); font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
-    .hero-title em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--clay); }
+    .hero-title { font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.04; margin-bottom: 1.25rem; }
     .hero-body { max-width: 52ch; font-size: clamp(0.875rem, 1.1vw, 0.9375rem); line-height: 1.75; font-weight: 300; opacity: 0.82; margin-bottom: 2rem; }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.875rem; align-items: center; }
 
@@ -327,7 +304,7 @@
     .icebreaker-step { display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
     .icebreaker-step:first-child { padding-top: 0; }
     .icebreaker-step:last-child { border-bottom: none; }
-    .step-num { font-family: var(--font-mono); font-size: 0.875rem; line-height: 1; opacity: 0.45; flex-shrink: 0; padding-top: 0.15em; letter-spacing: 0.05em; }
+    .step-num { font-family: var(--font-serif); font-size: 1.1rem; line-height: 1; opacity: 0.28; flex-shrink: 0; padding-top: 0.15em; }
     .step-title { font-weight: 500; font-size: 0.9375rem; margin-bottom: 0.2rem; }
     .step-text { font-size: 0.875rem; line-height: 1.7; opacity: 0.78; }
 
@@ -409,7 +386,7 @@
     .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); margin-top: 3.5rem; }
     @media (max-width: 760px) { .method-grid { grid-template-columns: 1fr; } }
     .method-item { padding-top: 1.5rem; border-top: 1px solid var(--line); }
-    .method-num { font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.4; margin-bottom: 0.875rem; letter-spacing: 0.05em; }
+    .method-num { font-family: var(--font-serif); font-size: 0.875rem; opacity: 0.28; margin-bottom: 0.875rem; }
     .method-title { font-size: 1.0625rem; font-weight: 500; margin-bottom: 0.625rem; }
     .method-body { font-size: 0.875rem; line-height: 1.75; opacity: 0.7; font-weight: 300; }
 
@@ -434,7 +411,7 @@
     .garden-card:hover { background: var(--panel-strong); }
     .garden-thumb { aspect-ratio: 16/10; background: var(--panel-strong); border-bottom: 1px solid var(--line); }
     .garden-info { padding: 1.5rem; }
-    .garden-info h3 { font-family: var(--font-serif); font-size: 1.0625rem; font-weight: 400; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+    .garden-info h3 { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.5rem; }
     .garden-info p { font-size: 0.8125rem; opacity: 0.62; line-height: 1.65; font-weight: 300; }
 
     /* ─── PLANTS OF PLACE ─────────────────────────────────── */
@@ -593,7 +570,7 @@
       text-transform: uppercase;
       opacity: 0.55;
     }
-    .heirloom-studio-num { font-family: var(--font-mono); font-size: 0.875rem; opacity: 0.55; letter-spacing: 0.05em; text-transform: none; }
+    .heirloom-studio-num { font-family: var(--font-serif); font-size: 1rem; opacity: 0.4; letter-spacing: 0; text-transform: none; }
     .heirloom-studio h4 {
       font-family: var(--font-serif);
       font-size: clamp(1.25rem, 1.8vw, 1.4375rem);
@@ -607,15 +584,13 @@
       line-height: 1.6;
     }
     .heirloom-studio-link {
-      font-family: var(--font-mono);
       font-size: 0.75rem;
-      opacity: 0.7;
+      opacity: 0.65;
       border-bottom: 1px solid var(--line);
       padding-bottom: 1px;
       display: inline-block;
       align-self: flex-start;
       margin-top: 0.25rem;
-      letter-spacing: 0.02em;
       transition: opacity 0.2s;
     }
     .heirloom-studio-link:hover { opacity: 1; }
@@ -628,8 +603,8 @@
     @media (max-width: 540px) { .stories-grid { grid-template-columns: 1fr; } }
     .story-card { border: 1px solid var(--line); background: var(--panel); padding: 1.75rem; display: flex; flex-direction: column; gap: 0.625rem; transition: background 0.2s; }
     .story-card:hover { background: var(--panel-strong); }
-    .story-type { font-family: var(--font-mono); font-size: 0.5625rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.55; }
-    .story-title { font-family: var(--font-serif); font-size: 1.125rem; font-weight: 400; line-height: 1.3; letter-spacing: -0.01em; }
+    .story-type { font-size: 0.5625rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.45; }
+    .story-title { font-size: 1rem; font-weight: 500; line-height: 1.4; }
     .story-body { font-size: 0.8125rem; line-height: 1.7; opacity: 0.62; font-weight: 300; margin-top: auto; }
 
     /* ─── SYSTEM ─────────────────────────────────────────── */
@@ -638,10 +613,10 @@
     .system-layers { display: flex; flex-direction: column; }
     .system-layer { display: grid; grid-template-columns: 2rem 1fr; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--line); align-items: start; }
     .system-layer:first-child { border-top: 1px solid var(--line); }
-    .layer-num { font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.35; padding-top: 0.2rem; letter-spacing: 0.05em; }
+    .layer-num { font-family: var(--font-serif); font-size: 0.75rem; opacity: 0.25; padding-top: 0.2rem; }
     .layer-name { font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.3rem; }
     .layer-desc { font-size: 0.8125rem; line-height: 1.65; opacity: 0.6; font-weight: 300; }
-    .layer-link { font-family: var(--font-mono); font-size: 0.75rem; margin-top: 0.75rem; opacity: 0.6; display: inline-block; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: opacity 0.2s; letter-spacing: 0.02em; }
+    .layer-link { font-size: 0.75rem; margin-top: 0.75rem; opacity: 0.5; display: inline-block; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: opacity 0.2s; }
     .layer-link:hover { opacity: 1; }
 
     /* ─── ECO STATEMENT ──────────────────────────────────── */
@@ -664,8 +639,8 @@
     .contact-card-begin { border-color: var(--accent); background: rgba(168,194,133,0.07); }
     .contact-card-begin:hover { background: rgba(168,194,133,0.13); }
     .contact-card-begin .contact-card-title { color: var(--accent); }
-    body.light .contact-card-begin .contact-card-title { color: #8a7444; }
-    body.light .contact-card-begin { border-color: #8a7444; background: rgba(180,154,99,0.08); }
+    body.light .contact-card-begin .contact-card-title { color: #527035; }
+    body.light .contact-card-begin { border-color: #527035; background: rgba(82,112,53,0.06); }
 
     /* ─── FOOTER ─────────────────────────────────────────── */
     footer { border-top: 1px solid var(--line); padding: 4rem 0 3rem; }
@@ -702,7 +677,7 @@
   <nav id="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="#top" class="nav-brand">
-        <span class="nav-wordmark">Gardener<span class="amp">&amp;</span>Son</span>
+        <span class="nav-wordmark">Gardener &amp; Son</span>
         <span class="nav-sub">Ecological Design Studio</span>
       </a>
 
@@ -797,10 +772,10 @@
 
     <div class="container">
       <div class="hero-eyebrow reveal">
-        <span class="label">Est. Mont Albert · Melbourne</span>
+        <span class="label">Melbourne · Est. 2015</span>
       </div>
       <h1 class="hero-title reveal reveal-d1">
-        Ecological gardens. <em>Heirloom objects.</em><br/>Living systems.
+        Ecological gardens. Heirloom objects. Living systems.
       </h1>
       <p class="hero-body reveal reveal-d2">
         Gardener &amp; Son is a Melbourne ecological design studio working across garden design, installation, heirloom objects and the systems that help living landscapes be seen, cared for and valued over time.
@@ -849,7 +824,7 @@
   </section>
 
   <!-- ═══════ 2. THE STUDIO'S WORK ════════════════════════ -->
-  <section id="browse" class="section light">
+  <section id="browse" class="section alt">
     <div class="container">
       <span class="accent-rule reveal"></span>
       <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;">
@@ -936,7 +911,7 @@
   </section>
 
   <!-- ═══════ 4. HOW WE WORK ════════════════════════════════ -->
-  <section id="how-we-work" class="section">
+  <section id="how-we-work" class="section alt">
     <div class="container">
       <span class="accent-rule reveal"></span>
       <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;">
@@ -1029,7 +1004,7 @@
   </section>
 
   <!-- ═══════ 6. OBJECTS — Heirloom ════════════════════════ -->
-  <section id="objects" class="section light">
+  <section id="objects" class="section alt">
     <div class="container">
       <div class="objects-inner">
         <div>
@@ -1145,7 +1120,7 @@
   </section>
 
   <!-- ═══════ 8. STORIES ════════════════════════════════════ -->
-  <section id="stories" class="section">
+  <section id="stories" class="section alt">
     <div class="container">
       <span class="accent-rule reveal"></span>
       <div class="stories-header">
@@ -1223,7 +1198,7 @@
             <span class="layer-num">05</span>
             <div>
               <div class="layer-name">YIELD</div>
-              <div class="layer-desc">Incentive — mechanisms that reward ecological stewardship and return value to stewards.</div>
+              <div class="layer-desc">Incentive — mechanisms that reward ecological stewardship and return value to landowners.</div>
             </div>
           </div>
           <div class="system-layer">
@@ -1239,7 +1214,7 @@
   </section>
 
   <!-- ═══════ 10. ECOLOGICAL ECONOMY STATEMENT ════════════ -->
-  <section id="ecology-statement" class="section light">
+  <section id="ecology-statement" class="section alt">
     <div class="container">
       <div class="statement-inner">
         <span class="accent-rule reveal"></span>
