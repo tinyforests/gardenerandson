@@ -276,7 +276,7 @@
 
     .hero-title { font-family: var(--font-hero); font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
     .hero-title em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--clay); }
-    .hero-body { max-width: 52ch; font-size: clamp(0.875rem, 1.1vw, 0.9375rem); line-height: 1.75; font-weight: 300; opacity: 0.82; margin-bottom: 2rem; }
+    .hero-body { max-width: 52ch; font-size: clamp(0.875rem, 1.1vw, 0.9375rem); line-height: 1.75; font-weight: 300; opacity: 0.72; margin-bottom: 2rem; }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.875rem; align-items: center; }
 
     @media (max-width: 760px) {
@@ -287,10 +287,6 @@
       .hero-ctas .btn { width: 100%; justify-content: center; }
       #top .container { margin-top: 0; }
     }
-
-    .hero-scroll { position: absolute; bottom: 2.5rem; right: var(--pad-x); display: flex; flex-direction: column; align-items: center; gap: 0.75rem; opacity: 0.4; }
-    .hero-scroll span { font-size: 0.5625rem; letter-spacing: 0.18em; text-transform: uppercase; writing-mode: vertical-rl; }
-    .hero-scroll::after { content: ''; display: block; width: 1px; height: 3rem; background: currentColor; }
 
     /* ─── MARQUEE ────────────────────────────────────────── */
     .marquee-wrap { border-top: 1px solid var(--line); overflow: hidden; padding: 0.875rem 0; background: var(--bg); }
@@ -333,77 +329,6 @@
 
     .icebreaker-quote { margin-top: 2.5rem; padding: 1.5rem 2rem; border: 1px solid var(--line-strong); background: var(--panel); }
     .icebreaker-quote p { font-family: var(--font-serif); font-size: 1.0625rem; line-height: 1.45; opacity: 0.88; margin-bottom: 0.875rem; }
-
-    /* ─── STUDIOS ────────────────────────────────────────── */
-    .studios-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      margin-top: 3rem;
-      margin-bottom: 3rem;
-    }
-    @media (max-width: 760px) { .studios-grid { grid-template-columns: 1fr; } }
-
-    .studio-card {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transition: background 0.2s, border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .studio-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s;
-    }
-    .studio-card:hover::before { transform: scaleX(1); }
-    .studio-card:hover { background: var(--panel-strong); border-color: var(--line-strong); }
-
-    .studio-card-eyebrow { display: flex; align-items: center; gap: 0.875rem; }
-    .studio-card-num { font-family: var(--font-serif); font-size: 1rem; opacity: 0.32; line-height: 1; }
-    .studio-card h3 {
-      font-family: var(--font-serif);
-      font-size: clamp(1.5rem, 2.4vw, 1.875rem);
-      font-weight: 400;
-      line-height: 1.1;
-    }
-    .studio-card .studio-card-address { font-size: 0.8125rem; opacity: 0.55; margin-top: -0.5rem; }
-    .studio-card p {
-      font-size: 0.9375rem;
-      line-height: 1.75;
-      opacity: 0.78;
-      font-weight: 300;
-    }
-    .studio-card-features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.25rem;
-    }
-    .studio-card-features .tag { background: transparent; }
-    .studio-card .layer-link { margin-top: auto; padding-top: 0.5rem; }
-
-    .studios-meta {
-      border-top: 1px solid var(--line);
-      padding-top: 2.5rem;
-      max-width: 70ch;
-    }
-    .studios-meta p {
-      font-size: clamp(0.9375rem, 1.2vw, 1rem);
-      line-height: 1.85;
-      opacity: 0.82;
-      font-weight: 300;
-    }
-    .studios-meta strong { font-weight: 500; opacity: 1; }
 
     /* ─── HOW WE WORK ────────────────────────────────────── */
     .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); margin-top: 3.5rem; }
@@ -450,7 +375,7 @@
       font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
       font-weight: 300;
       line-height: 1.85;
-      opacity: 0.85;
+      opacity: 0.75;
     }
     .plants-prose p + p { margin-top: 1.5rem; }
     .plants-prose em { font-style: italic; opacity: 1; }
@@ -482,9 +407,21 @@
     /* ─── OBJECTS ────────────────────────────────────────── */
     .objects-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 7rem); align-items: start; }
     @media (max-width: 760px) { .objects-inner { grid-template-columns: 1fr; } }
-    .objects-prose p { font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); font-weight: 300; line-height: 1.8; opacity: 0.85; }
+    .objects-prose p { font-size: clamp(0.9375rem, 1.3vw, 1.0625rem); font-weight: 300; line-height: 1.8; opacity: 0.75; }
     .objects-prose p + p { margin-top: 1.5rem; }
     .objects-prose em { font-style: italic; opacity: 1; }
+
+    /* Sub-brand imprint attribution per brand book §02.4 — quiet parent-brand presence */
+    .imprint-attribution {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      opacity: 0.55;
+      margin-top: -0.5rem;
+      margin-bottom: 1.5rem;
+    }
     .objects-categories {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -647,7 +584,7 @@
     /* ─── ECO STATEMENT ──────────────────────────────────── */
     .statement-inner { max-width: 68ch; }
     .statement-title { font-size: clamp(1.75rem, 4vw, 2.875rem); line-height: 1.15; margin-bottom: 2.25rem; }
-    .statement-body p { font-size: clamp(0.9375rem, 1.4vw, 1.0625rem); font-weight: 300; line-height: 1.85; opacity: 0.8; }
+    .statement-body p { font-size: clamp(0.9375rem, 1.4vw, 1.0625rem); font-weight: 300; line-height: 1.85; opacity: 0.7; }
     .statement-body p + p { margin-top: 1.5rem; }
 
     /* ─── CONTACT ────────────────────────────────────────── */
@@ -672,7 +609,20 @@
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
     @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } .footer-brand { grid-column: 1 / -1; } }
     .footer-brand-name { font-family: var(--font-serif); font-size: 1.125rem; margin-bottom: 0.75rem; }
-    .footer-brand-desc { font-size: 0.75rem; line-height: 1.75; opacity: 0.45; max-width: 26ch; }
+    .footer-brand-desc { font-family: var(--font-serif); font-size: 0.9375rem; line-height: 1.6; opacity: 0.75; max-width: 30ch; font-weight: 300; letter-spacing: -0.005em; }
+    .footer-brand-desc em { font-style: italic; color: var(--clay); opacity: 1; }
+    .footer-brandbook-link {
+      display: inline-block;
+      margin-top: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+      opacity: 0.55;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+    .footer-brandbook-link:hover { opacity: 1; }
     .footer-col-title { font-size: 0.6125rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.4; margin-bottom: 1.25rem; }
     .footer-links { display: flex; flex-direction: column; gap: 0.625rem; }
     .footer-links a { font-size: 0.8125rem; opacity: 0.58; transition: opacity 0.2s; }
@@ -889,17 +839,17 @@
 
       <div class="pillars-grid">
         <div class="pillar reveal reveal-d1">
-          <div class="pillar-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/gardens.jpeg'); background-size:cover; background-position:center;"></div>
+          <div class="pillar-thumb" style="background-image:url('https://gardenerandson.notion.site/image/attachment%3A70253934-2f30-49a8-b6f6-091d29f40d6f%3AIMG_0466.webp?table=block&amp;id=2cc62f60-b604-8117-8fcd-f442a1b26027&amp;spaceId=dae52f28-d26b-4ba6-8bb1-9d405fc64b36&amp;width=1420&amp;userId=&amp;cache=v2'); background-size:cover; background-position:center;"></div>
           <h3>Gardens</h3>
           <a href="#gardens" class="btn btn-sm">Explore Gardens</a>
         </div>
         <div class="pillar reveal reveal-d2">
-          <div class="pillar-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/objects.jpeg'); background-size:cover; background-position:center;"></div>
+          <div class="pillar-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/heirloom/heirloom-6.png'); background-size:cover; background-position:center;"></div>
           <h3>Objects</h3>
           <a href="#objects" class="btn btn-sm">Visit Heirloom</a>
         </div>
         <div class="pillar reveal reveal-d3">
-          <div class="pillar-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/plants.jpeg'); background-size:cover; background-position:center;"></div>
+          <div class="pillar-thumb" style="background-image:url('https://tinyforests.github.io/gardenerandson/images/plants/plantsofplace-1.png'); background-size:cover; background-position:center;"></div>
           <h3>Plants</h3>
           <a href="#plants" class="btn btn-sm">See The Nursery</a>
         </div>
@@ -917,10 +867,10 @@
           <h2 class="h2 reveal reveal-d1" style="max-width:14ch; line-height:1.1; margin-bottom:1.5rem;">
             Every garden begins somewhere.
           </h2>
-          <p class="reveal reveal-d2" style="max-width:46ch; font-size:1rem; font-weight:300; line-height:1.8; opacity:0.82; margin-bottom:0.75rem;">
+          <p class="reveal reveal-d2" style="max-width:46ch; font-size:1rem; font-weight:300; line-height:1.8; opacity:0.72; margin-bottom:0.75rem;">
             Starting a garden conversation can feel difficult — especially when you're not sure where to begin. We made a better way in.
           </p>
-          <p class="reveal reveal-d2" style="max-width:46ch; font-size:1rem; font-weight:300; line-height:1.8; opacity:0.82;">
+          <p class="reveal reveal-d2" style="max-width:46ch; font-size:1rem; font-weight:300; line-height:1.8; opacity:0.72;">
             Two or three minutes. A few questions and a couple of photos. No prep, no pressure. Just a clear first step.
           </p>
           <div class="icebreaker-tags reveal reveal-d3">
@@ -956,7 +906,7 @@
           </div>
           <div class="icebreaker-quote">
             <p>"Most gardens change in stages. A first step can be small, affordable, and still meaningful."</p>
-            <span class="label">Tyson — Ecological Designer</span>
+            <span class="label">Tyson — Studio Co-founder</span>
           </div>
         </div>
       </div>
@@ -968,7 +918,7 @@
     <div class="container">
       <span class="accent-rule reveal"></span>
       <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap;">
-        <h2 class="h2 reveal reveal-d1" style="max-width:12ch; line-height:1.1;">How We Work</h2>
+        <h2 class="h2 reveal reveal-d1" style="max-width:12ch; line-height:1.1;">How we work.</h2>
         <p class="reveal reveal-d1" style="max-width:44ch; font-size:0.9375rem; opacity:0.68; font-weight:300; line-height:1.75;">
           Every site is read before it is designed. Every material is chosen for honesty. Every garden is built to mature.
         </p>
@@ -1063,8 +1013,9 @@
         <div>
           <span class="accent-rule reveal"></span>
           <span class="label reveal" style="display:block; margin-bottom:1.25rem;">Heirloom</span>
+          <span class="imprint-attribution reveal">An imprint of Gardener &amp; Son.</span>
           <h2 class="h2 reveal reveal-d1" style="max-width:14ch; margin-bottom:1.75rem;">
-            Things Worth Keeping.
+            Things worth keeping.
           </h2>
           <div class="objects-prose reveal reveal-d2">
             <p>Heirloom holds a curated collection of objects — pots, vessels, tools, references and material fragments — gathered with care, chosen for their beauty, uniqueness, style, patina and age. All vintage or rescued: things with a past, finding their next life in another garden.</p>
@@ -1147,6 +1098,7 @@
         <div>
           <span class="accent-rule reveal"></span>
           <span class="label reveal" style="display:block; margin-bottom:1.25rem;">Plants of Place</span>
+          <span class="imprint-attribution reveal">An imprint of Gardener &amp; Son.</span>
           <h2 class="h2 reveal reveal-d1" style="max-width:14ch; margin-bottom:1.75rem;">
             Local plants, grown for local ecological repair.
           </h2>
@@ -1351,7 +1303,8 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-brand-name">Gardener &amp; Son</div>
-          <p class="footer-brand-desc">Ecological design studio.<br/>Melbourne, Australia.<br/>Designing the ecological infrastructure layer for cities.</p>
+          <p class="footer-brand-desc">Designing ecological gardens.<br/><em>Building the systems around them.</em></p>
+          <a href="https://gardenerandson.com/brand.html" target="_blank" rel="noopener" class="footer-brandbook-link">Read our brand book ↗</a>
         </div>
         <div>
           <div class="footer-col-title">Studios</div>
