@@ -5,7 +5,7 @@ this repository. Read it fully before touching anything.
 
 If anything in this file conflicts with a casual instruction in a chat prompt,
 this file wins. If this file conflicts with the live brand book at
-`gardenerandson.com/brand.html`, the brand book wins and this file should be
+`www.gardenerandson.com/brand.html`, the brand book wins and this file should be
 corrected.
 
 ---

@@ -149,17 +149,13 @@ landowner.
 
 ---
 
-## Canonical domain — must be confirmed
+## Canonical domain — decided
 
-> **[VERIFY — important]** There is a domain inconsistency to resolve.
-> `index.html` declares its canonical URL with `www`
-> (`https://www.gardenerandson.com/`), but the footer brand-book link points to
-> the apex domain (`https://gardenerandson.com/brand.html`, no `www`).
->
-> One form must be chosen as canonical and used **everywhere** — canonical tag,
-> Open Graph URL, internal links, sitemap, CNAME. A mismatch here splits SEO
-> signals and can cause redirect loops. Resolve this before the next deploy and
-> record the decision in `docs/DEPLOYMENT.md`.
+The canonical domain is **`https://www.gardenerandson.com`** (with `www`).
+Decided by Tyson, 2026-05-27. Recorded in `docs/DEPLOYMENT.md`.
+
+All canonical tags, Open Graph URLs, internal links, and the sitemap use the
+`www` form. The apex domain redirects to `www` via GitHub Pages.
 
 ---
 

@@ -12,32 +12,21 @@ The site is served through **GitHub Pages** from
 
 ---
 
-## Canonical domain — resolve before next deploy
-
-There is an unresolved inconsistency that affects SEO and must be settled:
-
-- `index.html` declares its canonical URL **with `www`**:
-  `https://www.gardenerandson.com/`
-- The footer brand-book link uses the **apex domain**:
-  `https://gardenerandson.com/brand.html`
-
-Pick **one** canonical form and apply it everywhere:
-
-- the `<link rel="canonical">` tag;
-- every Open Graph `og:url`;
-- internal links;
-- `sitemap.xml`;
-- the `CNAME` file;
-- GitHub Pages custom-domain setting.
-
-GitHub Pages will redirect the non-canonical form to the canonical one once
-configured. A mismatch splits SEO ranking signals and can cause redirect
-issues. **Record the chosen form here once decided:**
+## Canonical domain — decided
 
 ```txt
-CANONICAL DOMAIN (to be filled in): __________________________
-DECIDED BY: __________   DATE: __________
+CANONICAL DOMAIN: https://www.gardenerandson.com
+DECIDED BY: Tyson   DATE: 2026-05-27
 ```
+
+The canonical form is **`www.gardenerandson.com`**. All canonical tags, Open
+Graph URLs, internal links, and `sitemap.xml` entries use this form. GitHub
+Pages redirects the apex domain to `www` once the custom domain is configured
+with the `www` form in Settings → Pages.
+
+Previously there was a mismatch: `index.html` used `www` in its canonical tag
+but the footer brand-book link pointed to the apex domain. That inconsistency
+was resolved in the `seo/canonical-domain` branch (2026-05-27).
 
 ---
 
