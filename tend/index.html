@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tend — garden maintenance subscription · Gardener &amp; Son</title>
+<meta name="description" content="An ecological garden maintenance subscription from Gardener &amp; Son. Three tiers, field notes every visit, condition tracked over time. Melbourne studios in Mont Albert and Hawthorn.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.gardenerandson.com/tend/">
+<meta property="og:title" content="Tend — by Gardener &amp; Son">
+<meta property="og:description" content="Garden maintenance subscription. Three tiers, ecological from the first visit.">
+<meta property="og:url" content="https://www.gardenerandson.com/tend/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gardener &amp; Son">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Garden maintenance subscription",
+  "provider": {
+    "@type": "Organization",
+    "name": "Gardener & Son",
+    "url": "https://www.gardenerandson.com"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Melbourne, Australia"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Tend subscription tiers",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Seedling",
+        "description": "Quarterly maintenance essentials. 4 visits per year.",
+        "price": "160",
+        "priceCurrency": "AUD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "160",
+          "priceCurrency": "AUD",
+          "unitText": "MONTH"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Grove",
+        "description": "Full ecological stewardship. Monthly visits, 12 per year.",
+        "price": "540",
+        "priceCurrency": "AUD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "540",
+          "priceCurrency": "AUD",
+          "unitText": "MONTH"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Canopy",
+        "description": "Full platform. Fortnightly visits, 24 per year.",
+        "price": "1140",
+        "priceCurrency": "AUD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "1140",
+          "priceCurrency": "AUD",
+          "unitText": "MONTH"
+        }
+      }
+    ]
+  }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #3d4535;
+    --beige: #fff0dc;
+    --accent: #B49A63;
+    --clay: #9A6A4F;
+    --green-subtle: #465040;
+    --green-muted: #7a6a52;
+    --green-deep: #2a2f25;
+    --beige-deep: #f5e4cc;
+    --line-light: rgba(61,69,53,0.18);
+    --line-dark: rgba(255,240,220,0.12);
+    --font-hero: 'Abril Fatface', serif;
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-sans: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --max: 1180px;
+    --pad: clamp(1.4rem, 5vw, 5rem);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--beige); color: var(--green); font-family: var(--font-sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  .noise { position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 256px; }
+  .page { position: relative; z-index: 1; }
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+  /* ─── NAV ──────────────────────────────────────────────── */
+  nav { border-bottom: 1px solid var(--line-light); background: var(--beige); }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+  .nav-logo { font-family: var(--font-serif); font-size: 1.05rem; color: var(--green); }
+  .nav-logo em { font-style: italic; color: var(--accent); }
+  .nav-address { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-muted); opacity: 0.7; }
+
+  /* ─── EYEBROW ────────────────────────────────────────────── */
+  .eyebrow { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+
+  /* ─── SECTION LABEL ─────────────────────────────────────── */
+  .section-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+  .section-label.on-dark { color: var(--accent); }
+
+  /* ─── HERO ─────────────────────────────────────────────── */
+  .hero { padding: clamp(3.5rem, 7vw, 6rem) 0; border-bottom: 1px solid var(--line-light); }
+  h1 { font-family: var(--font-hero); font-size: clamp(44px, 8vw, 80px); line-height: 1.05; color: var(--green); margin-bottom: 1.5rem; max-width: 680px; }
+  h1 em { font-family: var(--font-serif); font-style: italic; color: var(--clay); }
+  .hero-body { max-width: 500px; font-size: 1rem; font-weight: 300; line-height: 1.75; color: var(--green-subtle); margin-bottom: 2rem; }
+  .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--green); color: var(--beige); padding: 0.9rem 2rem; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--green-subtle); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--green-muted); padding: 0.9rem 0; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--line-light); border-radius: 0; transition: all 0.2s; }
+  .btn-ghost:hover { color: var(--green); border-color: var(--green-muted); }
+
+  /* ─── PROCESS (light) ───────────────────────────────────── */
+  .section-light { padding: clamp(3rem, 6vw, 5rem) 0; background: var(--beige); border-bottom: 1px solid var(--line-light); }
+  .section-light h2 { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; color: var(--green); margin-bottom: 2.5rem; line-height: 1.15; }
+  .section-light h2 em { font-style: italic; color: var(--clay); }
+  .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+  .process-step { border-top: 1px solid var(--line-light); padding-top: 1.25rem; }
+  .step-num { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.75rem; }
+  .step-title { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400; color: var(--green); margin-bottom: 0.6rem; line-height: 1.2; }
+  .step-body { font-size: 0.875rem; font-weight: 300; color: var(--green-muted); line-height: 1.7; }
+
+  /* ─── TIERS (dark) ──────────────────────────────────────── */
+  .section-dark { background: var(--green); color: var(--beige); padding: clamp(3rem, 6vw, 5rem) 0; border-bottom: 1px solid var(--line-dark); }
+  .section-dark h2 { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; color: var(--beige); line-height: 1.15; margin-bottom: 0.75rem; }
+  .section-dark h2 em { font-style: italic; color: var(--clay); }
+  .tiers-intro { font-size: 0.9rem; font-weight: 300; color: rgba(255,240,220,0.6); line-height: 1.7; max-width: 480px; margin-bottom: 2.5rem; }
+
+  /* Toggle */
+  .billing-toggle-wrap { margin-bottom: 0.75rem; }
+  .billing-toggle { display: inline-flex; border: 1px solid rgba(255,240,220,0.2); border-radius: 0; overflow: hidden; }
+  .toggle-btn { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.55rem 1.1rem; background: transparent; color: rgba(255,240,220,0.45); border: none; cursor: pointer; transition: all 0.18s; border-radius: 0; }
+  .toggle-btn.active { background: var(--accent); color: var(--green-deep); }
+  .toggle-note { font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,240,220,0.35); letter-spacing: 0.04em; margin-top: 0.6rem; }
+
+  /* Tier cards */
+  .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-dark); margin-top: 2rem; }
+  .tier-card { background: var(--green); padding: 2rem 1.75rem 1.75rem; display: flex; flex-direction: column; }
+  .tier-name { font-family: var(--font-serif); font-size: 1.75rem; font-weight: 400; color: var(--beige); line-height: 1; margin-bottom: 0.4rem; }
+  .tier-tagline { font-size: 0.8125rem; font-weight: 300; color: rgba(255,240,220,0.45); margin-bottom: 1.5rem; line-height: 1.5; }
+  .tier-price-block { margin-bottom: 0.4rem; display: flex; align-items: baseline; gap: 0.2rem; }
+  .tier-currency { font-family: var(--font-mono); font-size: 1rem; color: var(--accent); }
+  .tier-amount { font-family: var(--font-hero); font-size: 2.75rem; line-height: 1; color: var(--beige); }
+  .tier-period { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.06em; color: rgba(255,240,220,0.35); margin-left: 0.25rem; }
+  .tier-price-alt { font-family: var(--font-mono); font-size: 0.68rem; color: rgba(180,154,99,0.55); letter-spacing: 0.03em; margin-bottom: 0.6rem; min-height: 1.2em; }
+  .tier-ex-gst { font-family: var(--font-mono); font-size: 0.62rem; color: rgba(255,240,220,0.25); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+  .tier-visits { display: inline-block; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: rgba(180,154,99,0.1); border: 1px solid rgba(180,154,99,0.2); padding: 0.25rem 0.6rem; border-radius: 0; margin-bottom: 1.25rem; }
+  .tier-divider { border: none; border-top: 1px solid var(--line-dark); margin-bottom: 1.25rem; }
+  .tier-features { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; flex: 1; margin-bottom: 1.5rem; }
+  .tier-features li { font-size: 0.8125rem; font-weight: 300; color: rgba(255,240,220,0.65); padding-left: 1rem; position: relative; line-height: 1.5; }
+  .tier-features li::before { content: '—'; position: absolute; left: 0; color: rgba(180,154,99,0.4); font-size: 0.6875rem; }
+  .tier-cta { display: block; background: var(--accent); color: var(--green-deep); padding: 0.7rem 1.1rem; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 0; text-align: center; transition: opacity 0.2s; margin-top: auto; }
+  .tier-cta:hover { opacity: 0.85; }
+
+  /* ─── SERVICES (light) ──────────────────────────────────── */
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+  .services-body { font-size: 0.9rem; font-weight: 300; color: var(--green-muted); line-height: 1.75; margin-bottom: 1.75rem; }
+  .services-list { list-style: none; display: flex; flex-direction: column; }
+  .services-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.65rem 0; border-top: 1px solid var(--line-light); font-size: 0.875rem; }
+  .services-list li:last-child { border-bottom: 1px solid var(--line-light); }
+  .svc-name { font-weight: 300; color: var(--green); }
+  .svc-tier { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; color: var(--green-muted); text-align: right; flex-shrink: 0; }
+
+  /* Visit diagram */
+  .visit-diagram { border: 1px solid var(--line-light); padding: 2rem; background: rgba(61,69,53,0.03); }
+  .diagram-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-muted); margin-bottom: 1.5rem; }
+  .diagram-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .diagram-row:last-child { margin-bottom: 0; }
+  .diagram-tier-name { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-muted); width: 68px; flex-shrink: 0; }
+  .diagram-marks { display: flex; gap: 4px; flex: 1; align-items: center; }
+  .mark { width: 10px; height: 10px; border-radius: 0; background: var(--accent); opacity: 0.25; flex-shrink: 0; }
+  .mark.filled { opacity: 1; }
+  .diagram-count { font-family: var(--font-mono); font-size: 0.62rem; color: var(--green-muted); width: 36px; text-align: right; flex-shrink: 0; }
+
+  /* ─── FAQ (light) ───────────────────────────────────────── */
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 4rem; }
+  .faq-item { border-top: 1px solid var(--line-light); padding-top: 1rem; }
+  .faq-q { font-family: var(--font-sans); font-size: 0.9rem; font-weight: 500; color: var(--green); margin-bottom: 0.5rem; line-height: 1.4; }
+  .faq-a { font-size: 0.875rem; font-weight: 300; color: var(--green-muted); line-height: 1.7; }
+
+  /* ─── CLOSING CTA (dark) ────────────────────────────────── */
+  .section-closing { background: var(--green-deep); padding: clamp(3rem, 6vw, 5rem) 0; }
+  .closing-inner { max-width: 640px; }
+  .closing-h2 { font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 400; color: var(--beige); line-height: 1.1; margin-bottom: 0.9rem; }
+  .closing-h2 em { font-style: italic; color: var(--clay); }
+  .closing-body { font-size: 0.9rem; font-weight: 300; color: rgba(255,240,220,0.55); margin-bottom: 1.75rem; }
+  .closing-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn-closing-primary { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent); color: var(--green-deep); padding: 0.9rem 2rem; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: opacity 0.2s; }
+  .btn-closing-primary:hover { opacity: 0.85; }
+  .btn-closing-ghost { display: inline-flex; align-items: center; gap: 0.4rem; color: rgba(255,240,220,0.45); padding: 0.9rem 0; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 300; letter-spacing: 0.08em; border-bottom: 1px solid rgba(255,240,220,0.15); border-radius: 0; transition: all 0.2s; }
+  .btn-closing-ghost:hover { color: var(--beige); border-color: rgba(255,240,220,0.4); }
+
+  /* ─── FOOTER ────────────────────────────────────────────── */
+  footer { padding: 1.4rem 0; border-top: 1px solid var(--line-light); background: var(--beige); }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+  .footer-brand { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); }
+  .footer-link { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 300; color: var(--green-muted); letter-spacing: 0.04em; }
+  .footer-link:hover { color: var(--green); }
+
+  /* ─── RESPONSIVE ────────────────────────────────────────── */
+  @media (max-width: 860px) {
+    .tiers-grid { grid-template-columns: 1fr; gap: 0; }
+    .tier-card { border-top: 1px solid var(--line-dark); }
+    .tier-card:first-child { border-top: none; }
+    .process-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .visit-diagram { margin-top: 2rem; }
+  }
+  @media (max-width: 480px) {
+    .hero-ctas { flex-direction: column; align-items: flex-start; }
+    .closing-ctas { flex-direction: column; align-items: flex-start; }
+    .billing-toggle { width: 100%; }
+    .toggle-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="page">
+
+  <nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="https://www.gardenerandson.com">Gardener<em>&amp;</em>Son</a>
+      <div class="nav-address">140 Auburn Road, Hawthorn</div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ══════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">An ongoing service from Gardener &amp; Son</div>
+      <h1>Your garden,<br><em>looked after.</em></h1>
+      <p class="hero-body">A subscription maintenance service from Gardener &amp; Son. Three tiers, ecological from the first visit, with field notes recorded every time.</p>
+      <div class="hero-ctas">
+        <a href="#tiers" class="btn-primary">
+          Choose a tier
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M7 1l6 6-6 6"/></svg>
+        </a>
+        <a href="#process" class="btn-ghost">How it works ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESS ════════════════════════════════════════════ -->
+  <section class="section-light" id="process">
+    <div class="container">
+      <div class="section-label">How it works</div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <div class="step-title">Choose a tier</div>
+          <p class="step-body">Pick the subscription that matches the garden's ambition. Each tier sets the visit cadence and the level of ecological care.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <div class="step-title">Initial visit</div>
+          <p class="step-body">Your steward visits, establishes the garden's baseline — existing species, soil, EVC — and sets the seasonal calendar for the year.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <div class="step-title">Ongoing care</div>
+          <p class="step-body">Regular visits, field notes, species recording, and a year-end condition report. Cancel any time. Pause for up to 8 weeks per year if you need to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TIERS ═══════════════════════════════════════════════ -->
+  <section class="section-dark" id="tiers">
+    <div class="container">
+      <div class="section-label on-dark">Subscription tiers</div>
+      <h2>Three tiers, one <em>philosophy.</em></h2>
+      <p class="tiers-intro">All tiers include a dedicated G&amp;S steward, field notes every visit, and an annual condition report. Mulch is quoted separately per property.</p>
+
+      <div class="billing-toggle-wrap">
+        <div class="billing-toggle" role="group" aria-label="Billing period">
+          <button class="toggle-btn active" data-billing="monthly" aria-pressed="true">Monthly</button>
+          <button class="toggle-btn" data-billing="annual" aria-pressed="false">Annual (10% off)</button>
+        </div>
+        <p class="toggle-note">Annual subscriptions are paid upfront and can be cancelled any time. See the FAQ for details.</p>
+      </div>
+
+      <div class="tiers-grid">
+
+        <!-- Seedling -->
+        <div class="tier-card">
+          <div class="tier-name">Seedling</div>
+          <div class="tier-tagline">Maintenance essentials</div>
+          <div class="tier-price-block">
+            <span class="tier-currency">$</span>
+            <span class="tier-amount" data-tier="seedling" data-monthly="160" data-annual-monthly="144">160</span>
+            <span class="tier-period">/month</span>
+          </div>
+          <div class="tier-price-alt" data-tier-alt="seedling"><!-- annual line, hidden on monthly --></div>
+          <div class="tier-ex-gst">ex-GST · mulch quoted separately</div>
+          <div class="tier-visits">4 visits / year · quarterly</div>
+          <hr class="tier-divider">
+          <ul class="tier-features">
+            <li>Lawn and edge care</li>
+            <li>Pruning and weed stewardship</li>
+            <li>Field notes every visit</li>
+            <li>Annual condition report</li>
+            <li>Dedicated G&amp;S steward</li>
+          </ul>
+          <a href="mailto:hello@gardenerandson.com?subject=Tend enrolment — Seedling" class="tier-cta">Subscribe to Seedling</a>
+        </div>
+
+        <!-- Grove -->
+        <div class="tier-card">
+          <div class="tier-name">Grove</div>
+          <div class="tier-tagline">Full ecological stewardship</div>
+          <div class="tier-price-block">
+            <span class="tier-currency">$</span>
+            <span class="tier-amount" data-tier="grove" data-monthly="540" data-annual-monthly="486">540</span>
+            <span class="tier-period">/month</span>
+          </div>
+          <div class="tier-price-alt" data-tier-alt="grove"><!-- annual line --></div>
+          <div class="tier-ex-gst">ex-GST · mulch quoted separately</div>
+          <div class="tier-visits">12 visits / year · monthly</div>
+          <hr class="tier-divider">
+          <ul class="tier-features">
+            <li>Lawn and edge care</li>
+            <li>Pruning and weed stewardship</li>
+            <li>Field notes every visit</li>
+            <li>Annual condition report</li>
+            <li>Dedicated G&amp;S steward</li>
+            <li>Species recording in Ecological Registry</li>
+            <li>Organic pest stewardship</li>
+            <li>Liquid feed treatments</li>
+            <li>8-week annual pause available</li>
+          </ul>
+          <a href="mailto:hello@gardenerandson.com?subject=Tend enrolment — Grove" class="tier-cta">Subscribe to Grove</a>
+        </div>
+
+        <!-- Canopy -->
+        <div class="tier-card">
+          <div class="tier-name">Canopy</div>
+          <div class="tier-tagline">Full platform</div>
+          <div class="tier-price-block">
+            <span class="tier-currency">$</span>
+            <span class="tier-amount" data-tier="canopy" data-monthly="1140" data-annual-monthly="1026">1,140</span>
+            <span class="tier-period">/month</span>
+          </div>
+          <div class="tier-price-alt" data-tier-alt="canopy"><!-- annual line --></div>
+          <div class="tier-ex-gst">ex-GST · mulch quoted separately</div>
+          <div class="tier-visits">24 visits / year · fortnightly</div>
+          <hr class="tier-divider">
+          <ul class="tier-features">
+            <li>Lawn and edge care</li>
+            <li>Pruning and weed stewardship</li>
+            <li>Field notes every visit</li>
+            <li>Annual condition report</li>
+            <li>Dedicated G&amp;S steward</li>
+            <li>Species recording in Ecological Registry</li>
+            <li>Organic pest stewardship</li>
+            <li>Liquid feed treatments</li>
+            <li>8-week annual pause available</li>
+            <li>Effective microbes (EM) treatments</li>
+            <li>Soil health assessment (annual)</li>
+            <li>Habitat installation (annual)</li>
+            <li>Seasonal planting (annual)</li>
+            <li>Biodiversity credit pathway</li>
+          </ul>
+          <a href="mailto:hello@gardenerandson.com?subject=Tend enrolment — Canopy" class="tier-cta">Subscribe to Canopy</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ════════════════════════════════════════════ -->
+  <section class="section-light">
+    <div class="container">
+      <div class="section-label">Services</div>
+      <div class="services-grid">
+        <div>
+          <h2 style="font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;color:var(--green);line-height:1.15;margin-bottom:1.25rem;">What your steward does.</h2>
+          <p class="services-body">Every visit is recorded. Every species noted. The field notes build over time into a picture of your garden's ecological condition — one that a new pair of eyes could pick up and understand.</p>
+          <ul class="services-list">
+            <li>
+              <span class="svc-name">Lawn and edge care</span>
+              <span class="svc-tier">All tiers · every visit</span>
+            </li>
+            <li>
+              <span class="svc-name">Pruning and weed stewardship</span>
+              <span class="svc-tier">All tiers · every visit</span>
+            </li>
+            <li>
+              <span class="svc-name">Field notes</span>
+              <span class="svc-tier">All tiers · every visit</span>
+            </li>
+            <li>
+              <span class="svc-name">Annual condition report</span>
+              <span class="svc-tier">All tiers</span>
+            </li>
+            <li>
+              <span class="svc-name">Species recording</span>
+              <span class="svc-tier">Grove &amp; Canopy</span>
+            </li>
+            <li>
+              <span class="svc-name">Organic pest stewardship</span>
+              <span class="svc-tier">Grove &amp; Canopy</span>
+            </li>
+            <li>
+              <span class="svc-name">Liquid feed</span>
+              <span class="svc-tier">Grove &amp; Canopy</span>
+            </li>
+            <li>
+              <span class="svc-name">Effective microbes (EM)</span>
+              <span class="svc-tier">Canopy</span>
+            </li>
+            <li>
+              <span class="svc-name">Soil health assessment</span>
+              <span class="svc-tier">Canopy · annual</span>
+            </li>
+            <li>
+              <span class="svc-name">Habitat installation</span>
+              <span class="svc-tier">Canopy · annual</span>
+            </li>
+            <li>
+              <span class="svc-name">Seasonal planting</span>
+              <span class="svc-tier">Canopy · annual</span>
+            </li>
+            <li>
+              <span class="svc-name">Mulching</span>
+              <span class="svc-tier">All tiers · quoted separately</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <!-- Visit cadence diagram — typographic, no fake dashboard -->
+          <div class="visit-diagram" aria-label="Visit cadence by tier">
+            <div class="diagram-label">Visits per year by tier</div>
+            <div class="diagram-row">
+              <span class="diagram-tier-name">Seedling</span>
+              <div class="diagram-marks">
+                <span class="mark filled"></span>
+                <span class="mark filled"></span>
+                <span class="mark filled"></span>
+                <span class="mark filled"></span>
+                <span class="mark"></span><span class="mark"></span><span class="mark"></span><span class="mark"></span>
+                <span class="mark"></span><span class="mark"></span><span class="mark"></span><span class="mark"></span>
+                <span class="mark"></span><span class="mark"></span><span class="mark"></span><span class="mark"></span>
+                <span class="mark"></span><span class="mark"></span><span class="mark"></span><span class="mark"></span>
+                <span class="mark"></span><span class="mark"></span><span class="mark"></span><span class="mark"></span>
+              </div>
+              <span class="diagram-count">4</span>
+            </div>
+            <div class="diagram-row">
+              <span class="diagram-tier-name">Grove</span>
+              <div class="diagram-marks">
+                <span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span>
+                <span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span>
+                <span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span>
+                <span class="mark"></span><span class="mark"></span><span class="mark"></span><span class="mark"></span>
+                <span class="mark"></span><span class="mark"></span><span class="mark"></span><span class="mark"></span>
+                <span class="mark"></span><span class="mark"></span><span class="mark"></span><span class="mark"></span>
+              </div>
+              <span class="diagram-count">12</span>
+            </div>
+            <div class="diagram-row">
+              <span class="diagram-tier-name">Canopy</span>
+              <div class="diagram-marks">
+                <span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span>
+                <span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span>
+                <span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span>
+                <span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span>
+                <span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span>
+                <span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span><span class="mark filled"></span>
+              </div>
+              <span class="diagram-count">24</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ══════════════════════════════════════════════════ -->
+  <section class="section-light" style="border-top: 1px solid var(--line-light);" id="faq">
+    <div class="container">
+      <div class="section-label">Common questions</div>
+      <h2 style="font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;color:var(--green);line-height:1.15;margin-bottom:2.5rem;">How Tend works <em style="font-style:italic;color:var(--clay);">in practice.</em></h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <p class="faq-q">How does the initial visit work?</p>
+          <p class="faq-a">Your steward visits, walks the garden with you, records the existing species, assesses the soil, and identifies the ecological vegetation class. From this baseline we set the seasonal calendar and start the field notes.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Can I cancel any time?</p>
+          <p class="faq-a">Yes. Monthly subscribers can cancel at any time — your subscription runs to the end of the current billing month, with no further visits scheduled after that.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">What happens if I cancel an annual subscription early?</p>
+          <p class="faq-a">The annual rate is a discount for paying upfront. If you cancel partway through, we charge the standard monthly rate for visits already delivered and refund the difference. No further penalty.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Can I pause my subscription?</p>
+          <p class="faq-a">Grove and Canopy subscribers can pause for up to 8 weeks per year at no charge — useful for winter, travel, or renovations. Billing pauses with the service; your subscription end-date moves forward by the pause duration.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Is mulch included?</p>
+          <p class="faq-a">No. Mulch quality varies enormously by property and we'd rather quote honestly. Each subscriber receives a separate mulch quote when needed.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Who comes to my garden?</p>
+          <p class="faq-a">A dedicated steward who knows your block. Continuity matters — the field notes only build value if the same eyes return to read them.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">What's the Ecological Registry?</p>
+          <p class="faq-a">A public-record-style platform Gardener &amp; Son maintains, tracking ecological condition across enrolled gardens. Grove and Canopy subscribers' species observations are recorded there as part of the service.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CLOSING CTA ══════════════════════════════════════════ -->
+  <section class="section-closing">
+    <div class="container">
+      <div class="closing-inner">
+        <div class="eyebrow" style="color: var(--accent);">Tend — by Gardener &amp; Son</div>
+        <h2 class="closing-h2">Begin where the garden <em>begins.</em></h2>
+        <p class="closing-body">Choose a tier and start the conversation.</p>
+        <div class="closing-ctas">
+          <a href="#tiers" class="btn-closing-primary">Choose a tier</a>
+          <a href="mailto:hello@gardenerandson.com?subject=Tend enquiry" class="btn-closing-ghost">Talk to a steward ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <span class="footer-brand">Gardener &amp; Son</span>
+      <a href="mailto:hello@gardenerandson.com" class="footer-link">hello@gardenerandson.com</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  var prices = {
+    seedling: { monthly: 160, annual: 1728, annualMonthly: 144 },
+    grove:    { monthly: 540, annual: 5832, annualMonthly: 486 },
+    canopy:   { monthly: 1140, annual: 12312, annualMonthly: 1026 }
+  };
+
+  var btns = document.querySelectorAll('.toggle-btn');
+  var isAnnual = false;
+
+  function formatNum(n) {
+    return n.toLocaleString('en-AU');
+  }
+
+  function updatePrices() {
+    Object.keys(prices).forEach(function(tier) {
+      var amountEl = document.querySelector('[data-tier="' + tier + '"]');
+      var altEl    = document.querySelector('[data-tier-alt="' + tier + '"]');
+      if (!amountEl || !altEl) return;
+      if (isAnnual) {
+        amountEl.textContent = formatNum(prices[tier].annualMonthly);
+        altEl.textContent    = '$' + formatNum(prices[tier].annual) + '/year ex-GST';
+      } else {
+        amountEl.textContent = formatNum(prices[tier].monthly);
+        altEl.textContent    = '';
+      }
+    });
+  }
+
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      isAnnual = btn.dataset.billing === 'annual';
+      btns.forEach(function(b) {
+        b.classList.toggle('active', b.dataset.billing === (isAnnual ? 'annual' : 'monthly'));
+        b.setAttribute('aria-pressed', String(b.classList.contains('active')));
+      });
+      updatePrices();
+    });
+  });
+
+  // Initialise alt lines (empty on monthly default)
+  updatePrices();
+})();
+</script>
+
+</body>
+</html>
