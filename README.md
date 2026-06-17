@@ -65,17 +65,15 @@ Served by GitHub Pages on the custom domain configured in `CNAME`.
 Protected production assets: `index.html`, `brand.html`, `sitemap.xml`,
 `robots.txt`, `CNAME`, and all four SEO recovery folders. See `CLAUDE.md` §11.
 
-### Known issues to resolve (do not ignore these)
+### Standalone pages (confirmed status)
 
-1. **`index2.html` duplicate homepage.** The brand-aligned rebuild was committed
-   as `index2.html` alongside the original `index.html`. Two near-identical
-   homepages in production is an SEO and maintenance hazard. One of these must
-   become the single `index.html` and the other must be deleted. See
-   `docs/DEPLOYMENT.md` → "Resolving the index2.html duplicate".
-
-2. **`gardens.html`, `auburn.html`, `montalbert.html`.** Three standalone pages
-   of unclear status. **[VERIFY]** Confirm for each: is it live, linked, and
-   intended — or a superseded draft to remove? Document the answer here.
+- **`auburn.html`** — Internal kiosk/iPad form for the Auburn Road (Hawthorn)
+  studio. Not a public page. Has `noindex, nofollow` meta. Not in sitemap.
+- **`montalbert.html`** — Internal kiosk/iPad form for the Mont Albert studio.
+  Not a public page. Has `noindex, nofollow` meta. Not in sitemap.
+- **`gardens.html`** — Live SEO asset. Uses pre-rebuild brand styles (old
+  palette, old fonts). Scheduled for brand migration to the current four-font
+  system — see `docs/DEPLOYMENT.md`. Do not delete.
 
 ### Note on images
 

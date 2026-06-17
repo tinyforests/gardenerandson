@@ -101,30 +101,10 @@ afterward (a note in the next PR or an issue).
 
 ---
 
-## Resolving the index2.html duplicate
+## index2.html — resolved
 
-The repository currently contains **both** `index.html` and `index2.html`.
-`index2.html` is the brand-aligned rebuild (four-font system, brass accent,
-beige sandwich, Acknowledgement of Country). Two near-identical homepages in
-production is an SEO hazard — search engines may index both, splitting ranking
-signals, and maintainers will not know which is canonical.
-
-This must be resolved with one focused PR. The intended end state is a single
-`index.html` and no `index2.html`.
-
-Procedure:
-
-1. Confirm which file is the intended live homepage. (It is `index2.html` — the
-   brand-aligned rebuild.)
-2. On a branch: replace the contents of `index.html` with the contents of
-   `index2.html`, then delete `index2.html`.
-3. Search the whole repo for any link to `index2.html` and repoint it to `/`
-   or `index.html`. Check `sitemap.xml` does not list `index2.html`.
-4. Confirm `sitemap.xml` lists the homepage once, as the canonical URL.
-5. Preview locally, then PR.
-
-Until this is done, treat `index.html` as the live page and `index2.html` as
-pending promotion — do not edit both.
+`index2.html` has been deleted. `index.html` is the single live homepage.
+No further action needed.
 
 ## SEO recovery paths (confirmed)
 
@@ -142,15 +122,33 @@ Each is a protected production asset. Do not delete or rename one without a
 proper redirect or replacement strategy, or you will create 404s on URLs Google
 already knows.
 
-## Standalone pages of unconfirmed status
+## Standalone pages (confirmed status)
 
-`gardens.html`, `auburn.html`, and `montalbert.html` sit at the repo root.
+### auburn.html and montalbert.html — internal kiosk forms
 
-> **[VERIFY]** For each, confirm: is it a live, linked, intended page — or a
-> superseded draft? `gardens.html` was last touched four months ago, well
-> before the current rebuild, which suggests it may be stale. Once confirmed,
-> either document each as a real page (in `README.md`) or remove it on a
-> cleanup branch. Do not leave undocumented pages in a brand-critical repo.
+Both pages are internal iPad/kiosk contact forms used in-studio at the
+Hawthorn (Auburn Road) and Mont Albert locations respectively. They are not
+public pages and should never appear in search results.
+
+- `<meta name="robots" content="noindex, nofollow">` is present in both.
+- Neither appears in `sitemap.xml`.
+- Do not add either to the sitemap or public navigation.
+- Brand migration is not required — these are internal tools, not public assets.
+
+### gardens.html — live SEO asset, pre-rebuild styles
+
+`gardens.html` is a live public page and an SEO asset. It uses the pre-rebuild
+brand system (old palette, old fonts — not the current four-font token system).
+
+**Scheduled for brand migration** to the current system (Abril Fatface hero
+only, Fraunces for all h2/h3, IBM Plex Sans body, IBM Plex Mono labels;
+`--green`, `--beige`, `--accent`, `--clay` tokens). Until that migration is
+done:
+
+- Do not delete or unpublish it.
+- Do not edit its content without also noting the pending migration.
+- Do not treat its styles as a reference for anything — use `index.html` as
+  the style reference.
 
 ---
 
