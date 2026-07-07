@@ -281,6 +281,8 @@
   .premium-flag { font-family: var(--font-mono); background: rgba(180,154,99,0.15); border: 1px solid rgba(180,154,99,0.2); padding: 0.3rem 0.7rem; font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: block; text-align: center; border-radius: 0; }
   .entry-flag { font-family: var(--font-mono); background: rgba(255,240,220,0.08); border: 1px solid rgba(255,240,220,0.12); padding: 0.3rem 0.7rem; font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,240,220,0.5); margin-bottom: 0.75rem; display: block; text-align: center; border-radius: 0; }
 
+  .series-bar-link { text-decoration: none; color: inherit; display: block; transition: opacity 0.2s; }
+  .series-bar-link:hover { opacity: 0.85; }
   .series-bar { background: rgba(180,154,99,0.1); border: 1px solid rgba(180,154,99,0.2); padding: 1.5rem 2rem; margin-top: 2.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; border-radius: 0; }
   .series-bar-title { font-family: var(--font-serif); font-size: 1.125rem; font-weight: 400; color: var(--beige); margin-bottom: 0.25rem; }
   .series-bar-sub { font-size: 0.8125rem; font-weight: 300; color: rgba(255,240,220,0.5); }
@@ -299,7 +301,6 @@
   .location-title { font-family: var(--font-serif); font-size: 1.875rem; font-weight: 400; color: var(--green); line-height: 1.15; margin-bottom: 1rem; }
   .location-body { font-size: 0.8125rem; font-weight: 300; color: var(--green-muted); line-height: 1.75; }
   .location-body strong { font-weight: 500; color: var(--green); }
-  .map-ph { background: rgba(61,69,53,0.06); border: 1px solid var(--line-light); height: 190px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-muted); font-weight: 300; }
 
   /* ─── RESERVE ───────────────────────────────────────────── */
   .section-book { background: var(--green); padding: clamp(2.5rem, 5vw, 4rem) 0; }
@@ -500,13 +501,15 @@
         </div>
       </div>
 
-      <div class="series-bar">
-        <div>
-          <div class="series-bar-title">The Ecological Garden Series</div>
-          <div class="series-bar-sub">Workshops 01–04. One pass, small saving.</div>
+      <a href="https://www.eventbrite.com.au/e/the-ecological-garden-series-tickets-1993314716977" target="_blank" rel="noopener noreferrer" class="series-bar-link">
+        <div class="series-bar">
+          <div>
+            <div class="series-bar-title">The Ecological Garden Series</div>
+            <div class="series-bar-sub">Workshops 01–04. One pass, small saving.</div>
+          </div>
+          <div class="series-price">$390 <span>per person</span></div>
         </div>
-        <div class="series-price">$390 <span>per person</span></div>
-      </div>
+      </a>
 
     </div>
   </section>
@@ -543,7 +546,15 @@
           <div class="location-title">140 Auburn Road,<br>Hawthorn</div>
           <p class="location-body">Our Auburn Road studio sits in the inner east. Street parking is available on Auburn Road and surrounding streets. The nearest tram stop is on Auburn Road.<br><br>Part of the <strong>Gardener &amp; Son</strong> network — ecological design studio, indigenous nursery, and heirloom garden objects.</p>
         </div>
-        <div class="map-ph">Map embed</div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3149.6!2d145.0392!3d-37.8215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ5JzE3LjQiUyAxNDXCsDAyJzIxLjEiRQ!5e0!3m2!1sen!2sau!4v1730000000000!5m2!1sen!2sau"
+          width="100%"
+          height="190"
+          style="border:0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="140 Auburn Road, Hawthorn map">
+        </iframe>
       </div>
     </div>
   </section>
