@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lynette's Garden — 4 Curlewis Street, Mont Albert · Gardener & Son</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#3d4535; --beige:#fff0dc; --accent:#B49A63; --clay:#9A6A4F;
+    --display:'Abril Fatface', Georgia, serif;
+    --editorial:'Fraunces', Georgia, serif;
+    --body:'IBM Plex Sans', system-ui, sans-serif;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;border-radius:0;}
+  html,body{height:100%;overflow:hidden;background:var(--green);}
+  body{font-family:var(--body);-webkit-font-smoothing:antialiased;}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");}
+
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+    padding:6vh 6vw;opacity:0;visibility:hidden;transform:translateY(14px);
+    transition:opacity .55s ease,transform .55s ease,visibility 0s .55s;overflow:hidden;}
+  .slide.active{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .55s ease,transform .55s ease;}
+  .slide.dark{background:var(--green);color:var(--beige);}
+  .slide.light{background:var(--beige);color:var(--green);}
+
+  .eyebrow{font-family:var(--mono);font-size:clamp(10px,1vh,13px);letter-spacing:.22em;text-transform:uppercase;margin-bottom:2vh;}
+  .slide.dark .eyebrow{color:var(--accent);}
+  .slide.light .eyebrow{color:var(--clay);}
+  h1{font-family:var(--display);font-weight:400;font-size:clamp(48px,11vh,124px);line-height:1.02;}
+  h2{font-family:var(--editorial);font-weight:500;font-size:clamp(26px,5.4vh,54px);line-height:1.1;max-width:18ch;}
+  h3{font-family:var(--editorial);font-weight:500;font-size:clamp(15px,2.2vh,24px);margin-bottom:.8vh;}
+  .lede{font-size:clamp(13px,1.9vh,19px);font-weight:300;line-height:1.6;max-width:64ch;margin-top:2.4vh;}
+  .lede+.lede{margin-top:1.4vh;}
+  .accent-bar{width:56px;height:3px;background:var(--accent);margin-top:3vh;}
+  .character{font-family:var(--mono);font-size:clamp(10px,1.3vh,12px);letter-spacing:.14em;text-transform:uppercase;line-height:2;margin-top:2.4vh;}
+  .character span{color:var(--accent);}
+  .slide.light .character span{color:var(--clay);}
+
+  .rings{position:absolute;right:-8vw;top:50%;transform:translateY(-50%);width:46vw;height:46vw;pointer-events:none;opacity:.5;}
+  .rings circle{fill:none;stroke:var(--accent);stroke-width:1;}
+
+  .botanical{position:absolute;pointer-events:none;}
+  .botanical path,.botanical circle,.botanical ellipse{fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;}
+  .slide.dark .botanical :is(path,circle,ellipse){stroke:var(--beige);}
+  .slide.light .botanical :is(path,circle,ellipse){stroke:var(--green);}
+  .botanical .brass{stroke:var(--accent) !important;}
+
+  /* split layout for zone + palette */
+  .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4vw;align-items:center;height:100%;}
+
+  /* compact plant grid — sized to fit, never scroll */
+  .palette{display:grid;gap:1px;margin-top:2.6vh;border:1px solid;overflow:hidden;}
+  .slide.light .palette{border-color:rgba(61,69,53,.25);background:rgba(61,69,53,.25);}
+  .slide.dark .palette{border-color:rgba(255,240,220,.28);background:rgba(255,240,220,.28);}
+  .p{padding:clamp(6px,1.1vh,12px) clamp(8px,.8vw,16px);position:relative;padding-left:clamp(22px,1.8vw,32px);}
+  .slide.light .p{background:var(--beige);}
+  .slide.dark .p{background:var(--green);}
+  .p::before{content:"";position:absolute;left:clamp(8px,.7vw,12px);top:50%;transform:translateY(-50%);
+    width:8px;height:8px;border-radius:50%;background:var(--c,#999);}
+  .p b{display:block;font-family:var(--editorial);font-style:italic;font-weight:500;font-size:clamp(11px,1.55vh,14.5px);line-height:1.25;}
+  .p span{display:block;font-family:var(--mono);font-size:clamp(8.5px,1.1vh,10.5px);letter-spacing:.05em;text-transform:uppercase;opacity:.7;margin-top:2px;}
+  .cols-4{grid-template-columns:repeat(4,1fr);}
+  .cols-2{grid-template-columns:1fr 1fr;}
+
+  /* render slide */
+  .render-wrap{position:absolute;inset:0;}
+  .render-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+  .render-placeholder{position:absolute;inset:6vh 6vw;border:1px dashed var(--accent);display:flex;align-items:center;justify-content:center;text-align:center;}
+  .render-placeholder p{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);line-height:2.2;}
+  .render-caption{position:absolute;left:6vw;bottom:5vh;z-index:2;}
+  .render-caption .eyebrow{margin-bottom:.8vh;}
+  .render-caption h2{font-size:clamp(22px,4vh,40px);}
+
+  .pockets{display:grid;grid-template-columns:repeat(3,1fr);gap:3vw;margin-top:4vh;}
+  .pocket{text-align:center;}
+  .pocket .ring{width:min(13vw,15vh);height:min(13vw,15vh);border:1px solid var(--clay);border-radius:50%;margin:0 auto 2vh;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(9px,1.2vh,11px);letter-spacing:.2em;text-transform:uppercase;}
+  .pocket p{font-size:clamp(12px,1.6vh,14px);font-weight:300;line-height:1.55;max-width:28ch;margin:.8vh auto 0;}
+
+  .seasons{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(61,69,53,.25);border:1px solid rgba(61,69,53,.25);margin-top:3.5vh;}
+  .season{background:var(--beige);padding:2.4vh 1.4vw;}
+  .season h4{font-family:var(--mono);font-size:clamp(9px,1.2vh,11px);letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:1.4vh;}
+  .season p{font-size:clamp(11.5px,1.6vh,13.5px);font-weight:300;line-height:1.65;}
+
+  /* registry / tend feature rows */
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:3vw;margin-top:4vh;}
+  .feature{border-top:2px solid var(--accent);padding-top:1.8vh;}
+  .feature h3{font-size:clamp(14px,2vh,20px);}
+  .feature p{font-size:clamp(12px,1.6vh,14.5px);font-weight:300;line-height:1.6;}
+  .badge{display:inline-block;font-family:var(--mono);font-size:clamp(10px,1.3vh,12px);letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--accent);color:var(--accent);padding:1.2vh 1.4vw;margin-top:3vh;}
+  .slide.light .badge{border-color:var(--clay);color:var(--clay);}
+
+  .counter{position:fixed;bottom:24px;left:6vw;font-family:var(--mono);font-size:11px;letter-spacing:.18em;z-index:70;color:var(--accent);}
+  .brandmark{position:fixed;top:24px;left:6vw;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;z-index:70;color:var(--accent);}
+  .progress{position:fixed;bottom:0;left:0;height:3px;background:var(--accent);z-index:70;transition:width .45s ease;}
+  .navzone{position:fixed;top:0;bottom:0;width:12vw;z-index:65;cursor:pointer;}
+  .navzone.prev{left:0;}
+  .navzone.next{right:0;}
+  @media (prefers-reduced-motion:reduce){.slide{transition:opacity .2s ease;transform:none;}}
+</style>
+</head>
+<body>
+<div class="brandmark">Gardener &amp; Son</div>
+<div class="counter" id="counter"></div>
+<div class="progress" id="progress"></div>
+<div class="navzone prev" onclick="step(-1)" aria-label="Previous slide"></div>
+<div class="navzone next" onclick="step(1)" aria-label="Next slide"></div>
+
+<div class="deck">
+
+  <!-- 01 THANK YOU -->
+  <section class="slide dark active">
+    <svg class="rings" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="105"/><circle cx="200" cy="200" r="150"/><circle cx="200" cy="200" r="195"/></svg>
+    <div class="eyebrow">Lynette · 4 Curlewis Street, Mont Albert</div>
+    <h1>Thank you.</h1>
+    <p class="lede">For inviting us into your garden — and for trusting us with a place that already holds so much care. What follows is a design that listens to what is here, and gently strengthens it.</p>
+    <div class="accent-bar"></div>
+  </section>
+
+  <!-- 02 HEALING COUNTRY -->
+  <section class="slide light">
+    <svg class="botanical" style="right:6vw;bottom:8vh;width:24vw;" viewBox="0 0 200 160" aria-hidden="true">
+      <path d="M100 155 C 96 110, 88 70, 62 28"/><path d="M100 155 C 100 105, 100 60, 100 18"/>
+      <path d="M100 155 C 104 110, 114 68, 140 30"/><path d="M100 155 C 92 118, 76 88, 40 62"/>
+      <path d="M100 155 C 108 118, 126 86, 162 60"/>
+      <path d="M100 155 C 98 125, 90 100, 70 82" class="brass"/><path d="M100 155 C 102 125, 112 98, 132 80" class="brass"/>
+    </svg>
+    <div class="eyebrow">Healing Country</div>
+    <h2>This garden grows on Wurundjeri Woi-wurrung Country.</h2>
+    <p class="lede">We acknowledge the Wurundjeri Woi-wurrung people of the Kulin Nation, the Traditional Owners of the land on which this garden grows, and pay our respects to Elders past and present. This land was never ceded.</p>
+    <p class="lede">Every locally indigenous plant returned to a home garden is a small act of healing Country — habitat restored, soil brought back to life, and a living thread reconnected between one front yard and the wider landscape it belongs to.</p>
+    <div class="accent-bar"></div>
+  </section>
+
+  <!-- 03 A GARDEN WITH MEMORY -->
+  <section class="slide dark">
+    <svg class="botanical" style="right:7vw;top:12vh;width:20vw;" viewBox="0 0 200 200" aria-hidden="true">
+      <path d="M100 185 C 100 150, 100 130, 100 110"/>
+      <path d="M100 110 C 60 108, 30 84, 26 48 C 50 44, 68 50, 80 62 C 76 40, 84 22, 100 10 C 116 22, 124 40, 120 62 C 132 50, 150 44, 174 48 C 170 84, 140 108, 100 110 Z"/>
+      <path d="M100 110 L 100 40"/><path d="M100 92 L 62 62"/><path d="M100 92 L 138 62"/>
+      <path d="M100 150 C 112 146, 120 138, 122 128" class="brass"/>
+      <circle cx="128" cy="122" r="4" class="brass"/><circle cx="136" cy="130" r="4" class="brass"/><circle cx="130" cy="138" r="4" class="brass"/>
+    </svg>
+    <div class="eyebrow">The place as we found it</div>
+    <h2>A small garden with a generous spirit.</h2>
+    <p class="lede">Lynette's garden already holds the memory of a home lived in and cared for over many years. The curved brick path, the brick edging, the grapevine over the porch, the roses, hibiscus, birdbath and shaded rear corners all give the garden its quiet character.</p>
+    <p class="lede">The design does not seek to erase this history. It gently strengthens it — with new soil, mulch, and a resilient planting layer that feels natural, flowering, bird-friendly and deeply connected to the house.</p>
+    <div class="accent-bar"></div>
+  </section>
+
+  <!-- 04 THE PROPOSED GARDEN (render) -->
+  <section class="slide dark">
+    <div class="render-wrap">
+      <!-- RENDER IMAGE: replace this placeholder block with
+           <img src="data:image/jpeg;base64,..." alt="Proposed garden, 4 Curlewis Street"> -->
+      <div class="render-placeholder"><p>Proposed garden render<br>· awaiting image from Notion ·</p></div>
+    </div>
+    <div class="render-caption">
+      <div class="eyebrow">The proposal</div>
+      <h2>How the garden will look.</h2>
+    </div>
+  </section>
+
+  <!-- 05 THREE POCKETS -->
+  <section class="slide light">
+    <div class="eyebrow">The design idea</div>
+    <h2>Three soft ecological pockets.</h2>
+    <p class="lede">Modest in scale, rich in feeling — a place for birds, insects, children walking past, seasonal flowers and daily rituals; a home garden renewed slowly, over time.</p>
+    <div class="pockets">
+      <div class="pocket"><div class="ring">Front</div><h3>Flowering habitat edge</h3><p>Colour and life offered to the street, woven around the existing roses.</p></div>
+      <div class="pocket"><div class="ring">Porch</div><h3>Planted threshold</h3><p>A calm arrival beneath the seasonal canopy of the grapevine.</p></div>
+      <div class="pocket"><div class="ring">Rear</div><h3>Habitat refuge</h3><p>A shaded pocket of foliage, water and stillness around the birdbath.</p></div>
+    </div>
+  </section>
+
+  <!-- 06 FRONT NARRATIVE -->
+  <section class="slide dark">
+    <svg class="botanical" style="right:7vw;bottom:10vh;width:22vw;" viewBox="0 0 200 220" aria-hidden="true">
+      <path d="M100 215 C 100 180, 98 150, 100 118"/><path d="M100 160 C 86 152, 78 140, 78 126"/>
+      <circle cx="100" cy="90" r="12" class="brass"/>
+      <path d="M100 78 L 100 54"/><path d="M112 82 L 130 66"/><path d="M116 94 L 140 94"/>
+      <path d="M112 100 L 130 116"/><path d="M100 102 L 100 126"/><path d="M88 100 L 70 116"/>
+      <path d="M84 94 L 60 94"/><path d="M88 82 L 70 66"/><path d="M106 72 L 116 52"/><path d="M94 72 L 84 52"/>
+    </svg>
+    <div class="eyebrow">Pocket 01 · The front strip</div>
+    <h2>Lynette's flowering habitat garden.</h2>
+    <p class="lede">The most public part of the garden — experienced by neighbours, children and everyone walking past along the white fence. Your roses stay, woven into the new planting as part of the garden's lived history: familiar, flowering and generous.</p>
+    <p class="lede">Around them, grasses, correas, banksias, everlasting daisies, goodenia, scaevola, bulbine, chocolate lily and native violet bring movement, colour and habitat through every season.</p>
+    <div class="character">Character — <span>open · flowering · generous · textural · slightly expressive</span></div>
+  </section>
+
+  <!-- 07 FRONT PALETTE I -->
+  <section class="slide light">
+    <div class="eyebrow">Pocket 01 · Planting palette — shrubs &amp; feature flowers</div>
+    <h2 style="max-width:26ch;">A resilient, bird-friendly edge for the street.</h2>
+    <div class="palette cols-4">
+      <div class="p" style="--c:#c9a24a"><b>Banksia ‘Birthday Candles’</b><span>Hairpin Banksia · Au–Sp · 3m</span></div>
+      <div class="p" style="--c:#8d86b8"><b>Banksia plagiocarpa</b><span>Hinchinbrook Banksia · Su–Wi · 4m</span></div>
+      <div class="p" style="--c:#d98a7e"><b>Grevillea ‘Elegance’</b><span>Grevillea · Wi–Sp · 3m</span></div>
+      <div class="p" style="--c:#f2ead8"><b>Correa alba</b><span>White Correa · Au–Wi · 1.5m</span></div>
+      <div class="p" style="--c:#9b84c4"><b>Eremophila nivea</b><span>Silky Emu Bush · Sp–Wi · 2m</span></div>
+      <div class="p" style="--c:#e3c14e"><b>Acacia acinacea</b><span>Gold Dust Wattle · Sp · 2m</span></div>
+      <div class="p" style="--c:#e3c14e"><b>Goodia lotifolia</b><span>Golden Tip · Sp–Su · to 4m</span></div>
+      <div class="p" style="--c:#f2ead8"><b>Westringia ‘Smokey’</b><span>Coastal Rosemary · Sp · 0.5m</span></div>
+      <div class="p" style="--c:#c9832e"><b>Anigozanthos ‘Landscape Gold’</b><span>Kangaroo Paw · Sp–Au · 0.5m</span></div>
+      <div class="p" style="--c:#e3c14e"><b>Chrysocephalum apiculatum</b><span>Common Everlasting · Sp–Su · 0.3m</span></div>
+      <div class="p" style="--c:#e3c14e"><b>Chrysocephalum semipapposum</b><span>Clustered Everlasting · Sp–Su · 0.5m</span></div>
+      <div class="p" style="--c:#e3c14e"><b>Xerochrysum ‘Dargan Hill Monarch’</b><span>Everlasting Daisy · Sp–Au · 0.8m</span></div>
+      <div class="p" style="--c:#a84a41"><b>Xerochrysum ‘Crimson’</b><span>Strawflower · Sp–Au · 0.5m</span></div>
+      <div class="p" style="--c:#e3a44e"><b>Xerochrysum viscosum</b><span>Sticky Everlasting · Sp–Au · 0.8m</span></div>
+      <div class="p" style="--c:#b18cc4"><b>Brachyscome ‘Mauve Bliss’</b><span>Swan River Daisy · Sp–Au · 0.45m</span></div>
+      <div class="p" style="--c:#8b6aa8"><b>Arthropodium strictum</b><span>Chocolate Lily · Sp–Su · 0.3m</span></div>
+    </div>
+  </section>
+
+  <!-- 08 FRONT PALETTE II -->
+  <section class="slide light">
+    <div class="eyebrow">Pocket 01 · Planting palette — groundcovers &amp; grasses</div>
+    <h2 style="max-width:26ch;">The living layer beneath.</h2>
+    <div class="palette cols-4">
+      <div class="p" style="--c:#e3c14e"><b>Bulbine bulbosa</b><span>Native Leek · Sp–Au · 0.7m</span></div>
+      <div class="p" style="--c:#7d94c4"><b>Linum marginale</b><span>Native Flax · Sp–Su · 0.6m</span></div>
+      <div class="p" style="--c:#4f66a8"><b>Dampiera diversifolia</b><span>Dampiera · Sp–Su · 0.4m</span></div>
+      <div class="p" style="--c:#b18cc4"><b>Scaevola ‘Mauve Clusters’</b><span>Fan Flower · Wi · mat</span></div>
+      <div class="p" style="--c:#8b6aa8"><b>Viola hederacea</b><span>Native Violet · Sp–Su · mat</span></div>
+      <div class="p" style="--c:#a84a41"><b>Kennedia prostrata</b><span>Running Postman · Wi–Su · mat</span></div>
+      <div class="p" style="--c:#8b6aa8"><b>Hardenbergia ‘Meema’</b><span>Native Sarsaparilla · Wi–Sp · mat</span></div>
+      <div class="p" style="--c:#e3c14e"><b>Goodenia ovata</b><span>Hop Goodenia · all year · mat</span></div>
+      <div class="p" style="--c:#f2ead8"><b>Calocephalus lacteus</b><span>Milky Beauty-heads · Sp–Su · mat</span></div>
+      <div class="p" style="--c:#6f7d5f"><b>Casuarina ‘Cousin It’</b><span>Prostrate She-oak · foliage · mat</span></div>
+      <div class="p" style="--c:#6f7d5f"><b>Themeda ‘True Blue’</b><span>Kangaroo Grass · Sp–Su · 0.7m</span></div>
+      <div class="p" style="--c:#6f7d5f"><b>Poa labillardierei + ‘Eskdale’</b><span>Common Tussock-Grass · Sp–Su · 0.6–1.2m</span></div>
+      <div class="p" style="--c:#f2ead8"><b>Austrostipa elegantissima</b><span>Feather Spear Grass · Sp–Su · 1.5m</span></div>
+      <div class="p" style="--c:#6f7d5f"><b>Dichelachne crinata</b><span>Longhair Plume Grass · Sp–Su · 1.5m</span></div>
+      <div class="p" style="--c:#6f7d5f"><b>Lomandra ‘Little Pal’</b><span>Mat-Rush · foliage · 0.7m</span></div>
+    </div>
+  </section>
+
+  <!-- 09 PORCH -->
+  <section class="slide dark">
+    <div class="split">
+      <div>
+        <div class="eyebrow">Pocket 02 · The porch</div>
+        <h2>A soft planted threshold.</h2>
+        <p class="lede">The daily arrival space — connected to the house, the brick path and the grapevine. The vine remains the seasonal feature, glowing in autumn, while the planting beneath settles into a calm native layer through the year — generous but not overgrown; soft, but still intentional.</p>
+        <div class="character">Character — <span>calm · intimate · soft · low · textural · welcoming</span></div>
+      </div>
+      <div>
+        <div class="palette cols-2">
+          <div class="p" style="--c:#f2ead8"><b>Philotheca ‘Winter Rouge’</b><span>Long Leaf Waxflower · Wi–Sp</span></div>
+          <div class="p" style="--c:#f2ead8"><b>Correa alba</b><span>White Correa · Au–Wi</span></div>
+          <div class="p" style="--c:#e3c14e"><b>Pultenaea daphnoides</b><span>Large Leaf Bush Pea · Sp</span></div>
+          <div class="p" style="--c:#a84a41"><b>Einadia nutans</b><span>Nodding Saltbush · Sp–Su</span></div>
+          <div class="p" style="--c:#f2ead8"><b>Dichondra repens</b><span>Kidneyweed · groundcover</span></div>
+          <div class="p" style="--c:#8b6aa8"><b>Viola hederacea</b><span>Native Violet · Sp–Su</span></div>
+          <div class="p" style="--c:#6a7ab8"><b>Ajuga australis</b><span>Australian Bugle · Sp–Su</span></div>
+          <div class="p" style="--c:#8b6aa8"><b>Arthropodium strictum</b><span>Chocolate Lily · Sp–Su</span></div>
+          <div class="p" style="--c:#7d94c4"><b>Wahlenbergia stricta</b><span>Tall Bluebell · Sp–Su</span></div>
+          <div class="p" style="--c:#e3c14e"><b>Goodenia ovata</b><span>Hop Goodenia · all year</span></div>
+          <div class="p" style="--c:#f2ead8"><b>Scaevola albida</b><span>White Carpet Fan Flower · Sp–Au</span></div>
+          <div class="p" style="--c:#b18cc4"><b>Brachyscome ‘Mauve Bliss’</b><span>Swan River Daisy · Sp–Au</span></div>
+          <div class="p" style="--c:#6f7d5f"><b>Poa ‘Eskdale’</b><span>Tussock-Grass · Sp–Su</span></div>
+          <div class="p" style="--c:#e3c14e"><b>Lomandra filiformis</b><span>Wattle Mat-Rush · Sp</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 REAR -->
+  <section class="slide light">
+    <div class="split">
+      <div>
+        <div class="eyebrow">Pocket 03 · The rear garden</div>
+        <h2>A shaded habitat refuge.</h2>
+        <p class="lede">The quietest part of the design. The rear garden already has a sheltered, ferny quality — we strengthen it with layered planting around the birdbath, which stays at the centre, offering cover, texture and gentle seasonal flowers in white, mauve and soft purple. Where the front opens outward, the rear turns inward.</p>
+        <div class="character">Character — <span>sheltered · green · layered · bird-friendly · calm · slightly wild, still gardened</span></div>
+      </div>
+      <div>
+        <div class="palette cols-2">
+          <div class="p" style="--c:#9b84c4"><b>Prostanthera sieberi</b><span>Mint Bush · Sp–Su</span></div>
+          <div class="p" style="--c:#f2c4cf"><b>Leptospermum continentale</b><span>Prickly Tea-tree · Sp–Su</span></div>
+          <div class="p" style="--c:#f2ead8"><b>Correa glabra</b><span>Ivory Lantern Rock Correa · Au–Wi</span></div>
+          <div class="p" style="--c:#f2ead8"><b>Olearia lirata</b><span>Snowy Daisy Bush · Sp–Su</span></div>
+          <div class="p" style="--c:#b18cc4"><b>Indigofera australis</b><span>Austral Indigo · Sp</span></div>
+          <div class="p" style="--c:#f2ead8"><b>Myoporum floribundum</b><span>Weeping Boobialla · Sp–Su</span></div>
+          <div class="p" style="--c:#9b84c4"><b>Westringia ‘Wynyabbie Gem’</b><span>Coastal Rosemary · Wi–Sp</span></div>
+          <div class="p" style="--c:#a84a41"><b>Coprosma quadrifida</b><span>Prickly Currant-bush · Sp–Su</span></div>
+          <div class="p" style="--c:#8b6aa8"><b>Viola hederacea</b><span>Native Violet · Sp–Su</span></div>
+          <div class="p" style="--c:#a84a41"><b>Kennedia prostrata</b><span>Running Postman · Wi–Su</span></div>
+          <div class="p" style="--c:#6f7d5f"><b>Poa clivicola ‘Mountain Blue’</b><span>Fine Leaf Snowgrass · Su</span></div>
+          <div class="p" style="--c:#f2ead8"><b>Lomandra ‘Frosty Tops’</b><span>Mat-Rush · Sp</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 SEASONS -->
+  <section class="slide light">
+    <div class="eyebrow">The year in flower</div>
+    <h2>Something in bloom, every season.</h2>
+    <div class="seasons">
+      <div class="season"><h4>Spring</h4><p>Wattle gold, chocolate lily, everlastings, bluebells, austral indigo and the garden at full voice.</p></div>
+      <div class="season"><h4>Summer</h4><p>Tussock grasses in plume, kangaroo paw, fan flowers, native flax and daisies carrying the heat.</p></div>
+      <div class="season"><h4>Autumn</h4><p>The grapevine turns; white correa and banksia candles begin as the garden softens.</p></div>
+      <div class="season"><h4>Winter</h4><p>Correa bells, hardenbergia, running postman and waxflower — quiet colour and nectar for the birds.</p></div>
+    </div>
+    <p class="lede" style="margin-top:2.6vh;">A continuous nectar calendar means the garden never falls silent — honeyeaters, butterflies and native bees have a reason to visit in every month of the year. A full flowering calendar and plant list come with this proposal as A3 prints.</p>
+  </section>
+
+  <!-- 12 REGISTRY -->
+  <section class="slide dark">
+    <svg class="rings" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="105"/><circle cx="200" cy="200" r="150"/><circle cx="200" cy="200" r="195"/></svg>
+    <div class="eyebrow">The Ecological Registry</div>
+    <h2>A garden that counts.</h2>
+    <p class="lede">Once planted, Lynette's garden can be enrolled in the Ecological Registry — documented, scored and verified as a Registered Ecological Garden, with its own Registry ID and a record that grows with the garden.</p>
+    <div class="features">
+      <div class="feature"><h3>Documented</h3><p>The planting, soil and habitat features are recorded — a living archive of the garden from day one.</p></div>
+      <div class="feature"><h3>Verified</h3><p>Scored across five ecological pillars, from biodiversity structure to habitat complexity and connectivity.</p></div>
+      <div class="feature"><h3>Connected</h3><p>One garden joins a growing network of verified habitat gardens across Melbourne's east — each a stepping stone for birds, insects and life moving through the suburbs.</p></div>
+    </div>
+    <div class="badge">ecologicalregistry.org</div>
+  </section>
+
+  <!-- 13 TEND -->
+  <section class="slide light">
+    <svg class="botanical" style="right:7vw;bottom:9vh;width:18vw;" viewBox="0 0 200 240" aria-hidden="true">
+      <path d="M100 10 C 100 50, 98 80, 96 108"/>
+      <path d="M96 108 C 96 118, 92 126, 86 132 C 84 148, 88 160, 96 166 C 104 160, 108 148, 106 132 C 100 126, 96 118, 96 108 Z" class="brass"/>
+      <path d="M90 166 L 88 178"/><path d="M96 168 L 96 182"/><path d="M102 166 L 104 178"/>
+      <path d="M98 60 C 122 58, 138 44, 140 26"/><path d="M98 84 C 74 82, 58 68, 56 50"/>
+      <ellipse cx="146" cy="24" rx="14" ry="7" transform="rotate(-32 146 24)"/>
+      <ellipse cx="50" cy="48" rx="14" ry="7" transform="rotate(28 50 48)"/>
+    </svg>
+    <div class="eyebrow">Tend · Garden stewardship</div>
+    <h2>Care that continues.</h2>
+    <p class="lede">A new garden is most vulnerable in its first season. Tend is our stewardship subscription — seasonal visits from the people who designed and planted the garden, keeping it establishing, flowering and healthy as it matures.</p>
+    <div class="features">
+      <div class="feature"><h3>Six weeks in — on us</h3><p>Your first Tend visit, six weeks after planting, is complimentary: establishment check, watering review, mulch top-up and any early adjustments.</p></div>
+      <div class="feature"><h3>Seasonal care</h3><p>Pruning, cutting back grasses, plant health and gentle editing — timed to the garden's rhythm, not a mowing schedule.</p></div>
+      <div class="feature"><h3>A garden that improves</h3><p>Each visit builds the garden's Registry record, so its ecological story is kept as carefully as the garden itself.</p></div>
+    </div>
+  </section>
+
+  <!-- 14 CLOSE -->
+  <section class="slide dark">
+    <svg class="rings" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="105"/><circle cx="200" cy="200" r="150"/><circle cx="200" cy="200" r="195"/></svg>
+    <div class="eyebrow">Next steps</div>
+    <h1 style="font-size:clamp(38px,8vh,92px);">A garden renewed, slowly.</h1>
+    <p class="lede">From here: we confirm the palette together, prepare the soil and mulch layer, and plant into the cooler months so everything settles in before summer. The roses, the vine, the birdbath — all stay. Everything new grows around what you already love.</p>
+    <p class="lede" style="font-family:var(--mono);font-size:clamp(10px,1.4vh,12px);letter-spacing:.14em;text-transform:uppercase;margin-top:3vh;">Gardener &amp; Son · Ecological Design Studio · Mont Albert &amp; Hawthorn</p>
+    <div class="accent-bar"></div>
+  </section>
+
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const counter=document.getElementById('counter');
+  const progress=document.getElementById('progress');
+  let i=0;
+  function render(){
+    slides.forEach((s,n)=>s.classList.toggle('active',n===i));
+    counter.textContent=String(i+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+    progress.style.width=((i+1)/slides.length*100)+'%';
+  }
+  function step(d){i=Math.min(slides.length-1,Math.max(0,i+d));render();}
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')step(1);
+    if(e.key==='ArrowLeft'||e.key==='PageUp')step(-1);
+    if(e.key==='Home'){i=0;render();}
+    if(e.key==='End'){i=slides.length-1;render();}
+    if(e.key==='f'||e.key==='F'){document.documentElement.requestFullscreen?.();}
+  });
+  let tx=null;
+  document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>50)step(dx<0?1:-1);
+    tx=null;
+  },{passive:true});
+  render();
+</script>
+</body>
+</html>
