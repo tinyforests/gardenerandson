@@ -31,7 +31,8 @@
       --green:        #3d4535;
       --beige:        #fff0dc;
       --accent:       #B49A63;
-      --clay:         #9A6A4F;
+      --signal-green: #7C9A52;
+      --signal-green-hover: #6A8544;
       --green-subtle: #465040;
       --green-deep:   #2a2f25;
 
@@ -128,7 +129,7 @@
       background-color: var(--beige);
       color: var(--green);
     }
-    .section.light .hero-title em { color: var(--clay); }
+    .section.light .hero-title em { color: var(--signal-green); }
 
     /* Hero snaps too */
     #top { scroll-snap-align: start; scroll-snap-stop: always; }
@@ -275,7 +276,7 @@
     .hero-eyebrow::before { content: ''; display: block; width: 2.5rem; height: 2px; background: var(--accent); opacity: 1; flex-shrink: 0; }
 
     .hero-title { font-family: var(--font-hero); font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
-    .hero-title em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--clay); }
+    .hero-title em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--signal-green); }
     .hero-body { max-width: 52ch; font-size: clamp(0.875rem, 1.1vw, 0.9375rem); line-height: 1.75; font-weight: 300; opacity: 0.72; margin-bottom: 2rem; }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.875rem; align-items: center; }
 
@@ -610,7 +611,7 @@
     @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } .footer-brand { grid-column: 1 / -1; } }
     .footer-brand-name { font-family: var(--font-serif); font-size: 1.125rem; margin-bottom: 0.75rem; }
     .footer-brand-desc { font-family: var(--font-serif); font-size: 0.9375rem; line-height: 1.6; opacity: 0.75; max-width: 30ch; font-weight: 300; letter-spacing: -0.005em; }
-    .footer-brand-desc em { font-style: italic; color: var(--clay); opacity: 1; }
+    .footer-brand-desc em { font-style: italic; color: var(--signal-green); opacity: 1; }
     .footer-brandbook-link {
       display: inline-block;
       margin-top: 1.25rem;
