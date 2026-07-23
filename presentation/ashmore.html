@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 Ashmore Road · Forest Hill — Gardener &amp; Son</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#3d4535;
+  --beige:#fff0dc;
+  --signal:#7C9A52;
+  --brass:#B49A63;
+  --green-deep:#333a2c;
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+html,body{height:100%;overflow:hidden;background:var(--green)}
+body{font-family:'IBM Plex Sans',sans-serif;color:var(--beige)}
+
+/* ---------- noise ---------- */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- deck machinery ---------- */
+.slide{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;padding:6vh 7vw;
+  opacity:0;visibility:hidden;transition:opacity .7s ease;
+}
+.slide.active{opacity:1;visibility:visible;z-index:2}
+.slide.light{background:var(--beige);color:var(--green)}
+.slide.dark{background:var(--green);color:var(--beige)}
+
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--brass);z-index:60;transition:width .5s ease}
+#counter{position:fixed;bottom:22px;right:28px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.15em;z-index:60;opacity:.65}
+.dark-counter{color:var(--beige)} .light-counter{color:var(--green)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:26px}
+.dark .eyebrow{color:var(--brass)}
+.light .eyebrow{color:var(--signal)}
+
+/* reveal */
+.rev{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.slide.active .rev{opacity:1;transform:none}
+.slide.active .rev:nth-child(2){transition-delay:.12s}
+.slide.active .rev:nth-child(3){transition-delay:.24s}
+.slide.active .rev:nth-child(4){transition-delay:.36s}
+.slide.active .rev:nth-child(5){transition-delay:.48s}
+@media (prefers-reduced-motion:reduce){
+  .rev,.slide{transition:none}
+}
+
+/* ---------- circles motif ---------- */
+.circles{position:absolute;pointer-events:none;opacity:.14}
+.circles svg{width:100%;height:100%}
+.circles circle{fill:none;stroke:currentColor;stroke-width:1}
+
+/* ---------- cover ---------- */
+.cover h1{font-family:'Abril Fatface',serif;font-size:clamp(44px,7.4vw,108px);line-height:1.02;text-align:center;font-weight:400}
+.cover h1 em{font-style:normal;color:var(--brass)}
+.cover .sub{margin-top:34px;font-family:'Fraunces',serif;font-style:italic;font-size:clamp(17px,1.6vw,23px);opacity:.85;text-align:center}
+.cover .brandline{margin-top:56px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass)}
+
+/* ---------- country ---------- */
+.country p{font-family:'Fraunces',serif;font-size:clamp(20px,2.3vw,32px);line-height:1.55;max-width:880px;text-align:center;font-weight:300}
+.country p strong{font-weight:600}
+
+/* ---------- statement ---------- */
+.statement p{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(22px,2.7vw,40px);line-height:1.45;max-width:1000px;text-align:center}
+.statement p em{font-style:italic;color:var(--signal)}
+.dark .statement-note{margin-top:36px}
+.statement-note{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-top:36px}
+
+/* ---------- section marker ---------- */
+.marker h2{font-family:'Abril Fatface',serif;font-size:clamp(38px,6vw,88px);font-weight:400;text-align:center;line-height:1.05}
+.marker p{margin-top:26px;font-family:'Fraunces',serif;font-style:italic;font-size:clamp(16px,1.6vw,22px);opacity:.8;text-align:center;max-width:760px}
+
+/* ---------- zone slides ---------- */
+.zone{flex-direction:row;gap:0;padding:0;align-items:stretch;justify-content:flex-start}
+.zone .media{flex:0 0 46%;position:relative;overflow:hidden;background:var(--green-deep)}
+.zone.light .media{background:#f4e4cc}
+.zone .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.zone .media img[data-missing]{display:none}
+.zone .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;color:var(--brass);opacity:.5}
+.zone .fallback svg{width:64%;max-width:520px}
+.zone .fallback circle{fill:none;stroke:currentColor;stroke-width:1}
+.zone .body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:6vh 5vw;min-width:0}
+.zone .znum{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:18px}
+.zone.dark .znum{color:var(--brass)} .zone.light .znum{color:var(--signal)}
+.zone h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(26px,2.8vw,42px);line-height:1.12;margin-bottom:20px}
+.zone .desc{font-size:clamp(14px,1.15vw,17px);line-height:1.62;font-weight:300;max-width:620px;margin-bottom:26px}
+.zone .plants-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.6;margin-bottom:12px}
+.plantlist{display:grid;grid-template-columns:1fr 1fr;gap:7px 34px;max-width:720px}
+.plantlist li{list-style:none;font-size:12.5px;line-height:1.45;padding-left:14px;position:relative;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.plantlist .names{min-width:0}
+.plantlist .season{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;white-space:nowrap;opacity:.62;text-align:right}
+.plantlist li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border:1px solid var(--brass)}
+.plantlist .bot{font-family:'IBM Plex Mono',monospace;font-size:11.5px;display:block}
+.zone.dark .plantlist .bot{color:var(--brass)}
+.zone.light .plantlist .bot{color:var(--signal)}
+.plantlist .com{opacity:.8}
+
+/* ---------- ecology table ---------- */
+.ecotable{width:min(1100px,90vw);border-collapse:collapse}
+.ecotable th{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-align:left;padding:0 18px 14px 0;color:var(--brass);border-bottom:1px solid rgba(255,240,220,.25)}
+.ecotable td{padding:14px 18px 14px 0;font-size:13.5px;line-height:1.5;font-weight:300;border-bottom:1px solid rgba(255,240,220,.12);vertical-align:top}
+.ecotable td:first-child{font-family:'Fraunces',serif;font-weight:500;font-size:15px;white-space:nowrap}
+.ecotable .score{font-family:'IBM Plex Mono',monospace;color:var(--brass);white-space:nowrap}
+
+/* ---------- seasons ---------- */
+.seasons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(61,69,53,.2);width:min(1060px,88vw)}
+.seasons .cell{background:var(--beige);padding:30px 32px;border-top:3px solid var(--signal)}
+.seasons h3{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin-bottom:8px}
+.seasons p{font-size:13.5px;line-height:1.55;font-weight:300}
+.seasons .bot-inline{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--signal)}
+
+/* ---------- actions ---------- */
+.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 40px;width:min(1000px,86vw);counter-reset:act}
+.actions li{list-style:none;font-size:clamp(13.5px,1.1vw,16px);line-height:1.55;font-weight:300;padding-left:52px;position:relative;counter-increment:act;padding-top:2px;min-height:44px}
+.actions li::before{content:counter(act,decimal-leading-zero);position:absolute;left:0;top:0;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--brass);border:1px solid var(--brass);width:34px;height:34px;display:flex;align-items:center;justify-content:center}
+
+/* ---------- registry ---------- */
+.registry h2{font-family:'Abril Fatface',serif;font-weight:400;font-size:clamp(30px,4.4vw,62px);text-align:center;line-height:1.1;max-width:960px}
+.registry p{margin-top:28px;font-family:'Fraunces',serif;font-size:clamp(15px,1.5vw,20px);font-weight:300;line-height:1.6;max-width:760px;text-align:center;opacity:.9}
+.registry .url{margin-top:34px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.18em;color:var(--brass)}
+
+/* ---------- closing ---------- */
+.closing h2{font-family:'Abril Fatface',serif;font-weight:400;font-size:clamp(34px,5vw,72px);text-align:center}
+.closing h2 em{font-style:normal;color:var(--brass)}
+.studios{margin-top:52px;display:flex;gap:80px}
+.studios div{text-align:center}
+.studios .loc{font-family:'Fraunces',serif;font-size:19px;font-weight:500;margin-bottom:6px}
+.studios .addr{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;opacity:.7}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .zone{flex-direction:column}
+  .zone .media{flex:0 0 34vh}
+  .zone .body{padding:4vh 7vw;overflow-y:auto}
+  .plantlist{grid-template-columns:1fr}
+  .seasons{grid-template-columns:1fr}
+  .actions{grid-template-columns:1fr}
+  .studios{flex-direction:column;gap:28px}
+  .ecotable td:nth-child(3){display:none}
+  .ecotable th:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="counter"></div>
+
+<!-- 1 · Cover -->
+<section class="slide dark cover active">
+  <div class="circles" style="width:74vmin;height:74vmin">
+    <svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="70"/><circle cx="300" cy="300" r="150"/><circle cx="300" cy="300" r="225"/><circle cx="300" cy="300" r="298"/></svg>
+  </div>
+  <div class="eyebrow rev">A Garden Proposal</div>
+  <h1 class="rev">7 Ashmore Road<br><em>Forest Hill</em></h1>
+  <div class="sub rev">Prepared for Kate McWilliam</div>
+  <div class="brandline rev">Gardener &amp; Son · Ecological Design Studio</div>
+</section>
+
+<!-- 2 · Country -->
+<section class="slide light country">
+  <div class="eyebrow rev">Country</div>
+  <p class="rev">This garden sits on the unceded lands of the <strong>Wurundjeri Woi-wurrung people</strong> of the Kulin Nation. We acknowledge their Elders past and present, and their continuing care for Country. This design seeks to return locally indigenous plants — and the life they carry — to this small piece of it.</p>
+</section>
+
+<!-- 3 · The proposal -->
+<section class="slide dark statement">
+  <div class="eyebrow rev">The Proposal</div>
+  <p class="rev">A layered indigenous garden that <em>retains the established canopy</em> and existing circulation while renewing the lower planting — strengthening habitat for small birds and pollinators, bringing seasonal colour and foliage contrast, and staying practical for <em>gradual, owner-led installation</em>.</p>
+  <div class="statement-note rev">Five connected beds · One front garden</div>
+</section>
+
+<!-- 4 · Site ecology -->
+<section class="slide light statement">
+  <div class="eyebrow rev">Site Ecology</div>
+  <p class="rev">Find My Ecological Garden identifies this site as <em>Valley Heathy Forest</em> — a low eucalypt forest of boxes and stringybarks over a dense heathy understorey of peas, cassinias and small shrubs, woven through with wallaby-grasses, sedges and seasonal herbs.</p>
+  <div class="statement-note rev">Design response · Keep the canopy, rebuild the missing lower layers</div>
+</section>
+
+<!-- 5 · Section marker -->
+<section class="slide dark marker">
+  <div class="eyebrow rev">The Design</div>
+  <h2 class="rev">Five gardens,<br>one woodland floor</h2>
+  <p class="rev">Each bed has its own light, its own character and its own work to do — connected by repeated species into a single continuous habitat.</p>
+</section>
+
+<!-- 6 · Zone 1 -->
+<section class="slide dark zone">
+  <div class="media">
+    <img data-drive="1slTuhyQJ5jGbXlOEn57BVnBlZH8lXsoQ" alt="Zone 1 — continuous front woodland and habitat bed">
+    <div class="fallback"><svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="60"/><circle cx="300" cy="300" r="140"/><circle cx="300" cy="300" r="220"/><circle cx="300" cy="300" r="299"/></svg></div>
+  </div>
+  <div class="body">
+    <div class="znum rev">Zone 01 · The Habitat Backbone</div>
+    <h2 class="rev">Continuous Front Woodland &amp; Habitat Bed</h2>
+    <p class="desc rev">The principal bed runs from the street along the driveway and through the established Banksia. Mature trees hold the canopy; new planting builds a continuous woodland floor — taller habitat shrubs deep in the bed, dense small-bird cover around the Banksia, and low grasses, flowering forbs and groundcovers beside the driveway and footpath.</p>
+    <div class="plants-label rev">Planting Palette · Flowering</div>
+    <ul class="plantlist rev">
+      <li><span class="names"><span class="bot">Bursaria spinosa</span><span class="com">Sweet Bursaria</span></span><span class="season">Summer</span></li>
+      <li><span class="names"><span class="bot">Coprosma quadrifida</span><span class="com">Prickly Currant-bush</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Olearia lirata</span><span class="com">Snowy Daisy Bush</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Indigofera australis</span><span class="com">Austral Indigo</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Acacia acinacea</span><span class="com">Gold Dust Wattle</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Banksia spinulosa ‘Birthday Candles’</span><span class="com">Hairpin Banksia</span></span><span class="season">Autumn–Spring</span></li>
+      <li><span class="names"><span class="bot">Correa ‘Dusky Bells’</span><span class="com">Correa</span></span><span class="season">All year</span></li>
+      <li><span class="names"><span class="bot">Goodenia ovata</span><span class="com">Hop Goodenia</span></span><span class="season">All year</span></li>
+      <li><span class="names"><span class="bot">Poa labillardierei</span><span class="com">Common Tussock-grass</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Dichelachne crinita</span><span class="com">Longhair Plume Grass</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Lomandra filiformis</span><span class="com">Wattle Mat-rush</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Wahlenbergia stricta</span><span class="com">Tall Bluebell</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Chrysocephalum apiculatum</span><span class="com">Common Everlasting</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Einadia nutans</span><span class="com">Nodding Saltbush</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Bossiaea prostrata</span><span class="com">Creeping Bossiaea</span></span><span class="season">Spring</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7 · Zone 2 -->
+<section class="slide light zone">
+  <div class="media">
+    <img data-drive="11UP1XZGR6EAWDeEymiMlo6Ww8v9yGqsf" alt="Zone 2 — northern perimeter woodland bed">
+    <div class="fallback"><svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="60"/><circle cx="300" cy="300" r="140"/><circle cx="300" cy="300" r="220"/><circle cx="300" cy="300" r="299"/></svg></div>
+  </div>
+  <div class="body">
+    <div class="znum rev">Zone 02 · The Cool Edge</div>
+    <h2 class="rev">Northern Perimeter Woodland Bed</h2>
+    <p class="desc rev">A sheltered bed beneath established canopy along the northern boundary — dappled light, cool and enclosed. The non-native lower layer is removed and replaced with indigenous shrubs, strappy plants and spreading groundcovers. Low planting softens the gravel path edge; taller shrubs sit deeper beneath the canopy. Green, calm, woodland-like.</p>
+    <div class="plants-label rev">Planting Palette · Flowering</div>
+    <ul class="plantlist rev">
+      <li><span class="names"><span class="bot">Olearia lirata</span><span class="com">Snowy Daisy Bush</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Indigofera australis</span><span class="com">Austral Indigo</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Prostanthera sieberi</span><span class="com">Victorian Mintbush</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Philotheca ‘Winter Rouge’</span><span class="com">Long-leaf Waxflower</span></span><span class="season">Winter–Spring</span></li>
+      <li><span class="names"><span class="bot">Correa ‘Dusky Bells’</span><span class="com">Correa</span></span><span class="season">All year</span></li>
+      <li><span class="names"><span class="bot">Pimelea humilis</span><span class="com">Common Rice-flower</span></span><span class="season">—</span></li>
+      <li><span class="names"><span class="bot">Goodenia ovata</span><span class="com">Hop Goodenia</span></span><span class="season">All year</span></li>
+      <li><span class="names"><span class="bot">Poa morrisii</span><span class="com">Soft Tussock-grass</span></span><span class="season">—</span></li>
+      <li><span class="names"><span class="bot">Dianella longifolia</span><span class="com">Pale Flax-lily</span></span><span class="season">Autumn–Spring, Summer</span></li>
+      <li><span class="names"><span class="bot">Lomandra filiformis</span><span class="com">Wattle Mat-rush</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Bossiaea prostrata</span><span class="com">Creeping Bossiaea</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Viola hederacea</span><span class="com">Native Violet</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Dichondra repens</span><span class="com">Kidney Weed</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Ajuga australis</span><span class="com">Austral Bugle</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Wahlenbergia stricta</span><span class="com">Tall Bluebell</span></span><span class="season">Spring–Summer</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8 · Zone 3 -->
+<section class="slide dark zone">
+  <div class="media">
+    <img data-drive="1hwoy5ZwXBbUH0I00yr8L4yCHNrmmAZmE" alt="Zone 3 — southern perimeter meadow bed">
+    <div class="fallback"><svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="60"/><circle cx="300" cy="300" r="140"/><circle cx="300" cy="300" r="220"/><circle cx="300" cy="300" r="299"/></svg></div>
+  </div>
+  <div class="body">
+    <div class="znum rev">Zone 03 · The Wild Meadow</div>
+    <h2 class="rev">Southern Perimeter Meadow Bed</h2>
+    <p class="desc rev">The narrow bed south of the driveway is the brightest, most exposed ground — home to the garden's strongest wild-meadow expression. Fine indigenous grasses, flowering forbs and low spreading plants bring movement and seasonal colour, graduating upward from the driveway edge to keep vehicle and fence access clear.</p>
+    <div class="plants-label rev">Planting Palette · Flowering</div>
+    <ul class="plantlist rev">
+      <li><span class="names"><span class="bot">Themeda triandra</span><span class="com">Kangaroo Grass</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Austrostipa elegantissima</span><span class="com">Feather Spear-grass</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Poa labillardierei</span><span class="com">Common Tussock-grass</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Dichelachne crinita</span><span class="com">Longhair Plume Grass</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Lomandra filiformis</span><span class="com">Wattle Mat-rush</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Dianella longifolia</span><span class="com">Pale Flax-lily</span></span><span class="season">Autumn–Spring, Summer</span></li>
+      <li><span class="names"><span class="bot">Leptorhynchos tenuifolius</span><span class="com">Wiry Buttons</span></span><span class="season">Summer</span></li>
+      <li><span class="names"><span class="bot">Wahlenbergia stricta</span><span class="com">Tall Bluebell</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Chrysocephalum apiculatum</span><span class="com">Common Everlasting</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Olearia ‘Ghost Town’</span><span class="com">Woolly Daisy Bush</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Correa alba</span><span class="com">White Correa</span></span><span class="season">Autumn–Winter</span></li>
+      <li><span class="names"><span class="bot">Brachyscome ‘Mauve Bliss’</span><span class="com">Swan River Daisy</span></span><span class="season">Spring–Autumn</span></li>
+      <li><span class="names"><span class="bot">Scaevola albida</span><span class="com">White Carpet Fan-flower</span></span><span class="season">Spring–Autumn</span></li>
+      <li><span class="names"><span class="bot">Einadia nutans</span><span class="com">Nodding Saltbush</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Ajuga australis</span><span class="com">Austral Bugle</span></span><span class="season">Spring–Summer</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 9 · Zone 4 -->
+<section class="slide light zone">
+  <div class="media">
+    <img data-drive="1bZyW3KBe2lEoQLYJga_aHlAkKXvJIT1-" alt="Zone 4 — house-front flowering understorey">
+    <div class="fallback"><svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="60"/><circle cx="300" cy="300" r="140"/><circle cx="300" cy="300" r="220"/><circle cx="300" cy="300" r="299"/></svg></div>
+  </div>
+  <div class="body">
+    <div class="znum rev">Zone 04 · The House Edge</div>
+    <h2 class="rev">House-front Flowering Understorey</h2>
+    <p class="desc rev">The beds against the white-brick house become a colourful understorey for dappled shade. Planting stays low enough to keep windows, walls and access clear — compact shrubs for year-round structure, flowering ground layers bringing blue, mauve, white and yellow through the seasons, connecting the habitat garden to the architecture of the home.</p>
+    <div class="plants-label rev">Planting Palette · Flowering</div>
+    <ul class="plantlist rev">
+      <li><span class="names"><span class="bot">Philotheca ‘Winter Rouge’</span><span class="com">Long-leaf Waxflower</span></span><span class="season">Winter–Spring</span></li>
+      <li><span class="names"><span class="bot">Pimelea humilis</span><span class="com">Common Rice-flower</span></span><span class="season">—</span></li>
+      <li><span class="names"><span class="bot">Prostanthera sieberi</span><span class="com">Victorian Mintbush</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Indigofera australis</span><span class="com">Austral Indigo</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Correa ‘Dusky Bells’</span><span class="com">Correa</span></span><span class="season">All year</span></li>
+      <li><span class="names"><span class="bot">Olearia ‘Ghost Town’</span><span class="com">Woolly Daisy Bush</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Poa morrisii</span><span class="com">Soft Tussock-grass</span></span><span class="season">—</span></li>
+      <li><span class="names"><span class="bot">Lomandra filiformis</span><span class="com">Wattle Mat-rush</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Dianella longifolia</span><span class="com">Pale Flax-lily</span></span><span class="season">Autumn–Spring, Summer</span></li>
+      <li><span class="names"><span class="bot">Viola hederacea</span><span class="com">Native Violet</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Dichondra repens</span><span class="com">Kidney Weed</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Wahlenbergia stricta</span><span class="com">Tall Bluebell</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Brachyscome ‘Mauve Bliss’</span><span class="com">Swan River Daisy</span></span><span class="season">Spring–Autumn</span></li>
+      <li><span class="names"><span class="bot">Ajuga australis</span><span class="com">Austral Bugle</span></span><span class="season">Spring–Summer</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10 · Zone 5 -->
+<section class="slide dark zone">
+  <div class="media">
+    <img data-drive="1xytlRKj_LgY6wehm9y7GGgDFMDnKb5W9" alt="Zone 5 — arrival garden viewed from the pedestrian gate">
+    <div class="fallback"><svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="60"/><circle cx="300" cy="300" r="140"/><circle cx="300" cy="300" r="220"/><circle cx="300" cy="300" r="299"/></svg></div>
+  </div>
+  <div class="body">
+    <div class="znum rev">Zone 05 · The Welcome</div>
+    <h2 class="rev">Arrival Garden</h2>
+    <p class="desc rev">The enclosed garden between the pedestrian gate and front door is experienced on arrival and as an outlook from inside. A calm, intimate composition — strong year-round foliage, soft seasonal flowering, clear gravel circulation. Low, non-prickly, resilient plants beside paths and windows; taller planting toward the perimeter. Practical for the dog, visually joined to the woodland beyond.</p>
+    <div class="plants-label rev">Planting Palette · Flowering</div>
+    <ul class="plantlist rev">
+      <li><span class="names"><span class="bot">Correa alba</span><span class="com">White Correa</span></span><span class="season">Autumn–Winter</span></li>
+      <li><span class="names"><span class="bot">Correa ‘Dusky Bells’</span><span class="com">Correa</span></span><span class="season">All year</span></li>
+      <li><span class="names"><span class="bot">Philotheca ‘Winter Rouge’</span><span class="com">Long-leaf Waxflower</span></span><span class="season">Winter–Spring</span></li>
+      <li><span class="names"><span class="bot">Olearia ‘Ghost Town’</span><span class="com">Woolly Daisy Bush</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Lomandra filiformis</span><span class="com">Wattle Mat-rush</span></span><span class="season">Spring</span></li>
+      <li><span class="names"><span class="bot">Dianella longifolia</span><span class="com">Pale Flax-lily</span></span><span class="season">Autumn–Spring, Summer</span></li>
+      <li><span class="names"><span class="bot">Viola hederacea</span><span class="com">Native Violet</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Dichondra repens</span><span class="com">Kidney Weed</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Scaevola albida</span><span class="com">White Carpet Fan-flower</span></span><span class="season">Spring–Autumn</span></li>
+      <li><span class="names"><span class="bot">Brachyscome ‘Mauve Bliss’</span><span class="com">Swan River Daisy</span></span><span class="season">Spring–Autumn</span></li>
+      <li><span class="names"><span class="bot">Wahlenbergia stricta</span><span class="com">Tall Bluebell</span></span><span class="season">Spring–Summer</span></li>
+      <li><span class="names"><span class="bot">Ajuga australis</span><span class="com">Austral Bugle</span></span><span class="season">Spring–Summer</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 11 · Ecological function -->
+<section class="slide dark">
+  <div class="eyebrow rev">How the Five Beds Work Together</div>
+  <table class="ecotable rev">
+    <tr><th>Zone</th><th>Ecological role</th><th>Priority</th><th>Strength</th></tr>
+    <tr>
+      <td>01 · Front Woodland</td>
+      <td>Primary habitat backbone — shelter, nectar, seed, insect habitat and connected ground cover beneath the retained canopy.</td>
+      <td>Retain leaf litter and occasional open ground rather than covering every surface.</td>
+      <td class="score">9 / 10</td>
+    </tr>
+    <tr>
+      <td>02 · Northern Woodland</td>
+      <td>Cool, sheltered woodland edge for shade-tolerant invertebrates and small insect-eating birds.</td>
+      <td>Keep dense or prickly branching for safe bird refuge and potential nesting.</td>
+      <td class="score">8.5 / 10</td>
+    </tr>
+    <tr>
+      <td>03 · Southern Meadow</td>
+      <td>Pollinator and seed-producing meadow layer — seasonal flowers, grasses and movement in the brighter exposure.</td>
+      <td>Plant repeated colonies of grasses and forbs so it functions as a meadow, not isolated specimens.</td>
+      <td class="score">8 / 10</td>
+    </tr>
+    <tr>
+      <td>04 · House-front Understorey</td>
+      <td>Extends flowering continuity — nectar, aromatic foliage and low habitat close to the house.</td>
+      <td>Include evergreen density; retain selected stems and seedheads through their useful season.</td>
+      <td class="score">7.5 / 10</td>
+    </tr>
+    <tr>
+      <td>05 · Arrival Garden</td>
+      <td>An ecological stepping stone — nectar, berries, flowers and soil cover while keeping access and sightlines.</td>
+      <td>Robust, non-prickly planting beside dog and pedestrian routes; Zones 1–2 provide the secure refuge.</td>
+      <td class="score">7 / 10</td>
+    </tr>
+  </table>
+</section>
+
+<!-- 12 · A year of habitat -->
+<section class="slide light">
+  <div class="eyebrow rev">A Year of Habitat</div>
+  <div class="seasons rev">
+    <div class="cell"><h3>Winter nectar</h3><p><span class="bot-inline">Banksia · Correa · Philotheca</span> carry the garden's food supply through the cold months, when nectar is scarcest.</p></div>
+    <div class="cell"><h3>Spring abundance</h3><p><span class="bot-inline">Indigofera · Olearia · Wahlenbergia</span> and the flowering groundcovers bring the peak of colour and pollinator activity.</p></div>
+    <div class="cell"><h3>Summer resources</h3><p><span class="bot-inline">Sweet Bursaria</span> and the meadow flowers sustain insects and small birds through the dry season.</p></div>
+    <div class="cell"><h3>Fruit &amp; seed</h3><p><span class="bot-inline">Dianella</span>, the grasses and retained mature vegetation feed seed-eaters into autumn — with shelter concentrated in the layered woodland of Zones 1 and 2, and continuous lower planting linking all five beds.</p></div>
+  </div>
+</section>
+
+<!-- 13 · Habitat actions -->
+<section class="slide dark">
+  <div class="eyebrow rev">Habitat-building Actions</div>
+  <ol class="actions rev">
+    <li>Prioritise Forest Hill–local indigenous provenance when suitable stock is available.</li>
+    <li>Plant grasses, bluebells, herbs and groundcovers in repeated colonies.</li>
+    <li>Retain some leaf litter, seedheads, hollow stems and small areas of exposed soil.</li>
+    <li>Introduce selected logs and rocks for shelter and varied microclimates.</li>
+    <li>Provide a shallow, safely positioned water source.</li>
+    <li>Avoid insecticides and minimise unnecessary night lighting.</li>
+    <li>Maintain clear paths, driveway sightlines, fence access and dog-safe edges.</li>
+  </ol>
+</section>
+
+<!-- 14 · Tend -->
+<section class="slide light statement">
+  <div class="eyebrow rev">Tend · Stewardship by Subscription</div>
+  <p class="rev">A garden like this isn't finished at planting — it's <em>established</em> over seasons. Tend is our maintenance subscription: two of us in your garden, keeping the woodland floor thriving as it knits together.</p>
+  <div class="statement-note rev">Your garden includes a complimentary six-week follow-up visit</div>
+</section>
+
+<!-- 15 · Registry -->
+<section class="slide dark registry">
+  <div class="eyebrow rev">Once the Garden Is Growing</div>
+  <h2 class="rev">Every garden has an ecological score.</h2>
+  <p class="rev">Once planted and established, this garden can join the Ecological Registry — contributing to biodiversity mapping across Melbourne and connecting it with other ecological gardens nearby.</p>
+  <div class="url rev">ecologicalregistry.org</div>
+</section>
+
+<!-- 16 · Closing -->
+<section class="slide dark closing">
+  <div class="circles" style="width:70vmin;height:70vmin">
+    <svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="70"/><circle cx="300" cy="300" r="150"/><circle cx="300" cy="300" r="225"/><circle cx="300" cy="300" r="298"/></svg>
+  </div>
+  <h2 class="rev">Gardener <em>&amp;</em> Son</h2>
+  <div class="studios rev">
+    <div><div class="loc">Mont Albert</div><div class="addr">2 Churchill Street</div></div>
+    <div><div class="loc">Hawthorn</div><div class="addr">140 Auburn Road</div></div>
+  </div>
+</section>
+
+<script>
+// Zone visuals stream from Google Drive. Files must be shared "Anyone with the link".
+document.querySelectorAll('img[data-drive]').forEach(img=>{
+  const id=img.dataset.drive;
+  const urls=[
+    'https://lh3.googleusercontent.com/d/'+id+'=w2000',
+    'https://drive.google.com/thumbnail?id='+id+'&sz=w2000'
+  ];
+  let k=0;
+  img.addEventListener('error',()=>{
+    k++;
+    if(k<urls.length) img.src=urls[k];
+    else img.setAttribute('data-missing','');
+  });
+  img.src=urls[0];
+});
+
+const slides=[...document.querySelectorAll('.slide')];
+const progress=document.getElementById('progress');
+const counter=document.getElementById('counter');
+let i=0;
+
+function show(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[i].classList.remove('active');
+  i=n;
+  slides[i].classList.add('active');
+  progress.style.width=((i+1)/slides.length*100)+'%';
+  counter.textContent=String(i+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+  counter.className=slides[i].classList.contains('light')?'light-counter':'dark-counter';
+}
+show(0);
+
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();show(i+1)}
+  if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();show(i-1)}
+  if(e.key==='Home')show(0);
+  if(e.key==='End')show(slides.length-1);
+});
+addEventListener('click',e=>{
+  if(e.clientX>innerWidth*0.75)show(i+1);
+  else if(e.clientX<innerWidth*0.25)show(i-1);
+});
+let tx=null;
+addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+addEventListener('touchend',e=>{
+  if(tx===null)return;
+  const dx=e.changedTouches[0].clientX-tx;
+  if(dx<-50)show(i+1); if(dx>50)show(i-1);
+  tx=null;
+},{passive:true});
+</script>
+</body>
+</html>
