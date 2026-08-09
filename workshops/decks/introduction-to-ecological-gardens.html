@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 — Introduction to Ecological Gardens · Gardener &amp; Son</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#3d4535;
+  --beige:#fff0dc;
+  --signal:#7C9A52;
+  --brass:#B49A63;
+  --ink:#2A2F26;
+  --sand:#F4E2C8;
+  --display:'Abril Fatface', Georgia, serif;
+  --edit:'Fraunces', Georgia, serif;
+  --body:'IBM Plex Sans', system-ui, sans-serif;
+  --mono:'IBM Plex Mono', 'Courier New', monospace;
+  --pad:clamp(2.5rem, 5.5vw, 7rem);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#1b1f18}
+body{font-family:var(--body);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+/* ---------- deck mechanics ---------- */
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:var(--pad);
+  overflow:hidden;
+  opacity:0;visibility:hidden;
+  transform:scale(1.012);
+  transition:opacity .55s ease, transform .55s ease, visibility .55s;
+}
+.slide.active{opacity:1;visibility:visible;transform:scale(1)}
+.slide.dark{background:var(--green);color:var(--beige)}
+.slide.light{background:var(--beige);color:var(--ink)}
+
+/* noise */
+.slide::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:3;
+  opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+.slide > *{position:relative;z-index:2}
+
+/* concentric rings — the signature */
+.rings{position:absolute;pointer-events:none;z-index:1}
+.rings circle{fill:none;stroke-width:1;vector-effect:non-scaling-stroke}
+.dark .rings circle{stroke:var(--beige);opacity:.26}
+.light .rings circle{stroke:var(--green);opacity:.18}
+.slide.active .rings circle{
+  transform-origin:center;
+  animation:bloom 1.6s cubic-bezier(.16,.84,.44,1) both;
+}
+.slide.active .rings circle:nth-child(1){animation-delay:.10s}
+.slide.active .rings circle:nth-child(2){animation-delay:.22s}
+.slide.active .rings circle:nth-child(3){animation-delay:.34s}
+.slide.active .rings circle:nth-child(4){animation-delay:.46s}
+.slide.active .rings circle:nth-child(5){animation-delay:.58s}
+@keyframes bloom{from{transform:scale(.55);opacity:0}to{transform:scale(1)}}
+.datum{fill:var(--signal);stroke:none!important;animation:none!important}
+
+/* ---------- type ---------- */
+.eyebrow{
+  font-family:var(--mono);font-size:clamp(.62rem,.82vw,.95rem);
+  letter-spacing:.22em;text-transform:uppercase;
+}
+.dark .eyebrow{color:var(--signal)}
+.light .eyebrow{color:var(--brass)}
+
+h1{font-family:var(--display);font-weight:400;line-height:1.03;letter-spacing:-.005em;
+   font-size:clamp(2.6rem,6.4vw,6.4rem)}
+h2{font-family:var(--display);font-weight:400;line-height:1.08;
+   font-size:clamp(1.9rem,3.9vw,3.9rem);margin-bottom:.5em}
+.dark h2{color:var(--beige)}
+.light h2{color:var(--green)}
+h3{font-family:var(--display);font-weight:400;font-size:clamp(1.05rem,1.85vw,1.9rem);line-height:1.15}
+
+.lede{font-family:var(--edit);font-style:italic;font-weight:300;
+  font-size:clamp(1.15rem,2.35vw,2.5rem);line-height:1.32;max-width:22ch}
+.lede.wide{max-width:34ch}
+p.body{font-size:clamp(.95rem,1.28vw,1.45rem);line-height:1.6;max-width:46ch;font-weight:300}
+.mono{font-family:var(--mono);font-size:clamp(.7rem,.95vw,1.05rem);letter-spacing:.06em}
+
+.stack > * + *{margin-top:1.1rem}
+
+/* ---------- components ---------- */
+.agenda{display:flex;flex-direction:column;gap:clamp(.5rem,1.35vh,1.3rem);margin-top:clamp(1rem,3vh,2.5rem)}
+.agenda .row{display:grid;grid-template-columns:5.5rem 1fr;align-items:baseline;gap:1.5rem;
+  padding-bottom:clamp(.4rem,1vh,.9rem);border-bottom:1px solid rgba(61,69,53,.14)}
+.agenda .t{font-family:var(--mono);color:var(--brass);font-size:clamp(.75rem,1vw,1.1rem)}
+.agenda .s{font-size:clamp(.95rem,1.35vw,1.55rem);font-weight:400}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.2rem,3vw,3.5rem);align-items:stretch;
+  margin-top:clamp(1rem,3.5vh,3rem);min-height:0}
+.card{padding:clamp(1.2rem,2.4vw,2.6rem);display:flex;flex-direction:column;min-height:0}
+.card.sand{background:var(--sand)}
+.card.deep{background:var(--green);color:var(--beige)}
+.card.outline{background:transparent;border:1px solid rgba(61,69,53,.3)}
+.card h3{margin-bottom:.9em}
+.card.sand h3{color:var(--green)}
+.card.deep h3{color:var(--signal)}
+.card.outline h3{color:var(--green)}
+
+ul.marks{list-style:none;display:flex;flex-direction:column;gap:.62em}
+ul.marks li{position:relative;padding-left:1.35em;font-size:clamp(.88rem,1.18vw,1.32rem);
+  line-height:1.45;font-weight:300}
+ul.marks li::before{content:"—";position:absolute;left:0;opacity:.55}
+.card.deep ul.marks li::before{color:var(--signal);opacity:1}
+
+.layers{display:flex;flex-direction:column;gap:clamp(.4rem,1.2vh,1rem);margin-top:clamp(.8rem,2.5vh,2rem)}
+.layer{display:grid;grid-template-columns:minmax(9rem,15vw) 1fr;align-items:center;gap:clamp(1rem,2vw,2.2rem)}
+.layer .tag{background:var(--green);color:var(--beige);font-family:var(--display);
+  font-size:clamp(.82rem,1.25vw,1.4rem);padding:.72em .9em;line-height:1}
+.layer .txt{font-size:clamp(.85rem,1.14vw,1.28rem);font-weight:300;line-height:1.42}
+.layer .txt b{font-weight:500}
+
+.defs{display:flex;flex-direction:column;gap:clamp(1rem,3.2vh,2.6rem);margin-top:clamp(1rem,3vh,2.5rem)}
+.def{display:grid;grid-template-columns:minmax(8rem,16vw) 1fr;gap:clamp(1.2rem,3vw,3rem);align-items:baseline}
+.def h3{color:var(--signal)}
+.def p{font-size:clamp(.9rem,1.22vw,1.38rem);font-weight:300;line-height:1.5;max-width:52ch}
+
+.pathway{display:flex;flex-direction:column;margin-top:clamp(1rem,3vh,2.4rem)}
+.pathway .step{display:grid;grid-template-columns:3.2rem 1fr auto;align-items:baseline;gap:1.4rem;
+  padding:clamp(.55rem,1.5vh,1.15rem) 0;border-bottom:1px solid rgba(61,69,53,.16)}
+.pathway .n{font-family:var(--mono);color:var(--brass);font-size:clamp(.78rem,1vw,1.1rem)}
+.pathway .nm{font-family:var(--display);font-size:clamp(1rem,1.7vw,1.85rem);color:var(--green)}
+.pathway .dt{font-family:var(--mono);font-size:clamp(.7rem,.92vw,1rem);opacity:.75}
+
+.hero-url{font-family:var(--display);font-size:clamp(2.6rem,8.2vw,8.6rem);line-height:1;
+  color:var(--beige);text-align:center}
+.center{align-items:center;text-align:center;justify-content:center}
+.center .lede,.center p.body{max-width:34ch;margin-left:auto;margin-right:auto}
+
+.rule{width:clamp(2.6rem,5vw,5rem);height:3px;background:var(--signal);margin:1.3rem 0}
+.light .rule{background:var(--brass)}
+
+.foot{position:absolute;left:var(--pad);bottom:calc(var(--pad) * .58);font-family:var(--mono);
+  font-size:clamp(.62rem,.8vw,.92rem);letter-spacing:.1em;opacity:.62;z-index:2}
+
+/* ---------- chrome ---------- */
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--brass);z-index:60;
+  transition:width .45s cubic-bezier(.16,.84,.44,1)}
+.counter{position:fixed;right:clamp(1.1rem,2.2vw,2.4rem);bottom:clamp(1rem,2vw,2.2rem);
+  font-family:var(--mono);font-size:clamp(.66rem,.82vw,.92rem);letter-spacing:.14em;z-index:60;
+  mix-blend-mode:difference;color:#8f9a86}
+.zone{position:fixed;top:0;height:100vh;width:16vw;z-index:50;cursor:pointer;background:transparent}
+.zone.prev{left:0}.zone.next{right:0}
+.notes{position:fixed;left:0;right:0;bottom:0;z-index:70;background:#1b1f18;color:var(--beige);
+  font-family:var(--mono);font-size:.82rem;line-height:1.55;padding:1rem 1.4rem;
+  border-top:2px solid var(--signal);transform:translateY(101%);transition:transform .3s ease}
+.notes.on{transform:translateY(0)}
+.notes span{color:var(--signal);letter-spacing:.14em;display:block;margin-bottom:.35rem;font-size:.7rem}
+.hint{position:fixed;left:50%;bottom:1.1rem;transform:translateX(-50%);z-index:60;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:#8f9a86;
+  mix-blend-mode:difference;opacity:1;transition:opacity 1s ease .1s}
+.hint.gone{opacity:0}
+
+@media (prefers-reduced-motion:reduce){
+  .slide,.progress{transition-duration:.01ms}
+  .slide.active .rings circle{animation:none}
+}
+@media (max-width:820px){
+  .cols{grid-template-columns:1fr;gap:1rem}
+  .def,.layer{grid-template-columns:1fr;gap:.4rem}
+  .agenda .row{grid-template-columns:4rem 1fr;gap:.9rem}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="bar"></div>
+<div class="counter" id="count">01 / 14</div>
+<div class="zone prev" id="zprev" aria-hidden="true"></div>
+<div class="zone next" id="znext" aria-hidden="true"></div>
+<div class="hint" id="hint">← → TO NAVIGATE · N FOR NOTES</div>
+<div class="notes" id="notes"><span>PRESENTER NOTE</span><em id="notetext"></em></div>
+
+<div class="deck" id="deck">
+
+<!-- 1 COVER -->
+<section class="slide dark" data-note="Have this up as people arrive. Tea on, music low. Greet each person by name at the door.">
+  <svg class="rings" viewBox="0 0 400 400" style="width:min(58vh,52vw);right:6vw;top:50%;transform:translateY(-50%)">
+    <circle cx="200" cy="200" r="42"/><circle cx="200" cy="200" r="86"/><circle cx="200" cy="200" r="130"/>
+    <circle cx="200" cy="200" r="174"/><circle class="datum" cx="200" cy="200" r="5"/>
+  </svg>
+  <div class="eyebrow">Gardener &amp; Son — Studio Workshops — October 2026</div>
+  <div class="rule"></div>
+  <h1>Introduction to<br>Ecological Gardens</h1>
+  <div class="mono" style="margin-top:2.2rem;opacity:.85">Workshop 01 · Wednesday 7 October · 6–8pm · 140 Auburn Road, Hawthorn</div>
+</section>
+
+<!-- 2 COUNTRY -->
+<section class="slide dark center" data-note="In your own words, unhurried. Then a beat of silence before moving on.">
+  <p class="lede wide" style="font-size:clamp(1.3rem,2.7vw,2.9rem);max-width:26ch">
+    We acknowledge the Wurundjeri Woi-wurrung people, Traditional Custodians of the land this studio stands on, and pay respect to Elders past and present.
+  </p>
+  <div class="rule" style="margin:2.4rem auto"></div>
+  <div class="mono" style="opacity:.8">This land has been gardened for tens of thousands of years.</div>
+</section>
+
+<!-- 3 TONIGHT -->
+<section class="slide light" data-note="Keep this loose — say it, don't read it. Flag that the tea break is where the good questions happen.">
+  <div class="eyebrow">Workshop 01</div>
+  <h2>Tonight</h2>
+  <div class="agenda">
+    <div class="row"><div class="t">6.00</div><div class="s">Welcome and introductions</div></div>
+    <div class="row"><div class="t">6.10</div><div class="s">What is an ecological garden?</div></div>
+    <div class="row"><div class="t">6.30</div><div class="s">The Country beneath the garden</div></div>
+    <div class="row"><div class="t">6.50</div><div class="s">Tea</div></div>
+    <div class="row"><div class="t">7.00</div><div class="s">Find your EVC — hands on</div></div>
+    <div class="row"><div class="t">7.25</div><div class="s">Anatomy of an ecological garden</div></div>
+    <div class="row"><div class="t">7.45</div><div class="s">Your first three moves</div></div>
+  </div>
+</section>
+
+<!-- 4 WHAT IS -->
+<section class="slide dark" data-note="The whole workshop hangs off this one distinction. Say it, pause, let it sit.">
+  <svg class="rings" viewBox="0 0 400 400" style="width:min(46vh,40vw);right:-6vw;bottom:-12vh">
+    <circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="115"/><circle cx="200" cy="200" r="170"/>
+  </svg>
+  <div class="eyebrow">The core idea</div>
+  <h2>What is an ecological garden?</h2>
+  <p class="lede wide">A conventional garden is decorated ground.<br>An ecological garden is a functioning system.</p>
+  <div class="rule"></div>
+  <div class="mono" style="opacity:.85">Plants of this place · layered structure · habitat by design · water held on site</div>
+</section>
+
+<!-- 5 COMPARE -->
+<section class="slide light" data-note="Pass the specimens around here. Ask what people notice before you name anything.">
+  <div class="eyebrow">Compare</div>
+  <h2>Two gardens, same block</h2>
+  <div class="cols">
+    <div class="card sand">
+      <h3>Conventional</h3>
+      <ul class="marks">
+        <li>Chosen for display</li>
+        <li>Lawn and hedges, little between</li>
+        <li>Watered, fed, sprayed to hold still</li>
+        <li>Rain piped to the street</li>
+        <li>Quiet — few birds, fewer insects</li>
+      </ul>
+    </div>
+    <div class="card deep">
+      <h3>Ecological</h3>
+      <ul class="marks">
+        <li>Chosen for belonging</li>
+        <li>Canopy to ground layer, fully storied</li>
+        <li>Largely runs itself once established</li>
+        <li>Rain slowed and soaked on site</li>
+        <li>Loud — wrens, skinks, native bees</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 6 EVC CONCEPT -->
+<section class="slide dark" data-note="Walk to the wall map for this one. Point at the room we're standing in.">
+  <svg class="rings" viewBox="0 0 400 400" style="width:min(60vh,46vw);right:2vw;bottom:-14vh">
+    <circle cx="200" cy="200" r="45"/><circle cx="200" cy="200" r="90"/><circle cx="200" cy="200" r="135"/>
+    <circle cx="200" cy="200" r="180"/><circle class="datum" cx="200" cy="200" r="5"/>
+  </svg>
+  <div class="eyebrow">Ecological Vegetation Classes</div>
+  <h2>The Country beneath<br>the garden</h2>
+  <p class="body" style="color:var(--beige);opacity:.92">Every address in Victoria sits inside a mapped plant community — the Ecological Vegetation Class that grew there before 1750.</p>
+  <div class="rule"></div>
+  <p class="lede" style="color:var(--signal)">It tells you what your ground wants to grow.</p>
+</section>
+
+<!-- 7 LOCAL EVCS -->
+<section class="slide light" data-note="These are the two most people in the room will land on. Have a specimen from each in hand.">
+  <div class="eyebrow">The inner east</div>
+  <h2>Two you will meet tonight</h2>
+  <div class="cols">
+    <div class="card outline">
+      <div class="mono" style="color:var(--brass);margin-bottom:.8rem">EVC 45</div>
+      <h3>Shrubby Foothill Forest</h3>
+      <p class="body" style="margin-top:auto;padding-top:1.2rem">Stringybark and peppermint over a dense, scented shrub layer. The hill suburbs — deeper soils, higher rainfall, ferny gullies in its wetter runs.</p>
+    </div>
+    <div class="card outline">
+      <div class="mono" style="color:var(--brass);margin-bottom:.8rem">EVC 175</div>
+      <h3>Grassy Woodland</h3>
+      <p class="body" style="margin-top:auto;padding-top:1.2rem">Widely spaced eucalypts over kangaroo grass, lilies, and wildflowers. The open, sunny country most of the flat suburbs were cut from.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 FIND YOURS -->
+<section class="slide dark center" data-note="Circulate. Pair anyone without a device. Close with a round — everyone names their EVC aloud.">
+  <svg class="rings" viewBox="0 0 400 400" style="width:min(78vh,64vw);left:50%;top:50%;transform:translate(-50%,-50%)">
+    <circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="110"/><circle cx="200" cy="200" r="160"/>
+    <circle cx="200" cy="200" r="196"/><circle class="datum" cx="200" cy="200" r="6"/>
+  </svg>
+  <div class="eyebrow">Find yours — hands on</div>
+  <div class="hero-url" style="margin:2.5rem 0">findmyevc.com</div>
+  <p class="body" style="color:var(--beige);opacity:.92;max-width:40ch">Look up your address, then record in your workbook (p. 3): EVC number, EVC name, and three indicator species.</p>
+</section>
+
+<!-- 9 LAYERS -->
+<section class="slide light" data-note="The middle layers are the real lesson. Most rooms have never thought about the ground layer at all.">
+  <div class="eyebrow">Structure</div>
+  <h2>Anatomy: the four layers</h2>
+  <div class="layers">
+    <div class="layer"><div class="tag">Canopy</div><div class="txt">Shade, nectar seasons, nesting height — <b>birds, possums, insects</b></div></div>
+    <div class="layer"><div class="tag">Mid-storey</div><div class="txt">Dense cover and corridors between gardens — <b>small birds, especially wrens</b></div></div>
+    <div class="layer"><div class="tag">Ground layer</div><div class="txt">Grasses, lilies, herbs — the layer the suburbs lost first — <b>butterflies, lizards, native bees</b></div></div>
+    <div class="layer"><div class="tag">Litter &amp; logs</div><div class="txt">Soil life and moisture, the slow economy of decay — <b>fungi, beetles, skinks, frogs</b></div></div>
+  </div>
+  <p class="lede" style="max-width:40ch;font-size:clamp(.95rem,1.42vw,1.55rem);margin-top:clamp(1rem,3vh,2.2rem);color:var(--green)">
+    Most gardens have a canopy and a lawn — the middle is missing. That is where ecological gardens are won.
+  </p>
+</section>
+
+<!-- 10 WORDS -->
+<section class="slide dark" data-note="No purity tests. 'Can I keep my roses?' — yes. Ecological gardening is additive before it is subtractive.">
+  <div class="eyebrow">Words that matter</div>
+  <h2>Indigenous, native, exotic</h2>
+  <div class="defs">
+    <div class="def"><h3>Indigenous</h3><p>From this place — your EVC. Adapted to this soil, this rainfall, and to each other.</p></div>
+    <div class="def"><h3>Native</h3><p>Australian, but not necessarily from here. A Western Australian banksia in Hawthorn is a guest.</p></div>
+    <div class="def"><h3>Exotic</h3><p>From elsewhere entirely. Not the enemy — just not the engine.</p></div>
+  </div>
+</section>
+
+<!-- 11 WATER -->
+<section class="slide dark" data-note="If the room is running late, this is the slide to compress — the three moves matter more.">
+  <svg class="rings" viewBox="0 0 400 400" style="width:min(52vh,42vw);right:-4vw;top:-10vh">
+    <circle cx="200" cy="200" r="70"/><circle cx="200" cy="200" r="125"/><circle cx="200" cy="200" r="180"/>
+  </svg>
+  <div class="eyebrow">The system's pulse</div>
+  <h2>Water is the quiet organiser</h2>
+  <p class="lede wide">Where rain goes decides what lives.</p>
+  <ul class="marks" style="margin-top:clamp(1rem,3vh,2.4rem);max-width:52ch">
+    <li>Slow it — litter, ground cover, contour</li>
+    <li>Soak it — living soil holds many times the water of compacted lawn</li>
+    <li>Store it — a shallow dish brings birds within a week</li>
+  </ul>
+</section>
+
+<!-- 12 FIRST MOVES -->
+<section class="slide light" data-note="Give them a full two minutes of quiet to write. Then one each, around the table. Don't rush this.">
+  <div class="eyebrow">Workbook p. 4</div>
+  <h2>Your first three moves</h2>
+  <p class="lede" style="color:var(--green);max-width:28ch">Small, real, startable this month.</p>
+  <ul class="marks" style="margin-top:clamp(1rem,3vh,2.4rem);max-width:58ch">
+    <li>Stop spraying</li>
+    <li>Let one corner keep its leaf litter</li>
+    <li>Replace one square metre of lawn with three indigenous grasses</li>
+    <li>Put in a shallow water dish</li>
+    <li>Learn ten plants from your EVC by name</li>
+  </ul>
+  <div class="mono" style="color:var(--brass);margin-top:clamp(1rem,3vh,2.2rem)">Write yours down — then we will hear one each.</div>
+</section>
+
+<!-- 13 PATHWAY -->
+<section class="slide light" data-note="One clear mention of the series and the Registry. No pitch — the material sells itself.">
+  <div class="eyebrow">The series</div>
+  <h2>Where to from here</h2>
+  <div class="pathway">
+    <div class="step"><div class="n">02</div><div class="nm">Reading the Land</div><div class="dt">Wed 14 Oct</div></div>
+    <div class="step"><div class="n">03</div><div class="nm">Designing Ecologically</div><div class="dt">Wed 21 Oct</div></div>
+    <div class="step"><div class="n">04</div><div class="nm">Natives in the Garden</div><div class="dt">Wed 28 Oct</div></div>
+    <div class="step"><div class="n">05</div><div class="nm">Where Gardens Begin — intensive</div><div class="dt">Sat 31 Oct</div></div>
+  </div>
+  <p class="body" style="margin-top:clamp(1rem,3vh,2.2rem)">Your free EVC garden guide arrives by email tomorrow — specific to the EVC you found tonight.</p>
+</section>
+
+<!-- 14 CLOSE -->
+<section class="slide dark center" data-note="Stay available while you pack down. The best enquiries come in the last ten minutes.">
+  <svg class="rings" viewBox="0 0 400 400" style="width:min(66vh,56vw);left:50%;top:46%;transform:translate(-50%,-50%)">
+    <circle cx="200" cy="200" r="48"/><circle cx="200" cy="200" r="96"/><circle cx="200" cy="200" r="144"/>
+    <circle cx="200" cy="200" r="192"/><circle class="datum" cx="200" cy="200" r="5"/>
+  </svg>
+  <h1 style="font-size:clamp(2.2rem,5vw,5rem)">Thank you.</h1>
+  <div class="mono" style="margin-top:2rem;color:var(--signal)">gardenerandson.com/workshops · findmyevc.com · ecologicalregistry.org</div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var bar = document.getElementById('bar');
+  var count = document.getElementById('count');
+  var notes = document.getElementById('notes');
+  var noteText = document.getElementById('notetext');
+  var hint = document.getElementById('hint');
+  var i = 0, notesOn = false;
+
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('active', k === i); });
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    count.textContent = pad(i + 1) + ' / ' + pad(slides.length);
+    noteText.textContent = slides[i].getAttribute('data-note') || '—';
+  }
+  function next(){ show(i + 1); }
+  function prev(){ show(i - 1); }
+
+  document.addEventListener('keydown', function(e){
+    var k = e.key;
+    if (k === 'ArrowRight' || k === 'ArrowDown' || k === ' ' || k === 'PageDown'){ e.preventDefault(); next(); }
+    else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp'){ e.preventDefault(); prev(); }
+    else if (k === 'Home'){ e.preventDefault(); show(0); }
+    else if (k === 'End'){ e.preventDefault(); show(slides.length - 1); }
+    else if (k === 'n' || k === 'N'){ notesOn = !notesOn; notes.classList.toggle('on', notesOn); }
+    else if (k === 'f' || k === 'F'){
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    }
+    hint.classList.add('gone');
+  });
+
+  document.getElementById('znext').addEventListener('click', next);
+  document.getElementById('zprev').addEventListener('click', prev);
+
+  var x0 = null;
+  document.addEventListener('touchstart', function(e){ x0 = e.changedTouches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 55){ dx < 0 ? next() : prev(); }
+    x0 = null;
+  }, {passive:true});
+
+  setTimeout(function(){ hint.classList.add('gone'); }, 6000);
+  show(0);
+})();
+</script>
+</body>
+</html>
