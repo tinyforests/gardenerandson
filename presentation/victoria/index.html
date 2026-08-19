@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3 Victoria Grove, Hawthorn East — Gardener &amp; Son</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#3d4535;
+  --beige:#fff0dc;
+  --signal:#7C9A52;
+
+  --brass:#B49A63;
+  --green-soft:#586150;
+  --line:rgba(61,69,53,.22);
+  --display:'Abril Fatface', Georgia, serif;
+  --editorial:'Fraunces', Georgia, serif;
+  --body:'IBM Plex Sans', system-ui, sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{background:#20241c;font-family:var(--body);-webkit-font-smoothing:antialiased}
+img{display:block}
+
+/* ─────────────  STAGE  ───────────── */
+#stage{
+  position:relative;width:1600px;height:900px;overflow:hidden;
+  background:var(--beige);color:var(--green);
+  transform-origin:top left;
+  -webkit-font-smoothing:auto;-moz-osx-font-smoothing:auto;
+}
+.slide{
+  position:absolute;inset:0;overflow:hidden;
+  opacity:0;visibility:hidden;transition:opacity .38s ease;
+  background:var(--beige);
+  padding:66px 80px 96px;
+  display:flex;flex-direction:column;
+}
+.slide.active{opacity:1;visibility:visible}
+.slide.dark{background:var(--green);color:var(--beige);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.slide.bleed{padding:0}
+.notes{display:none}
+
+/* noise + circles */
+#stage::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:60;opacity:.26;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.045'/></svg>");
+}
+.rings{position:absolute;pointer-events:none;opacity:.16}
+.rings circle{fill:none;stroke:currentColor;stroke-width:1}
+
+/* type */
+.eyebrow{
+  font-family:var(--mono);font-size:13px;letter-spacing:.34em;text-transform:uppercase;
+  font-weight:500;color:var(--signal);
+}
+.slide.dark .eyebrow{color:var(--brass);font-weight:400}
+h1{font-family:var(--display);font-weight:400;font-size:96px;line-height:1.02;margin:0;letter-spacing:-.01em}
+h2{font-family:var(--editorial);font-weight:500;font-size:60px;line-height:1.1;margin:0;letter-spacing:-.015em;color:var(--green)}
+.slide.dark h2{font-weight:400;color:var(--beige)}
+h3{font-family:var(--editorial);font-weight:500;font-size:27px;line-height:1.25;margin:0;color:var(--green)}
+.slide.dark h3{font-weight:400;color:var(--beige)}
+p{font-size:20px;line-height:1.62;font-weight:450;margin:0;color:var(--green)}
+.slide.dark p{font-weight:400;color:var(--beige)}
+em{font-family:var(--editorial);font-style:italic;color:var(--signal)}
+.slide.dark em{color:var(--signal)}
+.rule{height:1px;background:rgba(61,69,53,.34);border:0;margin:0}
+.slide.dark .rule{background:rgba(255,240,220,.28)}
+.mono{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+.bot{
+  position:absolute;left:80px;right:80px;bottom:38px;display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+}
+.slide.dark .bot{opacity:.72}
+
+/* ── cover ── */
+.cover{justify-content:center;padding-left:110px}
+.cover .marque{position:absolute;top:66px;left:110px;font-family:var(--display);font-size:34px;line-height:1}
+.cover .marque span{font-family:var(--editorial);font-style:italic;font-weight:400;color:var(--signal)}
+.cover h1{font-size:104px;max-width:1150px}
+.cover .sub{font-family:var(--editorial);font-style:italic;font-weight:400;font-size:46px;margin-top:6px;color:var(--signal)}
+.cover .meta{margin-top:40px;font-family:var(--mono);font-size:13px;letter-spacing:.3em;text-transform:uppercase;opacity:.72}
+
+/* ── split ── */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;flex:1;min-height:0;align-items:center}
+.split.wide-l{grid-template-columns:1.25fr 1fr}
+.split.wide-r{grid-template-columns:1fr 1.25fr}
+.col{display:flex;flex-direction:column;gap:22px}
+.figure{background:#fff;padding:16px;border:1px solid var(--line);height:100%;display:flex;align-items:center;justify-content:center}
+.figure img{max-width:100%;max-height:100%;object-fit:contain}
+
+/* ── full bleed image ── */
+.bleed img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bleed.contain{background:var(--beige)}
+.bleed.contain img{object-fit:contain;inset:34px;width:auto;height:auto;max-width:calc(100% - 68px);max-height:calc(100% - 68px);margin:auto}
+.slide.dark.bleed.contain{background:var(--green)}
+.capbar{
+  position:absolute;left:0;right:0;bottom:0;z-index:20;padding:22px 80px;
+  background:linear-gradient(to top, rgba(61,69,53,.94), rgba(61,69,53,.72) 60%, rgba(61,69,53,0));
+  color:var(--beige);display:flex;gap:26px;align-items:baseline;
+}
+.capbar .k{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);white-space:nowrap}
+.capbar .v{font-family:var(--editorial);font-size:22px;font-weight:300}
+.floatcard{
+  position:absolute;z-index:20;background:var(--beige);padding:48px 46px;max-width:520px;
+  border-top:3px solid var(--signal);
+}
+.floatcard h2{font-size:46px}
+
+/* ── agenda ── */
+.two-up{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:40px;flex:1;min-height:0}
+.card{border-top:2px solid var(--signal);padding-top:24px;display:flex;flex-direction:column;gap:16px;min-height:0}
+.card .n{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--signal);font-weight:500}
+.card h3{font-size:34px}
+.card .thumb{flex:1;min-height:0;border:1px solid var(--line);overflow:hidden;background:#fff}
+.card .thumb img{width:100%;height:100%;object-fit:cover}
+
+/* ── three layers ── */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:52px;margin-top:44px;flex:1;align-content:center}
+.layer{border-top:2px solid var(--line);padding-top:22px}
+.layer .lab{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--signal);font-weight:500;margin-bottom:14px}
+.layer h3{margin-bottom:14px}
+.layer p{font-size:17px}
+.layer ul{margin:18px 0 0;padding:0;list-style:none;font-family:var(--mono);font-size:13px;line-height:2.05;letter-spacing:.02em;opacity:1}
+
+/* ── calendar ── */
+.cal{display:grid;grid-template-columns:400px 1fr;column-gap:26px;row-gap:0;margin-top:20px;align-content:start}
+.cal-months{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;opacity:.55;margin-bottom:6px}
+.cal-months span{text-align:center}
+.cal .nm{display:flex;align-items:center;gap:9px;height:33px;border-bottom:1px solid rgba(61,69,53,.14);white-space:nowrap;overflow:hidden}
+.cal .dot{width:8px;height:8px;border-radius:0;flex:none}
+.cal .sci{font-family:var(--editorial);font-size:15.5px;font-weight:400}
+.cal .com{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--signal)}
+.cal .bars{display:grid;grid-template-columns:repeat(12,1fr);height:33px;align-items:center;border-bottom:1px solid rgba(61,69,53,.14);gap:3px}
+.cal .cell{height:12px}
+.legend{display:flex;gap:26px;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+.legend i{display:inline-block;width:22px;height:9px;margin-right:8px;background:var(--green)}
+.legend i.sh{opacity:.3}
+
+/* ── materials ── */
+.mats{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:46px;flex:1;min-height:0}
+.mat{display:flex;flex-direction:column;min-height:0}
+.mat .sw{flex:1;min-height:0;border:1px solid var(--line)}
+.mat .lab{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--signal);font-weight:500;margin:22px 0 10px}
+.mat h3{font-size:26px;margin-bottom:10px}
+.mat p{font-size:16.5px}
+
+/* ── plates ── */
+.plates{display:grid;grid-template-columns:repeat(4,1fr);gap:34px;margin-top:36px;flex:1;min-height:0}
+.plate{display:flex;flex-direction:column;min-height:0}
+.plate .img{background:#fff;border:1px solid var(--line);flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:10px}
+.plate .img img{max-width:100%;max-height:100%;object-fit:contain}
+.plate .lab{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--signal);font-weight:500;margin:20px 0 8px}
+.plate .sci{font-family:var(--mono);font-size:17px;font-weight:500}
+.plate .com{font-family:var(--editorial);font-style:italic;font-size:16px;margin-top:3px}
+
+/* ── steps ── */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:44px;margin-top:46px;flex:1;align-content:center}
+.step{border-top:2px solid var(--brass);padding-top:22px}
+.step .n{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--signal);font-weight:500;margin-bottom:14px}
+.step h3{font-size:25px;margin-bottom:12px}
+.step p{font-size:16px}
+
+/* ── statement ── */
+.statement{display:flex;flex-direction:column;justify-content:center;flex:1;gap:30px}
+.statement h2{font-size:82px;max-width:1250px}
+.statement p{max-width:820px;font-size:22px}
+
+/* ─────────────  DISPLAY MODE  ───────────── */
+body.display{background:var(--green);overflow:hidden}
+body.display #dhint{display:block}
+body.display #presenter{display:none}
+#fit{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#blank{display:none}
+body.display.blanked #blank{
+  display:block;position:fixed;inset:0;background:var(--green);z-index:200;
+}
+#dhint{
+  display:none;position:fixed;top:16px;right:20px;z-index:210;
+  font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(255,240,220,.55);transition:opacity .6s;
+}
+#dhint.gone{opacity:0}
+
+/* ─────────────  PRESENTER  ───────────── */
+body.presenter{background:#1b1f18;color:#e9e2d3;overflow:hidden}
+body.presenter #fit{display:none}
+#presenter{display:none;height:100vh;grid-template-rows:auto 1fr auto;gap:0}
+body.presenter #presenter{display:grid}
+
+.pbar{display:flex;align-items:center;gap:20px;padding:12px 22px;border-bottom:1px solid rgba(233,226,211,.14)}
+.pbar .id{font-family:var(--display);font-size:18px}
+.pbar .id span{font-family:var(--editorial);font-style:italic;color:var(--brass)}
+.pbar .proj{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;opacity:.55}
+.pbar .grow{flex:1}
+#clock{font-family:var(--mono);font-size:26px;letter-spacing:.06em;font-weight:300;min-width:104px;text-align:right}
+#clock.run{color:var(--brass)}
+.btn{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  background:transparent;color:#e9e2d3;border:1px solid rgba(233,226,211,.3);
+  padding:9px 15px;cursor:pointer;transition:.18s;border-radius:0;
+}
+.btn:hover{background:rgba(233,226,211,.1)}
+.btn:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.btn.on{background:var(--signal);border-color:var(--signal);color:#16190f}
+.dotlive{width:8px;height:8px;background:#8a8577;display:inline-block;margin-right:8px}
+.dotlive.live{background:var(--signal)}
+
+.pmain{display:grid;grid-template-columns:1.7fr 1fr;gap:20px;padding:20px 22px;min-height:0}
+.pane{display:flex;flex-direction:column;gap:10px;min-height:0}
+.plabel{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;opacity:.45}
+.screen{width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;background:#000;border:1px solid rgba(233,226,211,.18)}
+.screen > div{position:absolute;top:0;left:0;transform-origin:top left}
+#pnotes{
+  flex:1;min-height:0;overflow:auto;border:1px solid rgba(233,226,211,.18);padding:20px 22px;
+  background:rgba(233,226,211,.04);
+}
+#pnotes h4{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass);margin:0 0 14px}
+#pnotes p{font-size:17px;line-height:1.62;margin:0 0 13px;color:#e9e2d3;font-weight:300}
+#pnotes p:last-child{margin-bottom:0}
+#pnotes strong{color:var(--signal);font-weight:500}
+#pnotes .say{font-family:var(--editorial);font-style:italic;color:#f0e7d5;border-left:2px solid var(--brass);padding-left:14px}
+
+.pfoot{display:flex;align-items:center;gap:16px;padding:12px 22px;border-top:1px solid rgba(233,226,211,.14)}
+#ptitle{font-family:var(--editorial);font-size:19px;font-weight:300;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#pcount{font-family:var(--mono);font-size:13px;letter-spacing:.16em;opacity:.6}
+#strip{display:flex;gap:4px}
+#strip button{
+  width:22px;height:22px;border:1px solid rgba(233,226,211,.22);background:transparent;color:#e9e2d3;
+  font-family:var(--mono);font-size:9px;cursor:pointer;padding:0;
+}
+#strip button.cur{background:var(--brass);border-color:var(--brass);color:#16190f}
+#strip button.mark{border-color:var(--signal)}
+
+#help{
+  position:fixed;inset:0;background:rgba(20,23,17,.94);z-index:400;display:none;
+  align-items:center;justify-content:center;
+}
+#help.on{display:flex}
+#help .box{max-width:620px;padding:44px}
+#help h3{font-family:var(--editorial);font-size:30px;margin-bottom:22px;color:#f0e7d5}
+#help dl{display:grid;grid-template-columns:120px 1fr;gap:10px 18px;font-size:15px;margin:0}
+#help dt{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--brass)}
+#help dd{margin:0;opacity:.9}
+@media (prefers-reduced-motion: reduce){.slide{transition:none}}
+</style>
+</head>
+<body>
+
+<div id="fit"><div id="stage">
+
+<!-- 01 COVER -->
+<section class="slide dark cover" data-title="Cover — 3 Victoria Grove">
+  <svg class="rings" style="right:-260px;top:-200px;width:900px;height:900px" viewBox="0 0 600 600"><circle cx="300" cy="300" r="90"/><circle cx="300" cy="300" r="160"/><circle cx="300" cy="300" r="235"/><circle cx="300" cy="300" r="299"/></svg>
+  <div class="marque">Gardener <span>&amp;</span> Son.</div>
+  <div class="eyebrow">Garden Design · Presentation</div>
+  <h1 style="margin-top:18px">3 Victoria Grove</h1>
+  <div class="sub">Hawthorn East</div>
+  <div class="meta">Wurundjeri Woi-wurrung Country · City of Boroondara · August 2026</div>
+  <div class="bot"><span>Gardener &amp; Son — Ecological Design Studio</span><span>Gardens of this place</span></div>
+  <div class="notes">
+    <p><strong>Before you start:</strong> open the display window, drop it on the 43", press F in that window for fullscreen. B blanks the screen if you want their eyes back on you.</p>
+    <p class="say">"Thanks for having us. We've drawn up two gardens today — the front, and the atrium. I'll walk you through both, then we'll talk about anything you'd change."</p>
+    <p>Set the frame early: this is a <strong>design conversation</strong>, not a sign-off. Invite interruptions.</p>
+  </div>
+</section>
+
+<!-- 02 COUNTRY -->
+<section class="slide" data-title="Country">
+  <div class="statement">
+    <div class="eyebrow">Where we're working</div>
+    <h2 style="font-size:64px">This garden sits on <em>Wurundjeri Woi-wurrung Country.</em></h2>
+    <p>We acknowledge the Wurundjeri Woi-wurrung people as the Traditional Owners of the land this garden is made on, and pay respect to Elders past and present. The plants we've chosen for the ground layer and the shrub body are indigenous to this place — they were growing here long before the street was.</p>
+  </div>
+  <div class="bot"><span>3 Victoria Grove · Hawthorn East</span><span>02</span></div>
+  <div class="notes">
+    <p>Keep this short and sincere — twenty seconds, not a speech.</p>
+    <p class="say">"Everything in the understorey is indigenous to this pocket of Boroondara. That's not a gimmick — it's why the garden will hold up with less water and less fuss."</p>
+    <p>This also quietly sets up the <strong>magnolia</strong> conversation later: one exotic, chosen by them, sitting inside an indigenous garden.</p>
+  </div>
+</section>
+
+<!-- 03 TODAY -->
+<section class="slide" data-title="Two gardens">
+  <div class="eyebrow">What we're showing you</div>
+  <h2 style="margin-top:16px">Two gardens, one house.</h2>
+  <div class="two-up">
+    <div class="card">
+      <div class="n">01 — Front garden</div>
+      <div class="thumb"><img src="images/elevation.jpg" alt="Street elevation of the front garden"></div>
+      <h3>The face to the street</h3>
+      <p style="font-size:17.5px">Twenty species in three layers, a reclaimed brick path, and the magnolia you asked for beside the entry.</p>
+    </div>
+    <div class="card">
+      <div class="n">02 — Atrium</div>
+      <div class="thumb"><img src="images/atrium-view.jpg" alt="Atrium concept view"></div>
+      <h3>A small moment of calm</h3>
+      <p style="font-size:17.5px">Four species, three stones and one sculptural maple, held inside the house.</p>
+    </div>
+  </div>
+  <div class="bot"><span>3 Victoria Grove · Hawthorn East</span><span>03</span></div>
+  <div class="notes">
+    <p>Signpost the shape of the next twenty minutes so nobody's waiting for the atrium while you're still on the front.</p>
+    <p class="say">"Two very different jobs. The front garden is public — it's how the street reads your house. The atrium is private, and it only has to do one thing: be calm."</p>
+    <p><strong>Watch for:</strong> if they jump straight to the atrium, let them. Press <span style="font-family:var(--mono)">12</span> on the strip below.</p>
+  </div>
+</section>
+
+<!-- 04 SECTION: FRONT -->
+<section class="slide dark" data-title="Section — The front garden">
+  <svg class="rings" style="left:-300px;bottom:-320px;width:820px;height:820px" viewBox="0 0 600 600"><circle cx="300" cy="300" r="110"/><circle cx="300" cy="300" r="190"/><circle cx="300" cy="300" r="270"/></svg>
+  <div class="statement">
+    <div class="eyebrow">Part one</div>
+    <h2 style="font-size:88px">A garden designed for its <em>future self.</em></h2>
+    <p>Calm, abundant and a little wild — becoming richer with each season as the plants grow together and the garden finds its own rhythm.</p>
+  </div>
+  <div class="bot"><span>The front garden</span><span>04</span></div>
+  <div class="notes">
+    <p>This line is the thesis of the whole front garden. Say it, then pause.</p>
+    <p class="say">"We haven't designed the garden as it looks on day one. We've designed it for what it becomes in year three."</p>
+    <p>It also pre-empts the most common client worry — <strong>"it'll look sparse when you leave"</strong>. Get ahead of it: planting is deliberately generous, so it knits fast.</p>
+  </div>
+</section>
+
+<!-- 05 ELEVATION -->
+<section class="slide bleed" data-title="Street elevation">
+  <img src="images/elevation.jpg" alt="Watercolour street elevation of 3 Victoria Grove">
+  <div class="capbar">
+    <span class="k">Street elevation</span>
+    <span class="v">Victoria Grove frontage, looking south — magnolia in spring flower</span>
+  </div>
+  <div class="notes">
+    <p>Let them look before you talk. Five seconds of silence here does more than any sentence.</p>
+    <p class="say">"This is the view from the footpath, in September."</p>
+    <p>Point out, in this order: the <strong>magnolia at the gate</strong>, the <strong>banksia and taller shrubs sitting against the fence line</strong>, and how the planting comes right up to the iron rail so the fence reads as a frame, not a barrier.</p>
+    <p>Note the sandstone of the house is picked up in the gravel and brick — the palette came off the building.</p>
+  </div>
+</section>
+
+<!-- 06 PLAN -->
+<section class="slide" data-title="The plan">
+  <div class="split wide-l">
+    <div class="figure"><img src="images/plan.jpg" alt="Garden plan showing path, beds, magnolia and gravel returns"></div>
+    <div class="col">
+      <div class="eyebrow">Garden plan · not to scale</div>
+      <h2 style="font-size:44px">The walk to the door goes <em>through</em> the planting.</h2>
+      <hr class="rule">
+      <p>A reclaimed brick path swings off the gate and softens as it meets the beds, so you move through the garden rather than alongside it.</p>
+      <p>Salt Creek gravel holds both side returns — practical access down each side, without the garden feeling over-built.</p>
+      <p>The magnolia sits in the framed bed beside the entry, with the indigenous understorey laid out to grow beneath it.</p>
+    </div>
+  </div>
+  <div class="bot"><span>The front garden</span><span>06</span></div>
+  <div class="notes">
+    <p>Trace the path with your finger on the screen — gate, curve, door. People understand a plan through movement, not through lines.</p>
+    <p class="say">"You'll never walk in a straight line to your own front door again. That's on purpose."</p>
+    <p><strong>Practical points to land:</strong> both side returns stay usable (bins, hose, access). No edging anywhere — beds meet gravel and brick directly, which is what keeps it feeling like a garden rather than a display.</p>
+    <p>If they ask about drainage or levels — note it and follow up; don't guess on the spot.</p>
+  </div>
+</section>
+
+<!-- 07 MAGNOLIA -->
+<section class="slide bleed" data-title="The magnolia">
+  <img src="images/elevation.jpg" alt="Magnolia in flower at the entry" style="object-position:18% center">
+  <div class="floatcard" style="right:80px;top:50%;transform:translateY(-50%)">
+    <div class="eyebrow">Your choice</div>
+    <h2 style="margin-top:14px">Magnolia <em>‘Elizabeth’</em></h2>
+    <hr class="rule" style="margin:22px 0">
+    <p style="font-size:18px">The one seasonal event the street will come to know this garden by — bare structure through winter, then pale yellow flower on bare wood at the turn of spring, before the leaves.</p>
+    <p style="font-size:18px;margin-top:16px">We'll supply and plant it as part of the works.</p>
+  </div>
+  <div class="notes">
+    <p>Credit them plainly. <strong>They chose this tree</strong> — say so out loud. It makes every other selection feel collaborative rather than imposed.</p>
+    <p class="say">"This was your call, and it's the right one. It gives the garden a calendar."</p>
+    <p><strong>Be honest about the trade-off:</strong> it's deciduous and it's not indigenous. Winter is bare structure. That's a feature — it lets light onto the understorey when they need it most, and the banksia and correa are carrying flower through those months anyway.</p>
+    <p>Confirm: the magnolia is <strong>not existing</strong> — we're planting it.</p>
+  </div>
+</section>
+
+<!-- 08 THREE LAYERS -->
+<section class="slide" data-title="Three layers">
+  <div class="eyebrow">The planting</div>
+  <h2 style="margin-top:16px">Planting reads in <em>three layers.</em></h2>
+  <div class="three">
+    <div class="layer">
+      <div class="lab">01 — Canopy &amp; fence line</div>
+      <h3>Height, and something to look up at</h3>
+      <p>Banksia and the taller shrubs sit against the fence, giving the garden a back wall and the street a soft edge.</p>
+      <ul>
+        <li>Magnolia ‘Elizabeth’</li>
+        <li>Banksia marginata</li>
+        <li>Prostanthera ovalifolia</li>
+        <li>Philotheca myoporoides</li>
+      </ul>
+    </div>
+    <div class="layer">
+      <div class="lab">02 — The flowering body</div>
+      <h3>Waist height, and always in flower</h3>
+      <p>A shrub body you look across rather than over — correa and thryptomene through winter, boronia and westringia at the turn.</p>
+      <ul>
+        <li>Correa reflexa × pulchella</li>
+        <li>Correa glabra</li>
+        <li>Boronia megastigma</li>
+        <li>Thryptomene saxicola</li>
+        <li>Westringia ‘Aussie Box’</li>
+        <li>Rosmarinus officinalis</li>
+      </ul>
+    </div>
+    <div class="layer">
+      <div class="lab">03 — The ground floor</div>
+      <h3>Closes the soil, keeps the weeding low</h3>
+      <p>Violet, dichondra and pratia knit across the ground — living mulch instead of bare bed, and the layer that does most of the ecological work.</p>
+      <ul>
+        <li>Viola hederacea</li>
+        <li>Dichondra repens</li>
+        <li>Pratia puberula</li>
+        <li>Ajuga australis</li>
+        <li>Dampiera diversifolia</li>
+        <li>Scaevola ‘Mauve Clusters’</li>
+      </ul>
+    </div>
+  </div>
+  <div class="bot"><span>The front garden · 20 species</span><span>08</span></div>
+  <div class="notes">
+    <p>The layered structure is the actual design idea — this slide is the one to slow down on.</p>
+    <p class="say">"Most front gardens are one layer of shrubs in a bed of mulch. This is three layers, and each one is doing a different job."</p>
+    <p><strong>Ground floor is the money slide.</strong> Closed soil means: less weeding, less water, less mulch top-up, and a garden that behaves like a system rather than a set of individual plants.</p>
+    <p>Also here: Lomandra ‘Lime Tuff’, Dianella caerulea, Wahlenbergia stricta and Hardenbergia violacea thread between layers — tussocks and a climber.</p>
+  </div>
+</section>
+
+<!-- 09 CALENDAR -->
+<section class="slide" data-title="Flowering calendar">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="eyebrow">Flowering calendar</div>
+      <h2 style="margin-top:10px;font-size:40px">Colour in <em>every month.</em></h2>
+    </div>
+    <div class="legend"><span><i></i>Peak</span><span><i class="sh"></i>Shoulder</span></div>
+  </div>
+  <div class="cal" id="calgrid">
+    <div></div>
+    <div class="cal-months"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div>
+  </div>
+  <div class="bot"><span>Flowering periods indicative for Melbourne; season and aspect shift them by a few weeks</span><span>09</span></div>
+  <div class="notes">
+    <p>Don't read the chart. Read the <strong>gaps that aren't there.</strong></p>
+    <p class="say">"Pick any month. Put your finger on it. There's something flowering."</p>
+    <p>Invite them to actually name a month — birthdays, Christmas, the month they moved in. It's the most interactive moment in the deck and it lands every time.</p>
+    <p><strong>The winter answer:</strong> June–August is where most native gardens go flat. Here it's carried by correa, banksia, thryptomene and rosemary — then boronia's scent arrives right at the end of winter.</p>
+  </div>
+</section>
+
+<!-- 10 MATERIALS -->
+<section class="slide" data-title="Materials">
+  <div class="eyebrow">Materials</div>
+  <h2 style="margin-top:16px">Everything matched back to <em>the house.</em></h2>
+  <div class="mats">
+    <div class="mat">
+      <div class="sw" style="background:repeating-linear-gradient(0deg,rgba(0,0,0,.13) 0 1px,transparent 1px 26px),repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 1px,transparent 1px 58px),linear-gradient(135deg,#a55a45,#8e4a38 45%,#ae6a52)"></div>
+      <div class="lab">Path</div>
+      <h3>Reclaimed red brick</h3>
+      <p>Sand-set, laid to a soft curve. Second-hand brick so it reads as though it's always been there.</p>
+    </div>
+    <div class="mat">
+      <div class="sw" style="background:radial-gradient(circle at 30% 40%,rgba(255,255,255,.42) 0 2px,transparent 3px),radial-gradient(circle at 71% 66%,rgba(140,105,92,.13) 0 3px,transparent 4px),linear-gradient(135deg,#e7d3c5,#d9bfb1 45%,#efdfd1);background-size:29px 23px,43px 37px,100% 100%"></div>
+      <div class="lab">Gravel</div>
+      <h3>Salt Creek</h3>
+      <p>Soft pink, matched to the brick and to the sandstone of the house. Both side returns.</p>
+    </div>
+    <div class="mat">
+      <div class="sw" style="background:repeating-linear-gradient(63deg,rgba(0,0,0,.12) 0 3px,transparent 3px 19px),radial-gradient(circle at 25% 70%,rgba(255,255,255,.08) 0 5px,transparent 6px),linear-gradient(135deg,#6f6349,#4e4531 45%,#7c6f52);background-size:100% 100%,57px 47px,100% 100%"></div>
+      <div class="lab">Mulch</div>
+      <h3>Organic native blend</h3>
+      <p>75mm, held back off the stems. As the ground layer closes over, you'll stop seeing it.</p>
+    </div>
+  </div>
+  <div class="bot"><span>The front garden · No edging</span><span>10</span></div>
+  <div class="notes">
+    <p><strong>The deliberate omission: no edging.</strong> Say it before they ask. Beds meet brick and gravel directly. Edging is what makes a garden look installed rather than grown.</p>
+    <p class="say">"There's no plastic or steel edge anywhere in this garden. The plants make the edge."</p>
+    <p>Swatches on screen are indicative — <strong>bring the physical samples</strong> if you have brick and Salt Creek on hand. Nothing beats them holding it.</p>
+  </div>
+</section>
+
+<!-- 11 A3 SHEET -->
+<section class="slide bleed contain" data-title="Planting design sheet (A3)">
+  <img src="images/a3-front.jpg" alt="A3 planting design sheet for the front garden">
+  <div class="notes">
+    <p>This is the sheet they take away — plan, elevation, calendar, materials, all on one page.</p>
+    <p class="say">"This goes to you as a print. Everything we've just talked through is on it."</p>
+    <p>Good moment to stop presenting and <strong>ask the first open question</strong>: "What's sitting oddly with you so far?"</p>
+  </div>
+</section>
+
+<!-- 12 SECTION: ATRIUM -->
+<section class="slide dark" data-title="Section — The atrium">
+  <svg class="rings" style="right:-280px;top:-240px;width:860px;height:860px" viewBox="0 0 600 600"><circle cx="300" cy="300" r="100"/><circle cx="300" cy="300" r="180"/><circle cx="300" cy="300" r="260"/></svg>
+  <div class="statement">
+    <div class="eyebrow">Part two</div>
+    <h2 style="font-size:88px">A small moment of <em>calm.</em></h2>
+    <p>Planted simply, so the garden has room to settle into itself.</p>
+  </div>
+  <div class="bot"><span>The atrium</span><span>12</span></div>
+  <div class="notes">
+    <p>Change your pace here. The front garden was abundance; the atrium is restraint. Slow down and drop your voice — it's the easiest way to make the shift felt rather than announced.</p>
+    <p class="say">"Completely different job. Four species. That's it."</p>
+  </div>
+</section>
+
+<!-- 13 ATRIUM VIEW -->
+<section class="slide bleed contain dark" data-title="Atrium concept view">
+  <img src="images/atrium-view.jpg" alt="Atrium concept view — maple in autumn colour, stones set into the violet carpet">
+  <div class="capbar">
+    <span class="k">Concept view</span>
+    <span class="v">The maple in autumn colour, stones set low into the violet carpet</span>
+  </div>
+  <div class="notes">
+    <p>Let it sit. Then talk about it as a <strong>view from inside</strong>, not a garden you walk in.</p>
+    <p class="say">"You'll see this through glass, from a metre away, every day. So it has to be right at close range — which is why there's so little in it."</p>
+    <p><strong>Three things to name:</strong> the maple is multi-stemmed and sculptural (we select the individual tree); the stones sit <em>low and into</em> the carpet, not on top of it; the violet grows over and around the stone edges so the whole floor reads as one surface.</p>
+    <p>Practical: check aspect and reflected heat off the walls, and confirm drainage in the atrium slab. Flag it now if unresolved.</p>
+  </div>
+</section>
+
+<!-- 14 ATRIUM PLANTING -->
+<section class="slide" data-title="Atrium planting — four species">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="eyebrow">The planting</div>
+      <h2 style="margin-top:12px;font-size:46px">Four species, <em>canopy to carpet.</em></h2>
+    </div>
+    <div class="mono">Relative scale</div>
+  </div>
+  <div class="plates">
+    <div class="plate">
+      <div class="img"><img src="images/plate-maple.jpg" alt="Acer palmatum"></div>
+      <div class="lab">Canopy</div>
+      <div class="sci">Acer palmatum</div>
+      <div class="com">Japanese maple</div>
+    </div>
+    <div class="plate">
+      <div class="img"><img src="images/plate-lomandra.jpg" alt="Lomandra Lime Tuff"></div>
+      <div class="lab">Mound</div>
+      <div class="sci">Lomandra ‘Lime Tuff’</div>
+      <div class="com">Compact mat-rush</div>
+    </div>
+    <div class="plate">
+      <div class="img"><img src="images/plate-anemone.jpg" alt="Anemone hybrida"></div>
+      <div class="lab">Flower</div>
+      <div class="sci">Anemone × hybrida</div>
+      <div class="com">Japanese windflower</div>
+    </div>
+    <div class="plate">
+      <div class="img"><img src="images/plate-viola.jpg" alt="Viola hederacea"></div>
+      <div class="lab">Carpet</div>
+      <div class="sci">Viola hederacea</div>
+      <div class="com">Native violet</div>
+    </div>
+  </div>
+  <div class="bot"><span>The atrium · One maple, three stones, four species</span><span>14</span></div>
+  <div class="notes">
+    <p>Four plants, four jobs — that's the whole explanation.</p>
+    <p class="say">"Maple for structure and season. Lomandra for the soft mounds. Windflower for the one moment of flower in autumn. Violet for the floor."</p>
+    <p>Nice detail worth mentioning: the <strong>native violet is the same plant as the front garden's ground floor</strong> — one species stitching the two gardens together, inside and out.</p>
+    <p>Windflower is the one to check with them — it spreads. If they want it tighter, say so and we'll hold it to a drift.</p>
+  </div>
+</section>
+
+<!-- 15 ATRIUM SHEET -->
+<section class="slide bleed contain" data-title="Atrium concept sheet (A3)">
+  <img src="images/a3-atrium.jpg" alt="A3 atrium concept sheet">
+  <div class="notes">
+    <p>Second take-away sheet.</p>
+    <p><strong>Second open question here:</strong> "Is the atrium as quiet as you wanted, or too quiet?" It's the most likely place they'll want more — and it's a cheap change to make now.</p>
+  </div>
+</section>
+
+<!-- 16 NEXT -->
+<section class="slide" data-title="Where to from here">
+  <div class="eyebrow">Where to from here</div>
+  <h2 style="margin-top:16px">Four steps, and <em>you drive the first one.</em></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="n">01</div>
+      <h3>Your feedback</h3>
+      <p>Anything you'd change — plants, path, the atrium. Now is the cheapest moment to move something.</p>
+    </div>
+    <div class="step">
+      <div class="n">02</div>
+      <h3>Final plan &amp; schedule</h3>
+      <p>We lock the drawings, the plant schedule and the quantities, and confirm the build cost.</p>
+    </div>
+    <div class="step">
+      <div class="n">03</div>
+      <h3>We build it</h3>
+      <p>Soil first, then structure, then planting — by hand, by the same two people who drew it.</p>
+    </div>
+    <div class="step">
+      <div class="n">04</div>
+      <h3>Establishment</h3>
+      <p>We stay with the garden through its first seasons while the ground layer closes over.</p>
+    </div>
+  </div>
+  <div class="bot"><span>3 Victoria Grove · Hawthorn East</span><span>16</span></div>
+  <div class="notes">
+    <p>Adjust step 02 to whatever you're actually quoting. Don't put a number on screen — say it, or send it after.</p>
+    <p class="say">"Nothing here is fixed yet. Tell us what you want moved."</p>
+    <p><strong>Ask for the specific next action</strong> before you leave: a date for their feedback. Vague enthusiasm is not a decision.</p>
+  </div>
+</section>
+
+<!-- 17 CLOSE -->
+<section class="slide dark" data-title="Close — Gardens of this place">
+  <svg class="rings" style="left:50%;top:50%;transform:translate(-50%,-50%);width:1000px;height:1000px" viewBox="0 0 600 600"><circle cx="300" cy="300" r="80"/><circle cx="300" cy="300" r="150"/><circle cx="300" cy="300" r="225"/><circle cx="300" cy="300" r="299"/></svg>
+  <div class="statement" style="align-items:center;text-align:center">
+    <h2 style="font-size:76px;max-width:1100px">Every address is part of Country. <em>Every garden can participate in its repair.</em></h2>
+    <div class="mono" style="opacity:.6;letter-spacing:.34em">Gardener &amp; Son — Ecological Design Studio</div>
+  </div>
+  <div class="bot"><span>2 Churchill Street, Mont Albert · 140 Auburn Road, Hawthorn</span><span>Gardens of this place</span></div>
+  <div class="notes">
+    <p>Land it and stop talking. Don't add anything after this line.</p>
+    <p class="say">"Thank you. What have we missed?"</p>
+    <p>Then <strong>press B</strong> to blank the screen — it turns the room back into a conversation.</p>
+  </div>
+</section>
+
+</div></div>
+
+<div id="blank"></div>
+<div id="dhint">Press F for fullscreen · Esc to exit</div>
+
+<!-- ───────────── PRESENTER ───────────── -->
+<div id="presenter">
+  <div class="pbar">
+    <div class="id">Gardener <span>&amp;</span> Son.</div>
+    <div class="proj">3 Victoria Grove · Hawthorn East</div>
+    <div class="grow"></div>
+    <span class="proj"><span class="dotlive" id="livedot"></span><span id="livetxt">Display closed</span></span>
+    <button class="btn" id="btnOpen">Open display</button>
+    <button class="btn" id="btnBlank">Blank</button>
+    <div id="clock">00:00</div>
+    <button class="btn" id="btnTimer">Start</button>
+    <button class="btn" id="btnHelp">?</button>
+  </div>
+
+  <div class="pmain">
+    <div class="pane">
+      <div class="plabel">On screen now</div>
+      <div class="screen" id="scNow"></div>
+    </div>
+    <div class="pane">
+      <div class="plabel">Coming up</div>
+      <div class="screen" id="scNext"></div>
+      <div class="plabel">Talking points</div>
+      <div id="pnotes"></div>
+    </div>
+  </div>
+
+  <div class="pfoot">
+    <button class="btn" id="btnPrev">←</button>
+    <button class="btn" id="btnNext">→</button>
+    <div id="pcount">01 / 17</div>
+    <div id="ptitle"></div>
+    <div id="strip"></div>
+  </div>
+</div>
+
+<div id="help"><div class="box">
+  <h3>Running the deck</h3>
+  <dl>
+    <dt>→ ␣ ↓</dt><dd>Next slide</dd>
+    <dt>← ↑</dt><dd>Previous slide</dd>
+    <dt>Home / End</dt><dd>First / last slide</dd>
+    <dt>1–9</dt><dd>Jump to slide</dd>
+    <dt>O</dt><dd>Open the display window</dd>
+    <dt>F</dt><dd>Fullscreen — press it <em style="color:var(--brass)">in the display window</em></dd>
+    <dt>B</dt><dd>Blank the big screen</dd>
+    <dt>T</dt><dd>Start / pause the timer</dd>
+    <dt>R</dt><dd>Reset the timer</dd>
+    <dt>?</dt><dd>Close this</dd>
+  </dl>
+  <p style="margin-top:26px;opacity:.7;font-size:14px">Drag the display window onto the 43″, then press F inside it. This window stays on your laptop.</p>
+</div></div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── flowering calendar data ───────────────────────────────── */
+  var SPECIES = [
+    ['Magnolia ‘Elizabeth’','Deciduous feature tree','#E2C0B4',[8,9],[7,10]],
+    ['Banksia marginata','Silver banksia','#D4B85C',[3,4,5,6],[2,7,8]],
+    ['Prostanthera ovalifolia','Oval-leaf mint bush','#8A79B3',[9,10,11],[8,12]],
+    ['Philotheca myoporoides','Long-leaf wax flower','#CFC2B4',[8,9,10],[7,11]],
+    ['Correa reflexa × pulchella','Native fuchsia','#B0503C',[4,5,6,7,8,9],[3,10]],
+    ['Correa glabra','Rock correa','#7C9A52',[3,4,5,6,7],[2,8]],
+    ['Westringia ‘Aussie Box’','Coastal rosemary','#B4BBB0',[9,10,11,12],[1,2,3,4,5,6,7,8]],
+    ['Boronia megastigma','Brown boronia','#6B4A34',[8,9,10],[7,11]],
+    ['Thryptomene saxicola','Rock thryptomene','#D095A8',[6,7,8,9,10],[5,11]],
+    ['Rosmarinus officinalis','Rosemary','#7E93AE',[6,7,8,9,10],[1,2,3,4,5,11,12]],
+    ['Hardenbergia violacea','Purple coral pea','#6B4E9B',[8,9,10],[7,11]],
+    ['Lomandra ‘Lime Tuff’','Dwarf mat-rush','#BFC168',[9,10,11],[8,12]],
+    ['Dianella caerulea','Blue flax-lily','#5A7CA8',[10,11,12,1],[2,9]],
+    ['Wahlenbergia stricta','Tall bluebell','#6E8FBF',[10,11,12,1,2],[3,9]],
+    ['Ajuga australis','Austral bugle','#4C5B9E',[10,11,12],[1,9]],
+    ['Scaevola ‘Mauve Clusters’','Fan flower','#9B7FAE',[10,11,12,1,2,3],[4,9]],
+    ['Dampiera diversifolia','Blue dampiera','#3C5FA8',[9,10,11,12,1],[2,8]],
+    ['Viola hederacea','Native violet','#9A8CC0',[9,10,11,12,1,2,3],[4,5,8]],
+    ['Pratia puberula','Trailing pratia','#A9C1D8',[11,12,1,2,3],[4,10]],
+    ['Dichondra repens','Kidney weed','#7C9A52',[11,12,1],[2,10]]
+  ];
+  var cb = document.getElementById('calgrid');
+  if(cb){
+    var html = '';
+    SPECIES.forEach(function(s){
+      html += '<div class="nm"><span class="dot" style="background:'+s[2]+'"></span>'+
+              '<span class="sci">'+s[0]+'</span><span class="com">'+s[1]+'</span></div>';
+      html += '<div class="bars">';
+      for(var m=1;m<=12;m++){
+        var o = s[3].indexOf(m)>-1 ? 1 : (s[4].indexOf(m)>-1 ? .3 : 0);
+        html += '<div class="cell" style="background:'+s[2]+';opacity:'+o+'"></div>';
+      }
+      html += '</div>';
+    });
+    cb.insertAdjacentHTML('beforeend', html);
+  }
+
+  /* ── slides ────────────────────────────────────────────────── */
+  var stage  = document.getElementById('stage');
+  var slides = Array.prototype.slice.call(stage.querySelectorAll('.slide'));
+  var N = slides.length;
+  var i = 0;
+  var isDisplay = /[?&]display=1/.test(location.search);
+
+  function show(n){
+    n = Math.max(0, Math.min(N-1, n));
+    slides.forEach(function(s,k){ s.classList.toggle('active', k===n); });
+    i = n;
+  }
+  show(0);
+
+  /* ── display mode ──────────────────────────────────────────── */
+  if(isDisplay){
+    document.body.className = 'display';
+    var fit = document.getElementById('fit');
+    function scaleStage(){
+      var s = Math.min(window.innerWidth/1600, window.innerHeight/900);
+      stage.style.transform = 'scale('+s+')';
+      fit.style.width = '100%'; fit.style.height = '100%';
+      stage.style.position = 'absolute';
+      stage.style.left = ((window.innerWidth - 1600*s)/2)+'px';
+      stage.style.top  = ((window.innerHeight - 900*s)/2)+'px';
+    }
+    scaleStage();
+    window.addEventListener('resize', scaleStage);
+
+    window.addEventListener('message', function(e){
+      var d = e.data || {};
+      if(d.gs !== 'deck') return;
+      if(d.type === 'goto')  show(d.index);
+      if(d.type === 'blank') document.body.classList.toggle('blanked', !!d.on);
+    });
+
+    function toFull(){
+      if(document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen().catch(function(){});
+    }
+    document.addEventListener('click', toFull);
+    document.addEventListener('keydown', function(e){
+      if(e.key==='f'||e.key==='F'){ e.preventDefault(); toFull(); return; }
+      // forward navigation keys back to the presenter window
+      if(window.opener && !window.opener.closed){
+        try{ window.opener.postMessage({gs:'deck', type:'key', key:e.key}, '*'); }catch(err){}
+      }
+    });
+    var hint = document.getElementById('dhint');
+    setTimeout(function(){ hint.classList.add('gone'); }, 6000);
+
+    if(window.opener && !window.opener.closed){
+      try{ window.opener.postMessage({gs:'deck', type:'ready'}, '*'); }catch(err){}
+    }
+    return;
+  }
+
+  /* ── presenter mode ────────────────────────────────────────── */
+  document.body.className = 'presenter';
+
+  // two scaled clones of the stage for the previews
+  function makePreview(hostId){
+    var host  = document.getElementById(hostId);
+    var clone = stage.cloneNode(true);
+    clone.removeAttribute('id');
+    var wrap = document.createElement('div');
+    wrap.appendChild(clone);
+    host.appendChild(wrap);
+    function fitIt(){
+      var s = host.clientWidth / 1600;
+      wrap.style.transform = 'scale('+s+')';
+      wrap.style.width = '1600px'; wrap.style.height = '900px';
+    }
+    fitIt();
+    window.addEventListener('resize', fitIt);
+    return { slides: Array.prototype.slice.call(clone.querySelectorAll('.slide')), fit: fitIt };
+  }
+  var pNow  = makePreview('scNow');
+  var pNext = makePreview('scNext');
+
+  var elNotes = document.getElementById('pnotes');
+  var elTitle = document.getElementById('ptitle');
+  var elCount = document.getElementById('pcount');
+  var strip   = document.getElementById('strip');
+
+  slides.forEach(function(s,k){
+    var b = document.createElement('button');
+    b.textContent = k+1;
+    b.title = s.getAttribute('data-title') || ('Slide '+(k+1));
+    if(s.classList.contains('dark')) b.classList.add('mark');
+    b.addEventListener('click', function(){ go(k); });
+    strip.appendChild(b);
+  });
+  var stripBtns = Array.prototype.slice.call(strip.children);
+
+  var displayWin = null;
+  function post(msg){
+    if(displayWin && !displayWin.closed){
+      try{ displayWin.postMessage(Object.assign({gs:'deck'}, msg), '*'); }catch(e){}
+    }
+  }
+  function liveState(){
+    var live = !!(displayWin && !displayWin.closed);
+    document.getElementById('livedot').classList.toggle('live', live);
+    document.getElementById('livetxt').textContent = live ? 'Display live' : 'Display closed';
+  }
+  setInterval(liveState, 1500);
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function go(n){
+    n = Math.max(0, Math.min(N-1, n));
+    i = n;
+    pNow.slides.forEach(function(s,k){ s.classList.toggle('active', k===n); });
+    var nx = Math.min(N-1, n+1);
+    pNext.slides.forEach(function(s,k){ s.classList.toggle('active', k===nx); });
+
+    var src = slides[n].querySelector('.notes');
+    elNotes.innerHTML = '<h4>' + (slides[n].getAttribute('data-title')||'Slide '+(n+1)) + '</h4>' +
+                        (src ? src.innerHTML : '<p style="opacity:.5">No notes.</p>');
+    elNotes.scrollTop = 0;
+    elTitle.textContent = slides[n].getAttribute('data-title') || '';
+    elCount.textContent = pad(n+1) + ' / ' + pad(N);
+    stripBtns.forEach(function(b,k){ b.classList.toggle('cur', k===n); });
+    post({type:'goto', index:n});
+  }
+
+  function openDisplay(){
+    var url = location.pathname + '?display=1';
+    displayWin = window.open(url, 'gs-display', 'width=1440,height=810');
+    if(!displayWin){ alert('Popup blocked — allow pop-ups for this page, then press O again.'); return; }
+    setTimeout(function(){ post({type:'goto', index:i}); liveState(); }, 900);
+  }
+
+  var blanked = false;
+  function toggleBlank(){
+    blanked = !blanked;
+    post({type:'blank', on:blanked});
+    document.getElementById('btnBlank').classList.toggle('on', blanked);
+  }
+
+  /* timer */
+  var t0 = 0, acc = 0, running = false, tick = null;
+  var elClock = document.getElementById('clock');
+  var btnTimer = document.getElementById('btnTimer');
+  function render(){
+    var ms = acc + (running ? Date.now()-t0 : 0);
+    var s = Math.floor(ms/1000);
+    elClock.textContent = pad(Math.floor(s/60)) + ':' + pad(s%60);
+  }
+  function toggleTimer(){
+    if(running){ acc += Date.now()-t0; running=false; clearInterval(tick); btnTimer.textContent='Start'; }
+    else{ t0=Date.now(); running=true; tick=setInterval(render,250); btnTimer.textContent='Pause'; }
+    elClock.classList.toggle('run', running);
+    render();
+  }
+  function resetTimer(){ acc=0; t0=Date.now(); render(); }
+
+  /* controls */
+  document.getElementById('btnOpen').addEventListener('click', openDisplay);
+  document.getElementById('btnBlank').addEventListener('click', toggleBlank);
+  document.getElementById('btnTimer').addEventListener('click', toggleTimer);
+  document.getElementById('btnPrev').addEventListener('click', function(){ go(i-1); });
+  document.getElementById('btnNext').addEventListener('click', function(){ go(i+1); });
+  var help = document.getElementById('help');
+  document.getElementById('btnHelp').addEventListener('click', function(){ help.classList.toggle('on'); });
+  help.addEventListener('click', function(){ help.classList.remove('on'); });
+
+  function handleKey(k){
+    if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='ArrowDown'||k==='Enter'){ go(i+1); return true; }
+    if(k==='ArrowLeft'||k==='PageUp'||k==='ArrowUp'||k==='Backspace'){ go(i-1); return true; }
+    if(k==='Home'){ go(0); return true; }
+    if(k==='End'){ go(N-1); return true; }
+    if(/^[1-9]$/.test(k)){ go(parseInt(k,10)-1); return true; }
+    if(k==='o'||k==='O'){ openDisplay(); return true; }
+    if(k==='b'||k==='B'){ toggleBlank(); return true; }
+    if(k==='t'||k==='T'){ toggleTimer(); return true; }
+    if(k==='r'||k==='R'){ resetTimer(); return true; }
+    if(k==='?'||k==='/'){ help.classList.toggle('on'); return true; }
+    if(k==='Escape'){ help.classList.remove('on'); return true; }
+    return false;
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    if(handleKey(e.key)) e.preventDefault();
+  });
+  window.addEventListener('message', function(e){
+    var d = e.data || {};
+    if(d.gs !== 'deck') return;
+    if(d.type === 'ready'){ liveState(); post({type:'goto', index:i}); }
+    if(d.type === 'key')  handleKey(d.key);
+  });
+
+  go(0);
+  liveState();
+  render();
+})();
+</script>
+</body>
+</html>
