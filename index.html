@@ -641,11 +641,11 @@
     .reveal-d4 { transition-delay: 0.32s; }
 
     /* ─── WORKSHOP ANNOUNCEMENT BAR ─────────────────────── */
-    .workshop-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--green); color: var(--beige); display: flex; align-items: center; justify-content: center; gap: 1.5rem; padding: 0.75rem 1.5rem; border-bottom: 1px solid rgba(255,240,220,0.12); font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; transition: transform 0.3s ease; }
+    .workshop-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--signal-green); color: var(--green-deep); display: flex; align-items: center; justify-content: center; gap: 1.5rem; padding: 0.75rem 1.5rem; border-bottom: 1px solid rgba(42,47,37,0.18); font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; transition: transform 0.3s ease; }
     .workshop-bar.hidden { transform: translateY(-100%); }
-    .workshop-bar-link { color: var(--beige); text-decoration: none; border-bottom: 1px solid rgba(255,240,220,0.4); padding-bottom: 1px; transition: border-color 0.2s; }
-    .workshop-bar-link:hover { border-color: var(--accent); }
-    .workshop-bar-dismiss { background: none; border: none; color: var(--accent); font-size: 1.2rem; cursor: pointer; padding: 0 0.25rem; opacity: 0.7; transition: opacity 0.2s; line-height: 1; }
+    .workshop-bar-link { color: var(--green-deep); text-decoration: none; border-bottom: 1px solid rgba(42,47,37,0.4); padding-bottom: 1px; transition: border-color 0.2s; }
+    .workshop-bar-link:hover { border-color: var(--green-deep); }
+    .workshop-bar-dismiss { background: none; border: none; color: var(--green-deep); font-size: 1.2rem; cursor: pointer; padding: 0 0.25rem; opacity: 0.7; transition: opacity 0.2s; line-height: 1; }
     .workshop-bar-dismiss:hover { opacity: 1; }
     body.has-workshop-bar #site-nav { top: 44px; }
     @media (max-width: 640px) {
