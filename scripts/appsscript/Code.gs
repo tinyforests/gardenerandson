@@ -164,10 +164,17 @@ function getSheet_() {
       'Use (Q4)', 'Hands-on (0–100)', 'Light', 'Slope',
       'Photo count', 'Photo folder', 'Note',
       'Direction', 'First step (head)', 'First step',
-      'User agent', 'Page URL'
+      'User agent', 'Page URL', 'Budget'
     ]);
     sheet.setFrozenRows(1);
-    sheet.getRange(1, 1, 1, 20).setFontWeight('bold');
+    sheet.getRange(1, 1, 1, 21).setFontWeight('bold');
+  } else {
+    // Self-heal: sheets created before the Budget column existed gain it here,
+    // appended at the end so existing rows stay aligned with their header.
+    const header = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    if (header.indexOf('Budget') === -1) {
+      sheet.getRange(1, sheet.getLastColumn() + 1).setValue('Budget').setFontWeight('bold');
+    }
   }
 
   return sheet;
@@ -195,7 +202,8 @@ function logToSheet_(summary, snapshot, photoLinks) {
     snapshot.head || '',
     snapshot.step || '',
     summary.userAgent || '',
-    summary.pageUrl || ''
+    summary.pageUrl || '',
+    summary.budget || ''
   ]);
 }
 
@@ -265,6 +273,7 @@ function sendStudioEmail_(summary, snapshot, photoLinks) {
         ${row_('Hands-on (0–100)', summary.handsOn)}
         ${row_('Light', escapeHtml_(summary.light))}
         ${row_('Slope', escapeHtml_(summary.slope))}
+        ${row_('Budget', escapeHtml_(summary.budget))}
       </table>
 
       ${summary.note ? `
@@ -403,6 +412,7 @@ function testRun() {
     handsOn: 40,
     light: 'A mix',
     slope: 'Gently sloped',
+    budget: '$15k–$40k — a considered transformation',
     photoCount: 0,
     note: 'This is a test submission. Please ignore.',
     timestamp: new Date().toISOString()

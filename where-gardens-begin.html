@@ -418,7 +418,7 @@
     };
 
     // Total numbered question steps (used for the small "Step n of 7" pill)
-    const TOTAL_STEPS = 7;
+    const TOTAL_STEPS = 8;
   </script>
 
   <main id="content">
@@ -474,7 +474,7 @@
     <!-- Q1 — single-select, AUTO-ADVANCE -->
     <section id="q1" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <div class="step-pill"><span>Step 1 of 7</span><span class="dot"></span><span>Feeling</span></div>
+        <div class="step-pill"><span>Step 1 of 8</span><span class="dot"></span><span>Feeling</span></div>
 
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What feels unfinished?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
@@ -504,7 +504,7 @@
     <!-- Q2 — multi-select (1–2), keeps Continue button -->
     <section id="q2" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <div class="step-pill"><span>Step 2 of 7</span><span class="dot"></span><span>Hope</span></div>
+        <div class="step-pill"><span>Step 2 of 8</span><span class="dot"></span><span>Hope</span></div>
 
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What is hoped for — over time?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">Choose one or two.</p>
@@ -534,7 +534,7 @@
     <!-- Q3 — single-select, AUTO-ADVANCE -->
     <section id="q3" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <div class="step-pill"><span>Step 3 of 7</span><span class="dot"></span><span>Help</span></div>
+        <div class="step-pill"><span>Step 3 of 8</span><span class="dot"></span><span>Help</span></div>
 
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What kind of help is wanted?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
@@ -564,7 +564,7 @@
     <!-- Q3B — single-select, AUTO-ADVANCE -->
     <section id="q3b" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <div class="step-pill"><span>Step 4 of 7</span><span class="dot"></span><span>Easy beginning</span></div>
+        <div class="step-pill"><span>Step 4 of 8</span><span class="dot"></span><span>Easy beginning</span></div>
 
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
           What feels like an easy beginning?
@@ -597,7 +597,7 @@
     <!-- Q4 — multi-select + slider, keeps Continue -->
     <section id="q4" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <div class="step-pill"><span>Step 5 of 7</span><span class="dot"></span><span>Use &amp; rhythm</span></div>
+        <div class="step-pill"><span>Step 5 of 8</span><span class="dot"></span><span>Use &amp; rhythm</span></div>
 
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">How will the garden be used most?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">Choose up to two.</p>
@@ -642,7 +642,7 @@
     <!-- Q5 — two single-selects, AUTO-ADVANCE when BOTH chosen -->
     <section id="q5" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <div class="step-pill"><span>Step 6 of 7</span><span class="dot"></span><span>Site</span></div>
+        <div class="step-pill"><span>Step 6 of 8</span><span class="dot"></span><span>Site</span></div>
 
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What is the site like?</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
@@ -685,7 +685,7 @@
     <!-- PHOTOS — keeps Continue -->
     <section id="photos" class="screen">
       <div class="max-w-4xl mx-auto px-6 w-full">
-        <div class="step-pill"><span>Step 7 of 7</span><span class="dot"></span><span>Photos &amp; details</span></div>
+        <div class="step-pill"><span>Step 7 of 8</span><span class="dot"></span><span>Photos &amp; details</span></div>
 
         <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">Share a glimpse of the garden</h2>
         <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
@@ -715,7 +715,37 @@
         <div class="mt-5 nav-actions">
           <a href="#q5" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
           <span class="spacer"></span>
-          <a href="#details" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
+          <a href="#budget" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">Continue</a>
+        </div>
+      </div>
+
+      <a href="#budget" class="next-section">
+        <span class="next-section-arrow">↓</span>
+        <span class="next-section-label">Budget</span>
+      </a>
+    </section>
+
+    <!-- BUDGET — single-select, AUTO-ADVANCE -->
+    <section id="budget" class="screen">
+      <div class="max-w-4xl mx-auto px-6 w-full">
+        <div class="step-pill"><span>Step 8 of 8</span><span class="dot"></span><span>Budget</span></div>
+
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">What feels like a comfortable place to begin?</h2>
+        <p class="text-sm md:text-base leading-relaxed font-light muted mb-5 max-w-2xl">
+          Only a rough sense — gardens are usually staged over time, and there is no wrong answer.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-3">
+          <button class="choice-btn" data-group="budget" data-value="Under $5k — a plan or first step">Under $5k — a plan or first step</button>
+          <button class="choice-btn" data-group="budget" data-value="$5k–$15k — staged beginnings">$5k–$15k — staged beginnings</button>
+          <button class="choice-btn" data-group="budget" data-value="$15k–$40k — a considered transformation">$15k–$40k — a considered transformation</button>
+          <button class="choice-btn" data-group="budget" data-value="$40k+ — a whole-garden project">$40k+ — a whole-garden project</button>
+          <button class="choice-btn" data-group="budget" data-value="Not sure yet">Not sure yet</button>
+          <button class="choice-btn" data-group="budget" data-value="Prefer to discuss">Prefer to discuss</button>
+        </div>
+
+        <div class="mt-5 nav-actions">
+          <a href="#photos" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
         </div>
       </div>
 
@@ -764,7 +794,7 @@
         </div>
 
         <div class="mt-5 nav-actions">
-          <a href="#photos" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
+          <a href="#budget" class="inline-block text-sm px-5 py-2.5 btn-border transition-all rounded-sm">Back</a>
           <span class="spacer"></span>
           <button id="submitBtn" class="inline-block text-sm px-5 py-2.5 transition-opacity hover:opacity-70" style="background:var(--fg); color:var(--bg);">
             Send my first step
@@ -911,6 +941,7 @@
       handsOn: 50,
       light: null,
       slope: null,
+      budget: null,
       photos: []
     };
 
@@ -930,7 +961,8 @@
     const AUTO_NEXT = {
       q1:      "#q2",
       q3:      "#q3b",
-      comfort: "#q4"
+      comfort: "#q4",
+      budget:  "#details"
       // q5 (light + slope) handled specially: needs BOTH selected
     };
 
@@ -953,7 +985,8 @@
         '#q3':  ['q3'],
         '#q3b': ['comfort'],
         '#q4':  ['use'],          // (handsOn slider value is fine to keep)
-        '#q5':  ['light','slope']
+        '#q5':  ['light','slope'],
+        '#budget': ['budget']
       };
 
       document.querySelectorAll('.nav-actions a[href^="#"]').forEach(link => {
@@ -1000,7 +1033,7 @@
         const value = btn.getAttribute("data-value");
 
         // --- Single-select groups with auto-advance ---
-        if (group === "q1" || group === "q3" || group === "comfort") {
+        if (group === "q1" || group === "q3" || group === "comfort" || group === "budget") {
           state[group] = value;
           clearGroup(group);
           btn.dataset.selected = "true";
@@ -1178,6 +1211,7 @@
       heardBits.push(`Rhythm: <strong>${labelHandsOn(state.handsOn).label}</strong>.`);
       heardBits.push(`Light: <strong>${light}</strong>.`);
       heardBits.push(`Slope: <strong>${slope}</strong>.`);
+      if (state.budget) heardBits.push(`Budget: <strong>${state.budget}</strong>.`);
       heardBits.push(`Photos: <strong>${state.photos.length}</strong>.`);
 
       return { direction, directionText, head, step, heard: heardBits.join(" ") };
@@ -1242,6 +1276,7 @@
         handsOn: state.handsOn,
         light: state.light,
         slope: state.slope,
+        budget: state.budget,
         photoCount: state.photos.length,
         timestamp: new Date().toISOString(),
         userAgent: navigator.userAgent,
@@ -1273,6 +1308,7 @@
         `Hands-on (0–100): ${summary.handsOn}`,
         `Light: ${summary.light || "—"}`,
         `Slope: ${summary.slope || "—"}`,
+        `Budget: ${summary.budget || "—"}`,
         `Photos selected: ${summary.photoCount} (please attach manually)`,
         "",
         "Snapshot",
