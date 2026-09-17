@@ -102,6 +102,11 @@ p.body{font-size:28px;line-height:1.55;max-width:820px}
 .plan.active{display:grid;grid-template-columns:560px 1fr;gap:80px;align-items:center;padding-top:60px;padding-bottom:60px}
 .plan .ph{background:none;height:960px}
 .plan .ph img{object-fit:contain;mix-blend-mode:multiply}
+.pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:80px}
+.pillars > div{padding:30px 34px 0 0;margin-right:26px;border-top:2px solid var(--green)}
+.pillars .k{font-family:var(--mono);font-size:19px;color:var(--signal);margin-bottom:16px;min-height:52px}
+.pillars p{font-size:24px;line-height:1.5;font-weight:500;color:var(--ink)}
+.pillars-foot{margin-top:70px;font-family:var(--serif);font-style:italic;font-size:30px;opacity:.8}
 /* ---------- idea ---------- */
 .idea{display:none}
 .idea.active{display:flex;flex-direction:column;justify-content:space-between}
@@ -247,7 +252,7 @@ body.display.moved{cursor:default}
     <button id="btnOpen">Open display (O)</button>
     <button id="btnBlack">Blackout (B)</button>
     <button id="btnPrev" aria-label="Previous slide">◀</button>
-    <span class="count" id="count">1 / 19</span>
+    <span class="count" id="count">1 / 18</span>
     <button id="btnNext" aria-label="Next slide">▶</button>
     <button id="btnTimer" title="Reset timer (T)">Reset</button>
     <span class="timer" id="timer">00:00</span>
@@ -317,51 +322,6 @@ body.display.moved{cursor:default}
   <aside class="notes">
     <p>Reflect her brief back in her own words where you can. <b>Don't name the designer</b> — talk about the style: naturalistic, meadow-like, grasses and perennials, left standing over winter.</p>
     <p>Ask: which image in her references did she keep coming back to, and why?</p>
-  </aside>
-</section>
-
-<!-- 4 THE SITE -->
-<section class="slide light">
-  <div class="eyebrow">The site today</div>
-  <h2>Reading the ground before we plant it.</h2>
-  <div class="site-grid">
-    <figure class="ph" data-label="Existing site, main view"><img src="images/site-1.jpg" alt="Existing garden at 7 Maylands Avenue"></figure>
-    <figure class="ph" data-label="Existing site, detail"><img src="images/site-2.jpg" alt="Existing site detail"></figure>
-    <figure class="ph" data-label="Existing site, detail"><img src="images/site-3.jpg" alt="Existing site detail"></figure>
-  </div>
-  <aside class="notes">
-    <p>Walk through the photos: the weatherboard house and its two sets of garden doors, the old brick courtyard, the conifer hedge, the young deciduous trees and the Lutyens bench at the far end.</p>
-    <p>Photos taken mid-August, so the garden is at its barest. That's a useful baseline: the new planting is designed to look better than this in winter.</p>
-    <p>Shade matters for this palette: Deschampsia, Waverly, native violet and pratia take part shade; most of the salvias, sedums, perovskia and eryngium want full sun.</p>
-  </aside>
-</section>
-
-
-<!-- 4b THE BED -->
-<section class="slide light">
-  <div class="eyebrow">The site today</div>
-  <h2>A long bed framed in old brick.</h2>
-  <div class="site-bed">
-    <div>
-      <figure class="ph" data-label="Measured site photo"><img src="images/site-measured.jpg" alt="The existing bed with measurements marked"></figure>
-      <div class="dims">
-        <div><b>4.3 m</b><span>lawn edge</span></div>
-        <div><b>10.9 m</b><span>along the hedge</span></div>
-        <div><b>6.9 m</b><span>far edge</span></div>
-        <div><b>8.7 m</b><span>house side</span></div>
-      </div>
-    </div>
-    <div class="obs">
-      <div><h3>The brick stays</h3><p>The edging, courtyard and stepping pads give the garden its bones. The planting can grow right up to them.</p></div>
-      <div><h3>The hedge sets the limits</h3><p>The tall conifers shade and dry out the soil beside them. Tougher, shade-tolerant plants go along that edge; the sun lovers go into the open middle.</p></div>
-      <div><h3>Some plants are already here</h3><p>Lamb's ear and carpet bugle are thriving and both are in the new palette, so we lift, divide and replant them.</p></div>
-    </div>
-  </div>
-  <aside class="notes">
-    <p>Measurements are from the phone survey: 4.28 m along the lawn, 10.9 m along the hedge, 6.86 m across the far end, 8.68 m back along the house side, with a cut corner (2.33 m and 2.09 m) where the bed meets the courtyard.</p>
-    <p><b>Confirm aspect on site</b> — which way the hedge faces decides how far the sun lovers can go toward it. Moss on the lawn and pads says parts stay damp and shady in winter.</p>
-    <p>The young deciduous trees stay and give the meadow a light canopy. Worth asking Evelyn which of the obelisks and roses she wants to keep.</p>
-    <p>The dry, rooty soil along the hedge will need soil preparation. Flag it now so it isn't a surprise in the quote.</p>
   </aside>
 </section>
 
@@ -591,6 +551,25 @@ body.display.moved{cursor:default}
   </div>
   <aside class="notes">
     <p>This connects the style to why we do what we do. Leaving it standing isn't laziness, it's habitat.</p>
+  </aside>
+</section>
+
+<!-- PILLARS -->
+<section class="slide light">
+  <div class="eyebrow">Measuring the garden</div>
+  <h2>How we'll know it's <em>working.</em></h2>
+  <div class="pillars">
+    <div><div class="k">Biodiversity structure</div><p>Four layers of planting, from groundcover to tall grasses, instead of one.</p></div>
+    <div><div class="k">Soil &amp; water</div><p>Covered, mulched soil that holds moisture, and hardy plants that need little water once settled.</p></div>
+    <div><div class="k">Habitat complexity</div><p>Stems, seedheads and dense low cover left in place for insects and small birds all year.</p></div>
+    <div><div class="k">Connectivity</div><p>Flowers from spring to autumn that link this garden to the trees and gardens around it.</p></div>
+    <div><div class="k">Evidence</div><p>We record what's planted, photograph it as it grows, and come back to see what arrives.</p></div>
+  </div>
+  <p class="pillars-foot">The same five measures we use for every garden we make.</p>
+  <aside class="notes">
+    <p>Keep this light. It's how G&amp;S thinks, not a sales pitch for the Registry. <b>Don't quote a score.</b></p>
+    <p>If she asks: these are the five pillars the Registry scores against. Evidence starts on planting day: what went in, and photos as it establishes.</p>
+    <p>Honest caveat for you: with a mostly exotic palette, this garden won't score strongly on the biodiversity pillar under the current method. Its strengths are habitat structure and the long flowering season.</p>
   </aside>
 </section>
 
