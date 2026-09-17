@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Maylands Meadow — Gardener &amp; Son</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#3d4535; --beige:#fff0dc; --signal:#7C9A52; --brass:#B49A63; --clay:#9A6A4F;
+  --ink:#2e3428;
+  --serif:'Fraunces',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace; --hero:'Abril Fatface',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0}
+html,body{height:100%;background:#1f231b;overflow:hidden;font-family:var(--sans)}
+button{font:inherit;cursor:pointer}
+
+/* ---------- stage ---------- */
+.frame{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
+.stage{position:relative;width:1920px;height:1080px;transform-origin:0 0;flex:none}
+.slide{position:absolute;inset:0;display:none;overflow:hidden;padding:110px 140px}
+.slide.active{display:block}
+.slide::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.26;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .27 0 0 0 0 .2 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.dark{background:var(--green);color:var(--beige);-webkit-font-smoothing:antialiased}
+.dark::after{mix-blend-mode:overlay;opacity:.35}
+.light{background:var(--beige);color:var(--green);-webkit-font-smoothing:auto}
+.slide > *{position:relative;z-index:1}
+.notes{display:none!important}
+
+/* ---------- type ---------- */
+.eyebrow{font-family:var(--mono);font-size:22px;letter-spacing:.02em;color:var(--signal);margin-bottom:34px}
+.dark .eyebrow{color:var(--brass)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
+.light h2{font-weight:450}
+h2{font-size:84px;line-height:1.04;max-width:1300px}
+h2 em,.big em{font-style:italic;color:var(--signal)}
+.lede{font-family:var(--serif);font-size:38px;line-height:1.4;max-width:1060px;font-weight:350}
+.light .lede{font-weight:400}
+p.body{font-size:28px;line-height:1.55;max-width:820px}
+.light p.body{font-weight:500;color:var(--ink)}
+.big{font-family:var(--serif);font-size:112px;line-height:1.02;letter-spacing:-.015em;font-weight:350}
+.rule{height:1px;background:currentColor;opacity:.25}
+.foot{position:absolute;left:140px;right:140px;bottom:56px;display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:18px;opacity:.6}
+.foot b{font-weight:400;color:var(--signal)}
+.dark .foot b{color:var(--brass)}
+
+/* ---------- image slots ---------- */
+.ph{position:relative;overflow:hidden;background:rgba(61,69,53,.08)}
+.dark .ph{background:rgba(255,240,220,.06)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph.empty img{display:none}
+.ph.empty{background-image:repeating-linear-gradient(135deg,transparent 0 22px,rgba(124,154,82,.14) 22px 23px);
+  outline:1px dashed rgba(124,154,82,.55);outline-offset:-1px}
+.ph.empty::after{content:attr(data-label) "\A" attr(data-file);white-space:pre;position:absolute;left:28px;bottom:24px;
+  font-family:var(--mono);font-size:19px;line-height:1.6;color:var(--signal)}
+.ph figcaption{position:absolute;left:0;bottom:0;padding:16px 24px;font-family:var(--mono);font-size:18px;
+  background:rgba(61,69,53,.82);color:var(--beige)}
+.ph.empty figcaption{display:none}
+
+/* ---------- 01 cover ---------- */
+.cover{padding:0;display:none}
+.cover.active{display:grid;grid-template-columns:900px 1fr}
+.cover .left{padding:110px 0 110px 140px;display:flex;flex-direction:column;justify-content:space-between}
+.mark{font-family:var(--serif);font-size:34px;letter-spacing:.01em}
+.mark i{font-style:italic;color:var(--signal)}
+.cover h1{font-family:var(--hero);font-size:150px;line-height:.95;letter-spacing:-.005em;margin:0 0 42px}
+.cover .addr{font-family:var(--serif);font-size:40px;line-height:1.3;font-weight:350}
+.cover .for{font-family:var(--mono);font-size:21px;color:var(--brass);line-height:1.7}
+.cover .ph{height:1080px}
+
+/* ---------- country ---------- */
+.country{display:none}
+.country.active{display:flex;flex-direction:column;justify-content:center}
+.country .big{font-size:96px;max-width:1400px}
+.country p.body{margin-top:56px;max-width:900px;opacity:.85}
+
+/* ---------- two-column ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:100px;height:100%}
+.split .col{display:flex;flex-direction:column;justify-content:center}
+.stack{display:grid;gap:24px;height:100%}
+
+/* ---------- site ---------- */
+.site-grid{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:1fr 1fr;gap:24px;height:560px;margin-top:56px}
+.site-grid .ph:first-child{grid-row:1 / span 2}
+
+.site-bed{display:grid;grid-template-columns:1040px 1fr;gap:90px;margin-top:50px}
+.site-bed .ph{height:480px}
+.dims{display:grid;grid-template-columns:repeat(4,1fr);margin-top:26px;border-top:1px solid rgba(61,69,53,.25)}
+.dims div{padding:16px 0 0}
+.dims b{display:block;font-family:var(--serif);font-weight:450;font-size:44px;line-height:1.1}
+.dims span{font-family:var(--mono);font-size:18px;opacity:.75}
+.obs div{padding:22px 0 24px;border-top:1px solid rgba(61,69,53,.22)}
+.obs h3{font-size:36px;font-weight:450;margin-bottom:8px}
+.obs p{font-size:23px;line-height:1.5;font-weight:500;color:var(--ink)}
+
+.plan{display:none}
+.plan.active{display:grid;grid-template-columns:560px 1fr;gap:80px;align-items:center;padding-top:60px;padding-bottom:60px}
+.plan .ph{background:none;height:960px}
+.plan .ph img{object-fit:contain;mix-blend-mode:multiply}
+/* ---------- idea ---------- */
+.idea{display:none}
+.idea.active{display:flex;flex-direction:column;justify-content:space-between}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:70px;border-top:1px solid rgba(255,240,220,.25);padding-top:44px}
+.principles h3{font-size:40px;margin-bottom:16px;font-style:italic;color:var(--brass);font-weight:400}
+.principles p{font-size:25px;line-height:1.55;opacity:.9}
+
+/* ---------- full bleed ---------- */
+.bleed{padding:0}
+.bleed .ph{position:absolute;inset:0}
+.bleed .cap{position:absolute;left:0;bottom:0;right:0;padding:40px 140px;display:flex;align-items:baseline;gap:40px;
+  background:linear-gradient(to top,rgba(61,69,53,.92),rgba(61,69,53,.0));color:var(--beige);z-index:2}
+.bleed .cap .eyebrow{margin:0;color:var(--brass)}
+.bleed .cap h2{font-size:56px}
+
+/* ---------- layers ---------- */
+.layer{display:none}
+.layer.active{display:grid;grid-template-columns:780px 1fr;gap:80px}
+.layer .ph{background:none;align-self:center}
+.layer .ph:not(.empty){height:auto!important}
+.layer .ph img{object-fit:contain;mix-blend-mode:multiply;height:auto}
+.layer .plants:not(.one) .plant h3{font-size:30px}
+.layer .intro h2{font-size:68px;margin-bottom:16px}
+.layer .intro .lede{font-size:29px;max-width:980px;margin-bottom:28px}
+.layer{padding-top:90px;padding-bottom:90px}
+.layer .ph{height:900px}
+.plants{display:grid;grid-template-columns:1fr 1fr;column-gap:56px}
+.plants.one{grid-template-columns:1fr}
+.plant{padding:20px 0 22px;border-top:1px solid rgba(61,69,53,.22)}
+.plant .n{display:flex;justify-content:space-between;align-items:baseline;gap:20px}
+.plant h3{font-size:34px;font-weight:450;line-height:1.15}
+.plant .h{font-family:var(--mono);font-size:18px;white-space:nowrap;opacity:.75}
+.plant .b{font-family:var(--mono);font-style:italic;font-size:19px;color:var(--signal);margin:4px 0 8px}
+.plant p{font-size:22px;line-height:1.45;color:var(--ink);font-weight:500}
+.plant .tag{font-family:var(--mono);font-size:16px;color:var(--beige);background:var(--signal);padding:2px 10px;margin-left:10px;vertical-align:4px;font-style:normal}
+.plants.one .plant{padding:16px 0 18px}
+.plants.one .plant p{font-size:22px;max-width:980px}
+.plants.one .plant .b{margin:2px 0 6px}
+
+/* ---------- colour ---------- */
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:0;height:560px;margin-top:60px}
+.sw{display:flex;flex-direction:column;justify-content:flex-end;padding:30px}
+.sw h3{font-size:36px;font-style:italic;margin-bottom:14px}
+.sw p{font-family:var(--mono);font-size:17px;line-height:1.6}
+
+/* ---------- calendar ---------- */
+.cal{margin-top:26px;font-size:18px}
+.cal .row{display:grid;grid-template-columns:420px repeat(12,1fr);height:26px;align-items:center}
+.cal .row.head{height:40px;font-family:var(--mono);font-size:17px;opacity:.8}
+.cal .row.head span{text-align:center}
+.cal .row.group{height:32px;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--signal);align-items:end;padding-bottom:3px}
+.cal .nm{font-family:var(--mono);font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:16px;font-weight:500}
+.cal .cell{height:100%;border-left:1px solid rgba(61,69,53,.12);position:relative}
+.cal .cell.on::before{content:"";position:absolute;left:0;right:0;top:6px;bottom:6px;background:var(--c)}
+.cal .cell.on.pale::before{box-shadow:inset 0 0 0 1px rgba(61,69,53,.35)}
+.cal .row.season{height:24px}
+.cal .season span{font-family:var(--mono);font-size:15px;opacity:.6;border-top:2px solid var(--brass);padding-top:2px}
+
+/* ---------- seasons ---------- */
+.seasons{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:50px}
+.season-card .ph{height:430px;margin-bottom:26px}
+.season-card h3{font-size:40px;font-style:italic;color:var(--signal);margin-bottom:10px}
+.season-card p{font-size:23px;line-height:1.5;font-weight:500;color:var(--ink)}
+
+/* ---------- habitat ---------- */
+.visitors{display:grid;grid-template-columns:repeat(4,1fr);gap:56px;margin-top:80px;border-top:1px solid rgba(255,240,220,.25);padding-top:44px}
+.visitors h3{font-size:42px;font-style:italic;color:var(--brass);margin-bottom:14px}
+.visitors p{font-size:24px;line-height:1.5;opacity:.92}
+
+/* ---------- care ---------- */
+.care{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:70px}
+.care div{padding:34px 36px 0 0;border-top:2px solid var(--green);margin-right:30px}
+.care .when{font-family:var(--mono);font-size:19px;color:var(--signal);margin-bottom:14px}
+.care h3{font-size:38px;margin-bottom:12px;font-weight:450}
+.care p{font-size:23px;line-height:1.5;font-weight:500;color:var(--ink)}
+.tend{margin-top:70px;padding:36px 44px;background:var(--green);color:var(--beige);display:flex;gap:60px;align-items:center}
+.tend h3{font-family:var(--serif);font-size:46px;font-style:italic;color:var(--brass);white-space:nowrap}
+.tend p{font-size:25px;line-height:1.5}
+
+/* ---------- next ---------- */
+.steps{margin-top:70px;display:grid;gap:0}
+.steps div{display:grid;grid-template-columns:120px 520px 1fr;padding:30px 0;border-top:1px solid rgba(255,240,220,.22);align-items:baseline}
+.steps .i{font-family:var(--mono);font-size:22px;color:var(--brass)}
+.steps h3{font-size:44px}
+.steps p{font-size:25px;line-height:1.5;opacity:.9}
+
+/* ---------- close ---------- */
+.close{display:none}
+.close.active{display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.close .big{font-size:150px}
+.close .mark{margin-top:80px;font-size:44px}
+.close .for{margin-top:18px;font-family:var(--mono);font-size:21px;color:var(--brass);line-height:1.7}
+
+/* ---------- blackout ---------- */
+.black{position:absolute;inset:0;background:#000;z-index:50;display:none}
+body.blackout .black{display:block}
+
+/* =========================================================
+   PRESENTER VIEW
+   ========================================================= */
+body.presenter{background:#171a14;color:#e9dcc6}
+.pv{display:none}
+body.presenter .pv{display:grid;position:absolute;inset:0;grid-template-columns:1fr 440px;grid-template-rows:64px 1fr 230px;gap:14px;padding:14px}
+body.presenter > .frame{display:none}
+.pv .bar{grid-column:1 / span 2;display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:14px}
+.pv .bar .title{font-family:var(--serif);font-size:22px;margin-right:auto;color:var(--beige)}
+.pv .bar button{background:#2a3024;color:var(--beige);border:1px solid #4a5340;padding:9px 14px}
+.pv .bar button:hover,.pv .bar button:focus-visible{border-color:var(--signal);outline:none}
+.pv .bar button.on{background:var(--signal);color:#171a14;border-color:var(--signal)}
+.pv .timer{font-size:26px;color:var(--beige);min-width:110px;text-align:right}
+.pv .count{font-size:18px;color:var(--brass)}
+.pane{position:relative;background:#0e100c;overflow:hidden}
+.pane .frame{position:absolute}
+.pv .cur{grid-row:2 / span 2}
+.pv .side{grid-row:2;display:grid;grid-template-rows:auto 1fr;gap:10px}
+.pv .label{font-family:var(--mono);font-size:13px;color:#9aa08f}
+.pv .nextwrap{height:248px}
+.pv .notes-pane{grid-row:3;grid-column:2;background:#222719;padding:18px 20px;overflow:auto;font-size:17px;line-height:1.55}
+.pv .side .notes-pane{grid-row:auto}
+.pv .notesbox{background:#222719;padding:18px 20px;overflow:auto;font-size:18px;line-height:1.55;color:#efe3cf}
+.pv .notesbox p{margin-bottom:12px}
+.pv .notesbox b{color:var(--signal);font-weight:600}
+.pv .keys{grid-column:2;grid-row:3;font-family:var(--mono);font-size:12.5px;line-height:1.9;color:#8f9585;padding:10px 4px}
+.pv .keys kbd{font-family:var(--mono);background:#2a3024;border:1px solid #454d3b;padding:1px 6px;color:var(--beige)}
+.pv .status{font-size:13px;color:#8f9585}
+.pv .status.live{color:var(--signal)}
+
+/* display-only */
+body.display{cursor:none}
+body.display.moved{cursor:default}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ============================ PRESENTER UI ============================ -->
+<div id="hint" style="position:fixed;right:18px;bottom:16px;z-index:99;font:13px var(--mono);color:#fff0dc;background:rgba(61,69,53,.9);padding:8px 12px;opacity:0;transition:opacity .4s;pointer-events:none">← → to move &nbsp; P presenter view</div>
+<div class="pv" aria-label="Presenter view">
+  <div class="bar">
+    <span class="title">The Maylands Meadow <span style="opacity:.5;font-size:15px;font-family:var(--mono)">presenter</span></span>
+    <span class="status" id="status">Display closed</span>
+    <button id="btnOpen">Open display (O)</button>
+    <button id="btnBlack">Blackout (B)</button>
+    <button id="btnPrev" aria-label="Previous slide">◀</button>
+    <span class="count" id="count">1 / 19</span>
+    <button id="btnNext" aria-label="Next slide">▶</button>
+    <button id="btnTimer" title="Reset timer (T)">Reset</button>
+    <span class="timer" id="timer">00:00</span>
+  </div>
+  <div class="pane cur" id="curPane"></div>
+  <div class="side">
+    <div>
+      <div class="label">Next</div>
+      <div class="pane nextwrap" id="nextPane"></div>
+    </div>
+    <div style="display:grid;grid-template-rows:auto 1fr;gap:6px;min-height:0">
+      <div class="label">Talking points</div>
+      <div class="notesbox" id="notesBox"></div>
+    </div>
+  </div>
+  <div class="keys">
+    <kbd>→</kbd> <kbd>Space</kbd> next &nbsp; <kbd>←</kbd> back &nbsp; <kbd>Home</kbd> <kbd>End</kbd><br>
+    <kbd>O</kbd> open display &nbsp; <kbd>B</kbd> blackout &nbsp; <kbd>T</kbd> reset timer<br>
+    <kbd>P</kbd> back to slides &nbsp; In the display window: <kbd>F</kbd> fullscreen
+  </div>
+</div>
+
+<!-- ============================ DECK ============================ -->
+<div class="frame" id="mainFrame">
+<div class="stage" id="stage">
+
+<!-- 1 COVER -->
+<section class="slide dark cover">
+  <div class="left">
+    <div class="mark">Gardener <i>&amp;</i> Son</div>
+    <div>
+      <h1>The Maylands Meadow</h1>
+      <div class="addr">A garden design for<br>7 Maylands Avenue, Balwyn North</div>
+    </div>
+    <div class="for">Prepared for Evelyn McKibbon<br>September 2026</div>
+  </div>
+  <figure class="ph" data-label="Cover image"><img src="images/cover.jpg" alt="Illustration of the Maylands garden"></figure>
+  <aside class="notes">
+    <p>Welcome Evelyn. Short version of the session: what you showed us, what we heard, the garden we've designed, and how it lives through the year.</p>
+    <p>The name — <b>The Maylands Meadow</b> — is a working title. Invite her to rename it.</p>
+  </aside>
+</section>
+
+<!-- 2 COUNTRY -->
+<section class="slide dark country">
+  <div class="eyebrow">Acknowledgement of Country</div>
+  <div class="big">This garden grows on Wurundjeri Woi-wurrung Country.</div>
+  <p class="body">We acknowledge the Traditional Custodians of the land at Balwyn North and pay our respects to Elders past and present. Every garden we make is a small part of a much older landscape.</p>
+  <aside class="notes">
+    <p>Keep it brief and sincere. Pause before moving on.</p>
+  </aside>
+</section>
+
+<!-- 3 THE BRIEF -->
+<section class="slide light">
+  <div class="split">
+    <div class="col">
+      <div class="eyebrow">Where we began</div>
+      <h2>You showed us gardens that look <em>sown, not arranged.</em></h2>
+      <p class="lede" style="margin-top:44px">Grasses catching late light. Flowers rising through them in loose drifts. A garden that still looks beautiful in winter, when it's mostly seedheads and silhouettes.</p>
+    </div>
+    <div class="stack" style="grid-template-rows:1fr 1fr">
+      <figure class="ph" data-label="Inspiration image 1"><img src="images/inspiration-1.jpg" alt="Inspiration: naturalistic grass and perennial planting"></figure>
+      <figure class="ph" data-label="Inspiration image 2"><img src="images/inspiration-2.jpg" alt="Inspiration: meadow planting in late light"></figure>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Reflect her brief back in her own words where you can. <b>Don't name the designer</b> — talk about the style: naturalistic, meadow-like, grasses and perennials, left standing over winter.</p>
+    <p>Ask: which image in her references did she keep coming back to, and why?</p>
+  </aside>
+</section>
+
+<!-- 4 THE SITE -->
+<section class="slide light">
+  <div class="eyebrow">The site today</div>
+  <h2>Reading the ground before we plant it.</h2>
+  <div class="site-grid">
+    <figure class="ph" data-label="Existing site, main view"><img src="images/site-1.jpg" alt="Existing garden at 7 Maylands Avenue"></figure>
+    <figure class="ph" data-label="Existing site, detail"><img src="images/site-2.jpg" alt="Existing site detail"></figure>
+    <figure class="ph" data-label="Existing site, detail"><img src="images/site-3.jpg" alt="Existing site detail"></figure>
+  </div>
+  <aside class="notes">
+    <p>Walk through the photos: the weatherboard house and its two sets of garden doors, the old brick courtyard, the conifer hedge, the young deciduous trees and the Lutyens bench at the far end.</p>
+    <p>Photos taken mid-August, so the garden is at its barest. That's a useful baseline: the new planting is designed to look better than this in winter.</p>
+    <p>Shade matters for this palette: Deschampsia, Waverly, native violet and pratia take part shade; most of the salvias, sedums, perovskia and eryngium want full sun.</p>
+  </aside>
+</section>
+
+
+<!-- 4b THE BED -->
+<section class="slide light">
+  <div class="eyebrow">The site today</div>
+  <h2>A long bed framed in old brick.</h2>
+  <div class="site-bed">
+    <div>
+      <figure class="ph" data-label="Measured site photo"><img src="images/site-measured.jpg" alt="The existing bed with measurements marked"></figure>
+      <div class="dims">
+        <div><b>4.3 m</b><span>lawn edge</span></div>
+        <div><b>10.9 m</b><span>along the hedge</span></div>
+        <div><b>6.9 m</b><span>far edge</span></div>
+        <div><b>8.7 m</b><span>house side</span></div>
+      </div>
+    </div>
+    <div class="obs">
+      <div><h3>The brick stays</h3><p>The edging, courtyard and stepping pads give the garden its bones. The planting can grow right up to them.</p></div>
+      <div><h3>The hedge sets the limits</h3><p>The tall conifers shade and dry out the soil beside them. Tougher, shade-tolerant plants go along that edge; the sun lovers go into the open middle.</p></div>
+      <div><h3>Some plants are already here</h3><p>Lamb's ear and carpet bugle are thriving and both are in the new palette, so we lift, divide and replant them.</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Measurements are from the phone survey: 4.28 m along the lawn, 10.9 m along the hedge, 6.86 m across the far end, 8.68 m back along the house side, with a cut corner (2.33 m and 2.09 m) where the bed meets the courtyard.</p>
+    <p><b>Confirm aspect on site</b> — which way the hedge faces decides how far the sun lovers can go toward it. Moss on the lawn and pads says parts stay damp and shady in winter.</p>
+    <p>The young deciduous trees stay and give the meadow a light canopy. Worth asking Evelyn which of the obelisks and roses she wants to keep.</p>
+    <p>The dry, rooty soil along the hedge will need soil preparation. Flag it now so it isn't a surprise in the quote.</p>
+  </aside>
+</section>
+
+<!-- 5 THE IDEA -->
+<section class="slide dark idea">
+  <div>
+    <div class="eyebrow">The idea</div>
+    <div class="big">A garden that <em>moves</em>, flowers in drifts, and stands through winter.</div>
+  </div>
+  <div class="principles">
+    <div><h3>Grasses hold the frame</h3><p>Three grasses give the garden its structure and its movement. They're what you'll see swaying from the window.</p></div>
+    <div><h3>Flowers come in drifts</h3><p>Violet, blue and deep burgundy repeat across the beds in loose groups, so the eye travels the whole garden.</p></div>
+    <div><h3>Nothing is tidied away</h3><p>Seedheads stay standing into winter. One cut in late winter, and the garden returns fresh each spring.</p></div>
+  </div>
+  <aside class="notes">
+    <p>This is the heart of the pitch. Three ideas only: <b>structure, drifts, standing through winter.</b></p>
+    <p>The winter point is the one people don't expect. It's also what makes the style look so natural.</p>
+  </aside>
+</section>
+
+<!-- 6 THE PLAN -->
+<section class="slide light plan">
+  <div class="plan-copy">
+    <div class="eyebrow">The plan</div>
+    <h2>Drifts either side of a winding path.</h2>
+    <p class="lede" style="margin-top:36px;font-size:32px">The brick courtyard and edging stay. A soft path curves through the bed to the bench, so you walk <em style="font-style:italic;color:var(--signal)">through</em> the planting rather than past it.</p>
+  </div>
+  <figure class="ph" data-label="Plan view"><img src="images/plan.jpg" alt="Watercolour plan of the Maylands garden"></figure>
+  <aside class="notes">
+    <p>Orient her first: house on the left, lawn at the bottom, conifer hedge on the right, bench at the far end.</p>
+    <p>The plan is interpretive, not a planting plan. Exact plant positions come in the detailed plan after feedback.</p>
+    <p><b>Path material isn't confirmed yet.</b> Present it as "a soft path" and take her lead on gravel versus brick.</p>
+  </aside>
+</section>
+
+<!-- 7 GRASSES -->
+<section class="slide light layer">
+  <figure class="ph" data-label="Layer plate: grasses"><img src="images/layer-grasses.jpg" alt="The grasses"></figure>
+  <div class="intro" style="display:flex;flex-direction:column;justify-content:center">
+    <div class="eyebrow">Layer one</div>
+    <h2>The grasses</h2>
+    <p class="lede">The frame of the garden. Upright, airy and never still.</p>
+    <div class="plants one">
+      <div class="plant"><div class="n"><h3>Feather Reed Grass</h3><span class="h">to 1.8 m in flower</span></div>
+        <div class="b">Calamagrostis × acutiflora 'Karl Foerster'</div>
+        <p>The vertical line. Upright plumes, pink-purple in summer and wheat-coloured by autumn, still standing in winter.</p></div>
+      <div class="plant"><div class="n"><h3>Tufted Hair Grass</h3><span class="h">45 cm, to 1.2 m in flower</span></div>
+        <div class="b">Deschampsia cespitosa</div>
+        <p>Clouds of purple-green that age to gold and bronze. It glows when the sun is behind it, and it's happy in part shade.</p></div>
+      <div class="plant"><div class="n"><h3>Red Buttons</h3><span class="h">90 cm</span></div>
+        <div class="b">Pennisetum thunbergii 'Red Buttons'</div>
+        <p>Soft burgundy buttons from midsummer, fading to buff and holding into winter.</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Calamagrostis is the vertical rhythm, Deschampsia is the haze, Red Buttons ties the grasses to the burgundy flowers.</p>
+    <p><b>Watch-out:</b> Pennisetum as a genus has weedy members. Plan to take seedheads before they shed if self-seeding shows up.</p>
+  </aside>
+</section>
+
+<!-- 8 SPIRES -->
+<section class="slide light layer">
+  <figure class="ph" data-label="Layer plate: spires"><img src="images/layer-spires.jpg" alt="Salvias, Russian sage and tall verbena"></figure>
+  <div class="intro">
+    <div class="eyebrow">Layer two</div>
+    <h2>Spires of blue and violet</h2>
+    <p class="lede">The colour that runs through the grasses for most of the year.</p>
+    <div class="plants">
+      <div class="plant"><div class="n"><h3>Salvia 'Ostfriesland'</h3><span class="h">70 cm</span></div>
+        <div class="b">Salvia nemorosa</div><p>Velvety violet spires from spring into autumn.</p></div>
+      <div class="plant"><div class="n"><h3>Salvia 'Mystic Spires'</h3><span class="h">60–90 cm</span></div>
+        <div class="b">Salvia 'Balsalmisp'</div><p>Deep blue spikes from late spring until the cold.</p></div>
+      <div class="plant"><div class="n"><h3>Salvia 'African Skies'</h3><span class="h">75 cm</span></div>
+        <div class="b">Salvia 'African Skies'</div><p>Clear azure flowers, spring to autumn.</p></div>
+      <div class="plant"><div class="n"><h3>Salvia 'Waverly'</h3><span class="h">1.2 m</span></div>
+        <div class="b">Salvia 'Waverly'</div><p>Pale mauve and white. Flowers nearly all year.</p></div>
+      <div class="plant"><div class="n"><h3>Russian Sage</h3><span class="h">60 cm</span></div>
+        <div class="b">Perovskia 'Silvery Blue'</div><p>A smoky lavender haze on silver stems. Loved by bees.</p></div>
+      <div class="plant"><div class="n"><h3>Tall Verbena</h3><span class="h">1.8 m</span></div>
+        <div class="b">Verbena bonariensis</div><p>Purple heads floating on see-through stems, so it can sit at the front.</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Four salvias gives a long season without looking busy. Waverly is the one that carries flowers through winter.</p>
+    <p>Verbena bonariensis is the designer's trick: tall but transparent, so it doesn't block the view.</p>
+    <p><b>Watch-out:</b> Verbena self-seeds freely. Decide whether we deadhead or let it wander.</p>
+  </aside>
+</section>
+
+<!-- 9 DOMES & BUTTONS -->
+<section class="slide light layer">
+  <figure class="ph" data-label="Layer plate: domes and buttons"><img src="images/layer-domes.jpg" alt="Sea holly, scabiosa, yarrow and sedums"></figure>
+  <div class="intro">
+    <div class="eyebrow">Layer two, continued</div>
+    <h2>Domes, plates and pincushions</h2>
+    <p class="lede">Rounder shapes against the spires. Many of them turn rust and bronze and hold their form into winter.</p>
+    <div class="plants">
+      <div class="plant"><div class="n"><h3>Blue Sea Holly</h3><span class="h">90 cm</span></div>
+        <div class="b">Eryngium planum</div><p>Steel-blue thimbles on silver-blue stems.</p></div>
+      <div class="plant"><div class="n"><h3>Pincushion 'Black Knight'</h3><span class="h">60–90 cm</span></div>
+        <div class="b">Scabiosa atropurpurea</div><p>Near-black pincushions, a magnet for bees.</p></div>
+      <div class="plant"><div class="n"><h3>Yarrow 'Credo'</h3><span class="h">1 m</span></div>
+        <div class="b">Achillea millefolium</div><p>Flat plates of soft pale yellow. Cut back for a second flush.</p></div>
+      <div class="plant"><div class="n"><h3>Gaura</h3><span class="h">1 m</span></div>
+        <div class="b">Oenothera lindheimeri</div><p>White and pink flowers that sway like butterflies.</p></div>
+      <div class="plant"><div class="n"><h3>Sedum 'Matrona'</h3><span class="h">60 cm–1 m</span></div>
+        <div class="b">Hylotelephium 'Matrona'</div><p>Dusky pink heads on dark red stems.</p></div>
+      <div class="plant"><div class="n"><h3>Sedum 'Autumn Joy'</h3><span class="h">60 cm</span></div>
+        <div class="b">Hylotelephium 'Herbstfreude'</div><p>Pink heads that deepen to copper and rust.</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>The sedums are the autumn and winter story — their dried heads catch frost and hold shape until the late-winter cut.</p>
+    <p>Black Knight adds depth next to the blues. It behaves like a short-lived perennial and self-sows.</p>
+  </aside>
+</section>
+
+<!-- 10 SILVER -->
+<section class="slide light layer">
+  <figure class="ph" data-label="Layer plate: silver and scent"><img src="images/layer-silver.jpg" alt="Wormwood, germander, lamb's ear and bronze fennel"></figure>
+  <div class="intro" style="display:flex;flex-direction:column;justify-content:center">
+    <div class="eyebrow">Layer three</div>
+    <h2>A silver thread</h2>
+    <p class="lede">Silver and bronze foliage lifts the darker flowers, and most of it smells good when you brush past.</p>
+    <div class="plants one">
+      <div class="plant"><div class="n"><h3>Wormwood</h3><span class="h">1.2 m</span></div>
+        <div class="b">Artemisia absinthium</div><p>Finely cut silver leaves. Aromatic, and famously the bitter note in absinthe.</p></div>
+      <div class="plant"><div class="n"><h3>Bush Germander</h3><span class="h">0.9–1.8 m</span></div>
+        <div class="b">Teucrium fruticans</div><p>A silver-grey shrub with lavender-blue flowers. Can be clipped to hold edges and corners.</p></div>
+      <div class="plant"><div class="n"><h3>Lamb's Ear</h3><span class="h">30–45 cm</span></div>
+        <div class="b">Stachys byzantina</div><p>Soft velvet leaves along the front of the beds. Children will touch it.</p></div>
+      <div class="plant"><div class="n"><h3>Bronze Fennel</h3><span class="h">1.2–2 m</span></div>
+        <div class="b">Foeniculum vulgare 'Purpureum'</div><p>Feathery bronze foliage and yellow umbels. The fronds are good in the kitchen.</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Germander is the only clipped element. It gives the loose planting a quiet edge where it meets paths or the house.</p>
+    <p><b>Watch-out:</b> fennel seeds prolifically around Melbourne. We'd take the seedheads off before they ripen.</p>
+  </aside>
+</section>
+
+<!-- 11 GROUND -->
+<section class="slide light layer">
+  <figure class="ph" data-label="Layer plate: groundlayer"><img src="images/layer-ground.jpg" alt="Native violet, pratia, ajuga, knotweed and seaside daisy"></figure>
+  <div class="intro" style="display:flex;flex-direction:column;justify-content:center">
+    <div class="eyebrow">Layer four</div>
+    <h2>The groundlayer</h2>
+    <p class="lede">Low plants that cover the soil, keep weeds down and soften every edge.</p>
+    <div class="plants one">
+      <div class="plant"><div class="n"><h3>Native Violet <span class="tag">Australian native</span></h3><span class="h">5–15 cm</span></div>
+        <div class="b">Viola hederacea</div><p>Round leaves and purple-and-white flowers in the shadier pockets.</p></div>
+      <div class="plant"><div class="n"><h3>Alpine Pratia <span class="tag">Australian native</span></h3><span class="h">15–30 cm</span></div>
+        <div class="b">Pratia puberula</div><p>A dense mat covered in small blue stars from late spring into autumn.</p></div>
+      <div class="plant"><div class="n"><h3>Carpet Bugle</h3><span class="h">15 cm</span></div>
+        <div class="b">Ajuga reptans</div><p>Glossy bronze rosettes with blue spikes in spring.</p></div>
+      <div class="plant"><div class="n"><h3>Lesser Knotweed</h3><span class="h">30 cm</span></div>
+        <div class="b">Persicaria affinis</div><p>Rose-red spikes that fade to pink, and leaves that turn bronze in autumn.</p></div>
+      <div class="plant"><div class="n"><h3>Seaside Daisy</h3><span class="h">30–60 cm</span></div>
+        <div class="b">Erigeron karvinskianus</div><p>Tiny pink-and-white daisies from spring into winter.</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>The two natives do the shade work. Worth saying out loud — it's where the Gardener &amp; Son practice shows up in this garden.</p>
+    <p><b>Check in Notion:</b> the knotweed record is titled "amplexicaulis" but the description, height and photos are <b>affinis</b>. The deck uses affinis.</p>
+    <p><b>Watch-out:</b> seaside daisy spreads by seed into cracks and paths.</p>
+  </aside>
+</section>
+
+<!-- 12 COLOUR -->
+<section class="slide dark">
+  <div class="eyebrow">The colour story</div>
+  <h2>Cool blues, deep burgundy, and silver to hold them apart.</h2>
+  <div class="swatches">
+    <div class="sw" style="background:#4d4f93;color:#fff0dc"><h3>Violet-blue</h3><p>Salvias<br>Russian sage<br>Sea holly<br>Pratia</p></div>
+    <div class="sw" style="background:#3a1f29;color:#fff0dc"><h3>Burgundy-black</h3><p>Black Knight<br>Red Buttons<br>Knotweed<br>Sedum 'Matrona'</p></div>
+    <div class="sw" style="background:#c9c7b8;color:#3d4535"><h3>Silver</h3><p>Wormwood<br>Germander<br>Lamb's ear<br>Perovskia stems</p></div>
+    <div class="sw" style="background:#a4814a;color:#fff0dc"><h3>Bronze and gold</h3><p>Grass seedheads<br>Bronze fennel<br>Sedum 'Autumn Joy'<br>Ajuga</p></div>
+    <div class="sw" style="background:#efdedd;color:#3d4535"><h3>Soft light</h3><p>Gaura<br>Seaside daisy<br>Yarrow 'Credo'<br>Salvia 'Waverly'</p></div>
+  </div>
+  <aside class="notes">
+    <p>Five families of colour, not twenty-four separate plants. The pale colours on the right stop the dark ones feeling heavy.</p>
+    <p>Good moment to ask whether she wants <b>more warmth</b> (rust, apricot) or keeps it cool.</p>
+  </aside>
+</section>
+
+<!-- 13 CALENDAR -->
+<section class="slide light" style="padding-top:72px">
+  <div style="display:flex;justify-content:space-between;align-items:end">
+    <div><div class="eyebrow" style="margin-bottom:18px">Flowering calendar</div>
+      <h2 style="font-size:64px">Something in flower from September to June.</h2></div>
+  </div>
+  <div class="cal" id="cal"></div>
+  <aside class="notes">
+    <p>Read it left to right from spring. The peak is December to April, when almost everything is out at once.</p>
+    <p>June to August is quiet for flowers, and that's by design: <b>winter is the seedhead season.</b> Waverly keeps a little colour going.</p>
+  </aside>
+</section>
+
+<!-- 14 SEASONS -->
+<section class="slide light">
+  <div class="eyebrow">A year in the garden</div>
+  <h2>Four different gardens, one planting.</h2>
+  <div class="seasons">
+    <div class="season-card"><figure class="ph" data-label="Spring"><img src="images/season-spring.jpg" alt="The garden in spring"></figure>
+      <h3>Spring</h3><p>Fresh green clumps. Violets, pratia and ajuga at ground level; germander and the first salvias above.</p></div>
+    <div class="season-card"><figure class="ph" data-label="Summer"><img src="images/season-summer.jpg" alt="The garden in summer"></figure>
+      <h3>Summer</h3><p>Full height. Grasses in flower, drifts of blue and burgundy, bees everywhere.</p></div>
+    <div class="season-card"><figure class="ph" data-label="Autumn"><img src="images/season-autumn.jpg" alt="The garden in autumn"></figure>
+      <h3>Autumn</h3><p>Sedums colour up, seedheads turn bronze and gold, and the low sun comes through the grasses.</p></div>
+    <div class="season-card"><figure class="ph" data-label="Winter"><img src="images/season-winter.jpg" alt="The garden in winter"></figure>
+      <h3>Winter</h3><p>Silhouettes and seedheads. Structure, shelter for insects, then one cut to make way for spring.</p></div>
+  </div>
+  <aside class="notes">
+    <p>If there's only time for one image set, the <b>winter</b> one does the most work — it answers "won't it look messy?" before she asks.</p>
+  </aside>
+</section>
+
+<!-- 15 HABITAT -->
+<section class="slide dark">
+  <div class="eyebrow">Who it feeds</div>
+  <div class="big" style="font-size:96px;max-width:1500px">A garden that's busy even when you're not in it.</div>
+  <div class="visitors">
+    <div><h3>Bees</h3><p>Salvias, perovskia, scabiosa and sea holly give nectar and pollen across a long season.</p></div>
+    <div><h3>Hoverflies</h3><p>Yarrow and fennel's flat flower heads suit small insects that help keep aphids in check.</p></div>
+    <div><h3>Butterflies</h3><p>Tall verbena and gaura are landing pads through summer and autumn.</p></div>
+    <div><h3>Small birds</h3><p>Seedheads left standing over winter mean food, perches and insects to forage.</p></div>
+  </div>
+  <aside class="notes">
+    <p>This connects the style to why we do what we do. Leaving it standing isn't laziness, it's habitat.</p>
+  </aside>
+</section>
+
+<!-- 16 CARE -->
+<section class="slide light">
+  <div class="eyebrow">Looking after it</div>
+  <h2>Less mowing and edging. One big cut a year.</h2>
+  <div class="care">
+    <div><div class="when">Late winter</div><h3>The cut</h3><p>Grasses and perennials cut back close to the ground, all at once. Divide clumps every few years.</p></div>
+    <div><div class="when">Spring</div><h3>Mulch and fill</h3><p>A light mulch, and any gaps filled while new growth is still low.</p></div>
+    <div><div class="when">Summer</div><h3>Water and deadhead</h3><p>Water deeply through the first summer. Trim salvias and yarrow for a second flush.</p></div>
+    <div><div class="when">Autumn</div><h3>Leave it standing</h3><p>No tidying. Take seedheads off only where a plant self-seeds too freely.</p></div>
+  </div>
+  <div class="tend">
+    <h3>Tend</h3>
+    <p>Our garden care visits follow this calendar, so the garden is cut, fed and edited at the right moments. We can talk through what that looks like for Maylands.</p>
+  </div>
+  <aside class="notes">
+    <p>Sequence here is real: it's a year. Start at late winter because that's when the garden "resets".</p>
+    <p>Tend: no pricing on the slide. Talk through visit rhythm if she's interested.</p>
+  </aside>
+</section>
+
+<!-- 17 NEXT STEPS -->
+<section class="slide dark">
+  <div class="eyebrow">From here</div>
+  <h2>Next steps</h2>
+  <div class="steps">
+    <div><span class="i">1</span><h3>Your feedback</h3><p>Tell us what you love, what you'd change, and anything we've missed about how you use the garden.</p></div>
+    <div><span class="i">2</span><h3>Final palette and materials</h3><p>We refine the plant list and confirm paths, edges, mulch and soil preparation.</p></div>
+    <div><span class="i">3</span><h3>Planting plan and quote</h3><p>A detailed plan showing where each plant goes, with a fixed quote for the installation.</p></div>
+    <div><span class="i">4</span><h3>Planting day</h3><p>Autumn is the best time to plant, so the garden settles in before its first summer.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>Materials aren't set yet</b> — the Notion materials view is still filtered to another garden. Keep step 2 open-ended.</p>
+    <p>Autumn 2027 planting fits the timeline if feedback and quote land before Christmas. Confirm install capacity before promising dates.</p>
+  </aside>
+</section>
+
+<!-- 18 CLOSE -->
+<section class="slide dark close">
+  <div class="big">Thank you, <em>Evelyn.</em></div>
+  <div class="mark">Gardener <i>&amp;</i> Son</div>
+  <div class="for">140 Auburn Road, Hawthorn</div>
+  <aside class="notes">
+    <p>Leave this up while you talk. Offer to send the client copy of the deck after the meeting.</p>
+  </aside>
+</section>
+
+<div class="black"></div>
+</div>
+</div>
+
+<script>
+/* ---------------- plant calendar data (months from September) ---------------- */
+const MONTHS=['Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'];
+const GROUPS=[
+ ['Grasses',[
+  ['Feather Reed Grass',3,7,'#b89c78'],
+  ['Tufted Hair Grass',2,6,'#b08d4f'],
+  ['Red Buttons',4,7,'#7d2e3a']]],
+ ['Spires, domes and pincushions',[
+  ["Salvia 'Ostfriesland'",1,6,'#5b3f8c'],
+  ["Salvia 'Mystic Spires'",2,7,'#484e9e'],
+  ["Salvia 'African Skies'",1,7,'#5d86c4'],
+  ["Salvia 'Waverly'",0,11,'#b7a3c9'],
+  ['Russian Sage',3,7,'#8a93c4'],
+  ['Tall Verbena',3,7,'#7a4f9c'],
+  ['Blue Sea Holly',3,6,'#6d86a8'],
+  ["Pincushion 'Black Knight'",1,7,'#3b1f2a'],
+  ["Yarrow 'Credo'",2,7,'#d9c68a'],
+  ['Gaura',1,6,'#e6c3cb'],
+  ["Sedum 'Matrona'",5,7,'#9c5a6e'],
+  ["Sedum 'Autumn Joy'",5,8,'#8a3f2f']]],
+ ['Silver and scent',[
+  ['Wormwood',3,5,'#c9c07a'],
+  ['Bush Germander',0,4,'#a9a3c9'],
+  ["Lamb's Ear",2,4,'#9d86b5'],
+  ['Bronze Fennel',3,5,'#d4bb3f']]],
+ ['Groundlayer',[
+  ['Native Violet',0,5,'#8c78b0'],
+  ['Alpine Pratia',1,7,'#7f8fc9'],
+  ['Carpet Bugle',1,2,'#4f5fa8'],
+  ['Lesser Knotweed',3,7,'#c2566b'],
+  ['Seaside Daisy',0,9,'#f2e2e6']]]
+];
+function buildCalendar(){
+  const el=document.getElementById('cal'); if(!el) return;
+  let h='<div class="row head"><span></span>'+MONTHS.map(m=>`<span>${m}</span>`).join('')+'</div>';
+  GROUPS.forEach(([g,rows])=>{
+    h+=`<div class="row group"><span>${g}</span></div>`;
+    rows.forEach(([n,s,e,c])=>{
+      const pale=['#f2e2e6','#e6c3cb','#d9c68a'].includes(c)?' pale':'';
+      h+=`<div class="row"><span class="nm">${n}</span>`+MONTHS.map((_,i)=>`<span class="cell${i>=s&&i<=e?' on'+pale:''}" style="--c:${c}"></span>`).join('')+'</div>';
+    });
+  });
+  h+='<div class="row season"><span></span><span style="grid-column:span 3">Spring</span><span style="grid-column:span 3">Summer</span><span style="grid-column:span 3">Autumn</span><span style="grid-column:span 3">Winter</span></div>';
+  el.innerHTML=h;
+}
+buildCalendar();
+
+/* ---------------- image slots ---------------- */
+document.querySelectorAll('.ph img').forEach(img=>{
+  const f=img.parentElement; f.setAttribute('data-file',img.getAttribute('src'));
+  const fail=()=>f.classList.add('empty');
+  img.addEventListener('error',fail); img.addEventListener('load',()=>f.classList.remove('empty'));
+  if(img.complete && img.naturalWidth===0) fail();
+});
+
+/* ---------------- core ---------------- */
+const slides=[...document.querySelectorAll('#stage > .slide')];
+const N=slides.length;
+let idx=0, black=false;
+const params=new URLSearchParams(location.search);
+const MODE=params.get('display')?'display':'presenter';
+const stage=document.getElementById('stage');
+const mainFrame=document.getElementById('mainFrame');
+
+function hashIndex(){const m=location.hash.match(/(\d+)/);return m?Math.min(N,Math.max(1,+m[1]))-1:0}
+idx=hashIndex();
+
+function fit(frame,stg){
+  const w=frame.clientWidth,h=frame.clientHeight,s=Math.min(w/1920,h/1080);
+  stg.style.transform=`scale(${s})`;
+  stg.style.position='absolute';
+  stg.style.left=((w-1920*s)/2)+'px'; stg.style.top=((h-1080*s)/2)+'px';
+}
+function show(i){
+  idx=Math.max(0,Math.min(N-1,i));
+  slides.forEach((s,k)=>s.classList.toggle('active',k===idx));
+  history.replaceState(null,'',location.pathname+location.search+'#'+(idx+1));
+  if(MODE==='presenter') updatePresenter();
+}
+function setBlack(b){black=b;document.body.classList.toggle('blackout',b);
+  const bb=document.getElementById('btnBlack'); if(bb) bb.classList.toggle('on',b)}
+
+/* ---------------- display mode ---------------- */
+if(MODE==='display'){
+  document.body.classList.add('display');
+  const resize=()=>fit(mainFrame,stage); addEventListener('resize',resize); resize(); show(idx);
+  addEventListener('message',e=>{
+    const d=e.data||{}; if(d.type==='go') show(d.i); if(d.type==='black') setBlack(d.on);
+  });
+  if(window.opener) window.opener.postMessage({type:'ready'},'*');
+  addEventListener('keydown',e=>{
+    if(e.key==='f'||e.key==='F'){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen(); return; }
+    if(window.opener) window.opener.postMessage({type:'key',key:e.key},'*');
+    else handleKey(e.key);
+  });
+  let t; addEventListener('mousemove',()=>{document.body.classList.add('moved');clearTimeout(t);t=setTimeout(()=>document.body.classList.remove('moved'),1500)});
+  addEventListener('beforeunload',()=>{ if(window.opener) window.opener.postMessage({type:'closed'},'*') });
+}
+
+/* ---------------- presenter mode ---------------- */
+let disp=null, single=false, t0=Date.now();
+const curPane=document.getElementById('curPane'), nextPane=document.getElementById('nextPane');
+let nextStage;
+if(MODE==='presenter'){
+  document.body.classList.add('presenter');
+  // move main deck into the current pane
+  curPane.appendChild(mainFrame);
+  // build next-slide preview
+  const nf=document.createElement('div'); nf.className='frame';
+  nextStage=document.createElement('div'); nextStage.className='stage';
+  nf.appendChild(nextStage); nextPane.appendChild(nf);
+  const resize=()=>{ if(single){ fit(mainFrame,stage); return; } fit(curPane,stage); fit(nextPane,nextStage); };
+  addEventListener('resize',resize); new ResizeObserver(resize).observe(curPane);
+  show(idx); resize();
+  if(!params.get('presenter')) handleKey('s');
+  setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);
+    document.getElementById('timer').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')},500);
+  document.getElementById('btnOpen').onclick=openDisplay;
+  document.getElementById('btnBlack').onclick=()=>{setBlack(!black);send({type:'black',on:black})};
+  document.getElementById('btnPrev').onclick=()=>go(idx-1);
+  document.getElementById('btnNext').onclick=()=>go(idx+1);
+  document.getElementById('btnTimer').onclick=()=>{t0=Date.now()};
+  addEventListener('keydown',e=>{ if(handleKey(e.key)) e.preventDefault(); });
+  addEventListener('message',e=>{
+    const d=e.data||{};
+    if(d.type==='ready'){ send({type:'go',i:idx}); send({type:'black',on:black}); setStatus(true); }
+    if(d.type==='key') handleKey(d.key);
+    if(d.type==='closed') setStatus(false);
+  });
+  setInterval(()=>{ if(disp && disp.closed){ disp=null; setStatus(false);} },1000);
+}
+function updatePresenter(){
+  document.getElementById('count').textContent=(idx+1)+' / '+N;
+  const n=slides[idx].querySelector('.notes');
+  document.getElementById('notesBox').innerHTML=n?n.innerHTML:'<p style="opacity:.5">No notes.</p>';
+  nextStage.innerHTML='';
+  if(idx<N-1){ const c=slides[idx+1].cloneNode(true); c.classList.add('active'); nextStage.appendChild(c); }
+  else nextStage.innerHTML='<div style="position:absolute;inset:0;display:grid;place-items:center;color:#8f9585;font:40px var(--mono)">End of deck</div>';
+  send({type:'go',i:idx});
+}
+function send(m){ if(disp && !disp.closed) disp.postMessage(m,'*'); }
+function setStatus(live){ const s=document.getElementById('status'); if(!s) return;
+  s.textContent=live?'Display live':'Display closed'; s.classList.toggle('live',live); }
+function openDisplay(){
+  if(disp && !disp.closed){ disp.focus(); return; }
+  disp=window.open(location.pathname+'?display=1#'+(idx+1),'gs_display','width=1280,height=720');
+}
+function go(i){ show(i); }
+function handleKey(k){
+  switch(k){
+    case 'ArrowRight': case 'PageDown': case ' ': case 'Spacebar': go(idx+1); return true;
+    case 'ArrowLeft': case 'PageUp': go(idx-1); return true;
+    case 'Home': go(0); return true;
+    case 'End': go(N-1); return true;
+    case 'b': case 'B': case '.': setBlack(!black); send({type:'black',on:black}); return true;
+    case 'o': case 'O': if(MODE==='presenter') openDisplay(); return true;
+    case 't': case 'T': t0=Date.now(); return true;
+    case 's': case 'S': case 'p': case 'P':
+      if(MODE!=='presenter') return false;
+      single=!single;
+      document.getElementById('hint').style.opacity=single?1:0; clearTimeout(window._h); if(single) window._h=setTimeout(()=>document.getElementById('hint').style.opacity=0,3500);
+      if(single){ document.body.classList.remove('presenter'); document.body.appendChild(mainFrame); fit(mainFrame,stage);
+        addEventListener('resize',singleFit); }
+      else { removeEventListener('resize',singleFit); document.body.classList.add('presenter'); curPane.appendChild(mainFrame); fit(curPane,stage); }
+      return true;
+  }
+  return false;
+}
+function singleFit(){ fit(mainFrame,stage); }
+</script>
+</body>
+</html>
