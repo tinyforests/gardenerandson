@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script>
+(function(){var h=location.hash;if(h==='#presenter')document.documentElement.classList.add('presenter');else if(h==='#preview')document.documentElement.classList.add('preview');})();
+</script>
 <style>
 :root{
   --green:#3d4535;
@@ -148,6 +151,49 @@ body::after{
   .ecotable td:nth-child(3){display:none}
   .ecotable th:nth-child(3){display:none}
 }
+
+/* ---------- speaker notes (never shown on the big screen) ---------- */
+.notes{display:none!important}
+
+/* ---------- preview mode: thumbnails inside the presenter window ---------- */
+html.preview #progress,html.preview #counter{display:none}
+html.preview .slide,html.preview .rev{transition:none!important}
+
+/* ---------- presenter window ---------- */
+html.presenter body{background:var(--green-deep)}
+html.presenter body::after,html.presenter .slide,html.presenter #progress,html.presenter #counter{display:none!important}
+#pv{position:fixed;inset:0;display:grid;grid-template-rows:auto minmax(0,1fr);color:var(--beige)}
+#pv header{display:flex;align-items:center;gap:26px;padding:14px 24px;border-bottom:1px solid rgba(255,240,220,.12);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+#pv .pv-count{color:var(--brass);font-size:15px;letter-spacing:.12em;min-width:90px}
+#pv .pv-title{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.8}
+#pv .pv-link{display:flex;align-items:center;gap:8px;opacity:.7;font-size:11px}
+#pv .pv-link i{width:8px;height:8px;border:1px solid var(--brass);display:inline-block}
+#pv .pv-link.on i{background:var(--signal);border-color:var(--signal)}
+#pv .pv-timer{font-size:24px;letter-spacing:.06em;cursor:pointer;user-select:none;color:var(--beige)}
+#pv .pv-timer.paused{opacity:.4}
+#pv .pv-clock{opacity:.6;font-size:13px}
+#pv main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:26px;padding:22px 24px;min-height:0}
+#pv .col{display:flex;flex-direction:column;gap:12px;min-height:0}
+#pv .lbl{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass)}
+#pv .frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--green);outline:1px solid rgba(255,240,220,.16);flex:0 0 auto}
+#pv .frame.cur{cursor:pointer}
+#pv .frame iframe{position:absolute;top:0;left:0;width:1920px;height:1080px;border:0;transform-origin:0 0;pointer-events:none}
+#pv .frame .end{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;opacity:.6;background:var(--green-deep)}
+#pv .frame.is-end .end{display:flex}
+#pv .keys{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;line-height:1.9;opacity:.5}
+#pv .keys b{font-weight:500;color:var(--brass)}
+#pv .size button{background:none;border:1px solid rgba(180,154,99,.6);color:var(--brass);font-family:'IBM Plex Mono',monospace;font-size:12px;width:26px;height:22px;cursor:pointer;margin-left:6px}
+#pv .pv-notes{flex:1;min-height:0;overflow-y:auto;font-size:var(--nfs,20px);line-height:1.55;font-weight:300;padding-right:10px}
+#pv .pv-notes p{margin:0 0 .75em}
+#pv .pv-notes ul{margin:0 0 .75em 1.1em}
+#pv .pv-notes li{margin:0 0 .35em}
+#pv .pv-notes strong{font-weight:500;color:var(--brass)}
+#pv .pv-notes em{font-family:'Fraunces',serif;font-style:italic}
+#pv .pv-notes .none{opacity:.45;font-style:italic}
+@media (max-width:900px){
+  #pv main{grid-template-columns:1fr;overflow-y:auto}
+  #pv .pv-notes{flex:none;overflow:visible}
+}
 </style>
 </head>
 <body>
@@ -164,12 +210,21 @@ body::after{
   <h1 class="rev">7 Ashmore Road<br><em>Forest Hill</em></h1>
   <div class="sub rev">Prepared for Kate McWilliam</div>
   <div class="brandline rev">Gardener &amp; Son · Ecological Design Studio</div>
+  <aside class="notes">
+<p>Welcome Kate, and thanks for making the time.</p>
+<p>Here's the shape of it: the site and what it wants to be, then the five beds one by one, how they work together through the year, and finally how we look after it once it's in.</p>
+<p>Stop me anywhere. This is a conversation, not a pitch.</p>
+  </aside>
 </section>
 
 <!-- 2 · Country -->
 <section class="slide light country">
   <div class="eyebrow rev">Country</div>
   <p class="rev">This garden sits on the unceded lands of the <strong>Wurundjeri Woi-wurrung people</strong> of the Kulin Nation. We acknowledge their Elders past and present, and their continuing care for Country. This design seeks to return locally indigenous plants — and the life they carry — to this small piece of it.</p>
+  <aside class="notes">
+<p>Read the acknowledgement, or say it in your own words. Let it sit for a moment before moving on.</p>
+<p>Why it matters here: every plant in this design is one that belongs to this Country. We're not decorating the garden, we're returning some of what was here.</p>
+  </aside>
 </section>
 
 <!-- 3 · The proposal -->
@@ -177,6 +232,15 @@ body::after{
   <div class="eyebrow rev">The Proposal</div>
   <p class="rev">A layered indigenous garden that <em>retains the established canopy</em> and existing circulation while renewing the lower planting — strengthening habitat for small birds and pollinators, bringing seasonal colour and foliage contrast, and staying practical for <em>gradual, owner-led installation</em>.</p>
   <div class="statement-note rev">Five connected beds · One front garden</div>
+  <aside class="notes">
+<p>The whole idea in one line: <strong>keep what's working, rebuild what's missing underneath.</strong></p>
+<ul>
+<li>The established trees and the existing paths all stay.</li>
+<li>The lower layers are what we renew: the shrubs, grasses, flowers and groundcovers.</li>
+<li>It's designed for <em>you</em> to plant gradually, not a one-day install. It can grow in stages.</li>
+</ul>
+<p>Five beds, but read as one front garden.</p>
+  </aside>
 </section>
 
 <!-- 4 · Site ecology -->
@@ -184,6 +248,11 @@ body::after{
   <div class="eyebrow rev">Site Ecology</div>
   <p class="rev">Find My Ecological Garden identifies this site as <em>Valley Heathy Forest</em> — a low eucalypt forest of boxes and stringybarks over a dense heathy understorey of peas, cassinias and small shrubs, woven through with wallaby-grasses, sedges and seasonal herbs.</p>
   <div class="statement-note rev">Design response · Keep the canopy, rebuild the missing lower layers</div>
+  <aside class="notes">
+<p>Find My Ecological Garden puts this site in <strong>Valley Heathy Forest</strong>. That's what grew here before the suburb.</p>
+<p>Picture boxes and stringybarks over a thick, heathy shrub layer of peas and small shrubs, with grasses and seasonal flowers through the ground.</p>
+<p>The key point is that you still have much of the canopy. <strong>What's gone is the understorey</strong>, and that's where the small birds and insects actually live. So the design keeps the canopy and rebuilds the missing layers beneath it.</p>
+  </aside>
 </section>
 
 <!-- 5 · Section marker -->
@@ -191,6 +260,10 @@ body::after{
   <div class="eyebrow rev">The Design</div>
   <h2 class="rev">Five gardens,<br>one woodland floor</h2>
   <p class="rev">Each bed has its own light, its own character and its own work to do — connected by repeated species into a single continuous habitat.</p>
+  <aside class="notes">
+<p>This is the transition into the design itself.</p>
+<p>Each bed has its own light, its own character and its own job. What ties them together is repetition. You'll hear the same names come up again and again: <em>Correa 'Dusky Bells'</em>, <em>Lomandra filiformis</em>, <em>Tall Bluebell</em>. That repetition is what makes five beds read as one woodland floor.</p>
+  </aside>
 </section>
 
 <!-- 6 · Zone 1 -->
@@ -222,6 +295,17 @@ body::after{
       <li><span class="names"><span class="bot">Bossiaea prostrata</span><span class="com">Creeping Bossiaea</span></span><span class="season">Spring</span></li>
     </ul>
   </div>
+  <aside class="notes">
+<p><strong>The backbone.</strong> This is the biggest bed, running from the street along the driveway and through the Banksia.</p>
+<p>Walk through it in three layers:</p>
+<ul>
+<li><strong>Deep in the bed:</strong> taller habitat shrubs such as Sweet Bursaria, Snowy Daisy Bush and Austral Indigo. The Bursaria flowers in summer, and that's a big deal for insects.</li>
+<li><strong>Around the Banksia:</strong> dense small-bird cover. Prickly Currant-bush is prickly on purpose, as a safe refuge from cats and bigger birds.</li>
+<li><strong>At the driveway and footpath edge:</strong> low tussocks, bluebells, everlastings and Creeping Bossiaea, which keep sightlines clear.</li>
+</ul>
+<p>Banksia 'Birthday Candles' is in here too, flowering autumn through spring.</p>
+<p><em>Ask:</em> how does the height along the driveway feel to you?</p>
+  </aside>
 </section>
 
 <!-- 7 · Zone 2 -->
@@ -253,6 +337,16 @@ body::after{
       <li><span class="names"><span class="bot">Wahlenbergia stricta</span><span class="com">Tall Bluebell</span></span><span class="season">Spring–Summer</span></li>
     </ul>
   </div>
+  <aside class="notes">
+<p><strong>The cool edge.</strong> This is the northern boundary, sheltered under the established canopy, with dappled light and an enclosed feel.</p>
+<ul>
+<li>The non-native lower layer comes out.</li>
+<li>In its place go shade-tolerant shrubs, strappy plants and spreading groundcovers.</li>
+<li>Planting stays low at the gravel path and gets taller deeper under the trees.</li>
+</ul>
+<p>Things to point out: Victorian Mintbush has aromatic foliage you brush past. 'Winter Rouge' waxflower flowers through winter. Native Violet, Kidney Weed and Austral Bugle knit the ground together.</p>
+<p>The feel we're after is green, calm and woodland-like.</p>
+  </aside>
 </section>
 
 <!-- 8 · Zone 3 -->
@@ -284,6 +378,16 @@ body::after{
       <li><span class="names"><span class="bot">Ajuga australis</span><span class="com">Austral Bugle</span></span><span class="season">Spring–Summer</span></li>
     </ul>
   </div>
+  <aside class="notes">
+<p><strong>The wild meadow.</strong> This narrow bed south of the driveway is the brightest, most exposed ground in the garden.</p>
+<ul>
+<li>Fine grasses like Kangaroo Grass and Feather Spear-grass bring movement in the wind.</li>
+<li>Everlastings, Wiry Buttons and bluebells run through them.</li>
+<li>Heights graduate up from the driveway edge, so car access and the fence stay clear.</li>
+</ul>
+<p>It gets planted in drifts and repeated colonies. That's what makes it read and function as a meadow rather than dotted specimens.</p>
+<p>Set expectations: the grasses change colour through summer. That's the look, not a problem.</p>
+  </aside>
 </section>
 
 <!-- 9 · Zone 4 -->
@@ -314,6 +418,15 @@ body::after{
       <li><span class="names"><span class="bot">Ajuga australis</span><span class="com">Austral Bugle</span></span><span class="season">Spring–Summer</span></li>
     </ul>
   </div>
+  <aside class="notes">
+<p><strong>The house edge.</strong> These are the beds against the white brick.</p>
+<ul>
+<li>Everything stays low enough to keep windows, walls and access clear.</li>
+<li>Compact evergreen shrubs give year-round structure: waxflower, Correa, and the silvery 'Ghost Town' daisy bush.</li>
+<li>Flowering ground layers bring blue, mauve, white and yellow through the seasons.</li>
+</ul>
+<p>This is the bed that joins the habitat garden to the architecture of the house. It should look like it belongs to the home.</p>
+  </aside>
 </section>
 
 <!-- 10 · Zone 5 -->
@@ -342,6 +455,16 @@ body::after{
       <li><span class="names"><span class="bot">Ajuga australis</span><span class="com">Austral Bugle</span></span><span class="season">Spring–Summer</span></li>
     </ul>
   </div>
+  <aside class="notes">
+<p><strong>The welcome.</strong> This is the enclosed garden between the pedestrian gate and the front door. You see it every time you come home, and from inside.</p>
+<ul>
+<li>It's calm and intimate: foliage first, with soft seasonal flowering.</li>
+<li>Gravel paths stay clear.</li>
+<li>Beside paths and windows everything is low, non-prickly and tough. Taller planting sits out toward the perimeter.</li>
+</ul>
+<p>It's built around the dog. The real refuge for birds is in Zones 1 and 2, so this one can be practical.</p>
+<p><em>Ask:</em> how does the dog use this space? Where does it run?</p>
+  </aside>
 </section>
 
 <!-- 11 · Ecological function -->
@@ -380,6 +503,11 @@ body::after{
       <td class="score">7 / 10</td>
     </tr>
   </table>
+  <aside class="notes">
+<p>This is how it adds up. The scores are our assessment of each bed's habitat value, out of ten.</p>
+<p>Zone 1 is the strongest at 9. The Arrival Garden sits at 7 <em>by design</em>, because it's doing a different job.</p>
+<p>The <strong>priority column</strong> is where the difference gets made. It's the small decisions: leaving leaf litter, keeping the prickly cover, planting in colonies, leaving seedheads standing.</p>
+  </aside>
 </section>
 
 <!-- 12 · A year of habitat -->
@@ -391,6 +519,16 @@ body::after{
     <div class="cell"><h3>Summer resources</h3><p><span class="bot-inline">Sweet Bursaria</span> and the meadow flowers sustain insects and small birds through the dry season.</p></div>
     <div class="cell"><h3>Fruit &amp; seed</h3><p><span class="bot-inline">Dianella</span>, the grasses and retained mature vegetation feed seed-eaters into autumn — with shelter concentrated in the layered woodland of Zones 1 and 2, and continuous lower planting linking all five beds.</p></div>
   </div>
+  <aside class="notes">
+<p>The goal is <strong>food all year round</strong>, not just a spring show.</p>
+<ul>
+<li><strong>Winter</strong> is the hungry season for nectar. Banksia, Correa and waxflower carry it.</li>
+<li><strong>Spring</strong> is the peak of colour and pollinators.</li>
+<li><strong>Summer</strong> is Sweet Bursaria and the meadow flowers.</li>
+<li><strong>Autumn</strong> is fruit and seed: Dianella berries and the grass seed.</li>
+</ul>
+<p>Shelter concentrates in Zones 1 and 2, and the lower planting links all five beds.</p>
+  </aside>
 </section>
 
 <!-- 13 · Habitat actions -->
@@ -405,6 +543,16 @@ body::after{
     <li>Avoid insecticides and minimise unnecessary night lighting.</li>
     <li>Maintain clear paths, driveway sightlines, fence access and dog-safe edges.</li>
   </ol>
+  <aside class="notes">
+<p>These are the small things that turn planting into habitat. Pick the ones that matter to Kate rather than reading all seven.</p>
+<ul>
+<li><strong>Local provenance</strong> means Forest Hill stock where we can get it.</li>
+<li><strong>A bit of mess is good.</strong> Leaf litter, seedheads and small bare patches, which many native bees nest in.</li>
+<li><strong>Logs, rocks and a shallow water dish</strong> go somewhere safe.</li>
+<li><strong>No insecticides</strong>, and less night lighting.</li>
+</ul>
+<p>And the practical side: paths, driveway sightlines, fence access and dog-safe edges all stay.</p>
+  </aside>
 </section>
 
 <!-- 14 · Tend -->
@@ -412,6 +560,12 @@ body::after{
   <div class="eyebrow rev">Tend · Stewardship by Subscription</div>
   <p class="rev">A garden like this isn't finished at planting — it's <em>established</em> over seasons. Tend is our maintenance subscription: two of us in your garden, keeping the woodland floor thriving as it knits together.</p>
   <div class="statement-note rev">Your garden includes a complimentary six-week follow-up visit</div>
+  <aside class="notes">
+<p>With a gradual, owner-led install, the first few seasons are what decide how it turns out.</p>
+<p><strong>Tend</strong> is our maintenance subscription. It's the two of us in the garden, keeping the woodland floor on track while it knits together.</p>
+<p>Whatever she decides, there's a <strong>complimentary six-week follow-up visit</strong>. We come back, see how it's settling, and adjust.</p>
+<p>No pricing on the slide. If she asks, offer to send the Tend details through separately.</p>
+  </aside>
 </section>
 
 <!-- 15 · Registry -->
@@ -420,6 +574,11 @@ body::after{
   <h2 class="rev">Every garden has an ecological score.</h2>
   <p class="rev">Once planted and established, this garden can join the Ecological Registry — contributing to biodiversity mapping across Melbourne and connecting it with other ecological gardens nearby.</p>
   <div class="url rev">ecologicalregistry.org</div>
+  <aside class="notes">
+<p>This is further down the track, once the garden is planted and established.</p>
+<p>Every garden has an ecological score. This one can join the <strong>Ecological Registry</strong>, contributing to biodiversity mapping across Melbourne and connecting with other ecological gardens nearby.</p>
+<p>It's optional, with no pressure. Plant the idea and move on.</p>
+  </aside>
 </section>
 
 <!-- 16 · Closing -->
@@ -432,11 +591,22 @@ body::after{
     <div><div class="loc">Mont Albert</div><div class="addr">2 Churchill Street</div></div>
     <div><div class="loc">Hawthorn</div><div class="addr">140 Auburn Road</div></div>
   </div>
+  <aside class="notes">
+<p>Thank you.</p>
+<p>Open it up: what excites her, what she'd change, and what she's unsure about.</p>
+<p>Offer to send the link to this presentation so she can walk through it again.</p>
+<p>Invite her into either studio to see the plants in person, at Mont Albert or Auburn Road.</p>
+  </aside>
 </section>
 
 <script>
+const root=document.documentElement;
+const MODE=root.classList.contains('presenter')?'presenter':root.classList.contains('preview')?'preview':'audience';
+const chan=('BroadcastChannel' in window)?new BroadcastChannel('gs-deck:'+location.pathname):null;
+const MSG=(type,n)=>({gsDeck:1,type,n});
+
 // Zone visuals stream from Google Drive. Files must be shared "Anyone with the link".
-document.querySelectorAll('img[data-drive]').forEach(img=>{
+if(MODE!=='presenter')document.querySelectorAll('img[data-drive]').forEach(img=>{
   const id=img.dataset.drive;
   const urls=[
     'https://lh3.googleusercontent.com/d/'+id+'=w2000',
@@ -455,6 +625,13 @@ const slides=[...document.querySelectorAll('.slide')];
 const progress=document.getElementById('progress');
 const counter=document.getElementById('counter');
 let i=0;
+let pwin=null;
+
+function emit(){
+  const m=MSG('state',i);
+  if(chan)chan.postMessage(m);
+  if(pwin&&!pwin.closed)try{pwin.postMessage(m,'*')}catch(e){}
+}
 
 function show(n){
   n=Math.max(0,Math.min(slides.length-1,n));
@@ -464,27 +641,172 @@ function show(n){
   progress.style.width=((i+1)/slides.length*100)+'%';
   counter.textContent=String(i+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
   counter.className=slides[i].classList.contains('light')?'light-counter':'dark-counter';
+  if(MODE==='audience')emit();
 }
-show(0);
+if(MODE!=='presenter')show(0);
 
-addEventListener('keydown',e=>{
-  if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();show(i+1)}
-  if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();show(i-1)}
-  if(e.key==='Home')show(0);
-  if(e.key==='End')show(slides.length-1);
+// ---------- messages between windows ----------
+addEventListener('message',e=>{
+  const d=e.data; if(!d||!d.gsDeck)return;
+  if(d.type==='goto'&&MODE!=='presenter')show(d.n);
+  if(d.type==='hello'&&MODE==='audience'){if(e.source)pwin=e.source;emit();}
+  if(d.type==='state'&&MODE==='presenter')onState(d.n);
 });
-addEventListener('click',e=>{
-  if(e.clientX>innerWidth*0.75)show(i+1);
-  else if(e.clientX<innerWidth*0.25)show(i-1);
-});
-let tx=null;
-addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
-addEventListener('touchend',e=>{
-  if(tx===null)return;
-  const dx=e.changedTouches[0].clientX-tx;
-  if(dx<-50)show(i+1); if(dx>50)show(i-1);
-  tx=null;
-},{passive:true});
+if(chan)chan.onmessage=e=>{
+  const d=e.data; if(!d||!d.gsDeck)return;
+  if(MODE==='audience'&&d.type==='goto')show(d.n);
+  if(MODE==='audience'&&d.type==='hello')emit();
+  if(MODE==='presenter'&&d.type==='state')onState(d.n);
+};
+
+// ---------- audience (the big screen) ----------
+if(MODE==='audience'){
+  addEventListener('keydown',e=>{
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();show(i+1)}
+    if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();show(i-1)}
+    if(e.key==='Home')show(0);
+    if(e.key==='End')show(slides.length-1);
+    if(e.key==='p'||e.key==='P'){
+      pwin=window.open(location.href.split('#')[0]+'#presenter','gs-presenter','width=1280,height=800');
+    }
+    if(e.key==='f'||e.key==='F'){
+      if(document.fullscreenElement)document.exitFullscreen();
+      else root.requestFullscreen&&root.requestFullscreen().catch(()=>{});
+    }
+  });
+  addEventListener('click',e=>{
+    if(e.clientX>innerWidth*0.75)show(i+1);
+    else if(e.clientX<innerWidth*0.25)show(i-1);
+  });
+  let tx=null;
+  addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+  addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx;
+    if(dx<-50)show(i+1); if(dx>50)show(i-1);
+    tx=null;
+  },{passive:true});
+}
+
+// ---------- presenter window ----------
+let onState=()=>{};
+if(MODE==='presenter'){
+  document.title='Presenter · '+document.title;
+  const total=slides.length;
+  const notes=slides.map(s=>{const n=s.querySelector('.notes');return n?n.innerHTML:'<p class="none">No notes for this slide.</p>'});
+  const titles=slides.map(s=>{const el=s.querySelector('.znum,.eyebrow')||s.querySelector('h1,h2');return el?el.textContent.replace(/\s+/g,' ').trim():''});
+  const base=location.href.split('#')[0];
+
+  const pv=document.createElement('div');
+  pv.id='pv';
+  pv.innerHTML=`
+    <header>
+      <span class="pv-count"></span>
+      <span class="pv-title"></span>
+      <span class="pv-link"><i></i><span>Waiting for main screen</span></span>
+      <span class="pv-timer" title="Click to pause · R to reset">00:00</span>
+      <span class="pv-clock"></span>
+    </header>
+    <main>
+      <div class="col">
+        <div class="lbl"><span>Now</span></div>
+        <div class="frame cur"><iframe src="${base}#preview" tabindex="-1" title="Current slide"></iframe></div>
+        <div class="keys"><b>→ / Space</b> next · <b>←</b> back · <b>Home / End</b> first, last · type a number + <b>Enter</b> to jump · <b>R</b> reset timer · <b>+ / −</b> notes size</div>
+      </div>
+      <div class="col">
+        <div class="lbl"><span>Next</span></div>
+        <div class="frame nxt"><iframe src="${base}#preview" tabindex="-1" title="Next slide"></iframe><div class="end">End of presentation</div></div>
+        <div class="lbl"><span>Notes</span><span class="size"><button data-d="-2" aria-label="Smaller notes">−</button><button data-d="2" aria-label="Larger notes">+</button></span></div>
+        <div class="pv-notes"></div>
+      </div>
+    </main>`;
+  document.body.appendChild(pv);
+
+  const $=s=>pv.querySelector(s);
+  const curF=$('.frame.cur'), nxtF=$('.frame.nxt');
+  const curI=curF.querySelector('iframe'), nxtI=nxtF.querySelector('iframe');
+  const notesEl=$('.pv-notes'), countEl=$('.pv-count'), titleEl=$('.pv-title'), linkEl=$('.pv-link');
+  let cur=0, jump='', shownNotes=-1;
+
+  // notes size, remembered on this laptop
+  let nfs=20;
+  try{nfs=+localStorage.getItem('gs-deck-nfs')||20}catch(e){}
+  const setSize=v=>{nfs=Math.max(14,Math.min(40,v));notesEl.style.setProperty('--nfs',nfs+'px');try{localStorage.setItem('gs-deck-nfs',nfs)}catch(e){}};
+  setSize(nfs);
+  pv.querySelectorAll('.size button').forEach(b=>b.addEventListener('click',()=>setSize(nfs+ +b.dataset.d)));
+
+  const post=(f,n)=>{try{f.contentWindow.postMessage(MSG('goto',n),'*')}catch(e){}};
+  function render(){
+    countEl.textContent=jump?('→ '+jump):String(cur+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');
+    titleEl.textContent=titles[cur];
+    if(shownNotes!==cur){notesEl.innerHTML=notes[cur];notesEl.scrollTop=0;shownNotes=cur;}
+    post(curI,cur);
+    const last=cur>=total-1;
+    nxtF.classList.toggle('is-end',last);
+    if(!last)post(nxtI,cur+1);
+  }
+  curI.addEventListener('load',render);
+  nxtI.addEventListener('load',render);
+
+  function go(n){
+    n=Math.max(0,Math.min(total-1,n));
+    cur=n; render();
+    const m=MSG('goto',n);
+    if(window.opener&&!window.opener.closed)try{window.opener.postMessage(m,'*')}catch(e){}
+    if(chan)chan.postMessage(m);
+  }
+  onState=n=>{
+    linkEl.classList.add('on');
+    linkEl.lastElementChild.textContent='Linked';
+    if(n!==cur){cur=n;render();}
+  };
+
+  // scale the 1920×1080 slide frames to fit
+  const fit=()=>[curF,nxtF].forEach(f=>{f.querySelector('iframe').style.transform='scale('+(f.clientWidth/1920)+')'});
+  fit();
+  if('ResizeObserver' in window)new ResizeObserver(fit).observe(curF);
+  addEventListener('resize',fit);
+
+  curF.addEventListener('click',()=>go(cur+1));
+  nxtF.addEventListener('click',()=>go(cur+1));
+
+  // timer + clock
+  let start=Date.now(), pausedAt=null;
+  const timerEl=$('.pv-timer'), clockEl=$('.pv-clock');
+  const fmt=ms=>{const s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return (h?h+':'+String(m).padStart(2,'0'):String(m).padStart(2,'0'))+':'+String(x).padStart(2,'0')};
+  function tick(){
+    timerEl.textContent=fmt((pausedAt||Date.now())-start);
+    clockEl.textContent=new Date().toLocaleTimeString('en-AU',{hour:'numeric',minute:'2-digit'});
+  }
+  timerEl.addEventListener('click',()=>{
+    if(pausedAt){start+=Date.now()-pausedAt;pausedAt=null;timerEl.classList.remove('paused')}
+    else{pausedAt=Date.now();timerEl.classList.add('paused')}
+    tick();
+  });
+  setInterval(tick,500); tick();
+
+  addEventListener('keydown',e=>{
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    if(/^[0-9]$/.test(e.key)){jump+=e.key;render();return}
+    if(e.key==='Enter'&&jump){const n=parseInt(jump,10)-1;jump='';go(n);return}
+    if(e.key==='Escape'&&jump){jump='';render();return}
+    if(e.key==='Backspace'&&jump){jump=jump.slice(0,-1);render();return}
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();go(cur+1)}
+    if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(cur-1)}
+    if(e.key==='Home')go(0);
+    if(e.key==='End')go(total-1);
+    if(e.key==='r'||e.key==='R'){start=Date.now();if(pausedAt)pausedAt=start;tick()}
+    if(e.key==='+'||e.key==='=')setSize(nfs+2);
+    if(e.key==='-'||e.key==='_')setSize(nfs-2);
+  });
+
+  // say hello so the main screen reports where it is
+  const hello=MSG('hello',0);
+  if(window.opener&&!window.opener.closed)try{window.opener.postMessage(hello,'*')}catch(e){}
+  if(chan)chan.postMessage(hello);
+  render();
+}
 </script>
 </body>
 </html>
