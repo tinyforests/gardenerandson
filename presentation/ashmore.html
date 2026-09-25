@@ -152,48 +152,45 @@ body::after{
   .ecotable th:nth-child(3){display:none}
 }
 
+/* ---------- logo ---------- */
+.closing .logo{display:block;width:min(560px,42vw);height:auto;margin:0 auto}
+.cover .brandline{display:flex;flex-direction:column;align-items:center;gap:18px}
+.cover .logo-sm{display:block;width:clamp(120px,11vw,190px);height:auto}
+
+/* ---------- cover: signal green, no brass ---------- */
+.cover .eyebrow,.cover h1 em,.cover .brandline{color:var(--signal)}
+#progress.on-cover{background:var(--signal)}
+
 /* ---------- speaker notes (never shown on the big screen) ---------- */
 .notes{display:none!important}
 
-/* ---------- preview mode: thumbnails inside the presenter window ---------- */
-html.preview #progress,html.preview #counter{display:none}
-html.preview .slide,html.preview .rev{transition:none!important}
 
 /* ---------- presenter window ---------- */
 html.presenter body{background:var(--green-deep)}
 html.presenter body::after,html.presenter .slide,html.presenter #progress,html.presenter #counter{display:none!important}
-#pv{position:fixed;inset:0;display:grid;grid-template-rows:auto minmax(0,1fr);color:var(--beige)}
-#pv header{display:flex;align-items:center;gap:26px;padding:14px 24px;border-bottom:1px solid rgba(255,240,220,.12);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
-#pv .pv-count{color:var(--brass);font-size:15px;letter-spacing:.12em;min-width:90px}
-#pv .pv-title{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.8}
+#pv{position:fixed;inset:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;color:var(--beige)}
+#pv header,#pv footer{display:flex;align-items:center;gap:26px;padding:14px 32px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+#pv header{border-bottom:1px solid rgba(255,240,220,.12)}
+#pv footer{border-top:1px solid rgba(255,240,220,.12);justify-content:space-between}
+#pv .pv-count{color:var(--signal);font-size:15px;letter-spacing:.12em;min-width:90px}
+#pv .pv-title{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}
 #pv .pv-link{display:flex;align-items:center;gap:8px;opacity:.7;font-size:11px}
 #pv .pv-link i{width:8px;height:8px;border:1px solid var(--brass);display:inline-block}
 #pv .pv-link.on i{background:var(--signal);border-color:var(--signal)}
-#pv .pv-timer{font-size:24px;letter-spacing:.06em;cursor:pointer;user-select:none;color:var(--beige)}
+#pv .pv-timer{font-size:24px;letter-spacing:.06em;cursor:pointer;user-select:none}
 #pv .pv-timer.paused{opacity:.4}
 #pv .pv-clock{opacity:.6;font-size:13px}
-#pv main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:26px;padding:22px 24px;min-height:0}
-#pv .col{display:flex;flex-direction:column;gap:12px;min-height:0}
-#pv .lbl{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass)}
-#pv .frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--green);outline:1px solid rgba(255,240,220,.16);flex:0 0 auto}
-#pv .frame.cur{cursor:pointer}
-#pv .frame iframe{position:absolute;top:0;left:0;width:1920px;height:1080px;border:0;transform-origin:0 0;pointer-events:none}
-#pv .frame .end{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;opacity:.6;background:var(--green-deep)}
-#pv .frame.is-end .end{display:flex}
-#pv .keys{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;line-height:1.9;opacity:.5}
-#pv .keys b{font-weight:500;color:var(--brass)}
-#pv .size button{background:none;border:1px solid rgba(180,154,99,.6);color:var(--brass);font-family:'IBM Plex Mono',monospace;font-size:12px;width:26px;height:22px;cursor:pointer;margin-left:6px}
-#pv .pv-notes{flex:1;min-height:0;overflow-y:auto;font-size:var(--nfs,20px);line-height:1.55;font-weight:300;padding-right:10px}
-#pv .pv-notes p{margin:0 0 .75em}
-#pv .pv-notes ul{margin:0 0 .75em 1.1em}
+#pv .pv-next{opacity:.55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+#pv .size{flex:0 0 auto}
+#pv .size button{background:none;border:1px solid rgba(255,240,220,.35);color:var(--beige);font-family:'IBM Plex Mono',monospace;font-size:13px;width:30px;height:26px;cursor:pointer;margin-left:6px}
+#pv main{min-height:0;overflow-y:auto;padding:5vh 32px 6vh}
+#pv .pv-notes{max-width:34em;margin:0 auto;font-size:var(--nfs,30px);line-height:1.5;font-weight:300}
+#pv .pv-notes p{margin:0 0 .7em}
+#pv .pv-notes ul{margin:0 0 .7em 1em}
 #pv .pv-notes li{margin:0 0 .35em}
-#pv .pv-notes strong{font-weight:500;color:var(--brass)}
+#pv .pv-notes strong{font-weight:500;color:var(--signal)}
 #pv .pv-notes em{font-family:'Fraunces',serif;font-style:italic}
 #pv .pv-notes .none{opacity:.45;font-style:italic}
-@media (max-width:900px){
-  #pv main{grid-template-columns:1fr;overflow-y:auto}
-  #pv .pv-notes{flex:none;overflow:visible}
-}
 </style>
 </head>
 <body>
@@ -209,7 +206,7 @@ html.presenter body::after,html.presenter .slide,html.presenter #progress,html.p
   <div class="eyebrow rev">A Garden Proposal</div>
   <h1 class="rev">7 Ashmore Road<br><em>Forest Hill</em></h1>
   <div class="sub rev">Prepared for Kate McWilliam</div>
-  <div class="brandline rev">Gardener &amp; Son · Ecological Design Studio</div>
+  <div class="brandline rev"><img class="logo-sm" src="images/gs-logo.png" alt="Gardener &amp; Son"><span>Ecological Design Studio</span></div>
   <aside class="notes">
 <p>Welcome Kate, and thanks for making the time.</p>
 <p>Here's the shape of it: the site and what it wants to be, then the five beds one by one, how they work together through the year, and finally how we look after it once it's in.</p>
@@ -586,7 +583,7 @@ html.presenter body::after,html.presenter .slide,html.presenter #progress,html.p
   <div class="circles" style="width:70vmin;height:70vmin">
     <svg viewBox="0 0 600 600"><circle cx="300" cy="300" r="70"/><circle cx="300" cy="300" r="150"/><circle cx="300" cy="300" r="225"/><circle cx="300" cy="300" r="298"/></svg>
   </div>
-  <h2 class="rev">Gardener <em>&amp;</em> Son</h2>
+  <h2 class="rev"><img class="logo" src="images/gs-logo.png" alt="Gardener &amp; Son"></h2>
   <div class="studios rev">
     <div><div class="loc">Mont Albert</div><div class="addr">2 Churchill Street</div></div>
     <div><div class="loc">Hawthorn</div><div class="addr">140 Auburn Road</div></div>
@@ -639,6 +636,7 @@ function show(n){
   i=n;
   slides[i].classList.add('active');
   progress.style.width=((i+1)/slides.length*100)+'%';
+  progress.classList.toggle('on-cover',slides[i].classList.contains('cover'));
   counter.textContent=String(i+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
   counter.className=slides[i].classList.contains('light')?'light-counter':'dark-counter';
   if(MODE==='audience')emit();
@@ -709,45 +707,31 @@ if(MODE==='presenter'){
       <span class="pv-clock"></span>
     </header>
     <main>
-      <div class="col">
-        <div class="lbl"><span>Now</span></div>
-        <div class="frame cur"><iframe src="${base}#preview" tabindex="-1" title="Current slide"></iframe></div>
-        <div class="keys"><b>→ / Space</b> next · <b>←</b> back · <b>Home / End</b> first, last · type a number + <b>Enter</b> to jump · <b>R</b> reset timer · <b>+ / −</b> notes size</div>
-      </div>
-      <div class="col">
-        <div class="lbl"><span>Next</span></div>
-        <div class="frame nxt"><iframe src="${base}#preview" tabindex="-1" title="Next slide"></iframe><div class="end">End of presentation</div></div>
-        <div class="lbl"><span>Notes</span><span class="size"><button data-d="-2" aria-label="Smaller notes">−</button><button data-d="2" aria-label="Larger notes">+</button></span></div>
-        <div class="pv-notes"></div>
-      </div>
-    </main>`;
+      <div class="pv-notes"></div>
+    </main>
+    <footer>
+      <span class="pv-next"></span>
+      <span class="size"><button data-d="-2" aria-label="Smaller notes">−</button><button data-d="2" aria-label="Larger notes">+</button></span>
+    </footer>`;
   document.body.appendChild(pv);
 
   const $=s=>pv.querySelector(s);
-  const curF=$('.frame.cur'), nxtF=$('.frame.nxt');
-  const curI=curF.querySelector('iframe'), nxtI=nxtF.querySelector('iframe');
-  const notesEl=$('.pv-notes'), countEl=$('.pv-count'), titleEl=$('.pv-title'), linkEl=$('.pv-link');
+  const notesEl=$('.pv-notes'), countEl=$('.pv-count'), titleEl=$('.pv-title'), linkEl=$('.pv-link'), nextEl=$('.pv-next');
   let cur=0, jump='', shownNotes=-1;
 
   // notes size, remembered on this laptop
-  let nfs=20;
-  try{nfs=+localStorage.getItem('gs-deck-nfs')||20}catch(e){}
-  const setSize=v=>{nfs=Math.max(14,Math.min(40,v));notesEl.style.setProperty('--nfs',nfs+'px');try{localStorage.setItem('gs-deck-nfs',nfs)}catch(e){}};
+  let nfs=30;
+  try{nfs=+localStorage.getItem('gs-deck-nfs')||30}catch(e){}
+  const setSize=v=>{nfs=Math.max(18,Math.min(56,v));notesEl.style.setProperty('--nfs',nfs+'px');try{localStorage.setItem('gs-deck-nfs',nfs)}catch(e){}};
   setSize(nfs);
   pv.querySelectorAll('.size button').forEach(b=>b.addEventListener('click',()=>setSize(nfs+ +b.dataset.d)));
 
-  const post=(f,n)=>{try{f.contentWindow.postMessage(MSG('goto',n),'*')}catch(e){}};
   function render(){
     countEl.textContent=jump?('→ '+jump):String(cur+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');
     titleEl.textContent=titles[cur];
-    if(shownNotes!==cur){notesEl.innerHTML=notes[cur];notesEl.scrollTop=0;shownNotes=cur;}
-    post(curI,cur);
-    const last=cur>=total-1;
-    nxtF.classList.toggle('is-end',last);
-    if(!last)post(nxtI,cur+1);
+    if(shownNotes!==cur){notesEl.innerHTML=notes[cur];notesEl.parentElement.scrollTop=0;shownNotes=cur;}
+    nextEl.textContent=cur>=total-1?'End of presentation':'Next · '+titles[cur+1];
   }
-  curI.addEventListener('load',render);
-  nxtI.addEventListener('load',render);
 
   function go(n){
     n=Math.max(0,Math.min(total-1,n));
@@ -762,14 +746,6 @@ if(MODE==='presenter'){
     if(n!==cur){cur=n;render();}
   };
 
-  // scale the 1920×1080 slide frames to fit
-  const fit=()=>[curF,nxtF].forEach(f=>{f.querySelector('iframe').style.transform='scale('+(f.clientWidth/1920)+')'});
-  fit();
-  if('ResizeObserver' in window)new ResizeObserver(fit).observe(curF);
-  addEventListener('resize',fit);
-
-  curF.addEventListener('click',()=>go(cur+1));
-  nxtF.addEventListener('click',()=>go(cur+1));
 
   // timer + clock
   let start=Date.now(), pausedAt=null;
