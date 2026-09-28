@@ -125,7 +125,7 @@ nav .begin-link{color:var(--signal)}
 .photo.pending::after{content:"PHOTOGRAPH TO COME";position:absolute;inset:0;display:grid;place-items:center;font:10px var(--mono);letter-spacing:.2em;color:#fff0dc88}
 .data{display:flex;flex-direction:column;border-left:1px solid var(--line-d)}
 .data .label{padding:13px;border-bottom:1px solid var(--line-d)}
-.data h3{margin:auto 14px;font-size:clamp(36px,3.8vw,60px);line-height:.95;max-width:11ch}
+.data h3{margin:auto 14px;font-size:clamp(28px,2.6vw,42px);line-height:1.02;max-width:13ch}
 .row{border-top:1px solid var(--line-d);padding:13px;font:10px var(--mono);letter-spacing:.06em;display:flex;justify-content:space-between;gap:16px}
 .row span:last-child{text-align:right}
 .row .status{color:var(--signal)}
@@ -266,7 +266,7 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
     <div class="label"><span id="dCount"></span></div>
   </div>
   <div class="garden reveal">
-    <figure class="photo drawing">
+    <figure class="photo drawing" id="dFig">
       <img id="dImg" src="/images/victoria-grove-elevation.webp" alt="Watercolour street elevation of a native front garden design for a Victorian house at 3 Victoria Grove, Hawthorn East, with a red-flowering yellow gum, banksia and flowering understorey behind a green iron fence" width="1400" height="792" loading="lazy" decoding="async">
       <figcaption id="dCap">STREET ELEVATION / HAWTHORN EAST</figcaption>
     </figure>
@@ -393,13 +393,23 @@ const DESIGNS=[
     sheet:'/images/victoria-grove-sheet.webp',
     status:'IN DESIGN',
     rows:[['DESIGN','FRONT GARDEN'],['EVC','68 / CREEKLINE GRASSY WOODLAND'],['SPECIES','20'],['CANOPY','RED-FLOWERING YELLOW GUM'],['PATH','RECLAIMED BRICK'],['FLOWERING','EVERY MONTH']]
+  },
+  {
+    place:'7 MAYLANDS AVENUE / BALWYN NORTH',
+    title:'A sown meadow on <em>local bones.</em>',
+    img:'/images/maylands-meadow.webp', w:1300, h:975,
+    alt:'Watercolour perspective of a sown meadow garden at 7 Maylands Avenue, Balwyn North: local grasses, salvias and violet and burgundy flowers either side of a crushed-granite path leading to a white weatherboard house',
+    caption:'GARDEN PERSPECTIVE / BALWYN NORTH',
+    sheet:'/images/maylands-meadow.webp', fit:'cover',
+    status:'IN DESIGN',
+    rows:[['DESIGN','MAYLANDS MEADOW'],['GRASSES','KANGAROO GRASS / TUSSOCK'],['STORY PLANT','BLUE DEVIL'],['PATH EDGE','BLUE PINCUSHION'],['FLOWERING','SEPTEMBER → MAY'],['WINTER','SEEDHEADS LEFT STANDING']]
   }
 ];
 (function(){
   const $=id=>document.getElementById(id);let i=0;
   function show(){
     const d=DESIGNS[i];
-    $('dPlace').textContent=d.place;$('dTitle').innerHTML=d.title;
+    $('dFig').classList.toggle('drawing',d.fit!=='cover');$('dPlace').textContent=d.place;$('dTitle').innerHTML=d.title;
     Object.assign($('dImg'),{src:d.img,alt:d.alt,width:d.w,height:d.h});
     $('dCap').textContent=d.caption;$('dStatus').textContent=d.status;$('dSheet').href=d.sheet;
     $('dRows').innerHTML=d.rows.map(r=>`<div class="row"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
