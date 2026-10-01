@@ -113,7 +113,9 @@ nav .begin-link{color:var(--signal)}
 .node:nth-child(odd){border-right:1px solid var(--line-l)}
 .node:nth-last-child(-n+2){border-bottom:0}
 .node strong{font:400 22px var(--serif);letter-spacing:-.01em}
-.light .after{margin-top:24px}
+.light .after{margin-top:24px;margin-bottom:20px}
+.light .after .btn{background:var(--green);border-color:var(--green);color:var(--beige)}
+.light .after .btn:hover{background:var(--signal);border-color:var(--signal);color:var(--ink)}
 
 /* ── Garden (02) ──────────────────────────────────────────── */
 .dark{padding:var(--gut)}
@@ -211,6 +213,9 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
   .care-row p{margin-bottom:20px}
   .base{flex-direction:column;gap:8px}
   .hero .side .site-reading{display:none}
+  .hero .side .living-system{margin-top:auto}
+  #place .copy{justify-content:flex-start}
+  #place .copy>.label{margin-bottom:30px}
 }
 </style>
 </head>
@@ -248,7 +253,7 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
       <div class="read"><span>HABITAT</span><b>FORMING</b></div>
       <div class="read"><span>SEASON</span><b id="season">—</b></div>
     </div>
-    <div class="label">A GARDEN IS A LIVING SYSTEM,<br>NOT A FINISHED OBJECT.</div>
+    <div class="label living-system">A GARDEN IS A LIVING SYSTEM,<br>NOT A FINISHED OBJECT.</div>
   </aside>
 </section>
 
