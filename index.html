@@ -210,13 +210,14 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
   .care-row h3{margin:18px 0 12px}
   .care-row p{margin-bottom:20px}
   .base{flex-direction:column;gap:8px}
+  .hero .side .site-reading{display:none}
 }
 </style>
 </head>
 <body>
 
 <nav id="nav">
-  <a class="brand" href="#top">GARDENER <em>&amp;</em> SON ✢ MELBOURNE</a>
+  <a class="brand" href="#top">GARDENER <em>&amp;</em> SON</a>
   <div class="links">
     <a href="#gardens">GARDENS</a>
     <a class="hide-sm" href="/tend/">TEND</a>
@@ -239,8 +240,8 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
     </div>
   </div>
   <aside class="side">
-    <div class="label">SITE READING</div>
-    <div>
+    <div class="label site-reading">SITE READING</div>
+    <div class="site-reading">
       <div class="read"><span>PLACE</span><b>LOCAL</b></div>
       <div class="read"><span>SOIL</span><b>LIVING</b></div>
       <div class="read"><span>WATER</span><b>HELD</b></div>
@@ -279,12 +280,12 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
 <!-- 02 DESIGNS — add entries to the DESIGNS array at the bottom of the page -->
 <section class="dark" id="gardens">
   <div class="section-head reveal">
-    <div class="label">02 / FROM THE STUDIO</div>
+    <div class="label">02 / OUR WORK</div>
     <div class="label"><span id="dCount"></span></div>
   </div>
   <div class="garden reveal">
     <figure class="photo drawing" id="dFig">
-      <img id="dImg" src="/images/victoria-grove-elevation.webp" alt="Watercolour street elevation of a native front garden design for a Victorian house at 3 Victoria Grove, Hawthorn East, with a red-flowering yellow gum, banksia and flowering understorey behind a green iron fence" width="1400" height="788" loading="lazy" decoding="async">
+      <img id="dImg" src="/images/victoria-grove-elevation.webp" alt="Watercolour street elevation of a native front garden design for a Victorian house in Hawthorn East, with a red-flowering yellow gum, banksia and flowering understorey behind a green iron fence" width="1400" height="788" loading="lazy" decoding="async">
       <figcaption id="dCap">STREET ELEVATION / HAWTHORN EAST</figcaption>
     </figure>
     <div class="data">
@@ -412,20 +413,20 @@ const DESIGNS=[
     rows:[['DESIGN','INDIGENOUS FOREST GARDEN'],['INDIGENOUS PLANTS','1,600'],['DENSITY','3 / M²'],['WATER','SWALES'],['SYNTHETICS','0'],['REGISTRY','ER-VIC-SH-ARU-0001']]
   },
   {
-    place:'7 MAYLANDS AVENUE / BALWYN NORTH',
+    place:'BALWYN NORTH',
     title:'A local meadow on <em>Maylands.</em>',
     img:'/images/maylands-meadow.webp', w:1300, h:975,
-    alt:'Watercolour perspective of a sown meadow garden at 7 Maylands Avenue, Balwyn North: local grasses, salvias and violet and burgundy flowers either side of a crushed-granite path leading to a white weatherboard house',
+    alt:'Watercolour perspective of a sown meadow garden in Balwyn North: local grasses, salvias and violet and burgundy flowers either side of a crushed-granite path leading to a white weatherboard house',
     caption:'GARDEN PERSPECTIVE / BALWYN NORTH',
     sheet:'/images/maylands-meadow.webp', fit:'cover',
     status:'IN DESIGN',
     rows:[['DESIGN','MAYLANDS MEADOW'],['GRASSES','KANGAROO GRASS / TUSSOCK'],['STORY PLANT','BLUE DEVIL'],['PATH EDGE','BLUE PINCUSHION'],['FLOWERING','SEPTEMBER → MAY'],['WINTER','SEEDHEADS LEFT STANDING']]
   },
   {
-    place:'3 VICTORIA GROVE / HAWTHORN EAST',
+    place:'HAWTHORN EAST',
     title:'Winter crimson that <em>answers the roof.</em>',
     img:'/images/victoria-grove-elevation.webp', w:1400, h:788, fit:'cover',
-    alt:'Watercolour street elevation of a native front garden design for a Victorian house at 3 Victoria Grove, Hawthorn East, with a red-flowering yellow gum, banksia and flowering understorey behind a green iron fence',
+    alt:'Watercolour street elevation of a native front garden design for a Victorian house in Hawthorn East, with a red-flowering yellow gum, banksia and flowering understorey behind a green iron fence',
     caption:'STREET ELEVATION / HAWTHORN EAST',
     sheet:'/images/victoria-grove-sheet.webp',
     status:'IN DESIGN',
