@@ -48,6 +48,7 @@
   --serif:'Fraunces',Georgia,serif;
   --hero:'Abril Fatface',Georgia,serif;
   --gut:20px;
+  --ink:#1e2419;        /* deep green — text on Signal Green (5:1) */
 }
 
 /* ── Base ─────────────────────────────────────────────────── */
@@ -60,13 +61,14 @@ body::before{ /* noise texture */
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .label{font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase}
-h1{font-family:var(--hero);font-weight:400;font-size:clamp(68px,11vw,174px);line-height:.92;letter-spacing:-.04em;margin:40px 0;max-width:1200px}
+h1{font-family:var(--hero);font-weight:400;font-size:clamp(60px,9.6vw,152px);line-height:.92;letter-spacing:-.04em;margin:40px 0;max-width:1200px}
 h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.035em;margin:0}
 h2{font-size:clamp(52px,7.4vw,118px);line-height:.98}
 h3{font-size:clamp(26px,2.4vw,38px);line-height:1.04;letter-spacing:-.02em}
 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--signal)}
-.btn{display:inline-block;font:11px var(--mono);letter-spacing:.06em;border-bottom:1px solid currentColor;padding-bottom:2px;transition:color .2s}
-.btn:hover{color:var(--signal)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 11px var(--mono);letter-spacing:.08em;padding:14px 20px;border:1px solid currentColor;border-radius:0;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
+.btn:hover,.btn.primary:hover{background:var(--signal);border-color:var(--signal);color:var(--ink)}
+.btn.primary{background:var(--beige);border-color:var(--beige);color:var(--green)}
 
 /* reveal */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
@@ -88,8 +90,8 @@ nav .begin-link{color:var(--signal)}
 .hero .side{border-left:0;display:flex;flex-direction:column;justify-content:space-between;gap:30px}
 .foot{border-top:1px solid var(--line-d);padding-top:15px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end}
 .foot p{max-width:560px;font-size:15px;line-height:1.6;margin:0}
-.hero-actions{display:flex;gap:22px;flex-wrap:wrap}
-.hero-actions .primary{color:var(--signal)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+
 .read{display:flex;justify-content:space-between;border-bottom:1px solid var(--line-d);padding:12px 0;font:10px var(--mono);letter-spacing:.08em}
 .read b{font-weight:400}
 
@@ -164,7 +166,8 @@ nav .begin-link{color:var(--signal)}
 .begin-box{border:1px solid var(--line-d);min-height:85vh;padding:var(--gut);display:flex;flex-direction:column;justify-content:space-between;transition:background .4s}
 .begin-box:hover{background:#ffffff08}
 .begin-box h2{font-size:clamp(62px,9.5vw,150px);margin:40px 0}
-.begin-box .cta{font:12px var(--mono);letter-spacing:.08em;color:var(--signal);border-bottom:1px solid var(--signal);padding-bottom:3px;white-space:nowrap}
+.begin-box .cta{display:inline-flex;font:500 12px var(--mono);letter-spacing:.08em;padding:16px 24px;background:var(--beige);color:var(--green);border:1px solid var(--beige);white-space:nowrap;transition:background .2s,color .2s}
+.begin-box:hover .cta{background:var(--signal);border-color:var(--signal);color:var(--ink)}
 
 /* ── Footer ───────────────────────────────────────────────── */
 footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
@@ -409,7 +412,7 @@ const DESIGNS=[
   },
   {
     place:'7 MAYLANDS AVENUE / BALWYN NORTH',
-    title:'A sown meadow on <em>local bones.</em>',
+    title:'A local meadow on <em>Maylands.</em>',
     img:'/images/maylands-meadow.webp', w:1300, h:975,
     alt:'Watercolour perspective of a sown meadow garden at 7 Maylands Avenue, Balwyn North: local grasses, salvias and violet and burgundy flowers either side of a crushed-granite path leading to a white weatherboard house',
     caption:'GARDEN PERSPECTIVE / BALWYN NORTH',
