@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Indigenous & Native Garden Design Melbourne | Gardener & Son</title>
 <meta name="description" content="Gardener & Son designs and installs indigenous, native and ecological gardens for Melbourne homes — beginning with what grew on each address before the city did.">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://www.gardenerandson.com/">
 <meta property="og:title" content="Garden Design & Installation Melbourne | Gardener & Son">
 <meta property="og:description" content="Indigenous gardens for city homes. Place-specific garden design and installation across Melbourne.">
@@ -180,6 +180,17 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
 .base{margin-top:28px;display:flex;justify-content:space-between;font:9px var(--mono);letter-spacing:.1em}
 
 /* ── Mobile ───────────────────────────────────────────────── */
+/* Gardens section fits one screen on desktop (nav clearance + gutter) */
+@media (min-width:751px){
+  #gardens{height:100vh;height:100svh;display:flex;flex-direction:column;padding-top:calc(48px + var(--gut));scroll-margin-top:0}
+  #gardens .garden{flex:1;min-height:0}
+  #gardens .data{min-height:0;overflow:hidden}
+}
+@media (min-width:751px) and (max-height:820px){
+  #gardens .row{padding:9px 13px}
+  #gardens .d-nav button{height:40px}
+  #gardens .data .label{padding:10px 13px}
+}
 @media (max-width:750px){
   :root{--gut:14px}
   nav .links{gap:12px;font-size:9px}
