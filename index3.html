@@ -132,11 +132,13 @@ nav .begin-link{color:var(--signal)}
 .photo.drawing{background:var(--beige)}
 .photo.drawing img{object-fit:contain;padding:3%}
 .photo.drawing figcaption{color:var(--green)}
+.photo:not(.drawing) figcaption{background:#3d4535d9;padding:5px 7px}
 .d-nav{display:flex;justify-content:space-between;border-bottom:1px solid var(--line-d)}
 .d-nav[hidden]{display:none}
 .d-nav button{appearance:none;border:0;border-radius:0;background:transparent;color:var(--beige);width:54px;height:48px;font:400 22px var(--sans);cursor:pointer}
 .d-nav button:hover{background:var(--beige);color:var(--green)}
 .sheet-link{color:var(--signal)}
+.sheet-link[hidden]{display:none}
 .sheet-link:hover{background:#ffffff0a}
 
 /* ── After the build (03) ─────────────────────────────────── */
@@ -186,6 +188,7 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
   .node:last-child{border-bottom:0!important}
   .photo{min-height:60vh}
   .photo.drawing{min-height:38vh}
+  .studio .photo{min-height:56vh}
   .data{border-left:0;border-top:1px solid var(--line-d);min-height:420px}
   .studio .copy{border-left:0}
   .after-build{margin:12px}
@@ -316,7 +319,7 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
 <section class="dark" id="studio">
   <div class="studio reveal">
     <figure class="photo" style="background:linear-gradient(145deg,#59644f,#30392c)">
-      <img src="/images/studio-portrait.webp" alt="Gardener &amp; Son co-founder standing in a newly planted indigenous garden with boulders, mulch and a timber bench above a bushland gully in Melbourne" width="1000" height="1333" loading="lazy" decoding="async" style="object-position:70% 50%">
+      <img src="/images/natasha-tyson.webp" alt="Natasha and Tyson, co-founders of Gardener &amp; Son, standing together on a grass path through a mature native garden" width="1600" height="900" loading="lazy" decoding="async" style="object-position:52% 55%">
     </figure>
     <div class="copy">
       <div class="label">04 / CRAFT, NOT SCALE</div>
@@ -385,24 +388,14 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 // ── Designs (section 02). Add a new object per design; arrows appear automatically. ──
 const DESIGNS=[
   {
-    place:'8 ARUNDEL CRESCENT / SURREY HILLS',
-    title:'A backyard rewilded into <em>forest.</em>',
-    img:'/images/indigenous-forest-garden.webp', w:1300, h:979,
-    alt:'Watercolour of an indigenous forest garden at 8 Arundel Crescent, Surrey Hills: a crushed-granite path with recycled timber-sleeper steps meandering between rocks, tussock grasses and wildflowers to a timber bench beneath established eucalypts',
+    place:'SURREY HILLS / REGISTERED GARDEN',
+    title:'An indigenous forest on a <em>suburban block.</em>',
+    img:'/images/indigenous-forest-garden.webp', w:1300, h:979, fit:'cover',
+    alt:'Watercolour of an indigenous forest garden in Surrey Hills, Melbourne: a gravel path with timber sleeper steps winding between boulders, tussock grasses and flowering local plants to a timber bench beneath a eucalypt',
     caption:'GARDEN PERSPECTIVE / SURREY HILLS',
-    sheet:'/images/indigenous-forest-garden.webp', fit:'cover',
-    status:'INSTALLED · GROWING',
-    rows:[['DESIGN','INDIGENOUS FOREST GARDEN'],['EVC','175 / GRASSY WOODLAND'],['PLANTS','1,600'],['LAYERS','GROUND → CANOPY'],['PATH','CRUSHED GRANITE / TIMBER STEPS'],['CONNECTS','SOUTH SURREY PARK']]
-  },
-  {
-    place:'7 MAYLANDS AVENUE / BALWYN NORTH',
-    title:'A sown meadow on <em>local bones.</em>',
-    img:'/images/maylands-meadow.webp', w:1300, h:975,
-    alt:'Watercolour perspective of a sown meadow garden at 7 Maylands Avenue, Balwyn North: local grasses, salvias and violet and burgundy flowers either side of a crushed-granite path leading to a white weatherboard house',
-    caption:'GARDEN PERSPECTIVE / BALWYN NORTH',
-    sheet:'/images/maylands-meadow.webp', fit:'cover',
-    status:'IN DESIGN',
-    rows:[['DESIGN','MAYLANDS MEADOW'],['GRASSES','KANGAROO GRASS / TUSSOCK'],['STORY PLANT','BLUE DEVIL'],['PATH EDGE','BLUE PINCUSHION'],['FLOWERING','SEPTEMBER → MAY'],['WINTER','SEEDHEADS LEFT STANDING']]
+    sheet:'',
+    status:'BECOMING',
+    rows:[['DESIGN','INDIGENOUS FOREST GARDEN'],['INDIGENOUS PLANTS','1,600'],['DENSITY','3 / M²'],['WATER','SWALES'],['SYNTHETICS','0'],['REGISTRY','ER-VIC-SH-ARU-0001']]
   },
   {
     place:'3 VICTORIA GROVE / HAWTHORN EAST',
@@ -413,6 +406,16 @@ const DESIGNS=[
     sheet:'/images/victoria-grove-sheet.webp',
     status:'IN DESIGN',
     rows:[['DESIGN','FRONT GARDEN'],['EVC','68 / CREEKLINE GRASSY WOODLAND'],['SPECIES','20'],['CANOPY','RED-FLOWERING YELLOW GUM'],['PATH','RECLAIMED BRICK'],['FLOWERING','EVERY MONTH']]
+  },
+  {
+    place:'7 MAYLANDS AVENUE / BALWYN NORTH',
+    title:'A sown meadow on <em>local bones.</em>',
+    img:'/images/maylands-meadow.webp', w:1300, h:975,
+    alt:'Watercolour perspective of a sown meadow garden at 7 Maylands Avenue, Balwyn North: local grasses, salvias and violet and burgundy flowers either side of a crushed-granite path leading to a white weatherboard house',
+    caption:'GARDEN PERSPECTIVE / BALWYN NORTH',
+    sheet:'/images/maylands-meadow.webp', fit:'cover',
+    status:'IN DESIGN',
+    rows:[['DESIGN','MAYLANDS MEADOW'],['GRASSES','KANGAROO GRASS / TUSSOCK'],['STORY PLANT','BLUE DEVIL'],['PATH EDGE','BLUE PINCUSHION'],['FLOWERING','SEPTEMBER → MAY'],['WINTER','SEEDHEADS LEFT STANDING']]
   }
 ];
 (function(){
@@ -421,7 +424,7 @@ const DESIGNS=[
     const d=DESIGNS[i];
     $('dFig').classList.toggle('drawing',d.fit!=='cover');$('dPlace').textContent=d.place;$('dTitle').innerHTML=d.title;
     Object.assign($('dImg'),{src:d.img,alt:d.alt,width:d.w,height:d.h});
-    $('dCap').textContent=d.caption;$('dStatus').textContent=d.status;$('dSheet').href=d.sheet;
+    $('dCap').textContent=d.caption;$('dStatus').textContent=d.status;$('dSheet').href=d.sheet||'#';$('dSheet').hidden=!d.sheet;
     $('dRows').innerHTML=d.rows.map(r=>`<div class="row"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
     $('dCount').textContent=DESIGNS.length>1?String(i+1).padStart(2,'0')+' / '+String(DESIGNS.length).padStart(2,'0'):'';
   }
