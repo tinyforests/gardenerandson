@@ -62,9 +62,9 @@ body::before{ /* noise texture */
 }
 .label{font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase}
 h1{font-family:var(--hero);font-weight:400;font-size:clamp(60px,9.6vw,152px);line-height:.92;letter-spacing:-.04em;margin:40px 0;max-width:1200px}
-h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.035em;margin:0}
-h2{font-size:clamp(52px,7.4vw,118px);line-height:.98}
-h3{font-size:clamp(26px,2.4vw,38px);line-height:1.04;letter-spacing:-.02em}
+h2,h3{font-weight:400;letter-spacing:-.035em;margin:0}
+h2{font-family:var(--hero);font-size:clamp(52px,7.4vw,118px);line-height:.98}
+h3{font-family:var(--sans);font-size:clamp(26px,2.4vw,38px);line-height:1.04;letter-spacing:-.02em}
 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--signal)}
 .btn{display:inline-flex;align-items:center;gap:10px;font:500 11px var(--mono);letter-spacing:.08em;padding:14px 20px;border:1px solid currentColor;border-radius:0;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
 .btn:hover,.btn.primary:hover{background:var(--signal);border-color:var(--signal);color:var(--ink)}
@@ -129,7 +129,7 @@ nav .begin-link{color:var(--signal)}
 .photo.pending::after{content:"PHOTOGRAPH TO COME";position:absolute;inset:0;display:grid;place-items:center;font:10px var(--mono);letter-spacing:.2em;color:#fff0dc88}
 .data{display:flex;flex-direction:column;border-left:1px solid var(--line-d)}
 .data .label{padding:13px;border-bottom:1px solid var(--line-d)}
-.data h3{margin:auto 14px;font-size:clamp(28px,2.6vw,42px);line-height:1.02;max-width:13ch}
+.data h3{font-family:var(--hero);margin:auto 14px;font-size:clamp(28px,2.6vw,42px);line-height:1.02;max-width:13ch}
 .row{border-top:1px solid var(--line-d);padding:13px;font:10px var(--mono);letter-spacing:.06em;display:flex;justify-content:space-between;gap:16px}
 .row span:last-child{text-align:right}
 .row .status{color:var(--signal)}
