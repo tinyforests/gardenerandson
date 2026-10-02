@@ -15,7 +15,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 
 /* ─ stage: 1920×1080 scaled to fit ─ */
 #stage{position:absolute;inset:0;display:grid;place-items:center}
-#deck{width:1920px;height:1080px;position:relative;transform-origin:center center}
+#deck{width:1920px;height:1080px;position:absolute;left:50%;top:50%;transform-origin:center center}
 .slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .28s ease}
 .slide.on{opacity:1;pointer-events:auto}
 .s{width:100%;height:100%;background:var(--beige);position:relative;overflow:hidden}
@@ -272,8 +272,11 @@ const ch = new BroadcastChannel('maylands-meadow');
 function fit(){
   const stage = document.getElementById('stage');
   const r = stage.getBoundingClientRect();
-  const s = Math.min(r.width / 1920, r.height / 1080);
-  document.getElementById('deck').style.transform = `scale(${s})`;
+  // Display (the LED): fill the screen so there's no black letterbox, even if
+  // the screen isn't exactly 16:9. Presenter: contain, so the laptop shows all.
+  const s = isDisplay ? Math.max(r.width / 1920, r.height / 1080)
+                      : Math.min(r.width / 1920, r.height / 1080);
+  document.getElementById('deck').style.transform = `translate(-50%, -50%) scale(${s})`;
   const nw = document.getElementById('nextwrap');
   if (nw) {
     const f = nw.querySelector('iframe');
