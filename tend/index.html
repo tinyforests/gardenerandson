@@ -13,9 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gardener &amp; Son">
 <meta property="og:locale" content="en_AU">
-<meta property="og:image" content="https://www.gardenerandson.com/images/natasha-tyson.webp">
-<meta property="og:image:alt" content="Natasha and Tyson in a mature garden">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -123,12 +121,8 @@ nav {
 }
 nav .links {
   display:flex;
-  gap:24px;
+  gap:22px;
   align-items:center;
-}
-nav .brand em {
-  font:inherit;
-  color:var(--signal);
 }
 nav a:hover {
   border-bottom:1px solid currentColor;
@@ -145,7 +139,7 @@ h1 {
   font-size:clamp(64px,7.3vw,116px);
 }
 h2 {
-  font-family:var(--serif);
+  font-family:var(--hero);
   font-size:clamp(48px,5.8vw,92px);
 }
 em {
@@ -259,25 +253,10 @@ p:last-child {
   border-top:1px solid var(--line);
   padding-top:36px;
   margin-top:48px;
-  font-family:var(--serif);
+  font-family:var(--hero);
   font-size:clamp(30px,3.3vw,52px);
   max-width:1000px;
   line-height:1.15;
-}
-.photograph {
-  margin:var(--gut) 0 0;
-  position:relative;
-}
-.photograph img {
-  display:block;
-  width:100%;
-  height:auto;
-  aspect-ratio:16/9;
-  object-fit:cover;
-}
-.photograph figcaption {
-  padding:14px 0;
-  border-bottom:1px solid var(--line);
 }
 .cycle {
   list-style:none;
@@ -389,11 +368,20 @@ footer {
 .hero h1 {
   font-size:clamp(64px,12vw,90px);
 }
-nav .links {
-  gap:14px;
+nav {
+  height:auto;
+  min-height:78px;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  gap:12px;
+  padding-block:12px;
 }
-nav .home-link {
-  display:none;
+nav .links {
+  width:100%;
+  justify-content:space-between;
+  gap:12px;
+  font-size:9px;
 }
 .hero .hero-base {
   flex-direction:column;
@@ -425,10 +413,6 @@ h2 {
 .cycle li:nth-child(n+3) {
   border-top:1px solid var(--line);
 }
-.photograph img {
-  aspect-ratio:4/5;
-  object-position:45% center;
-}
 .base {
   flex-direction:column;
   gap:8px;
@@ -450,12 +434,13 @@ h2 {
 <a class="skip" href="#main">Skip to content</a>
 <header>
 <nav aria-label="Main navigation">
-<a class="brand" href="/">GARDENER <em>&amp;</em> SON</a>
-<div class="links">
-<a class="home-link" href="/#gardens">GARDENS</a>
-<a href="/tend/" aria-current="page">TEND</a>
-<a href="mailto:hello@gardenerandson.com?subject=Tend%20enquiry">ENQUIRE →</a>
-</div>
+  <a class="brand" href="/">GARDENER &amp; SON ✢ MELBOURNE</a>
+  <div class="links">
+    <a href="https://plantsofplace.com/">NURSERY</a>
+    <a href="https://heirloomgardenobjects.com/">OBJECTS</a>
+    <a href="https://ecologicalregistry.org/">REGISTRY</a>
+    <a class="begin-link" href="https://www.gardenerandson.com/where-gardens-begin.html">BEGIN →</a>
+  </div>
 </nav>
 </header>
 <main id="main">
@@ -578,10 +563,6 @@ h2 {
 <a class="btn" href="mailto:hello@gardenerandson.com?subject=Tend%20enquiry">ASK US ABOUT YOUR GARDEN →</a>
 </div>
 </div>
-<figure class="photograph">
-<img src="/images/natasha-tyson.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Natasha and Tyson, co-founders of Gardener &amp; Son, on a grass path surrounded by mature garden planting">
-<figcaption class="label">GARDENER &amp; SON / NATASHA &amp; TYSON</figcaption>
-</figure>
 </div>
 </section>
 <section class="section begin" id="begin" aria-labelledby="begin-title">
@@ -605,11 +586,7 @@ h2 {
     </div>
     <div>
       <div class="label">CONTACT</div>
-      <p>
-<a href="mailto:hello@gardenerandson.com">hello@gardenerandson.com</a>
-<br>
-<a href="tel:+61406059866">0406 059 866</a>
-</p>
+      <p><a href="mailto:hello@gardenerandson.com">hello@gardenerandson.com</a><br><a href="tel:+61406059866">0406 059 866</a></p>
     </div>
     <div>
       <div class="label">STUDIOS</div>
@@ -617,23 +594,14 @@ h2 {
     </div>
     <div>
       <div class="label">ALSO FROM US</div>
-      <p>
-<a href="https://plantsofplace.com/">Plants of Place — nursery</a>
-<br>
-<a href="https://heirloomgardenobjects.com/">Heirloom — objects</a>
-<br>
-<a href="https://ecologicalregistry.org/">Ecological Registry</a>
-</p>
+      <p><a href="https://plantsofplace.com/">Plants of Place — nursery</a><br><a href="https://heirloomgardenobjects.com/">Heirloom — objects</a><br><a href="https://ecologicalregistry.org/">Ecological Registry</a></p>
     </div>
   </div>
   <div class="ack">
     <div class="label">ACKNOWLEDGEMENT OF COUNTRY</div>
     <p>At Gardener &amp; Son, we acknowledge the Wurundjeri Woi Wurrung people of the Kulin Nation, the Traditional Custodians of the land on which we live and work. We honour their enduring connection to Country — and the grasslands, woodlands, and wetlands that once flourished here through generations of care and balance. These living systems were not lost to time, but to disconnection. Our work seeks to rekindle that relationship, restoring native ecologies and weaving biodiversity back into the urban fabric — each garden a quiet act of remembrance and renewal.</p>
   </div>
-  <div class="base">
-<span>GARDENER &amp; SON © 2026</span>
-<span>HAWTHORN ✢ MONT ALBERT ✢ MELBOURNE</span>
-</div>
+  <div class="base"><span>GARDENER &amp; SON © 2026</span><span>HAWTHORN ✢ MONT ALBERT ✢ MELBOURNE</span></div>
 </footer>
 </body>
 </html>
