@@ -1,0 +1,528 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ruffey Lake Court — studio presentation</title>
+<style>:root{--ink:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63}
+@font-face{font-family:Abril;src:url(../fonts/AbrilFatface-Regular.ttf)}
+@font-face{font-family:Fraunces;src:url(../fonts/Fraunces-Regular.ttf)}
+@font-face{font-family:Fraunces;font-style:italic;src:url(../fonts/Fraunces-Italic.ttf)}
+@font-face{font-family:Plex;src:url(../fonts/IBMPlexSans-Regular.ttf)}
+@font-face{font-family:Plex;font-weight:500;src:url(../fonts/IBMPlexSans-Medium.ttf)}
+@font-face{font-family:Mono;src:url(../fonts/IBMPlexMono-Regular.ttf)}
+@font-face{font-family:Mono;font-weight:500;src:url(../fonts/IBMPlexMono-Medium.ttf)}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0}
+html,body{height:100%;background:#22271e;
+  font-family:Plex,"Helvetica Neue",Arial,sans-serif;color:var(--ink);overflow:hidden}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* ─ stage: 1920×1080 scaled to fit ─ */
+#stage{position:absolute;inset:0;display:grid;place-items:center}
+#deck{width:1920px;height:1080px;position:absolute;left:50%;top:50%;transform-origin:center center;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.slide.on{opacity:1;pointer-events:auto}
+.s{width:100%;height:100%;background:var(--beige);position:relative;overflow:hidden}
+.s:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.035'/></svg>")}
+.pad{padding:86px 104px}
+.center{display:flex;flex-direction:column;justify-content:center}
+.narrow h1,.narrow .stand{max-width:1240px}
+
+.eyebrow{font-family:Mono;font-weight:500;font-size:17px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:22px}
+h1{font-family:Abril;font-size:82px;line-height:1.02;letter-spacing:-.01em;font-weight:400}
+h1 em{font-family:Fraunces;font-style:italic;color:var(--signal)}
+h1.big{font-size:120px;line-height:.98}
+.stand{font-family:Fraunces;font-style:italic;font-size:40px;line-height:1.35;margin-top:34px}
+.body{font-size:30px;line-height:1.5;margin-top:24px;max-width:28em}
+.body.dim{opacity:.72;font-size:24px}
+.word{font-family:Abril;font-size:34px}
+.word b{font-weight:400;color:var(--signal)}
+
+/* ─ zoomable images ─ */
+[data-lb]{cursor:zoom-in}
+.zoomhint{position:absolute;right:22px;top:22px;font-family:Mono;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;background:rgba(61,69,53,.78);color:var(--beige);padding:8px 12px;pointer-events:none}
+body.display .zoomhint{display:none}
+
+/* ─ cover ─ */
+.cover{display:grid;grid-template-columns:44% 56%}
+.cov-l{padding:86px 70px 76px 104px;display:flex;flex-direction:column}
+.cov-l .eyebrow{margin-top:74px}
+.cov-sub{font-family:Mono;font-size:16px;letter-spacing:.12em;text-transform:uppercase;margin-top:40px}
+.cov-foot{font-family:Mono;font-size:14px;letter-spacing:.12em;text-transform:uppercase;
+  margin-top:auto;padding-top:26px;border-top:1px solid var(--brass);opacity:.8}
+.cov-r{padding:0;position:relative;overflow:hidden}
+.cov-r img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ─ dark ─ */
+.dark{background:var(--ink);color:var(--beige)}
+.dark .eyebrow{color:var(--brass)}
+.dark .cov-foot{border-color:rgba(255,240,220,.3)}
+.ack{max-width:1400px;height:100%;display:flex;flex-direction:column;justify-content:center}
+.ack p{font-family:Fraunces;font-style:italic;font-size:33px;line-height:1.5}
+
+/* ─ full-bleed image ─ */
+.full{position:relative}
+.full-cap{position:absolute;left:104px;bottom:80px;right:104px;
+  background:rgba(61,69,53,.84);color:var(--beige);padding:32px 40px;max-width:1160px}
+.full-cap h1{font-size:60px}
+.full-cap .eyebrow{color:var(--brass);margin-bottom:14px}
+.full-cap .body{font-size:25px;line-height:1.45;margin-top:14px;max-width:42em;opacity:.95}
+
+/* ─ the whole garden map ─ */
+.map{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:44px}
+.mcol h2{font-family:Fraunces;font-size:40px;font-weight:400;padding-bottom:14px;border-bottom:1px solid var(--brass)}
+.mcol h2 em{color:var(--signal)}
+.mrow{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:center;padding:16px 0;border-bottom:1px solid var(--brass)}
+.mrow .th{height:96px;position:relative;overflow:hidden}
+.mrow .n{font-family:Mono;font-size:14px;letter-spacing:.14em;color:var(--signal)}
+.mrow .h{font-family:Fraunces;font-size:30px;line-height:1.15;margin-top:4px}
+.mrow .b{font-size:19px;line-height:1.4;opacity:.8;margin-top:4px}
+
+/* ─ area slides ─ */
+.area{display:grid;grid-template-columns:46% 54%}
+.area.flip{grid-template-columns:54% 46%}
+.area .am{position:relative;overflow:hidden}
+.area .at{padding:70px 90px 60px 80px;display:flex;flex-direction:column;justify-content:center}
+.area.flip .at{padding:70px 80px 60px 90px}
+.area h1{font-size:64px}
+.area .body{font-size:25px;line-height:1.45;margin-top:18px;max-width:34em}
+.retained{font-family:Mono;font-size:14px;letter-spacing:.08em;margin-top:16px;color:var(--ink);opacity:.8}
+.retained b{color:var(--signal);font-weight:500}
+
+/* plant cards with photos */
+.pgrid{display:grid;gap:14px;margin-top:28px}
+.pgrid.c3{grid-template-columns:repeat(3,1fr)}
+.pgrid.c4{grid-template-columns:repeat(4,1fr)}
+.pc{background:#fbe9cf;border:1px solid rgba(180,154,99,.55);cursor:zoom-in;display:flex;flex-direction:column}
+.pc:hover{border-color:var(--signal)}
+.pc.ret{background:#f1e2c8}
+.pc-img{aspect-ratio:4/3;position:relative;overflow:hidden;background:#e9d7b8}
+.pc-img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:Fraunces;font-style:italic;font-size:17px;color:rgba(61,69,53,.55);text-align:center;padding:10px}
+.pc-img img{position:relative;z-index:1}
+.pc-t{padding:10px 12px 12px}
+.pc-h{font-size:18px;font-weight:500;line-height:1.2}
+.pc-b{font-family:Mono;font-style:italic;font-size:13px;opacity:.72;margin-top:3px;line-height:1.3}
+.pc-m{font-family:Mono;font-size:12px;letter-spacing:.05em;opacity:.62;margin-top:5px;line-height:1.3}
+.tag{font-family:Mono;font-size:11px;letter-spacing:.1em;color:var(--signal);text-transform:uppercase}
+i.nat{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--signal);margin-right:7px;vertical-align:middle}
+
+/* two-image stack for dining */
+.stack{display:grid;grid-template-rows:62% 38%;gap:10px;height:100%}
+.stack>div{position:relative;overflow:hidden}
+
+/* ─ steps ─ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--brass);
+  border:1px solid var(--brass);margin-top:48px}
+.st{background:var(--beige);padding:34px 28px;min-height:300px}
+.st-n{font-family:Mono;font-size:15px;letter-spacing:.14em;color:var(--signal)}
+.st-h{font-family:Fraunces;font-size:28px;line-height:1.2;margin-top:20px}
+.st-b{font-size:19px;line-height:1.5;margin-top:16px;opacity:.85}
+
+/* ─ leaf-size ladder ─ */
+.ladder{margin-top:8px}
+.lrow{display:flex;align-items:center;gap:26px;height:47px;border-top:1px solid var(--brass)}
+.lrow:last-child{border-bottom:1px solid var(--brass)}
+.lname{width:330px;flex:none}
+.lname .c{font-size:18px;font-weight:500;line-height:1.15}
+.lname .b{font-family:Mono;font-style:italic;font-size:13px;opacity:.68}
+.lbar{flex:1;display:flex;align-items:center;gap:14px}
+.lbar .fill{height:14px;background:var(--signal);min-width:6px}
+.lbar .fill.r{background:var(--brass)}
+.lbar .tg{font-family:Mono;font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.6;white-space:nowrap}
+.legend{font-family:Mono;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-top:18px;opacity:.75}
+.legend span{display:inline-block;width:22px;height:10px;margin:0 8px 0 18px;vertical-align:middle}
+
+/* ─ light & water ─ */
+.mat-wrap{display:grid;grid-template-columns:40% 60%;gap:80px;height:100%;align-items:center}
+.mat{display:flex;justify-content:space-between;gap:30px;padding:18px 0;border-bottom:1px solid var(--brass);font-size:23px;line-height:1.4}
+.mat:first-child{border-top:1px solid var(--brass)}
+.mat .l{font-family:Mono;font-size:14px;letter-spacing:.08em;text-transform:uppercase;padding-top:5px;color:var(--signal);flex:none;width:170px}
+.mat .v{text-align:left;flex:1}
+
+/* ─ lightbox (inside the deck so it mirrors to the display) ─ */
+#lb{position:absolute;inset:0;z-index:50;background:rgba(28,32,24,.94);display:none;
+  grid-template-columns:1fr 520px;opacity:0;transition:opacity .3s}
+#lb.open{display:grid;opacity:1}
+#lb .lb-img{position:relative;padding:60px;display:flex;align-items:center;justify-content:center;cursor:zoom-out}
+#lb .lb-img img{width:auto;height:auto;max-width:100%;max-height:960px;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+#lb .lb-img .ph{font-family:Fraunces;font-style:italic;font-size:34px;color:rgba(255,240,220,.6)}
+#lb .lb-t{background:var(--ink);color:var(--beige);padding:90px 56px;display:flex;flex-direction:column;justify-content:center}
+#lb .lb-t .eyebrow{color:var(--brass)}
+#lb .lb-t h2{font-family:Fraunces;font-size:54px;font-weight:400;line-height:1.08}
+#lb .lb-t .bot{font-family:Mono;font-style:italic;font-size:20px;opacity:.75;margin-top:14px}
+#lb .lb-t .role{font-size:24px;line-height:1.5;margin-top:30px;padding-top:24px;border-top:1px solid rgba(180,154,99,.6)}
+#lb .lb-t .cnt{font-family:Mono;font-size:14px;letter-spacing:.12em;margin-top:auto;opacity:.6}
+#lb.wide{grid-template-columns:1fr}
+#lb.wide .lb-t{display:none}
+#lb.wide .lb-img img{max-height:1000px}
+
+/* ─ presenter chrome ─ */
+body.display #ui{display:none}
+body.display{background:#000}
+#ui{position:absolute;inset:0;pointer-events:none;display:grid;
+  grid-template-columns:1fr 470px;grid-template-rows:1fr auto}
+body.presenter #stage{right:470px;bottom:96px}
+#side{grid-column:2;grid-row:1/3;background:#2b3127;color:var(--beige);
+  pointer-events:auto;padding:26px 28px;display:flex;flex-direction:column;gap:18px;overflow:hidden}
+#bar{grid-column:1;grid-row:2;background:#2b3127;color:var(--beige);pointer-events:auto;
+  padding:16px 26px;display:flex;align-items:center;gap:26px;border-top:1px solid #3d4535}
+.lab{font-family:Mono;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--brass)}
+#nextwrap{border:1px solid #3d4535;background:#000;aspect-ratio:16/9;position:relative;overflow:hidden}
+#nextwrap iframe{position:absolute;inset:0;width:1920px;height:1080px;border:0;
+  transform-origin:top left;pointer-events:none}
+#notes{flex:1;overflow:auto}
+#notes li{list-style:none;font-size:15.5px;line-height:1.5;padding:11px 0 11px 20px;
+  border-top:1px solid #3d4535;position:relative}
+#notes li:before{content:"";position:absolute;left:0;top:20px;width:10px;height:1.5px;background:var(--signal)}
+#ntitle{font-family:Fraunces;font-style:italic;font-size:22px}
+#clock{font-family:Mono;font-size:30px;letter-spacing:.04em}
+#count{font-family:Mono;font-size:15px;letter-spacing:.1em;color:var(--brass)}
+button{font-family:Mono;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  background:none;border:1px solid var(--brass);color:var(--beige);padding:9px 14px;cursor:pointer}
+button:hover{background:var(--brass);color:var(--ink)}
+#keys{font-family:Mono;font-size:11px;letter-spacing:.06em;color:#8d9682;margin-left:auto;text-align:right;line-height:1.7}
+#prog{position:absolute;left:0;bottom:0;height:3px;background:var(--signal);transition:width .4s;z-index:60}
+body.blank #deck{opacity:0}
+</style></head><body>
+<div id="stage"><div id="deck">
+
+<!-- 0 · COVER -->
+<section class="slide"><div class="s cover"><div class="cov-l">
+  <div class="word">Gardener <b>&amp;</b> Son</div>
+  <div class="eyebrow">5 Ruffey Lake Court, Doncaster</div>
+  <h1 class="big">Under the<br><em>Canopy.</em></h1>
+  <div class="cov-sub">A garden for Kam &amp; Adam</div>
+  <div class="cov-foot">Thursday 8 October 2026 &nbsp;·&nbsp; Wurundjeri Woi Wurrung Country</div></div>
+  <div class="cov-r"><img src="../images/front-cover-tropical.webp" alt="Layered tropical shade garden watercolour" data-lb="wide" data-title="The front garden"></div></div></section>
+
+<!-- 1 · ACKNOWLEDGEMENT -->
+<section class="slide"><div class="s dark pad"><div class="ack">
+  <div class="eyebrow">Acknowledgement of Country</div>
+  <p>At Gardener &amp; Son, we acknowledge the Wurundjeri Woi Wurrung people of the Kulin Nation, the Traditional Custodians of the land on which we live and work — including this corner of Doncaster, beside Ruffey Lake Park. We honour their enduring connection to Country, and the woodlands and waterways that have been cared for here across generations. Our work seeks to tend that same relationship — weaving living green back into the places we call home.</p></div></div></section>
+
+<!-- 2 · YOUR WORDS -->
+<section class="slide"><div class="s pad center narrow"><div class="eyebrow">Your words</div>
+  <h1>Welcoming, and connected to the <em>park.</em></h1>
+  <p class="stand">“Modern and luxurious, and at the same time connected to Ruffey Lake Park. Mostly green foliage, repeated in mass plantings, contrasting leaf sizes — strong structure, a restrained palette. Lighting to enjoy it at night, and water-wise planting.”</p></div></section>
+
+<!-- 3 · THE WHOLE GARDEN -->
+<section class="slide"><div class="s pad"><div class="eyebrow">The whole garden</div>
+  <h1>Two gardens, six <em>places.</em></h1>
+  <div class="map">
+    <div class="mcol"><h2>The <em>front</em></h2>
+      <div class="mrow"><div class="th"><img src="../images/front-shade.webp" data-fallback="../images/front-hero.webp" alt=""></div><div><div class="n">01</div><div class="h">The Shaded Corner</div><div class="b">A cool, layered pocket by the entry.</div></div></div>
+      <div class="mrow"><div class="th"><img src="../images/front-sunny.webp" data-fallback="../images/front-hero.webp" alt=""></div><div><div class="n">02</div><div class="h">The Sunny Edge</div><div class="b">Sculptural forms under a silk tree.</div></div></div>
+      <div class="mrow"><div class="th"><img src="../images/front-drifts.webp" data-fallback="../images/front-hero.webp" alt=""></div><div><div class="n">03</div><div class="h">The Drifts</div><div class="b">Repeated strappy foliage tying it together.</div></div></div></div>
+    <div class="mcol"><h2>The <em>rear</em></h2>
+      <div class="mrow"><div class="th"><img src="../images/rear-bbq.webp" alt=""></div><div><div class="n">04</div><div class="h">The BBQ Terrace</div><div class="b">Big leaves against the glass.</div></div></div>
+      <div class="mrow"><div class="th"><img src="../images/rear-dining.webp" alt=""></div><div><div class="n">05</div><div class="h">The Dining Terrace</div><div class="b">A ginkgo framing the park view.</div></div></div>
+      <div class="mrow"><div class="th"><img src="../images/rear-spa.webp" alt=""></div><div><div class="n">06</div><div class="h">The Spa</div><div class="b">Wrapped in green for privacy.</div></div></div></div></div></div></section>
+
+<!-- 4 · FRONT — DIVIDER -->
+<section class="slide"><div class="s full"><img src="../images/front-hero.webp" alt="The new front garden" data-lb="wide" data-title="The front garden"><div class="zoomhint">Click to enlarge</div>
+  <div class="full-cap"><div class="eyebrow">The front garden</div><h1>Welcome <em>home.</em></h1>
+    <p class="body">West-facing, with the hot afternoon sun and one cool, shaded corner by the entry. Everything comes out except the creeping fig on the walls, the aggregate path and the letterbox, then it's replanted in three places.</p></div></div></section>
+
+<!-- 5 · FRONT · SHADED CORNER -->
+<section class="slide"><div class="s area"><div class="am"><img src="../images/front-shade.webp" data-fallback="../images/front-hero.webp" alt="The shaded corner" data-lb="wide" data-title="The Shaded Corner"><div class="zoomhint">Click to enlarge</div></div>
+  <div class="at"><div class="eyebrow">Front · 01 · By the entry</div><h1>The Shaded <em>Corner.</em></h1>
+    <p class="body">A cool, layered pocket. A loquat canopy over big glossy leaves, with a moss-like carpet underfoot. The focus on the way to the door and the first thing you see on the way out — most importantly, visible from the inside stairwell.</p>
+    <div class="pgrid c4" data-area="shade"></div></div></div></section>
+
+<!-- 6 · FRONT · SUNNY EDGE -->
+<section class="slide"><div class="s area flip">
+  <div class="at"><div class="eyebrow">Front · 02 · The street edge</div><h1>The Sunny <em>Edge.</em></h1>
+    <p class="body">Clipped mounds of mock orange and one sculptural yucca hold the hot street edge, under the airy umbrella of a silk tree. The scent of mock orange welcomes you as you approach the entrance.</p>
+    <div class="pgrid c3" data-area="sunny"></div></div>
+  <div class="am"><img src="../images/front-sunny.webp" data-fallback="../images/front-hero.webp" alt="The sunny edge" data-lb="wide" data-title="The Sunny Edge"><div class="zoomhint">Click to enlarge</div></div></div></section>
+
+<!-- 7 · FRONT · DRIFTS -->
+<section class="slide"><div class="s area"><div class="am"><img src="../images/front-drifts.webp" data-fallback="../images/front-hero.webp" alt="The drifts" data-lb="wide" data-title="The Drifts"><div class="zoomhint">Click to enlarge</div></div>
+  <div class="at"><div class="eyebrow">Front · 03 · Tying it together</div><h1>The <em>Drifts.</em></h1>
+    <p class="body">Generous repeated drifts of fine strappy foliage, lime-green against blue-grey, spilling softly over the path. Three Australian plants, a quiet thread back to the park.</p>
+    <div class="pgrid c3" data-area="drifts"></div></div></div></section>
+
+<!-- 8 · REAR — DIVIDER -->
+<section class="slide"><div class="s full"><img src="../images/rear-dining.webp" alt="The rear terrace overlooking the park" data-lb="wide" data-title="The rear garden"><div class="zoomhint">Click to enlarge</div>
+  <div class="full-cap"><div class="eyebrow">The rear garden</div><h1>Out to the <em>park.</em></h1>
+    <p class="body">Three terraces looking straight into Ruffey Lake Park: the BBQ, the dining table and the spa. Planted in the raised planters along the glass, the same calm green language as the front. Retaining the feature staghorn.</p></div></div></section>
+
+<!-- 9 · REAR · BBQ TERRACE -->
+<section class="slide"><div class="s area"><div class="am"><img src="../images/rear-bbq.webp" alt="The BBQ terrace" data-lb="wide" data-title="The BBQ Terrace"><div class="zoomhint">Click to enlarge</div></div>
+  <div class="at"><div class="eyebrow">Rear · 04 · Under cover</div><h1>The BBQ <em>Terrace.</em></h1>
+    <p class="body">Beside the spa gate, a bold Alocasia rises from the planter against the glass, with lobed Xanadu beneath and Cousin It weeping softly over the edge.</p>
+    <div class="pgrid c3" data-area="bbq"></div></div></div></section>
+
+<!-- 10 · REAR · DINING TERRACE -->
+<section class="slide"><div class="s area flip">
+  <div class="at"><div class="eyebrow">Rear · 05 · Sitting and dining</div><h1>The Dining <em>Terrace.</em></h1>
+    <p class="body">A slender ginkgo rises from the planter, light shade in summer and gold in autumn, framing the view rather than blocking it. Foxtail fern, Lomandra and rock lily beneath, with Dichondra knitting together the ground layer.</p>
+    <div class="pgrid c3" data-area="dining"></div></div>
+  <div class="am"><div class="stack">
+    <div><img src="../images/rear-dining.webp" alt="The dining terrace" data-lb="wide" data-title="The Dining Terrace"><div class="zoomhint">Click to enlarge</div></div>
+    <div><img src="../images/rear-dining-detail.webp" alt="Planter detail by the table" data-lb="wide" data-title="The Dining Terrace · planter"></div></div></div></div></section>
+
+<!-- 11 · REAR · SPA -->
+<section class="slide"><div class="s area"><div class="am"><img src="../images/rear-spa.webp" alt="The spa" data-lb="wide" data-title="The Spa"><div class="zoomhint">Click to enlarge</div></div>
+  <div class="at"><div class="eyebrow">Rear · 06 · Private and green</div><h1>The <em>Spa.</em></h1>
+    <p class="body">The spa deck wrapped in green for privacy: round tractor-seat leaves, Fatsia and foxtail fern. Part of the garden, not bolted onto it.</p>
+    <div class="pgrid c4" data-area="spa"></div></div></div></section>
+
+<!-- 12 · TEXTURE & LEAF SIZE -->
+<section class="slide"><div class="s pad"><div class="eyebrow">Texture &amp; leaf size</div>
+  <h1>From big lobed to <em>moss-fine.</em></h1>
+  <div class="ladder" id="ladder" style="margin-top:30px"></div>
+  <div class="legend"><span style="background:var(--signal);margin-left:0"></span>Front<span style="background:var(--brass)"></span>Rear</div></div></section>
+
+<!-- 13 · LIGHT & WATER -->
+<section class="slide"><div class="s pad"><div class="mat-wrap">
+  <div><div class="eyebrow">Light &amp; water</div><h1>Enjoyed after <em>dark.</em></h1>
+    <p class="body">Lighting so you actually use the garden at night, with micro-spray irrigation keeping everything moist and lush.</p></div>
+  <div><div class="mat"><span class="l">Front light</span><span class="v">Uplight the loquat and silk tree; graze light across the big leaves in the corner; low path lights to the door.</span></div>
+    <div class="mat"><span class="l">Rear light</span><span class="v">Uplight the ginkgo and the Alocasia; soft light along the planters so the green glows against the night view.</span></div>
+    <div class="mat"><span class="l">Water</span><span class="v">Micro sprays throughout, keeping everything moist and lush. The shaded corner needs reliable moisture, and raised planters dry out fast.</span></div>
+    <div class="mat"><span class="l">Status</span><span class="v">Both still to be scoped.</span></div></div></div></div></section>
+
+<!-- 14 · NEXT STEPS -->
+<section class="slide"><div class="s pad center"><div class="eyebrow">Next steps</div><h1>Where to <em>next.</em></h1>
+  <div class="steps">
+    <div class="st"><div class="st-n">01</div><div class="st-h">Confirm the design</div><div class="st-b">A little time with this — tell us what feels like yours and what doesn't.</div></div>
+    <div class="st"><div class="st-n">02</div><div class="st-h">Quote</div><div class="st-b">A detailed quote for the front and rear off the confirmed design.</div></div>
+    <div class="st"><div class="st-n">03</div><div class="st-h">Plant sourcing</div><div class="st-b">Securing the stock: the loquat, silk tree, ginkgo, yucca and the mass-planting quantities.</div></div>
+    <div class="st"><div class="st-n">04</div><div class="st-h">Install</div><div class="st-b">Late Oct / early Nov if that still suits — a window to book, not yet booked. Planting is set out on site with the actual plants.</div></div></div></div></section>
+
+<!-- 15 · THANK YOU -->
+<section class="slide"><div class="s full"><img src="../images/rear-bbq.webp" alt="Lush green terrace">
+  <div class="full-cap"><div class="eyebrow">Thank you</div><h1>A garden that feels like coming <em>home.</em></h1></div></div></section>
+
+<!-- 16 · GARDENER & SON -->
+<section class="slide"><div class="s dark pad center"><h1 class="big">Gardener &amp; Son</h1>
+  <div class="cov-sub">Ecological Design Studio · Melbourne</div>
+  <p class="body dim">140 Auburn Road, Hawthorn</p>
+  <div class="cov-foot">Wurundjeri Woi Wurrung Country</div></div></section>
+
+<div id="lb"><div class="lb-img"></div><div class="lb-t"><div class="eyebrow"></div><h2></h2><div class="bot"></div><div class="role"></div><div class="cnt"></div></div></div>
+<div id="prog"></div></div></div>
+
+<div id="ui">
+  <div id="side">
+    <div><div class="lab">Next slide</div><div id="nextwrap"><iframe id="nextframe" tabindex="-1"></iframe></div></div>
+    <div><div class="lab">Talking points</div><div id="ntitle"></div></div>
+    <ul id="notes"></ul>
+  </div>
+  <div id="bar">
+    <div id="clock">00:00</div>
+    <div id="count">01 / 17</div>
+    <button id="prev">Prev</button>
+    <button id="next">Next</button>
+    <button id="blank">Blank</button>
+    <button id="timer">Timer</button>
+    <button id="open">Open display window</button>
+    <div id="keys">← → / space move &nbsp;·&nbsp; click a photo or plant to enlarge &nbsp;·&nbsp; Esc close<br>
+      B blank &nbsp;·&nbsp; T reset timer &nbsp;·&nbsp; P open display &nbsp;·&nbsp; F fullscreen</div>
+  </div>
+</div>
+
+<script>
+/* ── PLANTS ── Notion photos saved locally in ../images/plants/<slug>.jpg ── */
+const PLANTS = {
+  loquat:{c:"Loquat",b:"Eriobotrya japonica",r:"Corner tree — large leathery leaves, evergreen canopy over the shaded corner."},
+  selloum:{c:"Philodendron 'Selloum'",b:"Thaumatophyllum bipinnatifidum",r:"The biggest leaf in the garden — deeply lobed and glossy."},
+  fatsia:{c:"Japanese Aralia",b:"Fatsia japonica",r:"Broad glossy palms for shade."},
+  schefflera:{c:"Dwarf Umbrella Tree",b:"Schefflera arboricola",r:"Radiating whorls of glossy leaflets — a layered mid-storey."},
+  xanadu:{c:"Philodendron 'Xanadu'",b:"Thaumatophyllum 'Xanadu'",r:"Compact lobed leaves where shade meets sun."},
+  aspidistra:{c:"Cast Iron Plant",b:"Aspidistra elatior",r:"Dense, tough shade groundlayer of broad dark straps."},
+  babystears:{c:"Baby's Tears",b:"Soleirolia soleirolii",r:"A moss-like carpet between stones and along the path. Shade and moisture only."},
+  silktree:{c:"Persian Silk Tree",b:"Albizia julibrissin",r:"Airy umbrella of fine, fern-like leaves; soft pink flowers in summer, winter sun through bare branches."},
+  pittosporum:{c:"Japanese Mock Orange",b:"Pittosporum tobira 'Nanum'",r:"Clipped green mounds holding the structure on the sunny edge."},
+  yucca:{c:"Beaked Yucca",b:"Yucca rostrata",r:"A silver-blue sculpture for the hottest spot."},
+  limetuff:{c:"Mat Rush 'Lime Tuff'",b:"Lomandra longifolia 'Lime Tuff'",r:"Lime-green repeated drifts. Tough and water-wise.",n:1},
+  cassablue:{c:"Flax Lily 'Cassa Blue'",b:"Dianella revoluta 'Cassa Blue'",r:"Blue-grey repeated drifts, small blue flowers and berries.",n:1},
+  dichondra:{c:"Kidney Weed",b:"Dichondra repens",r:"Soft groundcover knitting together the ground layer.",n:1},
+  creepingfig:{c:"Creeping Fig",b:"Ficus pumila",r:"Already on the walls — instant age. Retained.",ret:1},
+  alocasia:{c:"Elephant Ear",b:"Alocasia macrorrhiza",r:"The bold upright leaf against the glass."},
+  cousinit:{c:"Cousin It",b:"Casuarina glauca 'Cousin It'",r:"Fine weeping foliage spilling over the planter edge.",n:1},
+  ginkgo:{c:"Ginkgo 'Princeton Sentry'",b:"Ginkgo biloba",r:"Slender tree in the planter — light summer shade, gold in autumn. Framing the view, not blocking it."},
+  foxtail:{c:"Foxtail Fern",b:"Asparagus densiflorus 'Myersii'",r:"Upright plume-like tails for texture."},
+  arthropodium:{c:"Rock Lily",b:"Arthropodium cirratum",r:"Glossy strappy leaves with fine white flower sprays."},
+  tractorseat:{c:"Tractor Seat",b:"Ligularia reniformis",r:"Big round glossy leaves — the spa's signature leaf."},
+  orange:{c:"Existing orange-leaved plant",b:"Retained",r:"Already thriving by the spa — it stays.",ret:1},
+  staghorn:{c:"Staghorn",b:"Platycerium",r:"Retained.",ret:1}
+};
+const AREAS = {
+  shade:["loquat","selloum","fatsia","schefflera","xanadu","aspidistra","babystears"],
+  sunny:["silktree","pittosporum","yucca"],
+  drifts:["limetuff","cassablue","dichondra","foxtail","creepingfig"],
+  bbq:["alocasia","xanadu","cousinit","limetuff"],
+  dining:["ginkgo","foxtail","limetuff","arthropodium","dichondra"],
+  spa:["tractorseat","fatsia","foxtail","aspidistra","limetuff"]
+};
+/* leaf ladder: [slug, width%, label, rear?] */
+const LADDER = [
+  ["alocasia",100,"giant upright",1],["selloum",92,"big lobed"],["tractorseat",76,"big round",1],
+  ["fatsia",70,"glossy palmate"],["loquat",60,"large simple"],["xanadu",48,"small lobed"],
+  ["aspidistra",40,"broad strap"],["ginkgo",30,"little fans",1],["cassablue",24,"blue-grey strap"],
+  ["limetuff",19,"fine strap"],["foxtail",14,"plumes",1],["dichondra",9,"kidney coin"],["babystears",4,"moss-fine"]
+];
+
+function card(slug){
+  const p = PLANTS[slug];
+  return `<div class="pc${p.ret?' ret':''}" data-lb="${slug}">
+    <div class="pc-img"><div class="ph">${p.c}</div><img src="../images/plants/${slug}.webp" alt="${p.c}" onerror="this.remove()"></div>
+    <div class="pc-t"><div class="pc-h">${p.n?'<i class="nat"></i>':''}${p.c}${p.ret?' <span class="tag">· kept</span>':''}</div>
+    <div class="pc-b">${p.b}</div></div></div>`;
+}
+document.querySelectorAll('[data-area]').forEach(g => g.innerHTML = AREAS[g.dataset.area].map(card).join(''));
+document.getElementById('ladder').innerHTML = LADDER.map(([s,w,t,r]) =>
+  `<div class="lrow"><div class="lname"><div class="c">${PLANTS[s].c}</div><div class="b">${PLANTS[s].b}</div></div>
+   <div class="lbar"><span class="fill${r?' r':''}" style="width:${w}%"></span><span class="tg">${t}</span></div></div>`).join('');
+document.querySelectorAll('img[data-fallback]').forEach(im => im.addEventListener('error', () => {
+  if (im.dataset.fallback && im.src.indexOf(im.dataset.fallback) < 0) im.src = im.dataset.fallback; }, {once:true}));
+
+const SLIDES = [
+{"t":"Ruffey Lake Court.","n":["Let them settle before you say anything — coffee, sit down.","“This is Ruffey Lake Court — a garden for the two of you, front and back.”","Timer's running. Aim 25–30 minutes, then open it up."]},
+{"t":"Acknowledgement of Country","n":["Read it properly, don't rush it. Doncaster is Wurundjeri Woi Wurrung Country.","A beat of quiet, then move on."]},
+{"t":"Welcoming, connected to the park.","n":["Your own words from the brief, read back to you — on purpose.","Pick up 'connected to the park' — that's the thread through the front and the back."]},
+{"t":"Two gardens, six places.","n":["The map for today: three places out the front, three out the back.","We'll walk it the way you do — in the front door, then out to the terraces.","Same language everywhere: green on green, big leaf against fine leaf, lots of repetition."]},
+{"t":"The front garden — welcome home.","n":["Click the image to show it full screen.","West-facing, so it cops the hot afternoon sun — that drives the whole plant split.","Everything comes out except the creeping fig, the aggregate path and the letterbox.","Yes — the clipped standard by the letterbox and the entry tree both go."]},
+{"t":"Front · The Shaded Corner.","n":["Click any plant card to show it large.","The loquat is the canopy — glossy, evergreen, a bit Japanese.","Honesty, if it comes up: loquat is bird-spread and a listed environmental weed in parts of Victoria, and the park's next door — plus some fruit drop. Easy to manage, happy to swap.","Baby's tears only works here — shaded and irrigated. It would burn in the west sun."]},
+{"t":"Front · The Sunny Edge.","n":["Clipped Pittosporum mounds (dwarf 'Nanum') and one sculptural yucca hold the hot corner.","The silk tree is the one flower colour — pink, mid-summer. Sell it as a single summer moment.","Silk tree on the sunny corner by the letterbox."]},
+{"t":"Front · The Drifts.","n":["Repetition is the whole trick — mass the same strappy plants and let them drift.","Lime-green Lomandra against blue-grey Dianella — contrast without flower colour.","These three are Australian — the quiet thread back to the park.","Creeping fig stays — instant age."]},
+{"t":"The rear garden — out to the park.","n":["Now out the back. Three terraces: BBQ, dining, spa.","All planted in the raised planters along the glass — the park is the backdrop, we frame it.","Retaining the feature staghorn."]},
+{"t":"Rear · The BBQ Terrace.","n":["The Alocasia is the statement — big upright leaf against the glass.","Xanadu fills beneath; Cousin It softens the planter edge.","Alocasia is frost-tender — it's happy here because it's under cover and sheltered."]},
+{"t":"Rear · The Dining Terrace.","n":["Ginkgo 'Princeton Sentry' — slender, so it frames the view rather than blocking it. Gold in autumn.","Check with them: planter depth matters for the ginkgo — we'll confirm on site.","Foxtail fern, Lomandra and rock lily beneath, with Dichondra knitting together the ground layer."]},
+{"t":"Rear · The Spa.","n":["Planting wraps the spa for privacy — a green room, not a balcony.","Tractor seat is the signature leaf here — big round and glossy.","The creeping fig will be removed."]},
+{"t":"Texture & leaf size.","n":["The 'contrasting leaf sizes' brief, made literal — front in green, rear in brass.","From the giant Alocasia down to moss-fine baby's tears.","No flower colour needed when the leaves do this much."]},
+{"t":"Light & water.","n":["Front: uplight loquat and silk tree, graze the big leaves, low path lights.","Rear: uplight the ginkgo and Alocasia, soft planter light against the night view.","Micro sprays throughout to keep everything moist and lush — planters dry out fast. Lighting and irrigation still to be scoped."]},
+{"t":"Where to next.","n":["Ask for a decision date — don't leave it open.","Then the quote for front and rear.","Planting's set out on site with the real plants, composed in the ground.","Install late Oct / early Nov if that still suits — a window to book, not booked yet."]},
+{"t":"Thank you.","n":["Stop. Let the questions come.","Close by confirming who sends what, and by when."]},
+{"t":"Gardener & Son","n":["Leave this up while you talk."]}
+];
+
+const N = SLIDES.length;
+const q = new URLSearchParams(location.search);
+const isDisplay = q.get('display') === '1';
+const isNext = q.get('next') === '1';
+document.body.classList.add(isDisplay ? 'display' : 'presenter');
+let i = Math.min(Math.max(0, parseInt(q.get('i')) || 0), N - 1), blank = false, t0 = null, elapsed = 0, running = false;
+let lb = null; // {k:slug|'wide', src, title, idx}
+const ch = new BroadcastChannel('ruffey-lake-court');
+const slides = [...document.querySelectorAll('.slide')];
+
+function fit(){
+  const r = document.getElementById('stage').getBoundingClientRect();
+  document.getElementById('deck').style.transform = `translate(-50%,-50%) scale(${Math.min(r.width / 1920, r.height / 1080)})`;
+  const nw = document.getElementById('nextwrap');
+  if (nw) { const f = nw.querySelector('iframe'); if (f) f.style.transform = `scale(${nw.clientWidth / 1920})`; }
+}
+
+/* ── lightbox ── */
+function lbItems(){ return [...slides[i].querySelectorAll('[data-lb]')]; }
+function lbFrom(el){
+  const k = el.dataset.lb;
+  if (k === 'wide') { const img = el.tagName === 'IMG' ? el : el.querySelector('img'); return { k, src: img.currentSrc || img.getAttribute('src'), title: el.dataset.title || '' }; }
+  return { k, src: '../images/plants/' + k + '.webp' };
+}
+function renderLb(){
+  const box = document.getElementById('lb');
+  if (!lb) { box.classList.remove('open'); return; }
+  const wide = lb.k === 'wide';
+  box.classList.toggle('wide', wide);
+  const im = box.querySelector('.lb-img');
+  const p = PLANTS[lb.k];
+  im.innerHTML = `<img src="${lb.src}" alt="" onerror="this.outerHTML='<div class=ph>${(p ? p.c : 'Image').replace(/'/g,'&#39;')} — photo to come</div>'">`;
+  if (!wide && p) {
+    const items = lbItems().filter(e => e.dataset.lb !== 'wide');
+    const n = items.findIndex(e => e.dataset.lb === lb.k);
+    box.querySelector('.eyebrow').textContent = p.ret ? 'Retained' : (p.n ? 'Australian plant' : 'Plant palette');
+    box.querySelector('h2').textContent = p.c;
+    box.querySelector('.bot').textContent = p.b;
+    box.querySelector('.role').textContent = p.r;
+    box.querySelector('.cnt').textContent = n >= 0 ? `${n + 1} / ${items.length}  ·  ← → to step  ·  Esc to close` : '';
+  }
+  box.classList.add('open');
+}
+function openLb(state){ lb = state; renderLb(); sync(); }
+function closeLb(){ lb = null; renderLb(); sync(); }
+function stepLb(d){
+  const items = lbItems().filter(e => lb.k === 'wide' ? e.dataset.lb === 'wide' : e.dataset.lb !== 'wide');
+  if (!items.length) return;
+  let n = items.findIndex(e => lb.k === 'wide' ? lbFrom(e).src === lb.src : e.dataset.lb === lb.k);
+  n = (n + d + items.length) % items.length;
+  openLb(lbFrom(items[n]));
+}
+document.getElementById('deck').addEventListener('click', e => {
+  if (isNext) return;
+  if (e.target.closest('#lb')) { closeLb(); return; }
+  const el = e.target.closest('[data-lb]');
+  if (el) openLb(lbFrom(el));
+});
+
+function paint(){
+  slides.forEach((el, k) => el.classList.toggle('on', k === i));
+  document.getElementById('prog').style.width = ((i + 1) / N * 100) + '%';
+  renderLb();
+  if (!isDisplay) {
+    document.getElementById('count').textContent = String(i + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
+    document.getElementById('ntitle').innerHTML = SLIDES[i].t;
+    document.getElementById('notes').innerHTML = (SLIDES[i].n || []).map(x => '<li>' + x + '</li>').join('');
+    const f = document.getElementById('nextframe');
+    if (f && f.contentWindow) f.contentWindow.postMessage({ go: Math.min(i + 1, N - 1) }, '*');
+  }
+}
+function sync(){ if (!isNext) ch.postMessage({ i, blank, lb }); }
+function go(n){ i = Math.max(0, Math.min(N - 1, n)); lb = null; paint(); sync(); }
+function setBlank(b){ blank = b; document.body.classList.toggle('blank', blank); sync(); }
+
+if (!isNext) ch.onmessage = e => {
+  const d = e.data;
+  if (typeof d.i === 'number') i = d.i;
+  if (typeof d.blank === 'boolean') { blank = d.blank; document.body.classList.toggle('blank', blank); }
+  lb = d.lb || null;
+  paint();
+};
+window.addEventListener('message', e => { if (e.data && typeof e.data.go === 'number') { i = e.data.go; lb = null; paint(); } });
+
+addEventListener('keydown', e => {
+  const k = e.key;
+  if (lb) {
+    if (k === 'Escape' || k === 'Enter') { closeLb(); return; }
+    if (k === 'ArrowRight' || k === ' ' || k === 'PageDown') { e.preventDefault(); stepLb(1); return; }
+    if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); stepLb(-1); return; }
+  }
+  if (k === 'ArrowRight' || k === ' ' || k === 'PageDown') { e.preventDefault(); go(i + 1); }
+  else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); go(i - 1); }
+  else if (k === 'Home') go(0);
+  else if (k === 'End') go(N - 1);
+  else if (k === 'b' || k === '.') setBlank(!blank);
+  else if (k === 'f') document.documentElement.requestFullscreen?.();
+  else if (k === 't') { elapsed = 0; t0 = Date.now(); running = true; }
+  else if (k === 'p' || k === 'P') { if (!isDisplay) openDisplay(); }
+});
+function openDisplay(){
+  window.open(location.pathname + '?display=1&i=' + i, 'rlc-display', 'width=1280,height=720,menubar=no,toolbar=no,location=no,status=no');
+  setTimeout(sync, 800);
+}
+addEventListener('resize', fit);
+
+if (!isDisplay) {
+  const nf = document.getElementById('nextframe');
+  nf.addEventListener('load', () => nf.contentWindow && nf.contentWindow.postMessage({ go: Math.min(i + 1, N - 1) }, '*'));
+  nf.src = location.pathname + '?display=1&next=1';
+  document.getElementById('open').onclick = openDisplay;
+  document.getElementById('prev').onclick = () => go(i - 1);
+  document.getElementById('next').onclick = () => go(i + 1);
+  document.getElementById('blank').onclick = () => setBlank(!blank);
+  document.getElementById('timer').onclick = () => { if (!running) { running = true; t0 = Date.now() - elapsed * 1000; } else running = false; };
+  t0 = Date.now(); running = true;
+  setInterval(() => {
+    if (running) elapsed = (Date.now() - t0) / 1000;
+    const m = Math.floor(elapsed / 60), s = Math.floor(elapsed % 60);
+    document.getElementById('clock').textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }, 250);
+}
+fit(); paint();
+setTimeout(fit, 60);
+</script>
+</body></html>

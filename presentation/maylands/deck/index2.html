@@ -1,0 +1,385 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maylands Meadow — studio presentation</title>
+<style>:root{--ink:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63}
+@font-face{font-family:Abril;src:url(../fonts/AbrilFatface-Regular.ttf)}
+@font-face{font-family:Fraunces;src:url(../fonts/Fraunces-Regular.ttf)}
+@font-face{font-family:Fraunces;font-style:italic;src:url(../fonts/Fraunces-Italic.ttf)}
+@font-face{font-family:Plex;src:url(../fonts/IBMPlexSans-Regular.ttf)}
+@font-face{font-family:Plex;font-weight:500;src:url(../fonts/IBMPlexSans-Medium.ttf)}
+@font-face{font-family:Mono;src:url(../fonts/IBMPlexMono-Regular.ttf)}
+@font-face{font-family:Mono;font-weight:500;src:url(../fonts/IBMPlexMono-Medium.ttf)}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0}
+html,body{height:100%;background:#22271e;font-family:Plex;color:var(--ink);overflow:hidden}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* ─ stage: 1920×1080 scaled to fit ─ */
+#stage{position:absolute;inset:0;display:grid;place-items:center}
+#deck{width:1920px;height:1080px;position:absolute;left:50%;top:50%;transform-origin:center center}
+.slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .28s ease}
+.slide.on{opacity:1;pointer-events:auto}
+.s{width:100%;height:100%;background:var(--beige);position:relative;overflow:hidden}
+.pad{padding:86px 104px}
+.center{display:flex;flex-direction:column;justify-content:center}
+.narrow h1,.narrow .stand{max-width:1180px}
+
+.eyebrow{font-family:Mono;font-weight:500;font-size:17px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:22px}
+h1{font-family:Abril;font-size:82px;line-height:1.02;letter-spacing:-.01em;font-weight:400}
+h1 em{font-family:Fraunces;font-style:italic;color:var(--signal)}
+h1.big{font-size:120px;line-height:.98}
+h1.big em{display:inline-block}
+.stand{font-family:Fraunces;font-style:italic;font-size:40px;line-height:1.35;margin-top:34px}
+.body{font-size:25px;line-height:1.55;margin-top:26px;max-width:40em}
+.body.dim{opacity:.72;font-size:21px}
+.word{font-family:Abril;font-size:34px}
+.word b{font-weight:400;color:var(--signal)}
+
+.bul{list-style:none;margin-top:30px}
+.bul li{font-size:22px;line-height:1.45;padding:13px 0 13px 26px;border-top:1px solid var(--brass);position:relative}
+.bul li:last-child{border-bottom:1px solid var(--brass)}
+.bul li:before{content:"";position:absolute;left:0;top:22px;width:11px;height:1.5px;background:var(--signal)}
+
+/* ─ cover ─ */
+.cover{display:grid;grid-template-columns:44% 56%}
+.cov-l{padding:86px 70px 76px 104px;display:flex;flex-direction:column}
+.cov-l .eyebrow{margin-top:74px}
+.cov-sub{font-family:Mono;font-size:16px;letter-spacing:.12em;text-transform:uppercase;margin-top:40px}
+.cov-foot{font-family:Mono;font-size:14px;letter-spacing:.12em;text-transform:uppercase;
+  margin-top:auto;padding-top:26px;border-top:1px solid var(--brass);opacity:.8}
+.cov-r{padding:86px 104px 86px 0}
+
+/* ─ dark ─ */
+.dark{background:var(--ink);color:var(--beige)}
+.dark .eyebrow{color:var(--brass)}
+.dark .cov-foot{border-color:rgba(255,240,220,.3)}
+.ack{max-width:1400px;height:100%;display:flex;flex-direction:column;justify-content:center}
+.ack p{font-family:Fraunces;font-style:italic;font-size:33px;line-height:1.5}
+
+/* ─ full-bleed image ─ */
+.full{position:relative}
+.full-cap{position:absolute;left:104px;bottom:80px;right:104px;
+  background:rgba(61,69,53,.82);color:var(--beige);padding:32px 40px;max-width:1100px}
+.full-cap h1{font-size:58px}
+.full-cap .eyebrow{color:var(--brass);margin-bottom:14px}
+
+/* ─ split ─ */
+.split{display:grid;grid-template-columns:1fr 1fr}
+.sp-m{overflow:hidden}
+.sp-t{padding:86px 104px;display:flex;flex-direction:column;justify-content:center}
+.split .sp-t h1{font-size:66px}
+.split .body{font-size:23px;margin-top:22px}
+
+/* ─ plant cards ─ */
+.pgrid{display:grid;gap:1px;margin-top:30px;background:var(--brass);border:1px solid var(--brass)}
+.pgrid.c2{grid-template-columns:1fr 1fr}
+.pgrid.c3{grid-template-columns:1fr 1fr 1fr}
+.pc{background:var(--beige);padding:0;overflow:hidden}
+.pc-img{width:100%;height:104px;object-fit:cover;display:block}
+.pc-h{font-size:17px;font-weight:500;line-height:1.2;padding:9px 14px 0}
+.pc-b{font-family:Fraunces;font-style:italic;font-size:15px;opacity:.72;margin-top:2px;padding:0 14px}
+.pc-m{font-family:Mono;font-size:12px;letter-spacing:.06em;opacity:.6;margin-top:5px;padding:0 14px 11px}
+i.nat{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--signal);
+  margin-right:8px;vertical-align:middle}
+
+/* ─ calendar ─ */
+.cal-slide{padding:48px 76px}
+.cal-top{display:flex;align-items:baseline;gap:36px;margin-bottom:14px}
+.cal-top h1{font-size:46px}
+.cal-note{font-family:Fraunces;font-style:italic;font-size:19px;margin-left:auto}
+.cal{font-size:0}
+.cal-head{display:flex}
+.cal-head>div:first-child{width:472px;flex:none}
+.cal-seasons,.cal-months{display:flex;flex:1}
+.cal-seasons span{font-family:Mono;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  text-align:center;border-bottom:1px solid var(--brass);margin:0 8px 6px;padding-bottom:5px}
+.cal-months span{flex:1;font-family:Mono;font-weight:500;font-size:13px;text-align:center;padding-bottom:5px}
+.cal-layer{font-family:Mono;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--signal);padding:6px 0 2px;border-top:1px solid var(--brass)}
+.cal-row{display:flex;align-items:center;height:22px}
+.cal-name{width:472px;flex:none;font-size:16.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-name em{font-family:Fraunces;font-size:14px;opacity:.7}
+.cal-bars{display:flex;flex:1;gap:3px;align-items:center}
+.cal-bars span{flex:1;height:13px}
+.cal-bars .pk{border:1px solid rgba(61,69,53,.28)}
+.cal-bars .sh{opacity:.42}
+.cal-bars .hd{height:0;border-top:2px dotted var(--brass)}
+.cal-bars .of{height:0;border-top:1px solid rgba(61,69,53,.18)}
+.cal-count{height:30px;border-top:1px solid var(--brass);margin-top:5px}
+.cal-count .cal-name{font-family:Mono;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
+.cal-count .ct{font-family:Mono;font-weight:500;font-size:17px;text-align:center;height:auto}
+.cal-key{display:flex;gap:36px;margin-top:14px;font-family:Mono;font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;align-items:center}
+.cal-key span{display:flex;align-items:center;gap:9px}
+.cal-key i{display:inline-block;width:30px;height:11px}
+.cal-key i.dsh{height:0;border-top:2px dotted var(--brass)}
+.cal-key i.nat{width:9px;height:9px}
+
+/* ─ materials / next ─ */
+.mat-wrap{display:grid;grid-template-columns:1fr 1fr;gap:90px;height:100%;align-items:center}
+.mat{display:flex;justify-content:space-between;gap:30px;padding:19px 0;border-bottom:1px solid var(--brass);font-size:22px}
+.mat:first-child{border-top:1px solid var(--brass)}
+.mat .l{font-family:Mono;font-size:14px;letter-spacing:.08em;text-transform:uppercase;padding-top:4px}
+.mat .v{text-align:right}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--brass);
+  border:1px solid var(--brass);margin-top:48px}
+.st{background:var(--beige);padding:34px 28px;min-height:300px}
+.st-n{font-family:Mono;font-size:15px;letter-spacing:.14em;color:var(--signal)}
+.st-h{font-family:Fraunces;font-size:28px;line-height:1.2;margin-top:20px}
+.st-b{font-size:19px;line-height:1.5;margin-top:16px;opacity:.85}
+
+/* ─ presenter chrome ─ */
+body.display #ui{display:none}
+body.display{background:#000}
+#ui{position:absolute;inset:0;pointer-events:none;display:grid;
+  grid-template-columns:1fr 470px;grid-template-rows:1fr auto}
+body.presenter #stage{right:470px;bottom:96px}
+#side{grid-column:2;grid-row:1/3;background:#2b3127;color:var(--beige);
+  pointer-events:auto;padding:26px 28px;display:flex;flex-direction:column;gap:18px;overflow:hidden}
+#bar{grid-column:1;grid-row:2;background:#2b3127;color:var(--beige);pointer-events:auto;
+  padding:16px 26px;display:flex;align-items:center;gap:26px;border-top:1px solid #3d4535}
+.lab{font-family:Mono;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--brass)}
+#nextwrap{border:1px solid #3d4535;background:#000;aspect-ratio:16/9;position:relative;overflow:hidden}
+#nextwrap iframe{position:absolute;inset:0;width:1920px;height:1080px;border:0;
+  transform-origin:top left;pointer-events:none}
+#notes{flex:1;overflow:auto}
+#notes li{list-style:none;font-size:15.5px;line-height:1.5;padding:11px 0 11px 20px;
+  border-top:1px solid #3d4535;position:relative}
+#notes li:before{content:"";position:absolute;left:0;top:20px;width:10px;height:1.5px;background:var(--signal)}
+#ntitle{font-family:Fraunces;font-style:italic;font-size:22px}
+#clock{font-family:Mono;font-size:30px;letter-spacing:.04em}
+#count{font-family:Mono;font-size:15px;letter-spacing:.1em;color:var(--brass)}
+button{font-family:Mono;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  background:none;border:1px solid var(--brass);color:var(--beige);padding:9px 14px;cursor:pointer}
+button:hover{background:var(--brass);color:var(--ink)}
+#keys{font-family:Mono;font-size:11px;letter-spacing:.06em;color:#8d9682;margin-left:auto;text-align:right;line-height:1.7}
+#prog{position:absolute;left:0;bottom:0;height:3px;background:var(--signal);transition:width .28s}
+body.blank #deck{opacity:0}
+/* ─ plant photo lightbox ─ */
+.pc-img{cursor:zoom-in}
+#lightbox{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;
+  background:rgba(20,24,16,.93);cursor:zoom-out;padding:48px}
+#lightbox.on{display:flex}
+#lightbox figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:20px}
+#lightbox img{width:auto;height:auto;max-width:90vw;max-height:78vh;object-fit:contain;
+  box-shadow:0 30px 90px rgba(0,0,0,.55)}
+#lb-cap{font-family:Fraunces;font-style:italic;color:var(--beige);font-size:27px;text-align:center}
+#lb-cap b{font-family:Plex;font-style:normal;font-weight:500;display:block;font-size:19px;
+  letter-spacing:.03em;margin-bottom:5px}
+#lb-hint{position:fixed;left:0;right:0;bottom:24px;text-align:center;font-family:Mono;
+  font-size:11px;letter-spacing:.14em;color:#8d9682}
+</style></head><body>
+<div id="stage"><div id="deck"><section class="slide" data-i="0"><div class="s cover"><div class="cov-l">
+          <div class="word">Gardener <b>&amp;</b> Son</div><div class="eyebrow">7 Maylands Avenue, Balwyn North</div>
+          <h1 class="big">Maylands<br><em>Meadow.</em></h1>
+          <div class="cov-sub">Garden proposal · Gardener &amp; Son</div>
+          <div class="cov-foot">Wurundjeri Woi Wurrung Country</div></div>
+          <div class="cov-r"><img src="../images/hero.webp"></div></div></section><section class="slide" data-i="1"><div class="s dark pad"><div class="ack"><div class="eyebrow">Acknowledgement of Country</div><p>At Gardener &amp; Son, we acknowledge the Wurundjeri Woi Wurrung people of the Kulin Nation, the Traditional Custodians of the land on which we live and work. We honour their enduring connection to Country — and the grasslands, woodlands, and wetlands that once flourished here through generations of care and balance. These living systems were not lost to time, but to disconnection. Our work seeks to rekindle that relationship, restoring native ecologies and weaving biodiversity back into the urban fabric — each garden a quiet act of remembrance and renewal.</p></div></div></section><section class="slide" data-i="2"><div class="s pad center narrow"><div class="eyebrow">The brief</div><h1>Sown, not <em>arranged.</em></h1>
+          <p class="stand">A garden that feels sown rather than arranged — grasses catching the late light, flowers rising through them in drifts, and as beautiful in its winter bones as in high summer.</p></div></section><section class="slide" data-i="3"><div class="s split"><div class="sp-m"><img src="../images/brick.webp"></div><div class="sp-t"><div class="eyebrow">What stays</div><h1>Keep what we <em>can.</em></h1><p class="body">The brick edging, the courtyard and the stepping pads all stay. They already have the age the planting will take years to earn.</p><ul class='bul'><li>Brick edging — retained</li><li>Courtyard and stepping pads — retained</li><li>Lamb's Ear and Ajuga already thriving here — lifted, divided, replanted</li></ul></div></div></section><section class="slide" data-i="4"><div class="s split"><div class="sp-t"><div class="eyebrow">The path</div><h1>One clear line of <em>movement.</em></h1><p class="body">A softly wandering crushed-granite path gives the garden one clear line of movement — informal enough to feel discovered rather than imposed, and narrow enough that the planting can lean in and soften its edges.</p><ul class='bul'><li>Crushed granite, no hard edge</li><li>Wanders — no straight runs</li><li>Planting allowed to spill across the margins</li></ul></div><div class="sp-m"><img src="../images/path.webp"></div></div></section><section class="slide" data-i="5"><div class="s split"><div class="sp-m"><img src="../images/texture.webp"></div><div class="sp-t"><div class="eyebrow">Structure</div><h1>Six <em>grasses.</em></h1><p class="body">The grasses do the structural work — the vertical line, the movement, and the winter shape once everything else has gone over.</p><div class="pgrid c2"><div class="pc"><img class="pc-img" src="../images/plants/feather-reed-grass-karl-foerster.webp" alt="Feather Reed Grass 'Karl Foerster'" loading="lazy">
+          <div class="pc-h">Feather Reed Grass 'Karl Foerster'</div>
+          <div class="pc-b">Calamagrostis × acutiflora</div><div class="pc-m">1.8m h x 1m w</div></div><div class="pc"><img class="pc-img" src="../images/plants/tufted-hair-grass.webp" alt="Tufted Hair Grass" loading="lazy">
+          <div class="pc-h">Tufted Hair Grass</div>
+          <div class="pc-b">Deschampsia cespitosa</div><div class="pc-m">45cm h (foliage); 90cm–1.2m in flower x 60cm w</div></div><div class="pc"><img class="pc-img" src="../images/plants/red-buttons.webp" alt="Red Buttons" loading="lazy">
+          <div class="pc-h">Red Buttons</div>
+          <div class="pc-b">Pennisetum thunbergii</div><div class="pc-m">90cm h x 60cm w</div></div><div class="pc"><img class="pc-img" src="../images/plants/mexican-feather-grass.webp" alt="Mexican Feather Grass" loading="lazy">
+          <div class="pc-h">Mexican Feather Grass</div>
+          <div class="pc-b">Stipa tenuissima</div><div class="pc-m">60-70cm h</div></div><div class="pc"><img class="pc-img" src="../images/plants/common-tussock-grass.webp" alt="Common Tussock-Grass" loading="lazy">
+          <div class="pc-h"><i class="nat"></i>Common Tussock-Grass</div>
+          <div class="pc-b">Poa labillardierei</div><div class="pc-m">120cm</div></div><div class="pc"><img class="pc-img" src="../images/plants/longhair-plume-grass.webp" alt="Longhair Plume Grass" loading="lazy">
+          <div class="pc-h"><i class="nat"></i>Longhair Plume Grass</div>
+          <div class="pc-b">Dichelachne crinata</div><div class="pc-m">1.5m x 30cm</div></div></div></div></div></section><section class="slide" data-i="6"><div class="s split"><div class="sp-t"><div class="eyebrow">Colour</div><h1>Violet-blue and deep <em>burgundy.</em></h1><p class="body">Four salvias carry colour for most of the year. Russian Sage and Blue Sea Holly add smoky haze and steel-blue thimbles, and Tall Verbena floats above on see-through stems.</p><div class="pgrid c3"><div class="pc"><img class="pc-img" src="../images/plants/tall-verbena.webp" alt="Tall Verbena" loading="lazy">
+          <div class="pc-h">Tall Verbena</div>
+          <div class="pc-b">Verbena bonariensis</div><div class="pc-m">1.8m x 90cm</div></div><div class="pc"><img class="pc-img" src="../images/plants/bronze-fennel.webp" alt="Bronze Fennel" loading="lazy">
+          <div class="pc-h">Bronze Fennel</div>
+          <div class="pc-b">Foeniculum vulgare 'Purpureum'</div><div class="pc-m">1.2 - 2 metres tall</div></div><div class="pc"><img class="pc-img" src="../images/plants/blue-sea-holly.webp" alt="Blue Sea Holly" loading="lazy">
+          <div class="pc-h">Blue Sea Holly</div>
+          <div class="pc-b">Eryngium planum</div><div class="pc-m">90cm h x 45cm w</div></div><div class="pc"><img class="pc-img" src="../images/plants/lesser-knotweed.webp" alt="Lesser Knotweed" loading="lazy">
+          <div class="pc-h">Lesser Knotweed</div>
+          <div class="pc-b">Persicaria amplexicaulis</div><div class="pc-m">30cm h x 60cm w</div></div><div class="pc"><img class="pc-img" src="../images/plants/salvia-waverly.webp" alt="Salvia 'Waverly'" loading="lazy">
+          <div class="pc-h">Salvia 'Waverly'</div>
+          <div class="pc-b">Salvia</div><div class="pc-m">1.2m height x 1.4m width</div></div><div class="pc"><img class="pc-img" src="../images/plants/salvia-mystic-spires.webp" alt="Salvia 'Mystic Spires'" loading="lazy">
+          <div class="pc-h">Salvia 'Mystic Spires'</div>
+          <div class="pc-b">Salvia</div><div class="pc-m">60cm - 90cm</div></div><div class="pc"><img class="pc-img" src="../images/plants/salvia-african-skies.webp" alt="Salvia 'African Skies'" loading="lazy">
+          <div class="pc-h">Salvia 'African Skies'</div>
+          <div class="pc-b">Salvia</div><div class="pc-m">75cm h x 1m w</div></div></div></div><div class="sp-m"><img src="../images/seasonal.webp"></div></div></section><section class="slide" data-i="7"><div class="s split"><div class="sp-m"><img src="../images/texture.webp"></div><div class="sp-t"><div class="eyebrow">The silver thread</div><h1>Lifted and <em>scented.</em></h1><p class="body">A silver thread of Wormwood, Bush Germander, Lamb's Ear and Bronze Fennel lifts the darker flowers and scents the air when brushed.</p><ul class='bul'><li>Wormwood and Bush Germander — silver body</li><li>Lamb's Ear — soft edge, already on site</li><li>Bronze Fennel — scent and height</li></ul></div></div></section><section class="slide" data-i="8"><div class="s split"><div class="sp-t"><div class="eyebrow">The ground layer</div><h1>Closing the <em>soil.</em></h1><p class="body">At ground level, Native Violet and Alpine Pratia knit the shady pockets with Ajuga, while Seaside Daisy softens the edges and the brick.</p><div class="pgrid c2"><div class="pc"><img class="pc-img" src="../images/plants/seaside-daisy.webp" alt="Seaside Daisy" loading="lazy">
+          <div class="pc-h">Seaside Daisy</div>
+          <div class="pc-b">Erigeron karvinskianus</div><div class="pc-m">30-60cm (H) X 90-150cm (W)</div></div><div class="pc"><img class="pc-img" src="../images/plants/alpine-pratia.webp" alt="Alpine Pratia" loading="lazy">
+          <div class="pc-h"><i class="nat"></i>Alpine Pratia</div>
+          <div class="pc-b">Pratia puberula</div><div class="pc-m">15-30cm X 2-4m</div></div><div class="pc"><img class="pc-img" src="../images/plants/native-violet.webp" alt="Native Violet" loading="lazy">
+          <div class="pc-h"><i class="nat"></i>Native Violet</div>
+          <div class="pc-b">Viola hederacea</div><div class="pc-m">5–15cm h; spreading groundcover</div></div><div class="pc"><img class="pc-img" src="../images/plants/carpet-bugle.webp" alt="Carpet Bugle" loading="lazy">
+          <div class="pc-h">Carpet Bugle</div>
+          <div class="pc-b">Ajuga reptans</div><div class="pc-m">15cm h x 30cm w</div></div></div></div><div class="sp-m"><img src="../images/brick.webp"></div></div></section><section class="slide" data-i="9"><div class="s split"><div class="sp-m"><img src="../images/habitat.webp"></div><div class="sp-t"><div class="eyebrow">Plants of this place</div><h1>An indigenous <em>thread.</em></h1><p class="body">Running through the meadow is a thread of plants indigenous to this place — tussock and plume grasses, chocolate lily and magenta stork's-bill — so the garden feeds the insects and birds that already belong here.</p><div class="pgrid c2"><div class="pc"><img class="pc-img" src="../images/plants/alpine-pratia.webp" alt="Alpine Pratia" loading="lazy">
+          <div class="pc-h"><i class="nat"></i>Alpine Pratia</div>
+          <div class="pc-b">Pratia puberula</div><div class="pc-m">15-30cm X 2-4m</div></div><div class="pc"><img class="pc-img" src="../images/plants/native-violet.webp" alt="Native Violet" loading="lazy">
+          <div class="pc-h"><i class="nat"></i>Native Violet</div>
+          <div class="pc-b">Viola hederacea</div><div class="pc-m">5–15cm h; spreading groundcover</div></div><div class="pc"><img class="pc-img" src="../images/plants/chocolate-lily.webp" alt="Chocolate Lily" loading="lazy">
+          <div class="pc-h"><i class="nat"></i>Chocolate Lily</div>
+          <div class="pc-b">Arthropodium strictum</div><div class="pc-m">30cm h x 60cm w</div></div><div class="pc"><img class="pc-img" src="../images/plants/magenta-stork-s-bill.webp" alt="Magenta Stork's-bill" loading="lazy">
+          <div class="pc-h"><i class="nat"></i>Magenta Stork's-bill</div>
+          <div class="pc-b">Pelargonium rodneyanum</div><div class="pc-m">0.3 m</div></div><div class="pc"><img class="pc-img" src="../images/plants/common-tussock-grass.webp" alt="Common Tussock-Grass" loading="lazy">
+          <div class="pc-h"><i class="nat"></i>Common Tussock-Grass</div>
+          <div class="pc-b">Poa labillardierei</div><div class="pc-m">120cm</div></div><div class="pc"><img class="pc-img" src="../images/plants/longhair-plume-grass.webp" alt="Longhair Plume Grass" loading="lazy">
+          <div class="pc-h"><i class="nat"></i>Longhair Plume Grass</div>
+          <div class="pc-b">Dichelachne crinata</div><div class="pc-m">1.5m x 30cm</div></div></div></div></div></section><section class="slide" data-i="10"><div class="s full"><img src="../images/palette.webp">
+          <div class="full-cap"><div class="eyebrow">The palette</div><h1>Thirty species, one <em>community.</em></h1></div></div></section><section class="slide" data-i="11"><div class="s pad cal-slide"><div class="cal-top"><div class="eyebrow">A year in flower</div><h1>Something always in <em>flower.</em></h1>
+          <div class="cal-note">From September's first violets to the last sedums of May.</div></div>
+          <div class="cal"><div class="cal-head"><div></div><div class="cal-seasons"><span style="flex:2">Winter</span><span style="flex:3">Spring</span><span style="flex:3">Summer</span><span style="flex:3">Autumn</span><span style="flex:1">Win.</span></div></div><div class="cal-head"><div></div><div class="cal-months"><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span></div></div><div class="cal-layer">Ground layer</div><div class="cal-row"><div class="cal-name">Seaside Daisy <em>Erigeron karvinskianus</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="sh" style="background:#D9B9C2"></span><span class="pk" style="background:#D9B9C2"></span><span class="pk" style="background:#D9B9C2"></span><span class="pk" style="background:#D9B9C2"></span><span class="pk" style="background:#D9B9C2"></span><span class="pk" style="background:#D9B9C2"></span><span class="pk" style="background:#D9B9C2"></span><span class="pk" style="background:#D9B9C2"></span><span class="sh" style="background:#D9B9C2"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name"><i class="nat"></i>Alpine Pratia <em>Pratia puberula</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="sh" style="background:#AFA4D6"></span><span class="pk" style="background:#AFA4D6"></span><span class="pk" style="background:#AFA4D6"></span><span class="pk" style="background:#AFA4D6"></span><span class="pk" style="background:#AFA4D6"></span><span class="sh" style="background:#AFA4D6"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name"><i class="nat"></i>Native Violet <em>Viola hederacea</em></div><div class="cal-bars"><span class="of"></span><span class="sh" style="background:#9A8ACA"></span><span class="pk" style="background:#9A8ACA"></span><span class="pk" style="background:#9A8ACA"></span><span class="pk" style="background:#9A8ACA"></span><span class="pk" style="background:#9A8ACA"></span><span class="sh" style="background:#9A8ACA"></span><span class="sh" style="background:#9A8ACA"></span><span class="sh" style="background:#9A8ACA"></span><span class="of"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name">Carpet Bugle <em>Ajuga reptans</em></div><div class="cal-bars"><span class="of"></span><span class="sh" style="background:#5A5BA8"></span><span class="pk" style="background:#5A5BA8"></span><span class="pk" style="background:#5A5BA8"></span><span class="sh" style="background:#5A5BA8"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-layer">Mid perennials</div><div class="cal-row"><div class="cal-name">Salvia 'Ostfriesland' <em>Salvia nemorosa</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#4D3D88"></span><span class="pk" style="background:#4D3D88"></span><span class="pk" style="background:#4D3D88"></span><span class="sh" style="background:#4D3D88"></span><span class="sh" style="background:#4D3D88"></span><span class="sh" style="background:#4D3D88"></span><span class="of"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name">Gaura <em>Oenothera lindheimeri</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#D69FB2"></span><span class="pk" style="background:#D69FB2"></span><span class="pk" style="background:#D69FB2"></span><span class="pk" style="background:#D69FB2"></span><span class="pk" style="background:#D69FB2"></span><span class="pk" style="background:#D69FB2"></span><span class="sh" style="background:#D69FB2"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name">Scabiosa 'Black Knight' <em>Scabiosa atropurpurea</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#4A1D2B"></span><span class="pk" style="background:#4A1D2B"></span><span class="pk" style="background:#4A1D2B"></span><span class="pk" style="background:#4A1D2B"></span><span class="pk" style="background:#4A1D2B"></span><span class="sh" style="background:#4A1D2B"></span><span class="sh" style="background:#4A1D2B"></span><span class="hd"></span><span class="hd"></span></div></div><div class="cal-row"><div class="cal-name">Yarrow 'Credo' <em>Achillea millefolium</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#D9C47A"></span><span class="pk" style="background:#D9C47A"></span><span class="pk" style="background:#D9C47A"></span><span class="pk" style="background:#D9C47A"></span><span class="sh" style="background:#D9C47A"></span><span class="sh" style="background:#D9C47A"></span><span class="hd"></span><span class="hd"></span><span class="hd"></span></div></div><div class="cal-row"><div class="cal-name">Lamb's Ear <em>Stachys byzantina</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#B28DAF"></span><span class="pk" style="background:#B28DAF"></span><span class="pk" style="background:#B28DAF"></span><span class="sh" style="background:#B28DAF"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name">Sedum 'Autumn Joy' <em>Hylotelephium</em></div><div class="cal-bars"><span class="hd"></span><span class="hd"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#A8545A"></span><span class="pk" style="background:#A8545A"></span><span class="pk" style="background:#A8545A"></span><span class="pk" style="background:#A8545A"></span><span class="sh" style="background:#A8545A"></span><span class="hd"></span></div></div><div class="cal-row"><div class="cal-name">Sedum 'Matrona' <em>Hylotelephium</em></div><div class="cal-bars"><span class="hd"></span><span class="hd"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#C27C8C"></span><span class="pk" style="background:#C27C8C"></span><span class="pk" style="background:#C27C8C"></span><span class="pk" style="background:#C27C8C"></span><span class="sh" style="background:#C27C8C"></span><span class="sh" style="background:#C27C8C"></span><span class="hd"></span></div></div><div class="cal-row"><div class="cal-name"><i class="nat"></i>Chocolate Lily <em>Arthropodium strictum</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#7E5EA6"></span><span class="pk" style="background:#7E5EA6"></span><span class="pk" style="background:#7E5EA6"></span><span class="sh" style="background:#7E5EA6"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name"><i class="nat"></i>Magenta Stork's-bill <em>Pelargonium rodneyanum</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#B0417A"></span><span class="pk" style="background:#B0417A"></span><span class="pk" style="background:#B0417A"></span><span class="pk" style="background:#B0417A"></span><span class="sh" style="background:#B0417A"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-layer">Tall perennials</div><div class="cal-row"><div class="cal-name">Tall Verbena <em>Verbena bonariensis</em></div><div class="cal-bars"><span class="hd"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#8A5CA8"></span><span class="pk" style="background:#8A5CA8"></span><span class="pk" style="background:#8A5CA8"></span><span class="pk" style="background:#8A5CA8"></span><span class="pk" style="background:#8A5CA8"></span><span class="sh" style="background:#8A5CA8"></span><span class="sh" style="background:#8A5CA8"></span><span class="hd"></span></div></div><div class="cal-row"><div class="cal-name">Bronze Fennel <em>Foeniculum vulgare 'Purpureum'</em></div><div class="cal-bars"><span class="hd"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#C2A94F"></span><span class="pk" style="background:#C2A94F"></span><span class="pk" style="background:#C2A94F"></span><span class="sh" style="background:#C2A94F"></span><span class="hd"></span><span class="hd"></span><span class="hd"></span></div></div><div class="cal-row"><div class="cal-name">Blue Sea Holly <em>Eryngium planum</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#6E86B2"></span><span class="pk" style="background:#6E86B2"></span><span class="pk" style="background:#6E86B2"></span><span class="pk" style="background:#6E86B2"></span><span class="sh" style="background:#6E86B2"></span><span class="hd"></span><span class="hd"></span><span class="hd"></span></div></div><div class="cal-row"><div class="cal-name">Lesser Knotweed <em>Persicaria amplexicaulis</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#9C2F47"></span><span class="pk" style="background:#9C2F47"></span><span class="pk" style="background:#9C2F47"></span><span class="pk" style="background:#9C2F47"></span><span class="pk" style="background:#9C2F47"></span><span class="sh" style="background:#9C2F47"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name">Salvia 'Waverly' <em>Salvia</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#BDA5CF"></span><span class="pk" style="background:#BDA5CF"></span><span class="pk" style="background:#BDA5CF"></span><span class="pk" style="background:#BDA5CF"></span><span class="pk" style="background:#BDA5CF"></span><span class="pk" style="background:#BDA5CF"></span><span class="pk" style="background:#BDA5CF"></span><span class="sh" style="background:#BDA5CF"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name">Salvia 'Mystic Spires' <em>Salvia</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#5A5EA9"></span><span class="pk" style="background:#5A5EA9"></span><span class="pk" style="background:#5A5EA9"></span><span class="pk" style="background:#5A5EA9"></span><span class="pk" style="background:#5A5EA9"></span><span class="pk" style="background:#5A5EA9"></span><span class="pk" style="background:#5A5EA9"></span><span class="sh" style="background:#5A5EA9"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name">Salvia 'African Skies' <em>Salvia</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#6C8FC8"></span><span class="pk" style="background:#6C8FC8"></span><span class="pk" style="background:#6C8FC8"></span><span class="pk" style="background:#6C8FC8"></span><span class="pk" style="background:#6C8FC8"></span><span class="pk" style="background:#6C8FC8"></span><span class="sh" style="background:#6C8FC8"></span><span class="of"></span></div></div><div class="cal-layer">Grasses</div><div class="cal-row"><div class="cal-name">Feather Reed Grass 'Karl Foerster' <em>Calamagrostis × acutiflora</em></div><div class="cal-bars"><span class="hd"></span><span class="hd"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#C4A267"></span><span class="pk" style="background:#C4A267"></span><span class="pk" style="background:#C4A267"></span><span class="pk" style="background:#C4A267"></span><span class="hd"></span><span class="hd"></span><span class="hd"></span><span class="hd"></span></div></div><div class="cal-row"><div class="cal-name">Tufted Hair Grass <em>Deschampsia cespitosa</em></div><div class="cal-bars"><span class="hd"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#B08E5A"></span><span class="pk" style="background:#B08E5A"></span><span class="pk" style="background:#B08E5A"></span><span class="pk" style="background:#B08E5A"></span><span class="sh" style="background:#B08E5A"></span><span class="sh" style="background:#B08E5A"></span><span class="hd"></span><span class="hd"></span></div></div><div class="cal-row"><div class="cal-name">Red Buttons <em>Pennisetum thunbergii</em></div><div class="cal-bars"><span class="hd"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#7E3B3F"></span><span class="pk" style="background:#7E3B3F"></span><span class="pk" style="background:#7E3B3F"></span><span class="pk" style="background:#7E3B3F"></span><span class="pk" style="background:#7E3B3F"></span><span class="sh" style="background:#7E3B3F"></span><span class="hd"></span></div></div><div class="cal-row"><div class="cal-name">Mexican Feather Grass <em>Stipa tenuissima</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#C9B077"></span><span class="pk" style="background:#C9B077"></span><span class="pk" style="background:#C9B077"></span><span class="pk" style="background:#C9B077"></span><span class="sh" style="background:#C9B077"></span><span class="sh" style="background:#C9B077"></span><span class="of"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name"><i class="nat"></i>Common Tussock-Grass <em>Poa labillardierei</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="sh" style="background:#8C7F63"></span><span class="pk" style="background:#8C7F63"></span><span class="pk" style="background:#8C7F63"></span><span class="pk" style="background:#8C7F63"></span><span class="sh" style="background:#8C7F63"></span><span class="hd"></span><span class="hd"></span><span class="hd"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name"><i class="nat"></i>Longhair Plume Grass <em>Dichelachne crinata</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#BFA46A"></span><span class="pk" style="background:#BFA46A"></span><span class="pk" style="background:#BFA46A"></span><span class="pk" style="background:#BFA46A"></span><span class="sh" style="background:#BFA46A"></span><span class="hd"></span><span class="hd"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-layer">Shrubs</div><div class="cal-row"><div class="cal-name">Buddleia 'Buzz Ivory' <em>Buddleja davidii</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#D6C69A"></span><span class="pk" style="background:#D6C69A"></span><span class="pk" style="background:#D6C69A"></span><span class="pk" style="background:#D6C69A"></span><span class="pk" style="background:#D6C69A"></span><span class="sh" style="background:#D6C69A"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name">Bush Germander <em>Teucrium fruticans</em></div><div class="cal-bars"><span class="of"></span><span class="sh" style="background:#A7B8D8"></span><span class="pk" style="background:#A7B8D8"></span><span class="pk" style="background:#A7B8D8"></span><span class="pk" style="background:#A7B8D8"></span><span class="sh" style="background:#A7B8D8"></span><span class="sh" style="background:#A7B8D8"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name">Common Wormwood <em>Artemisia absinthium</em></div><div class="cal-bars"><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#B8B283"></span><span class="pk" style="background:#B8B283"></span><span class="pk" style="background:#B8B283"></span><span class="sh" style="background:#B8B283"></span><span class="of"></span><span class="of"></span><span class="of"></span></div></div><div class="cal-row"><div class="cal-name">Russian Sage 'Silvery Blue' <em>Perovskia</em></div><div class="cal-bars"><span class="hd"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="of"></span><span class="sh" style="background:#8F97CB"></span><span class="pk" style="background:#8F97CB"></span><span class="pk" style="background:#8F97CB"></span><span class="pk" style="background:#8F97CB"></span><span class="sh" style="background:#8F97CB"></span><span class="hd"></span><span class="hd"></span></div></div><div class="cal-row cal-count"><div class="cal-name">Species in flower</div><div class="cal-bars"><span class="ct">0</span><span class="ct">3</span><span class="ct">6</span><span class="ct">17</span><span class="ct">23</span><span class="ct">28</span><span class="ct">29</span><span class="ct">25</span><span class="ct">21</span><span class="ct">14</span><span class="ct">9</span><span class="ct">0</span></div></div><div class="cal-key">
+      <span><i style="background:#6C8FC8"></i>Peak flower</span>
+      <span><i style="background:#6C8FC8;opacity:.42"></i>Coming · going</span>
+      <span><i class="dsh"></i>Seedheads left standing</span>
+      <span><i class="nat"></i>Australian native</span></div></div></div></section><section class="slide" data-i="12"><div class="s split"><div class="sp-t"><div class="eyebrow">Through winter</div><h1>Left <em>standing.</em></h1><p class="body">Seedheads stay through autumn and winter for structure, shelter and small birds. Everything is cut back once in late winter and returns fresh each spring.</p><ul class='bul'><li>One cut-back a year, late winter</li><li>Seedheads held for habitat and frost</li><li>No bare soil — the ground layer closes it</li></ul></div><div class="sp-m"><img src="../images/habitat.webp"></div></div></section><section class="slide" data-i="13"><div class="s pad"><div class="mat-wrap"><div class="mat-l"><div class="eyebrow">Materials &amp; site</div><h1>What it's made <em>of.</em></h1>
+          <p class="body">Nothing new where something good already exists. The money goes into soil,
+          plants and the path.</p></div><div class="mat-r"><div class="mat"><span class="l">Path</span><span class="v">Crushed granite, softly wandering</span></div><div class="mat"><span class="l">Edging</span><span class="v">Existing brick — retained</span></div><div class="mat"><span class="l">Courtyard &amp; pads</span><span class="v">Existing brick — retained</span></div><div class="mat"><span class="l">Existing plants</span><span class="v">Lamb's Ear &amp; Ajuga lifted, divided, replanted</span></div><div class="mat"><span class="l">Mulch</span><span class="v">Left standing — seedheads through winter</span></div></div></div></div></section><section class="slide" data-i="14"><div class="s pad center"><div class="eyebrow">Next steps</div><h1>Where to <em>next.</em></h1><div class="steps"><div class="st"><div class="st-n">01</div><div class="st-h">Feedback on the concept</div><div class="st-b">A week with the sheets and the link — mark anything that doesn't feel like yours.</div></div><div class="st"><div class="st-n">02</div><div class="st-h">Installation estimate</div><div class="st-b">Prepare a detailed estimate to build and plant the garden.</div></div><div class="st"><div class="st-n">03</div><div class="st-h">Build window</div><div class="st-b">Scheduling, staging and the planting sequence.</div></div><div class="st"><div class="st-n">04</div><div class="st-h">The first year</div><div class="st-b">Establishment watering, the one late-winter cut-back, and a walk-through each season.</div></div></div></div></section><section class="slide" data-i="15"><div class="s dark pad center"><h1 class="big">Gardener &amp; Son</h1>
+          <div class="cov-sub">Ecological Design Studio · Melbourne</div><p class="body dim">2 Churchill Street, Mont Albert &nbsp;·&nbsp; 140 Auburn Road, Hawthorn</p>
+          <div class="cov-foot">Wurundjeri Woi Wurrung Country</div></div></section><div id="prog"></div></div></div>
+
+<div id="ui">
+  <div id="side">
+    <div>
+      <div class="lab">Next slide</div>
+      <div id="nextwrap"><iframe id="nextframe" src="index.html?display=1" tabindex="-1"></iframe></div>
+    </div>
+    <div>
+      <div class="lab">Talking points</div>
+      <div id="ntitle"></div>
+    </div>
+    <ul id="notes"></ul>
+  </div>
+  <div id="bar">
+    <div id="clock">00:00</div>
+    <div id="count">01 / 18</div>
+    <button id="prev">Prev</button>
+    <button id="next">Next</button>
+    <button id="blank">Blank</button>
+    <button id="timer">Timer</button>
+    <button id="open">Open display window</button>
+    <div id="keys">← → move &nbsp;·&nbsp; B blank &nbsp;·&nbsp; T reset timer<br>
+      P pause &nbsp;·&nbsp; F fullscreen &nbsp;·&nbsp; put the display window on the LED, then press F</div>
+  </div>
+</div>
+
+<div id="lightbox"><figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure><div id="lb-hint">← → BROWSE · ESC / CLICK TO CLOSE</div></div>
+<script>
+const SLIDES = [{"t": "Maylands Meadow.", "n": ["Hold here while everyone settles. Don't start on plants.", "\"We've called it Maylands Meadow \u2014 that's the idea in two words.\"", "Timer starts now. Aim 25 minutes, then questions."]}, {"t": "Acknowledgement of Country", "n": ["Read it. Don't paraphrase, don't rush it.", "Then a beat of silence before moving on."]}, {"t": "Sown, not arranged.", "n": ["These are Evelyn's own words back to her \u2014 that's deliberate.", "Check the nod: if she agrees with this slide, the rest lands easy.", "Do NOT name the reference garden or designer."]}, {"t": "Keep what we can.", "n": ["Cost point, if they raise budget: keeping the hardscape is where the money is saved.", "The replanting of existing stock is also a sustainability story \u2014 use it."]}, {"t": "One clear line of movement.", "n": ["Trace the route as you talk: gate, through the planting, to the door.", "\"Informal enough to feel discovered rather than imposed.\"", "Narrow on purpose \u2014 the planting leans in and closes over the edges as it settles.", "If asked about maintenance: top up every few years, no weed mat.", "The brick pads break the run so it never reads as a driveway."]}, {"t": "Six grasses.", "n": ["This is the backbone slide. Spend time here.", "Karl Foerster holds the vertical; Deschampsia glows when backlit.", "Two of the six are indigenous \u2014 flag it now, pay it off on the indigenous slide."]}, {"t": "Violet-blue and deep burgundy.", "n": ["\"See-through\" is the key idea \u2014 you look through the planting, not at it.", "Scabiosa 'Black Knight' is the darkest note. It reads almost black at dusk."]}, {"t": "Lifted and scented.", "n": ["Brush a leaf when you walk her through it on site. Better than any slide.", "The silver is what stops the burgundy going heavy."]}, {"t": "Closing the soil.", "n": ["Weed suppression is the practical benefit \u2014 say it plainly.", "Three of these four are already indigenous or naturalised here."]}, {"t": "An indigenous thread.", "n": ["This is the Gardener & Son difference. Do not skip it.", "These are additions, not swaps \u2014 nothing she liked has been taken out.", "Chocolate Lily genuinely smells of chocolate. Always lands.", "Link to the Registry only if she asks what happens after handover."]}, {"t": "Thirty species, one community.", "n": ["Let them look. Stop talking for a moment.", "If she asks for a plant list, point at the site link \u2014 don't read names aloud."]}, {"t": "Something always in flower.", "n": ["Peak is December\u2013January at 30 and 31 species.", "The honest bit: July and June are bare. That's the point of the seedheads.", "Trace September across \u2014 first violets. Then May \u2014 last sedums."]}, {"t": "Left standing.", "n": ["Pre-empt the objection: some clients read winter seedheads as neglect.", "Frame it as a decision, not a saving. \"Designed to be left standing.\""]}, {"t": "What it's made of.", "n": ["Keep this brief unless she asks for detail.", "Have the gravel sample in your hand for this slide."]}, {"t": "Where to next.", "n": ["Ask for a decision date here \u2014 don't leave it open.", "Mention the client journal page only once documentation starts."]}, {"t": "Gardener &amp; Son", "n": ["Stop. Let the questions come.", "Close by confirming who sends what, and when."]}];
+const N = SLIDES.length;
+const q = new URLSearchParams(location.search);
+const isDisplay = q.get('display') === '1';
+document.body.classList.add(isDisplay ? 'display' : 'presenter');
+let i = 0, blank = false, t0 = null, elapsed = 0, running = false;
+const ch = new BroadcastChannel('maylands-meadow');
+
+function fit(){
+  const stage = document.getElementById('stage');
+  const r = stage.getBoundingClientRect();
+  // Display (the LED): fill the screen so there's no black letterbox, even if
+  // the screen isn't exactly 16:9. Presenter: contain, so the laptop shows all.
+  const s = isDisplay ? Math.max(r.width / 1920, r.height / 1080)
+                      : Math.min(r.width / 1920, r.height / 1080);
+  document.getElementById('deck').style.transform = `translate(-50%, -50%) scale(${s})`;
+  const nw = document.getElementById('nextwrap');
+  if (nw) {
+    const f = nw.querySelector('iframe');
+    if (f) f.style.transform = `scale(${nw.clientWidth / 1920})`;
+  }
+}
+function paint(){
+  document.querySelectorAll('.slide').forEach((el, k) => el.classList.toggle('on', k === i));
+  const p = document.getElementById('prog');
+  if (p) p.style.width = ((i + 1) / N * 100) + '%';
+  if (!isDisplay) {
+    document.getElementById('count').textContent =
+      String(i + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
+    document.getElementById('ntitle').innerHTML = SLIDES[i].t;
+    document.getElementById('notes').innerHTML =
+      (SLIDES[i].n || []).map(x => '<li>' + x + '</li>').join('') ||
+      '<li style="opacity:.5">No notes for this slide.</li>';
+    const f = document.getElementById('nextframe');
+    if (f && f.contentWindow) {
+      const nx = Math.min(i + 1, N - 1);
+      f.contentWindow.postMessage({ go: nx }, '*');
+    }
+  }
+}
+function go(n){ i = Math.max(0, Math.min(N - 1, n)); paint(); ch.postMessage({ i, blank }); }
+function setBlank(b){ blank = b; document.body.classList.toggle('blank', blank); ch.postMessage({ i, blank }); }
+
+ch.onmessage = e => {
+  if (typeof e.data.i === 'number' && e.data.i !== i) { i = e.data.i; paint(); }
+  if (typeof e.data.blank === 'boolean') { blank = e.data.blank; document.body.classList.toggle('blank', blank); }
+};
+window.addEventListener('message', e => { if (e.data && typeof e.data.go === 'number') { i = e.data.go; paint(); } });
+
+addEventListener('keydown', e => {
+  const k = e.key;
+  if (k === 'ArrowRight' || k === ' ' || k === 'PageDown') { e.preventDefault(); go(i + 1); }
+  else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); go(i - 1); }
+  else if (k === 'Home') go(0);
+  else if (k === 'End') go(N - 1);
+  else if (k === 'b' || k === '.') setBlank(!blank);
+  else if (k === 'f') document.documentElement.requestFullscreen?.();
+  else if (k === 't') { elapsed = 0; t0 = Date.now(); running = true; }
+  else if (k === 'p') { running = !running; if (running) t0 = Date.now() - elapsed * 1000; }
+});
+addEventListener('resize', fit);
+
+if (!isDisplay) {
+  document.getElementById('open').onclick = () => {
+    window.open(location.pathname + '?display=1', 'mm-display',
+      'width=1280,height=720,menubar=no,toolbar=no,location=no,status=no');
+  };
+  document.getElementById('prev').onclick = () => go(i - 1);
+  document.getElementById('next').onclick = () => go(i + 1);
+  document.getElementById('blank').onclick = () => setBlank(!blank);
+  document.getElementById('timer').onclick = () => {
+    if (!running) { running = true; t0 = Date.now() - elapsed * 1000; }
+    else { running = false; }
+  };
+  t0 = Date.now(); running = true;
+  setInterval(() => {
+    if (running) elapsed = (Date.now() - t0) / 1000;
+    const m = Math.floor(elapsed / 60), s = Math.floor(elapsed % 60);
+    document.getElementById('clock').textContent =
+      String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }, 250);
+}
+fit(); paint();
+setTimeout(fit, 60);
+
+// ── plant photo lightbox ──
+(function(){
+  const lb = document.getElementById('lightbox');
+  if (!lb) return;
+  const lbImg = document.getElementById('lb-img');
+  const lbCap = document.getElementById('lb-cap');
+  let imgs = [], idx = 0;
+  function show(){
+    const im = imgs[idx]; if (!im) return;
+    lbImg.src = im.getAttribute('src');
+    const card = im.closest('.pc');
+    const h = card && card.querySelector('.pc-h');
+    const b = card && card.querySelector('.pc-b');
+    lbCap.innerHTML = (h ? '<b>' + h.textContent.trim() + '</b>' : '') + (b ? b.textContent.trim() : '');
+  }
+  function openFrom(t){
+    const slide = t.closest('.slide') || document;
+    imgs = [...slide.querySelectorAll('.pc-img')];
+    idx = Math.max(0, imgs.indexOf(t));
+    show();
+    lb.classList.add('on');
+  }
+  function close(){ lb.classList.remove('on'); lbImg.src = ''; imgs = []; }
+  document.addEventListener('click', e => {
+    const t = e.target.closest && e.target.closest('.pc-img');
+    if (t && !lb.classList.contains('on')) { e.preventDefault(); e.stopPropagation(); openFrom(t); }
+    else if (lb.classList.contains('on')) { close(); }
+  });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('on')) return;
+    if (e.key === 'Escape') { e.preventDefault(); e.stopImmediatePropagation(); close(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); e.stopImmediatePropagation(); idx = (idx + 1) % imgs.length; show(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); e.stopImmediatePropagation(); idx = (idx - 1 + imgs.length) % imgs.length; show(); }
+  }, true);
+})();
+</script>
+</body></html>
