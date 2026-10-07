@@ -1,0 +1,29 @@
+{
+  "version": "e79723cd587dc55b",
+  "slides": [
+    {
+      "type": "statement",
+      "duration": 20,
+      "title": "The garden that scored fifty.",
+      "label": "From the journal · Gardener & Son",
+      "dark": true,
+      "source": "https://gardenerandson.substack.com/p/the-garden-that-scored-fifty"
+    },
+    {
+      "type": "statement",
+      "duration": 20,
+      "title": "What We Are Building This Year",
+      "label": "From the journal · Gardener & Son",
+      "dark": true,
+      "source": "https://gardenerandson.substack.com/p/what-were-building-this-year"
+    },
+    {
+      "type": "statement",
+      "duration": 20,
+      "title": "Designing Interactions, Not Gardens.",
+      "label": "From the journal · Gardener & Son",
+      "dark": true,
+      "source": "https://gardenerandson.substack.com/p/designing-interactions-not-gardens"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": "2026-10-07-1",
+  "slides": [
+    {"type":"brand","duration":20},
+    {"type":"image","duration":18,"image":"../presentation/maylands/images/hero.webp","alt":"Maylands garden proposal looking along the gravel path towards the home","label":"Maylands Meadow · Garden proposal","title":"A garden, becoming."},
+    {"type":"statement","duration":18,"title":"Beauty under real conditions.","label":"Ecological gardens","dark":true},
+    {"type":"image","duration":18,"image":"../presentation/maylands/images/texture.webp","alt":"Silver foliage and flowering forms in the Maylands planting proposal","label":"Maylands Meadow · Planting proposal","title":"Living texture."},
+    {"type":"statement","duration":18,"title":"Objects belong to the garden.","label":"Heirloom objects"},
+    {"type":"image","duration":18,"image":"../presentation/maylands/images/habitat.webp","alt":"Seedheads retained for small birds in the Maylands garden proposal","label":"Maylands Meadow · Garden proposal","title":"Left standing."},
+    {"type":"statement","duration":18,"title":"Designing ecological gardens. Building the systems around them.","label":"Gardener & Son","dark":true}
+  ]
+}
