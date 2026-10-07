@@ -22,4 +22,14 @@ Use an extended display and move the browser onto the Samsung. Configure the iMa
 
 ## Further sources
 
-Blogs, Instagram and photo libraries are not connected in this version. Future importers should produce this same playlist plus studio-hosted images, with an explicit selection or approval step. Do not embed expiring social-media image URLs or expose account credentials. The website needs no framework or build step.
+The Gardener & Son journal and selected GitHub images are connected. Instagram and external photo libraries are not connected yet. Future importers should produce this same playlist plus studio-hosted images, with an explicit selection or approval step. Do not embed expiring social-media image URLs or expose account credentials. The website needs no framework or build step.
+
+## Connected journal and GitHub photos
+
+`photos.json` selects images already in GitHub. Add studio photographs to `studio-screen/photos/`, then add an image entry and increment the photo playlist version. Selected photographs join the rotation automatically after publication.
+
+`import-journal.py` reads the public Gardener & Son Substack RSS feed and stores the latest three suitable published headlines in `journal.json`. It imports titles only, not full articles or remote images. The scheduled GitHub Actions workflow runs hourly after this branch is merged into the default branch; GitHub schedules can be delayed. It commits only changes to this generated file. Repository policy must permit its contents-write token to push; if branch protection prevents that, configure an approved publishing identity before enabling the workflow. No live scheduler has been enabled by this draft PR.
+
+The player checks the generated journal JSON on the main branch via GitHub's raw endpoint, so journal updates do not depend on triggering a GitHub Pages rebuild. If unavailable, it uses the local published snapshot. All three sources are combined and checked before replacing the saved rotation. Local source and photo updates still require normal GitHub Pages publication.
+
+To refresh manually: `python3 studio-screen/import-journal.py` from the repository root. Never put Instagram or other account tokens into this public repository.

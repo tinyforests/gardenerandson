@@ -1,6 +1,7 @@
 'use strict';
 const CACHE='gardener-studio-screen-v1';
-const core=['./','index.html','player.js','playlist.json',
+const core=['./','index.html','player.js','playlist.json','photos.json','journal.json',
+  '../images/heirloom/heirloom-mont-albert-1.jpeg',
   '../presentation/maylands/fonts/AbrilFatface-Regular.ttf',
   '../presentation/maylands/fonts/Fraunces-Regular.ttf',
   '../presentation/maylands/fonts/Fraunces-Italic.ttf',

@@ -55,7 +55,21 @@ async function refresh(){
   try{
     const response=await fetch('playlist.json',{cache:'no-store',signal:AbortSignal.timeout(20000)});
     if(!response.ok)throw Error('Playlist unavailable');
-    const data=validate(await response.json());await prepare(data);
+    const base=validate(await response.json());
+    const sources=[];
+    const photoResponse=await fetch('photos.json',{cache:'no-store',signal:AbortSignal.timeout(15000)});
+    if(!photoResponse.ok)throw Error('Photos unavailable');sources.push(validate(await photoResponse.json()));
+    let journal;
+    try{
+      const live=await fetch('https://raw.githubusercontent.com/tinyforests/gardenerandson/main/studio-screen/journal.json',{cache:'no-store',signal:AbortSignal.timeout(10000)});
+      if(!live.ok)throw Error('Journal not published');journal=validate(await live.json());
+    }catch{
+      const local=await fetch('journal.json',{cache:'no-store',signal:AbortSignal.timeout(10000)});
+      if(!local.ok)throw Error('Journal unavailable');journal=validate(await local.json());
+    }
+    sources.push(journal);
+    const data=validate({version:[base,...sources].map(s=>s.version).join('|'),slides:[...base.slides,...sources.flatMap(s=>s.slides)]});
+    await prepare(data);
     if(data.version!==playlist.version){pending=data;try{localStorage.setItem('studio-playlist',JSON.stringify(data));}catch{}}
     status.textContent='Playlist ready · checks every 5 minutes';
   }catch{status.textContent='Keeping saved rotation · retrying automatically';}
