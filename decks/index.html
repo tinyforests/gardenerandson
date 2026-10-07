@@ -1,0 +1,225 @@
+<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Under the Canopy — Gardener &amp; Son</title><meta name="description" content="A garden for Kam and Adam at 5 Ruffey Lake Court, Doncaster. A foliage-led garden proposal by Gardener &amp; Son."><link rel="canonical" href="https://www.gardenerandson.com/decks/"><meta property="og:title" content="Under the Canopy — Gardener &amp; Son"><meta property="og:type" content="website"><meta property="og:url" content="https://www.gardenerandson.com/decks/"><meta property="og:image" content="https://www.gardenerandson.com/decks/images/front-cover-tropical.png"><style>:root{--ink:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63}
+@font-face{font-family:Abril;src:url(fonts/AbrilFatface-Regular.ttf);font-display:swap}
+@font-face{font-family:Fraunces;src:url(fonts/Fraunces-Regular.ttf);font-display:swap}
+@font-face{font-family:Fraunces;font-style:italic;src:url(fonts/Fraunces-Italic.ttf);font-display:swap}
+@font-face{font-family:Plex;src:url(fonts/IBMPlexSans-Regular.ttf);font-display:swap}
+@font-face{font-family:Plex;font-weight:500;src:url(fonts/IBMPlexSans-Medium.ttf);font-display:swap}
+@font-face{font-family:Mono;src:url(fonts/IBMPlexMono-Regular.ttf);font-display:swap}
+@font-face{font-family:Mono;font-weight:500;src:url(fonts/IBMPlexMono-Medium.ttf);font-display:swap}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0}
+html{scroll-behavior:smooth}
+body{background:var(--beige);color:var(--ink);font-family:Plex;font-size:17px;line-height:1.6;
+  -webkit-text-size-adjust:100%}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+section{padding:92px 0}
+.eyebrow{font-family:Mono;font-weight:500;font-size:11.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--signal);display:block;margin-bottom:14px}
+h2{font-family:Abril;font-size:clamp(34px,4.6vw,58px);line-height:1.04;font-weight:400;letter-spacing:-.01em}
+h2 em,h1 em{font-family:Fraunces;font-style:italic;color:var(--signal)}
+h3{font-family:Fraunces;font-size:25px;font-weight:400;line-height:1.25}
+.lead{font-family:Fraunces;font-style:italic;font-size:clamp(20px,2.3vw,27px);line-height:1.45;
+  max-width:26em;margin-top:26px}
+p{max-width:38em}
+.rule{border-top:1px solid var(--brass)}
+i.nat{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--signal);
+  margin-right:8px;vertical-align:middle;flex:none}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,240,220,.93);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--brass)}
+nav .wrap{display:flex;align-items:center;gap:26px;height:62px}
+.brand{font-family:Abril;font-size:20px}
+.brand b{font-weight:400;color:var(--signal)}
+nav ul{list-style:none;display:flex;gap:22px;margin-left:auto}
+nav a{font-family:Mono;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;opacity:.75}
+nav a:hover{opacity:1;color:var(--signal)}
+
+/* hero */
+.hero{padding:0}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+  min-height:calc(100vh - 62px);padding:64px 0}
+h1{font-family:Abril;font-size:clamp(52px,7.4vw,104px);line-height:.98;font-weight:400;letter-spacing:-.015em}
+.hero-sub{font-family:Mono;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-top:30px}
+.hero-img{aspect-ratio:4/3;overflow:hidden}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+
+/* threads */
+.threads{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--brass);
+  border:1px solid var(--brass);margin-top:52px}
+.thread{background:var(--beige);padding:34px 32px}
+.thread p{margin-top:12px;font-size:16px}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.chips li{font-family:Mono;font-size:11px;letter-spacing:.06em;border:1px solid var(--brass);
+  padding:6px 10px;display:flex;align-items:center}
+.chips i.nat{width:7px;height:7px;margin-right:6px}
+
+/* plates */
+.plates{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:48px}
+.plate img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.plate figcaption{font-size:14px;margin-top:12px;font-family:Fraunces;font-style:italic}
+.plate .eyebrow{margin-bottom:5px}
+
+/* full image */
+.full img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.full figcaption{font-family:Mono;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  margin-top:14px;opacity:.75}
+
+/* calendar */
+.calwrap{margin-top:44px}
+.cal{min-width:860px;font-size:0}
+.calwrap{overflow-x:auto}
+.cal-head{display:flex}
+.cal-name{width:352px;flex:none;font-size:14px;display:flex;align-items:center;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-name em{font-family:Fraunces;font-size:13px;opacity:.68;margin-left:5px}
+.cal-seasons,.cal-months{display:flex;flex:1}
+.cal-seasons span{font-family:Mono;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  text-align:center;border-bottom:1px solid var(--brass);margin:0 6px 5px;padding-bottom:4px}
+.cal-months span{flex:1;font-family:Mono;font-weight:500;font-size:11px;text-align:center;padding-bottom:6px}
+.cal-layer{font-family:Mono;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--signal);padding:8px 0 3px;border-top:1px solid var(--brass)}
+.cal-row{display:flex;align-items:center;height:21px}
+.cal-bars{display:flex;flex:1;gap:3px;align-items:center}
+.cal-bars span{flex:1;height:11px}
+.cal-bars .pk{border:1px solid rgba(61,69,53,.28)}
+.cal-bars .sh{opacity:.42}
+.cal-bars .hd{height:0;border-top:2px dotted var(--brass)}
+.cal-bars .of{height:0;border-top:1px solid rgba(61,69,53,.18)}
+.cal-count{height:32px;border-top:1px solid var(--brass);margin-top:5px}
+.cal-count .cal-name{font-family:Mono;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal)}
+.cal-count .ct{font-family:Mono;font-weight:500;font-size:14px;text-align:center;height:auto}
+.cal-key{display:flex;flex-wrap:wrap;gap:26px;margin-top:20px;font-family:Mono;font-size:10.5px;
+  letter-spacing:.08em;text-transform:uppercase;align-items:center}
+.cal-key span{display:flex;align-items:center;gap:8px}
+.cal-key i{display:inline-block;width:26px;height:10px}
+.cal-key i.dsh{height:0;border-top:2px dotted var(--brass)}
+.cal-key i.nat{width:8px;height:8px;margin:0}
+
+/* plant list */
+.pg{margin-top:56px}
+.pg-h{display:flex;align-items:baseline;gap:16px;border-top:1px solid var(--brass);padding-top:14px}
+.pg-h .eyebrow{margin:0}
+.pg-n{font-family:Mono;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  margin-left:auto;opacity:.6}
+.plants{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--brass);
+  border:1px solid var(--brass);margin-top:18px}
+.plant{background:var(--beige);display:flex;flex-direction:column}
+.plant-img{aspect-ratio:4/3;overflow:hidden;background:#f3e4cd}
+.plant-img img{width:100%;height:100%;object-fit:cover}
+.ph{width:100%;height:100%;display:grid;place-items:center;
+  background:linear-gradient(150deg,color-mix(in srgb,var(--c) 32%,#fff0dc),
+  color-mix(in srgb,var(--c) 64%,#fff0dc))}
+.ph b{font-family:Abril;font-size:46px;color:rgba(255,240,220,.85);font-weight:400}
+.plant-txt{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+.plant h3{font-family:Plex;font-size:17px;font-weight:500;line-height:1.3;display:flex;align-items:center}
+.plant .bot{font-family:Fraunces;font-style:italic;font-size:15px;opacity:.72;margin-top:3px}
+.plant .desc{font-size:14.5px;line-height:1.55;margin-top:12px;opacity:.9}
+.meta{margin-top:14px;font-size:13px}
+.meta div{display:flex;gap:10px;padding:5px 0;border-top:1px solid rgba(180,154,99,.45)}
+.meta dt{font-family:Mono;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  width:58px;flex:none;padding-top:3px;opacity:.7}
+.mini{display:flex;align-items:center;gap:8px;margin-top:16px}
+.mini-l{font-family:Mono;font-size:9.5px;letter-spacing:.08em;opacity:.55}
+.mini-bars{display:flex;flex:1;gap:2px}
+.mini-bars i{flex:1;height:7px}
+.mini-bars .sh{opacity:.42}
+.mini-bars .hd{height:0;border-top:1.5px dotted var(--brass);align-self:center}
+.mini-bars .of{height:0;border-top:1px solid rgba(61,69,53,.2);align-self:center}
+.tag{font-family:Mono;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal);
+  border:1px solid var(--signal);padding:4px 8px;align-self:flex-start;margin-top:14px}
+
+/* materials / steps */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+.mat{display:flex;justify-content:space-between;gap:22px;padding:15px 0;
+  border-bottom:1px solid var(--brass);font-size:16px}
+.mat:first-child{border-top:1px solid var(--brass)}
+.mat .l{font-family:Mono;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding-top:4px}
+.mat .v{text-align:right}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--brass);
+  border:1px solid var(--brass);margin-top:44px}
+.st{background:var(--beige);padding:28px 24px}
+.st-n{font-family:Mono;font-size:11px;letter-spacing:.14em;color:var(--signal)}
+.st-h{font-family:Fraunces;font-size:21px;margin-top:14px;line-height:1.25}
+.st-b{font-size:15px;margin-top:10px;opacity:.85}
+
+/* dark */
+.dark{background:var(--ink);color:var(--beige)}
+.dark .eyebrow{color:var(--brass)}
+.ack{font-family:Fraunces;font-style:italic;font-size:clamp(17px,2vw,22px);line-height:1.55;max-width:44em}
+footer{background:var(--ink);color:var(--beige);padding:70px 0 54px}
+.fgrid{display:flex;flex-wrap:wrap;gap:34px;align-items:baseline;
+  border-top:1px solid rgba(255,240,220,.28);margin-top:44px;padding-top:26px;
+  font-family:Mono;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.fgrid span{opacity:.78}
+
+@media(max-width:940px){
+  .hero-grid{grid-template-columns:1fr;gap:34px;min-height:0;padding:44px 0}
+  .threads,.two{grid-template-columns:1fr;gap:1px}
+  .two{gap:44px}
+  .plates{grid-template-columns:repeat(2,1fr)}
+  .plants{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  section{padding:64px 0}
+  nav ul{display:none}
+}
+@media(max-width:620px){
+  .plants,.plates,.steps{grid-template-columns:1fr}
+  .wrap{padding:0 20px}
+}
+
+.area-intro{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}.area-picture{width:100%;height:560px;object-fit:cover}.area-intro p{margin-top:24px}.plant{cursor:zoom-in}.plant:focus-visible,button:focus-visible{outline:3px solid var(--signal);outline-offset:4px}button.plant{border:0;color:inherit;font:inherit;text-align:left;width:100%}dialog{border:0;background:var(--ink);color:var(--beige);max-width:1100px;width:90vw;max-height:90vh;margin:auto;padding:28px}dialog::backdrop{background:rgba(20,25,18,.85)}.modal-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center}dialog img{width:100%;max-height:65vh;object-fit:contain}.close,.lb-nav{background:transparent;color:var(--beige);border:1px solid var(--brass);padding:10px 16px;cursor:pointer}.close{display:block;margin:0 0 20px auto}.lb-controls{display:flex;gap:12px;margin-top:26px}.zoom{cursor:zoom-in}.area-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.area-links a{color:var(--ink);font-family:Mono;font-size:12px;border:1px solid var(--brass);padding:8px 12px;text-decoration:none}section{scroll-margin-top:62px}@media(max-width:940px){.area-intro{grid-template-columns:1fr;gap:28px}.area-picture{height:auto;max-height:650px}.modal-grid{grid-template-columns:1fr}dialog img{max-height:45vh}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body>
+<nav><div class="wrap"><span class="brand">Gardener <b>&amp;</b> Son</span><ul><li><a href="#idea">The idea</a></li><li><a href="#front">Front garden</a></li><li><a href="#rear">Rear garden</a></li><li><a href="#light">Light & water</a></li><li><a href="#next">Next steps</a></li></ul></div></nav>
+<header class="hero"><div class="wrap"><div class="hero-grid"><div><span class="eyebrow">5 Ruffey Lake Court, Doncaster</span><h1>Under the<br><em>Canopy.</em></h1><p class="lead">A contemporary garden of generous green foliage, contrasting leaf sizes and quiet structure, connected to Ruffey Lake Park.</p><div class="hero-sub">A garden for Kam &amp; Adam · Gardener &amp; Son</div></div><figure class="hero-img"><img class="zoom" src="images/front-cover-tropical.png" alt="Layered tropical shade garden watercolour"></figure></div></div></header>
+<section id="idea" class="rule"><div class="wrap"><span class="eyebrow">The idea</span><h2>A garden of foliage <em>and form.</em></h2><p class="lead">Mostly green, generous repetition, contrasting leaf sizes, a restrained palette and strong structure.</p><div class="area-links"><a href="#shade">The Shaded Corner</a><a href="#sunny">The Sunny Edge</a><a href="#drifts">The Drifts</a><a href="#bbq">The BBQ Terrace</a><a href="#dining">The Dining Terrace</a><a href="#spa">The Spa</a></div></div></section>
+<section id="front" class="rule"><div class="wrap"><span class="eyebrow">The front garden</span><h2>Welcome <em>home.</em></h2><p class="lead">West-facing, with the hot afternoon sun and one cool, shaded corner by the entry. Everything comes out except the creeping fig on the walls, the aggregate path and the letterbox, then it's replanted in three places.</p><figure class="full" style="margin-top:40px"><img class="zoom" src="images/front-hero.png" alt="The front garden"></figure></div></section>
+<section id="shade" class="rule"><div class="wrap"><div class="area-intro"><img class="area-picture zoom" src="images/front-shade.png" alt="The Shaded Corner."><div><span class="eyebrow">Front · 01 · By the entry</span><h2>The Shaded <em>Corner.</em></h2><p>A cool, layered pocket. A loquat canopy over big glossy leaves, with a moss-like carpet underfoot. The focus on the way to the door and the first thing you see on the way out — most importantly, visible from the inside stairwell.</p></div></div><div class="plants" data-area="shade"></div></div></section>
+<section id="sunny" class="rule"><div class="wrap"><div class="area-intro"><img class="area-picture zoom" src="images/front-sunny.png" alt="The Sunny Edge."><div><span class="eyebrow">Front · 02 · The street edge</span><h2>The Sunny <em>Edge.</em></h2><p>Clipped mounds of mock orange and one sculptural yucca hold the hot street edge, under the airy umbrella of a silk tree. The scent of mock orange welcomes you as you approach the entrance.</p></div></div><div class="plants" data-area="sunny"></div></div></section>
+<section id="drifts" class="rule"><div class="wrap"><div class="area-intro"><img class="area-picture zoom" src="images/front-drifts.png" alt="The Drifts."><div><span class="eyebrow">Front · 03 · Tying it together</span><h2>The <em>Drifts.</em></h2><p>Generous repeated drifts of fine strappy foliage, lime-green against blue-grey, spilling softly over the path. Three Australian plants, a quiet thread back to the park.</p></div></div><div class="plants" data-area="drifts"></div></div></section>
+<section id="rear" class="rule"><div class="wrap"><span class="eyebrow">The rear garden</span><h2>Out to the <em>park.</em></h2><p class="lead">Three terraces looking straight into Ruffey Lake Park: the BBQ, the dining table and the spa. Planted in the raised planters along the glass, the same calm green language as the front. Retaining the feature staghorn.</p><figure class="full" style="margin-top:40px"><img class="zoom" src="images/rear-dining.png" alt="The rear garden"></figure></div></section>
+<section id="bbq" class="rule"><div class="wrap"><div class="area-intro"><img class="area-picture zoom" src="images/rear-bbq.png" alt="The BBQ Terrace."><div><span class="eyebrow">Rear · 04 · Under cover</span><h2>The BBQ <em>Terrace.</em></h2><p>Beside the spa gate, a bold Alocasia rises from the planter against the glass, with lobed Xanadu beneath and Cousin It weeping softly over the edge.</p></div></div><div class="plants" data-area="bbq"></div></div></section>
+<section id="dining" class="rule"><div class="wrap"><div class="area-intro"><img class="area-picture zoom" src="images/rear-dining.png" alt="The Dining Terrace."><div><span class="eyebrow">Rear · 05 · Sitting and dining</span><h2>The Dining <em>Terrace.</em></h2><p>A slender ginkgo rises from the planter, light shade in summer and gold in autumn, framing the view rather than blocking it. Foxtail fern, Lomandra and rock lily beneath, with Dichondra knitting together the ground layer.</p></div></div><div class="plants" data-area="dining"></div></div></section>
+<section id="spa" class="rule"><div class="wrap"><div class="area-intro"><img class="area-picture zoom" src="images/rear-spa.png" alt="The Spa."><div><span class="eyebrow">Rear · 06 · Private and green</span><h2>The <em>Spa.</em></h2><p>The spa deck wrapped in green for privacy: round tractor-seat leaves, Fatsia and foxtail fern. Part of the garden, not bolted onto it.</p></div></div><div class="plants" data-area="spa"></div></div></section>
+<section id="light" class="rule"><div class="wrap two"><div><span class="eyebrow">Light &amp; water</span><h2>Enjoyed after <em>dark.</em></h2><p class="lead">Lighting so you actually use the garden at night, with micro-spray irrigation keeping everything moist and lush.</p></div><div><div class="mat"><span class="l">Front light</span><span class="v">Uplight the loquat and silk tree; graze light across the big leaves in the corner; low path lights to the door.</span></div><div class="mat"><span class="l">Rear light</span><span class="v">Uplight the ginkgo and the Alocasia; soft light along the planters so the green glows against the night view.</span></div><div class="mat"><span class="l">Water</span><span class="v">Micro sprays throughout, keeping everything moist and lush. The shaded corner needs reliable moisture, and raised planters dry out fast.</span></div><div class="mat"><span class="l">Status</span><span class="v">Both still to be scoped.</span></div></div></div></section>
+<section id="next" class="rule"><div class="wrap"><span class="eyebrow">Next steps</span><h2>Where to <em>next.</em></h2><div class="steps">
+    <div class="st"><div class="st-n">01</div><div class="st-h">Confirm the design</div><div class="st-b">A little time with this — tell us what feels like yours and what doesn't.</div></div>
+    <div class="st"><div class="st-n">02</div><div class="st-h">Quote</div><div class="st-b">A detailed quote for the front and rear off the confirmed design.</div></div>
+    <div class="st"><div class="st-n">03</div><div class="st-h">Plant sourcing</div><div class="st-b">Securing the stock: the loquat, silk tree, ginkgo, yucca and the mass-planting quantities.</div></div>
+    <div class="st"><div class="st-n">04</div><div class="st-h">Install</div><div class="st-b">Late Oct / early Nov if that still suits — a window to book, not yet booked. Planting is set out on site with the actual plants.</div></div></section>
+<footer><div class="wrap"><span class="eyebrow">Acknowledgement of Country</span><p class="ack">At Gardener &amp; Son, we acknowledge the Wurundjeri Woi Wurrung people of the Kulin Nation, the Traditional Custodians of the land on which we live and work — including this corner of Doncaster, beside Ruffey Lake Park. We honour their enduring connection to Country, and the woodlands and waterways that have been cared for here across generations. Our work seeks to tend that same relationship — weaving living green back into the places we call home.</p><div class="fgrid"><span>Gardener &amp; Son</span><span>Ecological Design Studio · Melbourne</span><span>140 Auburn Road, Hawthorn</span><span>Wurundjeri Woi Wurrung Country</span></div></div></footer>
+<dialog id="lightbox" aria-label="Garden image viewer"><button class="close" autofocus aria-label="Close image">Close ×</button><div class="modal-grid"><img id="lb-image" alt=""><div><span class="eyebrow" id="lb-category"></span><h2 id="lb-title"></h2><p id="lb-bot" style="font-style:italic;margin-top:14px"></p><p id="lb-role" style="margin-top:22px"></p><div class="lb-controls"><button class="lb-nav" id="lb-prev" aria-label="Previous plant">← Previous</button><button class="lb-nav" id="lb-next" aria-label="Next plant">Next →</button></div></div></div></dialog><script>
+const PLANTS={
+  loquat:{c:"Loquat",b:"Eriobotrya japonica",r:"Corner tree — large leathery leaves, evergreen canopy over the shaded corner."},
+  selloum:{c:"Philodendron 'Selloum'",b:"Thaumatophyllum bipinnatifidum",r:"The biggest leaf in the garden — deeply lobed and glossy."},
+  fatsia:{c:"Japanese Aralia",b:"Fatsia japonica",r:"Broad glossy palms for shade."},
+  schefflera:{c:"Dwarf Umbrella Tree",b:"Schefflera arboricola",r:"Radiating whorls of glossy leaflets — a layered mid-storey."},
+  xanadu:{c:"Philodendron 'Xanadu'",b:"Thaumatophyllum 'Xanadu'",r:"Compact lobed leaves where shade meets sun."},
+  aspidistra:{c:"Cast Iron Plant",b:"Aspidistra elatior",r:"Dense, tough shade groundlayer of broad dark straps."},
+  babystears:{c:"Baby's Tears",b:"Soleirolia soleirolii",r:"A moss-like carpet between stones and along the path. Shade and moisture only."},
+  silktree:{c:"Persian Silk Tree",b:"Albizia julibrissin",r:"Airy umbrella of fine, fern-like leaves; soft pink flowers in summer, winter sun through bare branches."},
+  pittosporum:{c:"Japanese Mock Orange",b:"Pittosporum tobira 'Nanum'",r:"Clipped green mounds holding the structure on the sunny edge."},
+  yucca:{c:"Beaked Yucca",b:"Yucca rostrata",r:"A silver-blue sculpture for the hottest spot."},
+  limetuff:{c:"Mat Rush 'Lime Tuff'",b:"Lomandra longifolia 'Lime Tuff'",r:"Lime-green repeated drifts. Tough and water-wise.",n:1},
+  cassablue:{c:"Flax Lily 'Cassa Blue'",b:"Dianella revoluta 'Cassa Blue'",r:"Blue-grey repeated drifts, small blue flowers and berries.",n:1},
+  dichondra:{c:"Kidney Weed",b:"Dichondra repens",r:"Soft groundcover knitting together the ground layer.",n:1},
+  creepingfig:{c:"Creeping Fig",b:"Ficus pumila",r:"Already on the walls — instant age. Retained.",ret:1},
+  alocasia:{c:"Elephant Ear",b:"Alocasia macrorrhiza",r:"The bold upright leaf against the glass."},
+  cousinit:{c:"Cousin It",b:"Casuarina glauca 'Cousin It'",r:"Fine weeping foliage spilling over the planter edge.",n:1},
+  ginkgo:{c:"Ginkgo 'Princeton Sentry'",b:"Ginkgo biloba",r:"Slender tree in the planter — light summer shade, gold in autumn. Framing the view, not blocking it."},
+  foxtail:{c:"Foxtail Fern",b:"Asparagus densiflorus 'Myersii'",r:"Upright plume-like tails for texture."},
+  arthropodium:{c:"Rock Lily",b:"Arthropodium cirratum",r:"Glossy strappy leaves with fine white flower sprays."},
+  tractorseat:{c:"Tractor Seat",b:"Ligularia reniformis",r:"Big round glossy leaves — the spa's signature leaf."},
+  orange:{c:"Existing orange-leaved plant",b:"Retained",r:"Already thriving by the spa — it stays.",ret:1},
+  staghorn:{c:"Staghorn",b:"Platycerium",r:"Retained.",ret:1}
+};const AREAS={
+  shade:["loquat","selloum","fatsia","schefflera","xanadu","aspidistra","babystears"],
+  sunny:["silktree","pittosporum","yucca"],
+  drifts:["limetuff","cassablue","dichondra","foxtail","creepingfig"],
+  bbq:["alocasia","xanadu","cousinit","limetuff"],
+  dining:["ginkgo","foxtail","limetuff","arthropodium","dichondra"],
+  spa:["tractorseat","fatsia","foxtail","aspidistra","limetuff"]
+};
+const dialog=document.getElementById('lightbox');let group=[],position=0;const esc=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');document.querySelectorAll('[data-area]').forEach(el=>{el.innerHTML=AREAS[el.dataset.area].map(k=>{const p=PLANTS[k];return `<button class="plant" data-plant="${k}" aria-label="View ${esc(p.c)}"><div class="plant-img"><img src="images/plants/${k}.jpg" alt="${esc(p.c)}" loading="lazy"></div><div class="plant-txt"><h3>${p.n?'<i class="nat"></i>':''}${p.c}</h3><div class="bot">${p.b}</div><p class="desc">${p.r}</p>${p.ret?'<span class="tag">Retained</span>':''}</div></button>`}).join('')});function render(){const p=PLANTS[group[position]];document.getElementById('lb-image').src='images/plants/'+group[position]+'.jpg';document.getElementById('lb-image').alt=p.c;document.getElementById('lb-title').textContent=p.c;document.getElementById('lb-bot').textContent=p.b;document.getElementById('lb-role').textContent=p.r;document.getElementById('lb-category').textContent=p.n?'Australian plant':'Plant palette';document.querySelector('.lb-controls').hidden=false}document.querySelectorAll('[data-plant]').forEach(el=>el.onclick=()=>{group=AREAS[el.closest('[data-area]').dataset.area];position=group.indexOf(el.dataset.plant);render();dialog.showModal()});document.querySelectorAll('.zoom').forEach(el=>el.onclick=()=>{group=[];document.getElementById('lb-image').src=el.src;document.getElementById('lb-image').alt=el.alt;document.getElementById('lb-title').textContent=el.alt;document.getElementById('lb-bot').textContent='';document.getElementById('lb-role').textContent='';document.getElementById('lb-category').textContent='Garden vision';document.querySelector('.lb-controls').hidden=true;dialog.showModal()});const step=d=>{if(group.length){position=(position+d+group.length)%group.length;render()}};document.getElementById('lb-prev').onclick=()=>step(-1);document.getElementById('lb-next').onclick=()=>step(1);document.querySelector('.close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});dialog.addEventListener('keydown',e=>{if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});</script></body></html>
