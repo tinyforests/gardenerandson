@@ -67,7 +67,7 @@ document.querySelector('#pause').onclick=()=>{paused=!paused;document.querySelec
 document.querySelector('#fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{status.textContent='Use your browser’s fullscreen command';}};
 document.addEventListener('keydown',e=>{if(e.target.closest('button'))return;if(e.key==='ArrowRight')advance(1);if(e.key==='ArrowLeft')advance(-1);if(e.code==='Space'){e.preventDefault();document.querySelector('#pause').click();}if(e.key.toLowerCase()==='f')document.querySelector('#fullscreen').click();});
 let hide;function controls(){document.body.classList.add('controls');clearTimeout(hide);hide=setTimeout(()=>document.body.classList.remove('controls'),4000);}document.addEventListener('pointermove',controls);document.addEventListener('keydown',controls);controls();
-function resize(){stage.style.transform=`scale(${Math.min(innerWidth/1920,innerHeight/1080)})`;}addEventListener('resize',resize);resize();
+function resize(){stage.style.transform=`scale(${Math.min(document.querySelector("main").clientWidth/1920,document.querySelector("main").clientHeight/1080)})`;}addEventListener('resize',resize);resize();
 (async()=>{
   try{const saved=localStorage.getItem('studio-playlist');if(saved){const data=validate(JSON.parse(saved));await prepare(data);playlist=data;}}catch{}
   render();

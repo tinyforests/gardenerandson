@@ -13,7 +13,7 @@
 @font-face{font-family:Mono;src:url(../presentation/maylands/fonts/IBMPlexMono-Regular.ttf)}
 :root{--green:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63;--shade:#3d4535e8;--hero:Abril,Georgia,serif;--serif:Fraunces,Georgia,serif;--sans:Plex,Arial,sans-serif;--mono:Mono,monospace}
 *{box-sizing:border-box;border-radius:0}body{margin:0;background:var(--green);color:var(--beige);font-family:var(--sans);overflow:hidden}
-main{height:100dvh;display:grid;place-items:center}#stage{width:1920px;height:1080px;position:absolute;transform-origin:center}
+main{position:fixed;inset:0;overflow:hidden;display:grid;place-items:center}#stage{width:1920px;height:1080px;position:absolute;transform-origin:center}
 .slide{position:absolute;inset:0;background:var(--beige);color:var(--green);opacity:0;transition:opacity 1.4s ease;padding:100px 120px;display:flex;flex-direction:column;justify-content:center}
 .slide.active{opacity:1}.slide.dark{background:var(--green);color:var(--beige)}
 .wordmark{position:absolute;left:120px;top:80px;font:44px var(--serif);letter-spacing:-1.5px}.wordmark em{color:var(--brass)}
