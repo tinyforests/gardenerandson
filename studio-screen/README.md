@@ -28,6 +28,12 @@ The Gardener & Son journal and selected GitHub images are connected. Instagram a
 
 `photos.json` selects images already in GitHub. Add studio photographs to `studio-screen/photos/`, then add an image entry and increment the photo playlist version. Selected photographs join the rotation automatically after publication.
 
+To remove all selected studio photographs, publish `photos.json` with a new version and `"slides": []`. The base garden images continue playing. Invalid photo entries still reject the update and retain the saved rotation.
+
+Journal headlines are placed after photographs through the rotation. If there are no photographs, they are distributed after base slides; any remaining headlines are retained at the end. Each article with a `source` shows a QR code and readable article link. Sources must be HTTPS article URLs on `gardenerandson.substack.com/p/`. QR codes are generated locally using the bundled MIT-licensed `qrcode-generator` library (Kazuhiko Arase, `vendor/qrcode.js`); no external QR service or build step is required. Check scanning distance through the studio window on the physical screen.
+
+Playback and refresh start independently of service-worker installation. If offline cache installation fails, online content can still load; offline reload requires a successfully installed cache. The cache includes the QR library.
+
 `import-journal.py` reads the public Gardener & Son Substack RSS feed and stores the latest three suitable published headlines in `journal.json`. It imports titles only, not full articles or remote images. The scheduled GitHub Actions workflow runs hourly after this branch is merged into the default branch; GitHub schedules can be delayed. It commits only changes to this generated file. Repository policy must permit its contents-write token to push; if branch protection prevents that, configure an approved publishing identity before enabling the workflow. No live scheduler has been enabled by this draft PR.
 
 The player checks the generated journal JSON on the main branch via GitHub's raw endpoint, so journal updates do not depend on triggering a GitHub Pages rebuild. If unavailable, it uses the local published snapshot. All three sources are combined and checked before replacing the saved rotation. Local source and photo updates still require normal GitHub Pages publication.
