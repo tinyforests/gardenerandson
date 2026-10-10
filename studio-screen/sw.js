@@ -1,6 +1,9 @@
 'use strict';
-const CACHE='gardener-studio-screen-v1';
-const core=['./','index.html','player.js','playlist.json','photos.json','journal.json',
+const CACHE='gardener-studio-screen-v3';
+const core=['./','index.html','player.js','vendor/qrcode.js','playlist.json','photos.json','journal.json','journal-features.json',
+  'journal-images/the-garden-that-scored-fifty.jpg',
+  'journal-images/what-were-building-this-year.jpg',
+  'journal-images/designing-interactions-not-gardens.jpg',
   '../images/heirloom/heirloom-mont-albert-1.jpeg',
   '../presentation/maylands/fonts/AbrilFatface-Regular.ttf',
   '../presentation/maylands/fonts/Fraunces-Regular.ttf',

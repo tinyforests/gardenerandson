@@ -11,7 +11,7 @@
 @font-face{font-family:Fraunces;font-style:italic;src:url(../presentation/maylands/fonts/Fraunces-Italic.ttf)}
 @font-face{font-family:Plex;src:url(../presentation/maylands/fonts/IBMPlexSans-Regular.ttf)}
 @font-face{font-family:Mono;src:url(../presentation/maylands/fonts/IBMPlexMono-Regular.ttf)}
-:root{--green:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63;--shade:#3d4535e8;--hero:Abril,Georgia,serif;--serif:Fraunces,Georgia,serif;--sans:Plex,Arial,sans-serif;--mono:Mono,monospace}
+:root{--green:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63;--shade:#3d4535e8;--qr-paper:#fff;--qr-ink:#000;--hero:Abril,Georgia,serif;--serif:Fraunces,Georgia,serif;--sans:Plex,Arial,sans-serif;--mono:Mono,monospace}
 *{box-sizing:border-box;border-radius:0}body{margin:0;background:var(--green);color:var(--beige);font-family:var(--sans);overflow:hidden}
 main{position:fixed;inset:0;overflow:hidden;display:grid;place-items:center}#stage{width:1920px;height:1080px;position:absolute;transform-origin:center}
 .slide{position:absolute;inset:0;background:var(--beige);color:var(--green);opacity:0;transition:opacity 1.4s ease;padding:100px 120px;display:flex;flex-direction:column;justify-content:center}
@@ -19,6 +19,9 @@ main{position:fixed;inset:0;overflow:hidden;display:grid;place-items:center}#sta
 .wordmark{position:absolute;left:120px;top:80px;font:44px var(--serif);letter-spacing:-1.5px}.wordmark em{color:var(--signal)}.dark .wordmark em{color:var(--brass)}
 h1{font:400 145px/.98 var(--hero);letter-spacing:-6px;margin:0}h1 span{display:block}h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-5px}
 h2{font:400 126px/1.05 var(--serif);letter-spacing:-4px;margin:0;max-width:1550px}
+.journal h2{max-width:1200px;font-size:110px}.journal-link{position:absolute;right:120px;top:50%;transform:translateY(-50%);width:320px;color:inherit;text-decoration:none;display:flex;flex-direction:column;gap:20px}.journal-link svg{width:280px;height:280px;background:var(--qr-paper);color:var(--qr-ink)}.journal-prompt{font:30px var(--sans)}.journal-url{font:22px/1.4 var(--mono);overflow-wrap:anywhere}.journal-link:focus-visible{outline:3px solid var(--brass);outline-offset:12px}
+.journal-link-copy{display:flex;flex-direction:column;gap:20px}
+.feature{padding:0}.journal-image{position:absolute;left:0;top:0;width:940px;height:1080px;object-fit:cover}.feature .wordmark{left:1040px;top:70px;font-size:38px}.journal-story{position:absolute;left:1040px;right:100px;top:190px}.journal-story .label{font-size:20px;letter-spacing:2px;margin-bottom:28px}.journal-story h2{font-size:48px;line-height:1.1;letter-spacing:-1.5px}.journal-excerpt{font:400 64px/1.12 var(--serif);letter-spacing:-1.5px;margin:42px 0 0}.feature .journal-link{left:1040px;right:100px;top:auto;bottom:80px;transform:none;width:auto;flex-direction:row;align-items:center;gap:32px}.feature .journal-link svg{width:200px;height:200px;flex-shrink:0}.feature .journal-url{font-size:20px}
 .label:before{content:"";display:block;width:100px;height:5px;background:var(--signal);margin-bottom:24px}.label{font:24px var(--mono);text-transform:uppercase;letter-spacing:3px;margin:0 0 30px}.footer{position:absolute;left:120px;bottom:76px;font:24px var(--mono);letter-spacing:2px}
 .image{padding:0}.image img{width:100%;height:100%;object-fit:cover}.caption{position:absolute;left:90px;bottom:80px;max-width:1560px;background:var(--shade);color:var(--beige);padding:32px 44px}.caption h2{font-size:70px;letter-spacing:-2px}.caption .label{font-size:22px;margin-bottom:16px}
 #controls{position:fixed;z-index:5;bottom:18px;left:50%;transform:translateX(-50%);background:var(--green);padding:12px;display:flex;gap:12px;opacity:0;transition:opacity .2s;max-width:96vw;flex-wrap:wrap}
@@ -27,5 +30,6 @@ body.controls #controls,#controls:focus-within{opacity:1}button{font:14px var(--
 </style>
 <main aria-label="Studio window display"><div id="stage"></div></main>
 <nav id="controls" aria-label="Display controls"><button id="previous">Previous</button><button id="pause">Pause</button><button id="next">Next</button><button id="fullscreen">Fullscreen</button><span id="status" role="status">Loading playlist</span></nav>
+<script src="vendor/qrcode.js"></script>
 <script src="player.js"></script>
 </html>
