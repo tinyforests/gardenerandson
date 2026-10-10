@@ -18,12 +18,27 @@ function validate(data, allowEmpty = false) {
       const url = new URL(s.source);
       if (s.type !== 'statement' || url.origin !== 'https://gardenerandson.substack.com' || !url.pathname.startsWith('/p/') || url.username || url.password) throw Error('Invalid journal link');
     }
-    if (s.type === 'image') {
+    if (s.excerpt !== undefined && (s.type !== 'statement' || !s.source || typeof s.excerpt !== 'string' || !s.excerpt.trim() || s.excerpt.length > 180)) throw Error('Invalid journal excerpt');
+    if (s.type === 'image' || s.image !== undefined) {
+      if (s.type !== 'image' && (!s.source || !s.excerpt)) throw Error('Journal image needs a source and excerpt');
       const url = new URL(s.image, location.href);
       if (url.origin !== location.origin || !/\.(webp|jpe?g|png)$/i.test(url.pathname) || typeof s.alt !== 'string' || !s.alt) throw Error('Use a local image with alt text');
     }
   }
   return data;
+}
+function enrichJournal(journal, features) {
+  if (!features || typeof features.version !== 'string' || !Array.isArray(features.articles) || features.articles.length > 100) throw Error('Invalid journal features');
+  const selected = new Map();
+  for (const feature of features.articles) {
+    validate({version:'feature',slides:[{type:'statement',duration:20,title:'Journal feature',source:feature.source,image:feature.image,alt:feature.alt,excerpt:feature.excerpt}]});
+    if (!feature.image || !feature.excerpt || selected.has(feature.source)) throw Error('Invalid journal feature');
+    selected.set(feature.source, feature);
+  }
+  return validate({version:journal.version+'|'+features.version, slides:journal.slides.map(slide=>{
+    const feature = selected.get(slide.source);
+    return feature ? {...slide,image:feature.image,alt:feature.alt,excerpt:feature.excerpt} : slide;
+  })});
 }
 function compose(base, photos, journal) {
   const slides = [...base.slides, ...photos.slides];
@@ -44,7 +59,7 @@ function journalLink(source) {
   link.href = url.href;
   // The readable link remains usable if the QR asset cannot load.
   if (typeof qrcode !== 'function') {
-    link.append(text('span', 'Read the story', 'journal-prompt'), text('span', url.hostname + url.pathname, 'journal-url'));
+    link.append(text('span', 'Read more', 'journal-prompt'), text('span', url.hostname + url.pathname, 'journal-url'));
     return link;
   }
   const code = qrcode(0, 'M');
@@ -60,11 +75,13 @@ function journalLink(source) {
   }
   const modules = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   modules.setAttribute('d', path); modules.setAttribute('fill', 'currentColor'); svg.append(modules);
-  link.append(svg, text('span', 'Read the story', 'journal-prompt'), text('span', url.hostname + url.pathname, 'journal-url'));
+  const copy = text('span', '', 'journal-link-copy');
+  copy.append(text('span', 'Read more', 'journal-prompt'), text('span', url.hostname + url.pathname, 'journal-url'));
+  link.append(svg, copy);
   return link;
 }
 async function prepare(data) {
-  await Promise.all(data.slides.filter(s=>s.type==='image').map(s=>new Promise((resolve,reject)=>{
+  await Promise.all(data.slides.filter(s=>s.image).map(s=>new Promise((resolve,reject)=>{
     const img = new Image(); const timeout = setTimeout(()=>reject(Error('Image timeout')),15000);
     img.onload=()=>{clearTimeout(timeout);resolve();}; img.onerror=()=>{clearTimeout(timeout);reject(Error('Image unavailable'));}; img.src=s.image;
   })));
@@ -72,7 +89,15 @@ async function prepare(data) {
 function render() {
   const s = playlist.slides[position];
   const section = document.createElement('section'); section.className='slide'+(s.dark?' dark':'')+(s.type==='image'?' image':'');
-  if (s.type==='image') {
+  if (s.source && s.image && s.excerpt) {
+    section.classList.add('journal', 'feature');
+    const img=document.createElement('img');img.src=s.image;img.alt=s.alt;img.className='journal-image';section.append(img);
+    const story=text('div','','journal-story');
+    story.append(text('p',s.label||'From the journal · Gardener & Son','label'),text('h2',s.title));
+    const quote=text('blockquote',s.excerpt,'journal-excerpt');quote.cite=s.source;story.append(quote);section.append(story);
+    section.append(journalLink(s.source));
+    const wordmark=text('div','Gardener ','wordmark');wordmark.append(text('em','&'),document.createTextNode(' Son'));section.append(wordmark);
+  } else if (s.type==='image') {
     const img=document.createElement('img'); img.src=s.image;img.alt=s.alt;section.append(img);
     const caption=document.createElement('div');caption.className='caption';caption.append(text('p',s.label||'Gardener & Son','label'),text('h2',s.title));section.append(caption);
   } else {
@@ -113,6 +138,9 @@ async function refresh(){
       const local=await fetch('journal.json',{cache:'no-store',signal:AbortSignal.timeout(10000)});
       if(!local.ok)throw Error('Journal unavailable');journal=validate(await local.json());
     }
+    const featureResponse=await fetch('journal-features.json',{cache:'no-store',signal:AbortSignal.timeout(15000)});
+    if(!featureResponse.ok)throw Error('Journal features unavailable');
+    journal=enrichJournal(journal, await featureResponse.json());
     const data=compose(base, photos, journal);
     await prepare(data);
     if(data.version!==playlist.version){pending=data;try{localStorage.setItem('studio-playlist',JSON.stringify(data));}catch{}}
