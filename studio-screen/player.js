@@ -43,11 +43,11 @@ function render() {
   if (s.type === 'website') renderWebsite(s, section);
   else if (s.type==='image') {
     section.classList.add('side-image','image-' + (s.imageSide || 'left'));
-    
+
     const img=document.createElement('img'); img.src=s.image;img.alt=s.alt;section.append(img);
     const caption=document.createElement('div');caption.className='caption';caption.append(text('p',s.label||'Gardener & Son','label'),text('h2',s.title));section.append(caption);
   } else {
-    
+
     if(s.type==='brand'){
       const h=document.createElement('h1');h.append(text('span','Ecological gardens.'));
       const middle=document.createElement('span');middle.append(text('em','Heirloom objects.'));h.append(middle,text('span','Living systems.'));section.append(h);

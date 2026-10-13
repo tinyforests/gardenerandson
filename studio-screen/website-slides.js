@@ -57,7 +57,7 @@ function renderWebsite(s, section) {
   section.classList.add('website', 'website-' + s.layout);
   if (s.layout === 'poster') {renderPoster(s, section);return;}
   if (s.image) section.classList.add('image-' + (s.imageSide || 'left'));
-  
+
   if (s.image) {
     const figure = text('figure', '', 'website-figure');
     const img = document.createElement('img'); img.src = s.image; img.alt = s.alt;
@@ -95,4 +95,3 @@ function renderPoster(s, section) {
   const signature = text('footer', '', 'poster-signature');
   signature.append(text('span','Gardener'),text('span','&Son.'));section.append(signature);
 }
-
