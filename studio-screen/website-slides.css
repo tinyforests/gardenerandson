@@ -12,7 +12,7 @@
 .website-fact dt{flex:0 0 150px;text-transform:uppercase;letter-spacing:1px}
 .website-fact dd{margin:0;text-align:right}
 .website-hero>.website-facts,.website-place>.website-facts{position:absolute;left:1290px;right:120px;top:230px}
-.website-hero>.website-facts{font-size:28px}
+.website-hero>.website-facts{top:50%;transform:translateY(-50%);font-size:28px}
 .website-hero>.website-facts .website-fact{padding:24px 0}
 .website-place h1{font-size:120px;line-height:1;letter-spacing:-4px}
 .website-place .website-copy{top:210px;width:1030px}
