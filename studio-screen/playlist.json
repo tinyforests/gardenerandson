@@ -1,12 +1,234 @@
 {
-  "version": "2026-10-07-1",
+  "version": "website-work-no-links-2026-10-13-10",
   "slides": [
-    {"type":"brand","duration":20},
-    {"type":"image","duration":18,"image":"../presentation/maylands/images/hero.webp","alt":"Maylands garden proposal looking along the gravel path towards the home","label":"Maylands Meadow · Garden proposal","title":"A garden, becoming."},
-    {"type":"statement","duration":18,"title":"Beauty under real conditions.","label":"Ecological gardens","dark":true},
-    {"type":"image","duration":18,"image":"../presentation/maylands/images/texture.webp","alt":"Silver foliage and flowering forms in the Maylands planting proposal","label":"Maylands Meadow · Planting proposal","title":"Living texture."},
-    {"type":"statement","duration":18,"title":"Objects belong to the garden.","label":"Heirloom objects"},
-    {"type":"image","duration":18,"image":"../presentation/maylands/images/habitat.webp","alt":"Seedheads retained for small birds in the Maylands garden proposal","label":"Maylands Meadow · Garden proposal","title":"Left standing."},
-    {"type":"statement","duration":18,"title":"Designing ecological gardens. Building the systems around them.","label":"Gardener & Son","dark":true}
+    {
+      "layout": "hero",
+      "section": "top",
+      "title": "Gardens\nthat belong\nhere.",
+      "emphasis": "belong",
+      "label": "Wurundjeri Woi Wurrung Country / Melbourne",
+      "dark": true,
+      "body": "We design and build indigenous gardens for city homes \u2014 beginning with what grew on each address before the city did.",
+      "facts": [
+        [
+          "Place",
+          "Local"
+        ],
+        [
+          "Soil",
+          "Living"
+        ],
+        [
+          "Water",
+          "Held"
+        ],
+        [
+          "Habitat",
+          "Forming"
+        ],
+        [
+          "Season",
+          "$season"
+        ]
+      ],
+      "type": "website",
+      "duration": 24
+    },
+    {
+      "layout": "garden",
+      "section": "gardens",
+      "title": "An indigenous forest on a suburban block.",
+      "emphasis": "suburban block.",
+      "label": "02 / Our work \u00b7 Surrey Hills",
+      "dark": true,
+      "image": "../images/indigenous-forest-garden.webp",
+      "alt": "Watercolour of an indigenous forest garden in Surrey Hills, with a gravel path, timber steps, boulders and local plants beneath a eucalypt",
+      "caption": "Garden perspective / Surrey Hills \u00b7 Becoming",
+      "facts": [
+        [
+          "Indigenous plants",
+          "1,600"
+        ],
+        [
+          "Density",
+          "3 / m\u00b2"
+        ],
+        [
+          "Water",
+          "Swales"
+        ],
+        [
+          "Synthetics",
+          "0"
+        ],
+        [
+          "Registry",
+          "ER-VIC-SH-ARU-0001"
+        ]
+      ],
+      "type": "website",
+      "duration": 24,
+      "imageSide": "left"
+    },
+    {
+      "layout": "studio",
+      "section": "studio",
+      "title": "The two\nof us.",
+      "emphasis": "of us.",
+      "label": "04 / Craft, not scale",
+      "dark": true,
+      "image": "../images/natasha-tyson.webp",
+      "alt": "Natasha and Tyson, co-founders of Gardener & Son, standing on a grass path through a mature garden",
+      "body": "Gardener & Son is a small practice by design. We read the place, build the garden with our own hands, and keep coming back to see what it does.",
+      "facts": [
+        [
+          "Natasha",
+          "Co-founder / garden designer"
+        ],
+        [
+          "Tyson",
+          "Co-founder / garden designer"
+        ]
+      ],
+      "type": "website",
+      "duration": 24,
+      "imageSide": "right"
+    },
+    {
+      "layout": "place",
+      "section": "place",
+      "title": "Before the\ngarden,\nthe place.",
+      "emphasis": "the place.",
+      "label": "01 / Start with the address",
+      "body": "We don't start with a look. We start with the ecology of your street \u2014 what grew here, where the water moves, what habitat remains nearby.",
+      "facts": [
+        [
+          "Place",
+          "Country / bioregion / EVC"
+        ],
+        [
+          "Soil",
+          "Structure / life / inputs"
+        ],
+        [
+          "Water",
+          "Flow / hold / infiltrate"
+        ],
+        [
+          "Plants",
+          "Ground \u2192 shrub \u2192 canopy"
+        ],
+        [
+          "Habitat",
+          "Logs / rock / litter / water"
+        ],
+        [
+          "Time",
+          "Establish / change / remember"
+        ]
+      ],
+      "type": "website",
+      "duration": 24
+    },
+    {
+      "layout": "garden",
+      "section": "gardens",
+      "title": "A local meadow on Maylands.",
+      "emphasis": "Maylands.",
+      "label": "02 / Our work \u00b7 Balwyn North",
+      "dark": true,
+      "image": "../images/maylands-meadow.webp",
+      "alt": "Watercolour proposal for a meadow garden in Balwyn North, with grasses and flowers beside a crushed-granite path to a white weatherboard house",
+      "caption": "Garden perspective / Balwyn North \u00b7 In design",
+      "facts": [
+        [
+          "Design",
+          "Maylands Meadow"
+        ],
+        [
+          "Grasses",
+          "Kangaroo grass / tussock"
+        ],
+        [
+          "Story plant",
+          "Blue devil"
+        ],
+        [
+          "Path edge",
+          "Blue pincushion"
+        ],
+        [
+          "Flowering",
+          "September \u2192 May"
+        ],
+        [
+          "Winter",
+          "Seedheads left standing"
+        ]
+      ],
+      "type": "website",
+      "duration": 24,
+      "imageSide": "right"
+    },
+    {
+      "layout": "care",
+      "section": "after-build",
+      "title": "A garden isn't finished when we leave.",
+      "emphasis": "when we leave.",
+      "label": "03 / After the build",
+      "body": "New plantings take a few seasons to settle. We can stay on through that time \u2014 watching how the garden responds and stepping in when it needs us.",
+      "type": "website",
+      "duration": 24
+    },
+    {
+      "layout": "garden",
+      "section": "gardens",
+      "title": "Winter crimson that answers the roof.",
+      "emphasis": "answers the roof.",
+      "label": "02 / Our work \u00b7 Hawthorn East",
+      "dark": true,
+      "image": "../images/victoria-grove-elevation.webp",
+      "alt": "Watercolour street elevation of a garden design for a Victorian house in Hawthorn East, with a red-flowering yellow gum, banksia and understorey behind a green iron fence",
+      "caption": "Street elevation / Hawthorn East \u00b7 In design",
+      "facts": [
+        [
+          "Design",
+          "Front garden"
+        ],
+        [
+          "EVC",
+          "68 / Creekline Grassy Woodland"
+        ],
+        [
+          "Species",
+          "20"
+        ],
+        [
+          "Canopy",
+          "Red-flowering yellow gum"
+        ],
+        [
+          "Path",
+          "Reclaimed brick"
+        ],
+        [
+          "Flowering",
+          "Every month"
+        ]
+      ],
+      "type": "website",
+      "duration": 24,
+      "imageSide": "left"
+    },
+    {
+      "layout": "begin",
+      "section": "begin",
+      "title": "Your garden\nbegins here.",
+      "emphasis": "begins here.",
+      "label": "05 / Where gardens begin",
+      "body": "Tell us about your place. We'll start with what's already there, what once belonged there, and what the garden could become.",
+      "type": "website",
+      "duration": 24
+    }
   ]
 }

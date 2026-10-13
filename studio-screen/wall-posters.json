@@ -1,0 +1,62 @@
+{
+  "version": "wall-posters-paused-2026-10-13",
+  "slides": [
+    {
+      "title": "Melbourne\nwas woodlands.",
+      "label": "Find My EVC",
+      "phase": "discover",
+      "body": "Creeks, swamp scrub, grassy forest.\nEvery address in Victoria sits on a vegetation class that existed before the street did. Find out what grew where you live.",
+      "bodyEmphasis": "Find out what grew where you live.",
+      "caption": "Ecological vegetation class lookup",
+      "links": [
+        {
+          "label": "Find your EVC",
+          "url": "https://findmyevc.com/"
+        }
+      ],
+      "type": "website",
+      "layout": "poster",
+      "section": "wall-poster-discover",
+      "duration": 24,
+      "dark": true
+    },
+    {
+      "title": "Plant what\nbelongs here.",
+      "label": "Find My Ecological Garden",
+      "phase": "plant",
+      "body": "Not a style. A species list. Your address returns the indigenous species of your vegetation class to create your own ecological garden. Ecology first, then design.",
+      "bodyEmphasis": "Ecology first, then design.",
+      "caption": "Species list and garden plan",
+      "links": [
+        {
+          "label": "Plan your garden",
+          "url": "https://findmyecologicalgarden.com/"
+        }
+      ],
+      "type": "website",
+      "layout": "poster",
+      "section": "wall-poster-plant",
+      "duration": 24,
+      "dark": true
+    },
+    {
+      "title": "We measure\nwhat we build.",
+      "label": "The Ecological Registry",
+      "phase": "measure",
+      "body": "Every home built gets an energy rating. Nothing measures what's living in the garden around it. The Ecological Registry scores a garden's ecological performance and tracks it as it grows.",
+      "bodyEmphasis": "Nothing measures what's living in the garden around it.",
+      "caption": "Register \u00b7 Score \u00b7 Verify",
+      "links": [
+        {
+          "label": "Explore the Registry",
+          "url": "https://ecologicalregistry.org/"
+        }
+      ],
+      "type": "website",
+      "layout": "poster",
+      "section": "wall-poster-measure",
+      "duration": 24,
+      "dark": true
+    }
+  ]
+}

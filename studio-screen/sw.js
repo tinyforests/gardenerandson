@@ -1,9 +1,10 @@
 'use strict';
-const CACHE='gardener-studio-screen-v3';
-const core=['./','index.html','player.js','vendor/qrcode.js','playlist.json','photos.json','journal.json','journal-features.json',
-  'journal-images/the-garden-that-scored-fifty.jpg',
-  'journal-images/what-were-building-this-year.jpg',
-  'journal-images/designing-interactions-not-gardens.jpg',
+const CACHE='gardener-studio-screen-v19';
+const core=['./','index.html','player.js','website-slides.js','website-slides.css','playlist.json','photos.json',
+  '../images/indigenous-forest-garden.webp',
+  '../images/maylands-meadow.webp',
+  '../images/victoria-grove-elevation.webp',
+  '../images/natasha-tyson.webp',
   '../images/heirloom/heirloom-mont-albert-1.jpeg',
   '../presentation/maylands/fonts/AbrilFatface-Regular.ttf',
   '../presentation/maylands/fonts/Fraunces-Regular.ttf',
