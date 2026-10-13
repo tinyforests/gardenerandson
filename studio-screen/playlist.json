@@ -1,5 +1,5 @@
 {
-  "version": "website-no-posters-2026-10-13-8",
+  "version": "website-studio-no-link-2026-10-13-9",
   "slides": [
     {
       "layout": "hero",
@@ -95,12 +95,6 @@
           "Tyson",
           "Co-founder / garden designer"
         ]
-      ],
-      "links": [
-        {
-          "label": "Meet the studio",
-          "url": "https://www.gardenerandson.com/#studio"
-        }
       ],
       "type": "website",
       "duration": 24,
