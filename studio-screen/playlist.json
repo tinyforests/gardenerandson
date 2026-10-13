@@ -1,5 +1,5 @@
 {
-  "version": "website-wall-posters-2026-10-13-4",
+  "version": "website-headline-cleanup-2026-10-13-5",
   "slides": [
     {
       "layout": "hero",
@@ -8,7 +8,7 @@
       "emphasis": "belong",
       "label": "Wurundjeri Woi Wurrung Country / Melbourne",
       "dark": true,
-      "body": "We design and build indigenous gardens for city homes — beginning with what grew on each address before the city did.",
+      "body": "We design and build indigenous gardens for city homes \u2014 beginning with what grew on each address before the city did.",
       "facts": [
         [
           "Place",
@@ -31,12 +31,6 @@
           "$season"
         ]
       ],
-      "links": [
-        {
-          "label": "Begin your garden",
-          "url": "https://www.gardenerandson.com/where-gardens-begin.html"
-        }
-      ],
       "type": "website",
       "duration": 24
     },
@@ -46,7 +40,7 @@
       "title": "Before the\ngarden,\nthe place.",
       "emphasis": "the place.",
       "label": "01 / Start with the address",
-      "body": "We don't start with a look. We start with the ecology of your street — what grew here, where the water moves, what habitat remains nearby.",
+      "body": "We don't start with a look. We start with the ecology of your street \u2014 what grew here, where the water moves, what habitat remains nearby.",
       "facts": [
         [
           "Place",
@@ -62,7 +56,7 @@
         ],
         [
           "Plants",
-          "Ground → shrub → canopy"
+          "Ground \u2192 shrub \u2192 canopy"
         ],
         [
           "Habitat",
@@ -72,12 +66,6 @@
           "Time",
           "Establish / change / remember"
         ]
-      ],
-      "links": [
-        {
-          "label": "Discover your place",
-          "url": "https://findmyevc.com/"
-        }
       ],
       "type": "website",
       "duration": 24
@@ -126,7 +114,7 @@
       "phase": "measure",
       "body": "Every home built gets an energy rating. Nothing measures what's living in the garden around it. The Ecological Registry scores a garden's ecological performance and tracks it as it grows.",
       "bodyEmphasis": "Nothing measures what's living in the garden around it.",
-      "caption": "Register · Score · Verify",
+      "caption": "Register \u00b7 Score \u00b7 Verify",
       "links": [
         {
           "label": "Explore the Registry",
@@ -144,11 +132,11 @@
       "section": "gardens",
       "title": "An indigenous forest on a suburban block.",
       "emphasis": "suburban block.",
-      "label": "02 / Our work · Surrey Hills",
+      "label": "02 / Our work \u00b7 Surrey Hills",
       "dark": true,
       "image": "../images/indigenous-forest-garden.webp",
       "alt": "Watercolour of an indigenous forest garden in Surrey Hills, with a gravel path, timber steps, boulders and local plants beneath a eucalypt",
-      "caption": "Garden perspective / Surrey Hills · Becoming",
+      "caption": "Garden perspective / Surrey Hills \u00b7 Becoming",
       "facts": [
         [
           "Indigenous plants",
@@ -156,7 +144,7 @@
         ],
         [
           "Density",
-          "3 / m²"
+          "3 / m\u00b2"
         ],
         [
           "Water",
@@ -186,11 +174,11 @@
       "section": "gardens",
       "title": "A local meadow on Maylands.",
       "emphasis": "Maylands.",
-      "label": "02 / Our work · Balwyn North",
+      "label": "02 / Our work \u00b7 Balwyn North",
       "dark": true,
       "image": "../images/maylands-meadow.webp",
       "alt": "Watercolour proposal for a meadow garden in Balwyn North, with grasses and flowers beside a crushed-granite path to a white weatherboard house",
-      "caption": "Garden perspective / Balwyn North · In design",
+      "caption": "Garden perspective / Balwyn North \u00b7 In design",
       "facts": [
         [
           "Design",
@@ -210,7 +198,7 @@
         ],
         [
           "Flowering",
-          "September → May"
+          "September \u2192 May"
         ],
         [
           "Winter",
@@ -232,11 +220,11 @@
       "section": "gardens",
       "title": "Winter crimson that answers the roof.",
       "emphasis": "answers the roof.",
-      "label": "02 / Our work · Hawthorn East",
+      "label": "02 / Our work \u00b7 Hawthorn East",
       "dark": true,
       "image": "../images/victoria-grove-elevation.webp",
       "alt": "Watercolour street elevation of a garden design for a Victorian house in Hawthorn East, with a red-flowering yellow gum, banksia and understorey behind a green iron fence",
-      "caption": "Street elevation / Hawthorn East · In design",
+      "caption": "Street elevation / Hawthorn East \u00b7 In design",
       "facts": [
         [
           "Design",
@@ -279,7 +267,7 @@
       "title": "A garden isn't finished when we leave.",
       "emphasis": "when we leave.",
       "label": "03 / After the build",
-      "body": "New plantings take a few seasons to settle. We can stay on through that time — watching how the garden responds and stepping in when it needs us.",
+      "body": "New plantings take a few seasons to settle. We can stay on through that time \u2014 watching how the garden responds and stepping in when it needs us.",
       "cards": [
         {
           "label": "Tend / 01",

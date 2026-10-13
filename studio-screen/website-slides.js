@@ -22,7 +22,7 @@ function validateWebsiteSlide(s) {
       if (!card || typeof card.label !== 'string' || card.label.length > 40 || typeof card.title !== 'string' || !card.title || card.title.length > 80 || typeof card.body !== 'string' || card.body.length > 180) throw Error('Invalid care card');
       validateWebsiteLink(card.link);
     }
-  } else {
+  } else if (!['hero', 'place'].includes(s.layout) || s.links !== undefined) {
     if (!Array.isArray(s.links) || s.links.length !== 1) throw Error('Website section needs a link');
     validateWebsiteLink(s.links[0]);
   }
@@ -74,7 +74,7 @@ function renderWebsite(s, section) {
     section.append(figure);
   }
   const copy = text('div', '', 'website-copy');
-  copy.append(text('p', s.label, 'label'), websiteHeading(s.layout === 'hero' ? 'h1' : 'h2', s.title, s.emphasis));
+  copy.append(text('p', s.label, 'label'), websiteHeading(['hero', 'place'].includes(s.layout) ? 'h1' : 'h2', s.title, s.emphasis));
   if (s.body) copy.append(text('p', s.body, 'website-body'));
   if (s.facts && ['garden', 'studio'].includes(s.layout)) copy.append(websiteFacts(s.facts));
   section.append(copy);
@@ -87,7 +87,7 @@ function renderWebsite(s, section) {
       cards.append(article);
     }
     section.append(cards);
-  } else section.append(websiteLink(s.links[0]));
+  } else if (s.links) section.append(websiteLink(s.links[0]));
 }
 
 function renderPoster(s, section) {

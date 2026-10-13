@@ -14,6 +14,7 @@
 .website-hero>.website-facts,.website-place>.website-facts{position:absolute;left:1290px;right:120px;top:230px}
 .website-hero>.website-facts{font-size:28px}
 .website-hero>.website-facts .website-fact{padding:24px 0}
+.website-place h1{font-size:120px;line-height:1;letter-spacing:-4px}
 .website-place .website-copy{top:210px;width:1030px}
 .website-place .website-body{font-size:34px;max-width:990px}
 .website-place>.website-facts{left:1230px;font-size:22px}
