@@ -2,8 +2,8 @@
 .website .wordmark{top:70px;z-index:1}
 .website-copy{position:absolute;left:120px;top:230px;width:1050px}
 .website-title span{display:block}
-.website-title em{font-weight:400;color:var(--signal)}
-.website.dark .website-title em{color:var(--brass)}
+.website-title em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--signal)}
+.website.dark .website-title em{color:var(--signal)}
 .website h1{font-size:168px;line-height:.94;letter-spacing:-6px}
 .website h2{font-size:120px;line-height:1;letter-spacing:-4px}
 .website-body{font:36px/1.35 var(--sans);max-width:1000px;margin:36px 0 0}
