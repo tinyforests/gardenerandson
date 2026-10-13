@@ -1,6 +1,6 @@
 'use strict';
-const websiteLayouts = ['hero', 'place', 'garden', 'care', 'studio', 'begin'];
-const websiteOrigins = ['https://www.gardenerandson.com', 'https://findmyevc.com', 'https://ecologicalregistry.org'];
+const websiteLayouts = ['hero', 'place', 'garden', 'care', 'studio', 'begin', 'poster'];
+const websiteOrigins = ['https://www.gardenerandson.com', 'https://findmyevc.com', 'https://findmyecologicalgarden.com', 'https://ecologicalregistry.org'];
 
 function validateWebsiteLink(link) {
   if (!link || typeof link.label !== 'string' || !link.label.trim() || link.label.length > 40 || typeof link.url !== 'string' || link.url.length > 300) throw Error('Invalid website link');
@@ -15,6 +15,7 @@ function validateWebsiteSlide(s) {
   if (s.facts !== undefined && (!Array.isArray(s.facts) || s.facts.length > 6 || s.facts.some(row => !Array.isArray(row) || row.length !== 2 || row.some(value => typeof value !== 'string' || !value || value.length > 60)))) throw Error('Invalid website facts');
   if (s.caption !== undefined && (typeof s.caption !== 'string' || s.caption.length > 110)) throw Error('Invalid website caption');
   if (['garden', 'studio'].includes(s.layout) && !s.image) throw Error('Website section needs an image');
+  if (s.layout === 'poster' && (!['discover','plant','measure'].includes(s.phase) || typeof s.bodyEmphasis !== 'string' || !s.body?.includes(s.bodyEmphasis))) throw Error('Invalid wall poster');
   if (s.layout === 'care') {
     if (!Array.isArray(s.cards) || s.cards.length !== 2) throw Error('Care needs two cards');
     for (const card of s.cards) {
@@ -60,6 +61,7 @@ function websiteLink(link) {
 
 function renderWebsite(s, section) {
   section.classList.add('website', 'website-' + s.layout);
+  if (s.layout === 'poster') {renderPoster(s, section);return;}
   if (s.image) section.classList.add('image-' + (s.imageSide || 'left'));
   const wordmark = text('div', 'Gardener ', 'wordmark');
   wordmark.append(text('em', '&'), document.createTextNode(' Son'));
@@ -86,4 +88,26 @@ function renderWebsite(s, section) {
     }
     section.append(cards);
   } else section.append(websiteLink(s.links[0]));
+}
+
+function renderPoster(s, section) {
+  const header = text('header', '', 'poster-header');
+  const sequence = text('div', '', 'poster-sequence');
+  ['discover','plant','measure'].forEach((phase,index)=>{
+    if(index) sequence.append(document.createTextNode(' - '));
+    sequence.append(text('span', phase, phase === s.phase ? 'current' : ''));
+  });
+  header.append(sequence, text('div', s.label, 'poster-product'));section.append(header);
+  const content = text('div', '', 'poster-content');
+  content.append(websiteHeading('h1', s.title));
+  const body = text('p', '', 'poster-body');
+  const index = s.body.indexOf(s.bodyEmphasis);
+  body.append(document.createTextNode(s.body.slice(0,index)),text('em',s.bodyEmphasis),document.createTextNode(s.body.slice(index+s.bodyEmphasis.length)));
+  content.append(body);
+  const foot = text('div', '', 'poster-details');
+  const url = new URL(s.links[0].url);
+  const link = text('a', url.hostname, 'poster-url');link.href=url.href;
+  foot.append(link,text('span',s.caption,'poster-caption'));content.append(foot);section.append(content);
+  const signature = text('footer', '', 'poster-signature');
+  signature.append(text('span','Gardener'),text('span','&Son.'));section.append(signature);
 }

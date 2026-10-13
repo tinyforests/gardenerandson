@@ -4,7 +4,7 @@ Open `/studio-screen/` on the studio iMac, move the browser to the Samsung displ
 
 ## Current rotation
 
-The base playlist follows the homepage: opening, place, gardens, after the build, studio and beginning a garden. Gardens has three slides, one for each project in the website's `DESIGNS` array. Each of the eight base slides lasts 24 seconds; the selected Heirloom photograph brings the rotation to nine slides over three and a half minutes.
+The base playlist follows the homepage: opening, place, gardens, after the build, studio and beginning a garden. Gardens has three slides, one for each project in the website's `DESIGNS` array. Three matching studio wall posters follow place in Discover → Plant → Measure order. Each of the eleven base slides lasts 24 seconds; the selected Heirloom photograph brings the rotation to twelve slides over four minutes and 42 seconds. The posters preserve the wall artwork’s wording, green-and-beige palette, highlighted phrases and website addresses in a landscape layout.
 
 Image-based slides use a portrait panel beside the text on a green background. `imageSide` selects `left` or `right`; the current image slides alternate sides. Panels sit 60 pixels inside the frame and clip their crops. The studio portrait keeps both founders centred within its panel, so its enlarged image cannot spill into the slide margins. Project facts and status labels, including “In design”, are retained. Review crops and footpath readability on the physical screen.
 
@@ -14,9 +14,11 @@ The player does not load journal headlines, features or images. It also removes 
 
 Edit `playlist.json` and `photos.json` on a branch and review before merging. Increment `version` for each change. The display checks these two sources every five minutes and applies a complete, image-tested update at the end of the rotation. Each slide has a `type` (brand, statement, image, website) and `duration` in seconds (8–120). Keep titles under 110 characters, labels under 90 characters and provide meaningful `alt` for images. Image paths must be same-origin JPEG, PNG or WebP. Use `dark: true` for dark screens.
 
-Website slides are an editorial snapshot of root `index.html`. Keep their text, facts and status labels in step with the website when editing. Each slide has a `section` and a `layout`: `hero`, `place`, `garden`, `care`, `studio` or `begin`. `body` is limited to 240 characters, `facts` to six label/value pairs, and `emphasis` must occur in the title. Newlines create deliberate line breaks; emphasis uses italic Fraunces rendered as text.
+Website slides are an editorial snapshot of root `index.html`. Keep their text, facts and status labels in step with the website when editing. Each slide has a `section` and a `layout`: `hero`, `place`, `garden`, `care`, `studio`, `begin` or `poster`. `body` is limited to 240 characters, `facts` to six label/value pairs, and `emphasis` must occur in the title. Newlines create deliberate line breaks; emphasis uses italic Fraunces rendered as text.
 
-Most website slides have one `links` entry. Care has two `cards`, each with a text link, for Tend and the Ecological Registry. Destinations are restricted to the studio website, Find My EVC and the Ecological Registry. The seasonal reading uses the homepage's southern-hemisphere month rules. `website-slides.js` and `website-slides.css` define these layouts.
+Poster slides also specify `phase` (`discover`, `plant` or `measure`), `bodyEmphasis` (a phrase present in the body) and a footer `caption`.
+
+Most website slides have one `links` entry. Care has two `cards`, each with a text link, for Tend and the Ecological Registry. Destinations are restricted to the studio website, Find My EVC, Find My Ecological Garden and the Ecological Registry. The seasonal reading uses the homepage's southern-hemisphere month rules. `website-slides.js` and `website-slides.css` define these layouts.
 
 `photos.json` selects additional studio photographs. Add local photographs, include an image entry and increment its version. Publish `"slides": []` with a new version to remove all selected photographs. Invalid entries or unavailable images retain the last working rotation.
 
