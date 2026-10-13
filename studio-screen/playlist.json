@@ -1,5 +1,5 @@
 {
-  "version": "website-studio-no-link-2026-10-13-9",
+  "version": "website-work-no-links-2026-10-13-10",
   "slides": [
     {
       "layout": "hero",
@@ -65,12 +65,6 @@
           "Registry",
           "ER-VIC-SH-ARU-0001"
         ]
-      ],
-      "links": [
-        {
-          "label": "Explore our gardens",
-          "url": "https://www.gardenerandson.com/#gardens"
-        }
       ],
       "type": "website",
       "duration": 24,
@@ -172,12 +166,6 @@
           "Seedheads left standing"
         ]
       ],
-      "links": [
-        {
-          "label": "Explore our gardens",
-          "url": "https://www.gardenerandson.com/#gardens"
-        }
-      ],
       "type": "website",
       "duration": 24,
       "imageSide": "right"
@@ -227,12 +215,6 @@
           "Flowering",
           "Every month"
         ]
-      ],
-      "links": [
-        {
-          "label": "Explore our gardens",
-          "url": "https://www.gardenerandson.com/#gardens"
-        }
       ],
       "type": "website",
       "duration": 24,

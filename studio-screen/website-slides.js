@@ -16,7 +16,7 @@ function validateWebsiteSlide(s) {
   if (s.caption !== undefined && (typeof s.caption !== 'string' || s.caption.length > 110)) throw Error('Invalid website caption');
   if (['garden', 'studio'].includes(s.layout) && !s.image) throw Error('Website section needs an image');
   if (s.layout === 'poster' && (!['discover','plant','measure'].includes(s.phase) || typeof s.bodyEmphasis !== 'string' || !s.body?.includes(s.bodyEmphasis))) throw Error('Invalid wall poster');
-  if (!['hero', 'place', 'care', 'begin', 'studio'].includes(s.layout) || s.links !== undefined) {
+  if (!['hero', 'place', 'care', 'begin', 'studio', 'garden'].includes(s.layout) || s.links !== undefined) {
     if (!Array.isArray(s.links) || s.links.length !== 1) throw Error('Website section needs a link');
     validateWebsiteLink(s.links[0]);
   }
