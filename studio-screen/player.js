@@ -39,6 +39,7 @@ async function prepare(data) {
 }
 function render() {
   const s = playlist.slides[position];
+  document.querySelector('main').style.background = s.dark || s.type === 'image' ? 'var(--green)' : 'var(--beige)';
   const section = document.createElement('section'); section.className='slide'+(s.dark?' dark':'')+(s.type==='image'?' image':'');
   if (s.type === 'website') renderWebsite(s, section);
   else if (s.type==='image') {
