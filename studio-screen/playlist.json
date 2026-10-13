@@ -1,5 +1,5 @@
 {
-  "version": "website-mixed-rotation-2026-10-13-6",
+  "version": "website-begin-no-link-2026-10-13-7",
   "slides": [
     {
       "layout": "hero",
@@ -308,12 +308,6 @@
       "emphasis": "begins here.",
       "label": "05 / Where gardens begin",
       "body": "Tell us about your place. We'll start with what's already there, what once belonged there, and what the garden could become.",
-      "links": [
-        {
-          "label": "Begin your garden",
-          "url": "https://www.gardenerandson.com/where-gardens-begin.html"
-        }
-      ],
       "type": "website",
       "duration": 24
     }
