@@ -57,7 +57,7 @@ function renderWebsite(s, section) {
   section.classList.add('website', 'website-' + s.layout);
   if (s.layout === 'poster') {renderPoster(s, section);return;}
   if (s.image) section.classList.add('image-' + (s.imageSide || 'left'));
-  section.append(studioWordmark());
+  
   if (s.image) {
     const figure = text('figure', '', 'website-figure');
     const img = document.createElement('img'); img.src = s.image; img.alt = s.alt;
@@ -96,9 +96,3 @@ function renderPoster(s, section) {
   signature.append(text('span','Gardener'),text('span','&Son.'));section.append(signature);
 }
 
-function studioWordmark() {
-  const logo = text('div', '', 'wordmark');
-  logo.setAttribute('role', 'img');
-  logo.setAttribute('aria-label', 'Gardener & Son');
-  return logo;
-}

@@ -30,7 +30,7 @@ async function scenario(register,saved=null,online=true){
  assert.equal(vm.runInContext('pending',context),null,'missing website image retains rotation');
  for(let i=0;i<base.slides.length;i++){
   vm.runInContext(`position=${i};render()`,context);const rendered=elements['#stage'].lastElementChild;
-  assert.ok(rendered.children.length>=(['care','begin'].includes(base.slides[i].layout)?2:3));assert.equal(hasSvg(rendered),false,'slides contain no QR SVG');
+  assert.ok(rendered.children.length>=(['care','begin'].includes(base.slides[i].layout)?1:2));assert.equal(hasSvg(rendered),false,'slides contain no QR SVG');
  }
  assert.throws(()=>vm.runInContext(`validate(${JSON.stringify(journal)})`,context),'journal source must be rejected');
  assert.equal(base.slides.some(s=>s.layout==='poster'),false,'wall posters are paused');
