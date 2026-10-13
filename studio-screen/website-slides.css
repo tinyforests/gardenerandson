@@ -33,7 +33,8 @@
 .website-garden .website-copy,.website-studio .website-copy{left:1200px;top:190px;bottom:auto;width:600px}
 .website.image-right .website-copy{left:120px}
 .website-garden .label,.website-studio .label{font-size:20px;letter-spacing:2px;margin-bottom:28px}
-.website-garden h2{font-size:62px;line-height:1.06;letter-spacing:-2px}
+.website-garden h2{font:400 62px/1.06 var(--hero);letter-spacing:-2px}
+.website-garden.dark .website-title em{color:var(--signal)}
 .website-garden .website-facts{margin-top:30px;font-size:20px}
 .website-garden .website-fact{padding:11px 0;gap:18px;align-items:baseline}
 .website-garden .website-fact dt{flex-basis:150px;font-size:16px}

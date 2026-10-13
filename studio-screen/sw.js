@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='gardener-studio-screen-v9';
+const CACHE='gardener-studio-screen-v10';
 const core=['./','index.html','player.js','website-slides.js','website-slides.css','playlist.json','photos.json',
   '../images/indigenous-forest-garden.webp',
   '../images/maylands-meadow.webp',
