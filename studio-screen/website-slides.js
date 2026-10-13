@@ -16,13 +16,7 @@ function validateWebsiteSlide(s) {
   if (s.caption !== undefined && (typeof s.caption !== 'string' || s.caption.length > 110)) throw Error('Invalid website caption');
   if (['garden', 'studio'].includes(s.layout) && !s.image) throw Error('Website section needs an image');
   if (s.layout === 'poster' && (!['discover','plant','measure'].includes(s.phase) || typeof s.bodyEmphasis !== 'string' || !s.body?.includes(s.bodyEmphasis))) throw Error('Invalid wall poster');
-  if (s.layout === 'care') {
-    if (!Array.isArray(s.cards) || s.cards.length !== 2) throw Error('Care needs two cards');
-    for (const card of s.cards) {
-      if (!card || typeof card.label !== 'string' || card.label.length > 40 || typeof card.title !== 'string' || !card.title || card.title.length > 80 || typeof card.body !== 'string' || card.body.length > 180) throw Error('Invalid care card');
-      validateWebsiteLink(card.link);
-    }
-  } else if (!['hero', 'place'].includes(s.layout) || s.links !== undefined) {
+  if (!['hero', 'place', 'care'].includes(s.layout) || s.links !== undefined) {
     if (!Array.isArray(s.links) || s.links.length !== 1) throw Error('Website section needs a link');
     validateWebsiteLink(s.links[0]);
   }
@@ -79,15 +73,7 @@ function renderWebsite(s, section) {
   if (s.facts && ['garden', 'studio'].includes(s.layout)) copy.append(websiteFacts(s.facts));
   section.append(copy);
   if (s.facts && ['hero', 'place'].includes(s.layout)) section.append(websiteFacts(s.facts));
-  if (s.layout === 'care') {
-    const cards = text('div', '', 'website-care-cards');
-    for (const card of s.cards) {
-      const article = text('article', '', 'website-care-card');
-      article.append(text('p', card.label, 'label'), text('h3', card.title), text('p', card.body, 'website-body'), websiteLink(card.link));
-      cards.append(article);
-    }
-    section.append(cards);
-  } else if (s.links) section.append(websiteLink(s.links[0]));
+  if (s.links) section.append(websiteLink(s.links[0]));
 }
 
 function renderPoster(s, section) {

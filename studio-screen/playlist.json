@@ -1,5 +1,5 @@
 {
-  "version": "website-headline-cleanup-2026-10-13-5",
+  "version": "website-mixed-rotation-2026-10-13-6",
   "slides": [
     {
       "layout": "hero",
@@ -33,99 +33,6 @@
       ],
       "type": "website",
       "duration": 24
-    },
-    {
-      "layout": "place",
-      "section": "place",
-      "title": "Before the\ngarden,\nthe place.",
-      "emphasis": "the place.",
-      "label": "01 / Start with the address",
-      "body": "We don't start with a look. We start with the ecology of your street \u2014 what grew here, where the water moves, what habitat remains nearby.",
-      "facts": [
-        [
-          "Place",
-          "Country / bioregion / EVC"
-        ],
-        [
-          "Soil",
-          "Structure / life / inputs"
-        ],
-        [
-          "Water",
-          "Flow / hold / infiltrate"
-        ],
-        [
-          "Plants",
-          "Ground \u2192 shrub \u2192 canopy"
-        ],
-        [
-          "Habitat",
-          "Logs / rock / litter / water"
-        ],
-        [
-          "Time",
-          "Establish / change / remember"
-        ]
-      ],
-      "type": "website",
-      "duration": 24
-    },
-    {
-      "title": "Melbourne\nwas woodlands.",
-      "label": "Find My EVC",
-      "phase": "discover",
-      "body": "Creeks, swamp scrub, grassy forest.\nEvery address in Victoria sits on a vegetation class that existed before the street did. Find out what grew where you live.",
-      "bodyEmphasis": "Find out what grew where you live.",
-      "caption": "Ecological vegetation class lookup",
-      "links": [
-        {
-          "label": "Find your EVC",
-          "url": "https://findmyevc.com/"
-        }
-      ],
-      "type": "website",
-      "layout": "poster",
-      "section": "wall-poster-discover",
-      "duration": 24,
-      "dark": true
-    },
-    {
-      "title": "Plant what\nbelongs here.",
-      "label": "Find My Ecological Garden",
-      "phase": "plant",
-      "body": "Not a style. A species list. Your address returns the indigenous species of your vegetation class to create your own ecological garden. Ecology first, then design.",
-      "bodyEmphasis": "Ecology first, then design.",
-      "caption": "Species list and garden plan",
-      "links": [
-        {
-          "label": "Plan your garden",
-          "url": "https://findmyecologicalgarden.com/"
-        }
-      ],
-      "type": "website",
-      "layout": "poster",
-      "section": "wall-poster-plant",
-      "duration": 24,
-      "dark": true
-    },
-    {
-      "title": "We measure\nwhat we build.",
-      "label": "The Ecological Registry",
-      "phase": "measure",
-      "body": "Every home built gets an energy rating. Nothing measures what's living in the garden around it. The Ecological Registry scores a garden's ecological performance and tracks it as it grows.",
-      "bodyEmphasis": "Nothing measures what's living in the garden around it.",
-      "caption": "Register \u00b7 Score \u00b7 Verify",
-      "links": [
-        {
-          "label": "Explore the Registry",
-          "url": "https://ecologicalregistry.org/"
-        }
-      ],
-      "type": "website",
-      "layout": "poster",
-      "section": "wall-poster-measure",
-      "duration": 24,
-      "dark": true
     },
     {
       "layout": "garden",
@@ -168,6 +75,91 @@
       "type": "website",
       "duration": 24,
       "imageSide": "left"
+    },
+    {
+      "title": "Melbourne\nwas woodlands.",
+      "label": "Find My EVC",
+      "phase": "discover",
+      "body": "Creeks, swamp scrub, grassy forest.\nEvery address in Victoria sits on a vegetation class that existed before the street did. Find out what grew where you live.",
+      "bodyEmphasis": "Find out what grew where you live.",
+      "caption": "Ecological vegetation class lookup",
+      "links": [
+        {
+          "label": "Find your EVC",
+          "url": "https://findmyevc.com/"
+        }
+      ],
+      "type": "website",
+      "layout": "poster",
+      "section": "wall-poster-discover",
+      "duration": 24,
+      "dark": true
+    },
+    {
+      "layout": "studio",
+      "section": "studio",
+      "title": "The two\nof us.",
+      "emphasis": "of us.",
+      "label": "04 / Craft, not scale",
+      "dark": true,
+      "image": "../images/natasha-tyson.webp",
+      "alt": "Natasha and Tyson, co-founders of Gardener & Son, standing on a grass path through a mature garden",
+      "body": "Gardener & Son is a small practice by design. We read the place, build the garden with our own hands, and keep coming back to see what it does.",
+      "facts": [
+        [
+          "Natasha",
+          "Co-founder / garden designer"
+        ],
+        [
+          "Tyson",
+          "Co-founder / garden designer"
+        ]
+      ],
+      "links": [
+        {
+          "label": "Meet the studio",
+          "url": "https://www.gardenerandson.com/#studio"
+        }
+      ],
+      "type": "website",
+      "duration": 24,
+      "imageSide": "right"
+    },
+    {
+      "layout": "place",
+      "section": "place",
+      "title": "Before the\ngarden,\nthe place.",
+      "emphasis": "the place.",
+      "label": "01 / Start with the address",
+      "body": "We don't start with a look. We start with the ecology of your street \u2014 what grew here, where the water moves, what habitat remains nearby.",
+      "facts": [
+        [
+          "Place",
+          "Country / bioregion / EVC"
+        ],
+        [
+          "Soil",
+          "Structure / life / inputs"
+        ],
+        [
+          "Water",
+          "Flow / hold / infiltrate"
+        ],
+        [
+          "Plants",
+          "Ground \u2192 shrub \u2192 canopy"
+        ],
+        [
+          "Habitat",
+          "Logs / rock / litter / water"
+        ],
+        [
+          "Time",
+          "Establish / change / remember"
+        ]
+      ],
+      "type": "website",
+      "duration": 24
     },
     {
       "layout": "garden",
@@ -216,6 +208,35 @@
       "imageSide": "right"
     },
     {
+      "title": "Plant what\nbelongs here.",
+      "label": "Find My Ecological Garden",
+      "phase": "plant",
+      "body": "Not a style. A species list. Your address returns the indigenous species of your vegetation class to create your own ecological garden. Ecology first, then design.",
+      "bodyEmphasis": "Ecology first, then design.",
+      "caption": "Species list and garden plan",
+      "links": [
+        {
+          "label": "Plan your garden",
+          "url": "https://findmyecologicalgarden.com/"
+        }
+      ],
+      "type": "website",
+      "layout": "poster",
+      "section": "wall-poster-plant",
+      "duration": 24,
+      "dark": true
+    },
+    {
+      "layout": "care",
+      "section": "after-build",
+      "title": "A garden isn't finished when we leave.",
+      "emphasis": "when we leave.",
+      "label": "03 / After the build",
+      "body": "New plantings take a few seasons to settle. We can stay on through that time \u2014 watching how the garden responds and stepping in when it needs us.",
+      "type": "website",
+      "duration": 24
+    },
+    {
       "layout": "garden",
       "section": "gardens",
       "title": "Winter crimson that answers the roof.",
@@ -262,64 +283,23 @@
       "imageSide": "left"
     },
     {
-      "layout": "care",
-      "section": "after-build",
-      "title": "A garden isn't finished when we leave.",
-      "emphasis": "when we leave.",
-      "label": "03 / After the build",
-      "body": "New plantings take a few seasons to settle. We can stay on through that time \u2014 watching how the garden responds and stepping in when it needs us.",
-      "cards": [
-        {
-          "label": "Tend / 01",
-          "title": "Care while it establishes.",
-          "body": "Ongoing ecological garden care, observation and seasonal intervention from the people who built it.",
-          "link": {
-            "label": "Explore Tend",
-            "url": "https://www.gardenerandson.com/tend/"
-          }
-        },
-        {
-          "label": "Registry / 02",
-          "title": "Measure what it gives back.",
-          "body": "A living ecological record of the garden, following its contribution to biodiversity and habitat over time.",
-          "link": {
-            "label": "View the Registry",
-            "url": "https://ecologicalregistry.org/"
-          }
-        }
-      ],
-      "type": "website",
-      "duration": 24
-    },
-    {
-      "layout": "studio",
-      "section": "studio",
-      "title": "The two\nof us.",
-      "emphasis": "of us.",
-      "label": "04 / Craft, not scale",
-      "dark": true,
-      "image": "../images/natasha-tyson.webp",
-      "alt": "Natasha and Tyson, co-founders of Gardener & Son, standing on a grass path through a mature garden",
-      "body": "Gardener & Son is a small practice by design. We read the place, build the garden with our own hands, and keep coming back to see what it does.",
-      "facts": [
-        [
-          "Natasha",
-          "Co-founder / garden designer"
-        ],
-        [
-          "Tyson",
-          "Co-founder / garden designer"
-        ]
-      ],
+      "title": "We measure\nwhat we build.",
+      "label": "The Ecological Registry",
+      "phase": "measure",
+      "body": "Every home built gets an energy rating. Nothing measures what's living in the garden around it. The Ecological Registry scores a garden's ecological performance and tracks it as it grows.",
+      "bodyEmphasis": "Nothing measures what's living in the garden around it.",
+      "caption": "Register \u00b7 Score \u00b7 Verify",
       "links": [
         {
-          "label": "Meet the studio",
-          "url": "https://www.gardenerandson.com/#studio"
+          "label": "Explore the Registry",
+          "url": "https://ecologicalregistry.org/"
         }
       ],
       "type": "website",
+      "layout": "poster",
+      "section": "wall-poster-measure",
       "duration": 24,
-      "imageSide": "right"
+      "dark": true
     },
     {
       "layout": "begin",

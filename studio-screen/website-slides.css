@@ -54,16 +54,9 @@
 .side-image .caption{left:1200px;top:400px;bottom:auto;width:600px;padding:0;background:none}
 .side-image.image-right .caption{left:120px}
 .side-image .caption h2{font-size:90px}
-.website-care .website-copy{top:160px;width:1640px}
-.website-care h2{font-size:92px;max-width:1550px}
-.website-care .website-copy>.website-body{font-size:30px;max-width:1600px;margin-top:26px}
-.website-care-cards{position:absolute;inset:500px 120px 120px;display:grid;grid-template-columns:1fr 1fr;gap:120px}
-.website-care-card{position:relative;border-top:1px solid var(--green);padding-top:30px}
-.website-care-card .label{font-size:20px;margin-bottom:24px}
-.website-care-card .label:before{display:none}
-.website-care-card h3{font:50px/1.1 var(--serif);letter-spacing:-1px;margin:0}
-.website-care-card .website-body{font-size:30px;margin-top:24px}
-.website-care-card .website-link{left:0;right:0;bottom:0}
+.website-care .website-copy{top:280px;width:1640px}
+.website-care h2{font-size:120px;max-width:1550px}
+.website-care .website-copy>.website-body{font-size:36px;max-width:1400px;margin-top:40px}
 .website-begin .website-copy{top:280px;width:1500px}
 .website-begin .website-body{max-width:1200px}
 .website-begin .website-link{left:120px;right:auto;bottom:150px;gap:24px}

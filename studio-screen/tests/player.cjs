@@ -30,7 +30,7 @@ async function scenario(register,saved=null,online=true){
  assert.equal(vm.runInContext('pending',context),null,'missing website image retains rotation');
  for(let i=0;i<base.slides.length;i++){
   vm.runInContext(`position=${i};render()`,context);const rendered=elements['#stage'].lastElementChild;
-  assert.ok(rendered.children.length>=3);assert.equal(hasSvg(rendered),false,'slides contain no QR SVG');
+  assert.ok(rendered.children.length>=(base.slides[i].layout==='care'?2:3));assert.equal(hasSvg(rendered),false,'slides contain no QR SVG');
  }
  assert.throws(()=>vm.runInContext(`validate(${JSON.stringify(journal)})`,context),'journal source must be rejected');
  const posters=base.slides.filter(s=>s.layout==='poster');assert.deepEqual(posters.map(s=>s.phase),['discover','plant','measure']);
