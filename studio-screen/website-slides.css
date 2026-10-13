@@ -33,9 +33,9 @@
 .website-garden .website-fact{padding:12px 0;gap:18px;align-items:baseline}
 .website-garden .website-fact dt{flex-basis:130px;font-size:16px}
 .website-garden .website-link{left:auto;right:120px;bottom:50px;max-width:520px;text-align:right}
-.website-studio .website-figure img{object-position:52% 55%}
-.website-studio .website-figure:after{background:linear-gradient(90deg,var(--shade) 0%,var(--shade) 42%,transparent 74%)}
-.website-studio .website-copy{left:120px;top:auto;bottom:100px;width:780px}
+.website-studio .website-figure img{left:50%;top:50%;width:160%;height:160%;transform:translate(-52%,-53%);object-position:center}
+.website-studio .website-figure:after{background:linear-gradient(90deg,var(--shade) 0%,var(--shade) 32%,transparent 46%)}
+.website-studio .website-copy{left:120px;top:auto;bottom:100px;width:600px}
 .website-studio h2{font-size:86px;letter-spacing:-3px}
 .website-studio .website-body{font-size:30px;line-height:1.35;margin-top:30px}
 .website-studio .website-facts{font-size:18px;margin-top:26px}
