@@ -96,3 +96,6 @@
 .website-garden .website-fact dd{text-align:left}
 .side-image .caption{left:1060px;width:740px;top:350px}
 .side-image.image-right .caption{left:120px}
+
+/* Keep the stork head in view on the Heirloom photograph. */
+.side-image img{object-position:center top}
