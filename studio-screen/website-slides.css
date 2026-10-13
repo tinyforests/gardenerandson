@@ -79,3 +79,7 @@
 .poster-caption{font:18px var(--mono);letter-spacing:2px;text-transform:uppercase;text-align:right}
 .poster-signature{position:absolute;bottom:65px;left:50%;transform:translateX(-50%);font:400 40px/.9 var(--serif);letter-spacing:-1px;text-align:center}
 .poster-signature span{display:block}
+
+/* Supplied logo silhouette keeps the artwork intact in both brand colours. */
+.wordmark{width:230px;height:122px;background:var(--green);mask:url(logo-G_S.png) center/contain no-repeat;-webkit-mask:url(logo-G_S.png) center/contain no-repeat}
+.dark .wordmark,.side-image .wordmark{background:var(--beige)}
