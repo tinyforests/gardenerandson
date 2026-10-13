@@ -6,7 +6,7 @@ Open `/studio-screen/` on the studio iMac, move the browser to the Samsung displ
 
 The base playlist follows the homepage: opening, place, gardens, after the build, studio and beginning a garden. Gardens has three slides, one for each project in the website's `DESIGNS` array. Each of the eight base slides lasts 24 seconds; the selected Heirloom photograph brings the rotation to nine slides over three and a half minutes.
 
-Garden and studio images fill the entire slide using `object-fit: cover`. Quiet green gradients keep overlaid text readable. Project facts and status labels, including “In design”, are retained. Review crops and footpath readability on the physical screen.
+Image-based slides use a portrait panel beside the text on a green background. `imageSide` selects `left` or `right`; the current image slides alternate sides. Panels sit 60 pixels inside the frame and clip their crops. The studio portrait keeps both founders centred within its panel, so its enlarged image cannot spill into the slide margins. Project facts and status labels, including “In design”, are retained. Review crops and footpath readability on the physical screen.
 
 The player does not load journal headlines, features or images. It also removes journal entries from older saved playlists before restoring them, including when offline. QR scripts and QR rendering are no longer loaded; website actions remain readable, keyboard-accessible text links. Historic journal files remain in the repository but are independent of the display.
 

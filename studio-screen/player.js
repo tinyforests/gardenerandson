@@ -13,6 +13,7 @@ function validate(data, allowEmpty = false) {
     if (!['brand','statement','image','website'].includes(s.type) || !Number.isFinite(s.duration) || s.duration < 8 || s.duration > 120) throw Error('Invalid slide');
     if (s.type !== 'brand' && (typeof s.title !== 'string' || s.title.length > 110)) throw Error('Title too long');
     if (s.label && (typeof s.label !== 'string' || s.label.length > 90)) throw Error('Label too long');
+    if (s.imageSide !== undefined && !['left','right'].includes(s.imageSide)) throw Error('Invalid image side');
     if (s.type === 'website') validateWebsiteSlide(s);
     if (s.source !== undefined || s.excerpt !== undefined) throw Error('Journal slides are disabled');
     if (s.type === 'image' || s.image !== undefined) {
@@ -41,6 +42,8 @@ function render() {
   const section = document.createElement('section'); section.className='slide'+(s.dark?' dark':'')+(s.type==='image'?' image':'');
   if (s.type === 'website') renderWebsite(s, section);
   else if (s.type==='image') {
+    section.classList.add('side-image','image-' + (s.imageSide || 'left'));
+    const wordmark=text('div','Gardener ','wordmark');wordmark.append(text('em','&'),document.createTextNode(' Son'));section.append(wordmark);
     const img=document.createElement('img'); img.src=s.image;img.alt=s.alt;section.append(img);
     const caption=document.createElement('div');caption.className='caption';caption.append(text('p',s.label||'Gardener & Son','label'),text('h2',s.title));section.append(caption);
   } else {

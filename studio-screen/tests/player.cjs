@@ -33,6 +33,7 @@ async function scenario(register,saved=null,online=true){
   assert.ok(rendered.children.length>=3);assert.equal(hasSvg(rendered),false,'slides contain no QR SVG');
  }
  assert.throws(()=>vm.runInContext(`validate(${JSON.stringify(journal)})`,context),'journal source must be rejected');
+ const badSide={...base.slides.find(s=>s.image),imageSide:'top'};assert.throws(()=>vm.runInContext(`validate({version:'bad',slides:[${JSON.stringify(badSide)}]})`,context));
  const badLink={...base.slides[0],links:[{label:'Bad',url:'https://evil.example/'}]};assert.throws(()=>vm.runInContext(`validate({version:'bad',slides:[${JSON.stringify(badLink)}]})`,context));
  const longBody={...base.slides[0],body:'x'.repeat(241)};assert.throws(()=>vm.runInContext(`validate({version:'bad',slides:[${JSON.stringify(longBody)}]})`,context));
 }

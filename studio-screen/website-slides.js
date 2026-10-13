@@ -60,6 +60,7 @@ function websiteLink(link) {
 
 function renderWebsite(s, section) {
   section.classList.add('website', 'website-' + s.layout);
+  if (s.image) section.classList.add('image-' + (s.imageSide || 'left'));
   const wordmark = text('div', 'Gardener ', 'wordmark');
   wordmark.append(text('em', '&'), document.createTextNode(' Son'));
   section.append(wordmark);

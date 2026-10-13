@@ -1,5 +1,5 @@
 {
-  "version": "website-full-bleed-2026-10-13-2",
+  "version": "website-side-images-2026-10-13-3",
   "slides": [
     {
       "layout": "hero",
@@ -121,7 +121,8 @@
         }
       ],
       "type": "website",
-      "duration": 24
+      "duration": 24,
+      "imageSide": "left"
     },
     {
       "layout": "garden",
@@ -166,7 +167,8 @@
         }
       ],
       "type": "website",
-      "duration": 24
+      "duration": 24,
+      "imageSide": "right"
     },
     {
       "layout": "garden",
@@ -211,7 +213,8 @@
         }
       ],
       "type": "website",
-      "duration": 24
+      "duration": 24,
+      "imageSide": "left"
     },
     {
       "layout": "care",
@@ -270,7 +273,8 @@
         }
       ],
       "type": "website",
-      "duration": 24
+      "duration": 24,
+      "imageSide": "right"
     },
     {
       "layout": "begin",
