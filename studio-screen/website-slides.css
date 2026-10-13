@@ -18,42 +18,42 @@
 .website-place .website-body{font-size:34px;max-width:990px}
 .website-place>.website-facts{left:1230px;font-size:22px}
 .website-place .website-fact dt{flex-basis:130px}
-.website .website-link{left:1230px;right:120px;top:auto;bottom:80px;transform:none;width:auto;flex-direction:row;align-items:center;gap:30px}
-.website .website-link svg{width:222px;height:222px;flex-shrink:0}
-.website .journal-prompt{font-size:30px}
-.website .journal-url{font-size:18px}
-.website .journal-link-copy{min-width:0}
-.website-figure{position:absolute;inset:0 auto 0 0;width:1140px;margin:0;background:var(--beige);color:var(--green)}
-.website-figure img{position:absolute;left:40px;top:170px;width:1060px;height:760px;object-fit:contain}
-.website-figure figcaption{position:absolute;left:120px;right:80px;bottom:80px;font:20px/1.4 var(--mono);text-transform:uppercase;letter-spacing:1px}
-.website-garden .wordmark,.website-studio .wordmark{left:1230px;font-size:38px}
-.website-garden .website-copy,.website-studio .website-copy{left:1230px;top:190px;width:570px}
-.website-garden .label,.website-studio .label{font-size:20px;letter-spacing:2px;margin-bottom:28px}
-.website-garden h2{font-size:62px;line-height:1.06;letter-spacing:-2px}
-.website-garden .website-facts{margin-top:30px;font-size:20px}
-.website-garden .website-fact{padding:11px 0;gap:18px}
-.website-garden .website-fact dt{flex-basis:150px;font-size:16px}
-.website-garden .website-link,.website-studio .website-link{left:1230px}
-.website-garden .website-link svg,.website-studio .website-link svg{width:222px;height:222px}
-.website-studio .website-figure img{inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 55%}
+.website-link{position:absolute;left:1230px;right:120px;bottom:120px;display:flex;flex-direction:column;gap:16px;color:inherit;text-decoration:none}
+.website-prompt{font:32px/1.2 var(--sans)}
+.website-url{font:20px/1.4 var(--mono);overflow-wrap:anywhere}
+.website-link:focus-visible{outline:3px solid var(--brass);outline-offset:12px}
+.website-figure{position:absolute;inset:0;width:100%;height:100%;margin:0;color:var(--beige)}
+.website-figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.website-figure:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--shade) 0%,var(--shade) 28%,transparent 75%),linear-gradient(180deg,var(--shade),transparent 24%)}
+.website-figure figcaption{position:absolute;left:120px;right:80px;bottom:50px;z-index:1;font:20px/1.4 var(--mono);text-transform:uppercase;letter-spacing:1px}
+.website-garden .website-copy{left:120px;right:120px;top:auto;bottom:140px;width:auto}
+.website-garden .label{font-size:22px;letter-spacing:2px;margin-bottom:24px}
+.website-garden h2{font-size:86px;line-height:1.06;letter-spacing:-2px;max-width:1640px}
+.website-garden .website-facts{margin-top:30px;font-size:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px 60px}
+.website-garden .website-fact{padding:12px 0;gap:18px;align-items:baseline}
+.website-garden .website-fact dt{flex-basis:130px;font-size:16px}
+.website-garden .website-link{left:auto;right:120px;bottom:50px;max-width:520px;text-align:right}
+.website-studio .website-figure img{object-position:52% 55%}
+.website-studio .website-figure:after{background:linear-gradient(90deg,var(--shade) 0%,var(--shade) 42%,transparent 74%)}
+.website-studio .website-copy{left:120px;top:auto;bottom:100px;width:780px}
 .website-studio h2{font-size:86px;letter-spacing:-3px}
 .website-studio .website-body{font-size:30px;line-height:1.35;margin-top:30px}
 .website-studio .website-facts{font-size:18px;margin-top:26px}
 .website-studio .website-fact{padding:14px 0;gap:20px}
 .website-studio .website-fact dt{flex-basis:100px}
+.website-studio .website-link{left:auto;right:120px;bottom:80px;max-width:500px;text-align:right}
 .website-care .website-copy{top:160px;width:1640px}
 .website-care h2{font-size:92px;max-width:1550px}
 .website-care .website-copy>.website-body{font-size:30px;max-width:1600px;margin-top:26px}
-.website-care-cards{position:absolute;inset:500px 120px 80px;display:grid;grid-template-columns:1fr 1fr;gap:120px}
+.website-care-cards{position:absolute;inset:500px 120px 120px;display:grid;grid-template-columns:1fr 1fr;gap:120px}
 .website-care-card{position:relative;border-top:1px solid var(--green);padding-top:30px}
 .website-care-card .label{font-size:20px;margin-bottom:24px}
 .website-care-card .label:before{display:none}
 .website-care-card h3{font:50px/1.1 var(--serif);letter-spacing:-1px;margin:0}
 .website-care-card .website-body{font-size:30px;margin-top:24px}
 .website-care-card .website-link{left:0;right:0;bottom:0}
-.website-care-card .website-link svg{width:222px;height:222px}
-.website-begin .website-copy{top:250px;width:1050px}
-.website-begin .website-link{left:1280px;right:120px;top:360px;bottom:auto;flex-direction:column;align-items:flex-start;gap:32px}
-.website-begin .website-link svg{width:320px;height:320px}
-.website-begin .journal-prompt{font:42px/1.15 var(--serif)}
-.website-begin .journal-url{font-size:22px}
+.website-begin .website-copy{top:280px;width:1500px}
+.website-begin .website-body{max-width:1200px}
+.website-begin .website-link{left:120px;right:auto;bottom:150px;gap:24px}
+.website-begin .website-prompt{font:48px/1.15 var(--serif)}
+.website-begin .website-url{font-size:24px}

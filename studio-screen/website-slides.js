@@ -51,8 +51,10 @@ function websiteFacts(rows) {
 }
 
 function websiteLink(link) {
-  const el = journalLink(link.url, link.label);
-  el.classList.add('website-link');
+  const el = text('a', '', 'website-link');
+  el.href = link.url;
+  const url = new URL(link.url);
+  el.append(text('span', link.label, 'website-prompt'), text('span', url.hostname + url.pathname, 'website-url'));
   return el;
 }
 

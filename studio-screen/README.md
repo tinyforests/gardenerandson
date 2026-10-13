@@ -2,48 +2,36 @@
 
 Open `/studio-screen/` on the studio iMac, move the browser to the Samsung display, and click Fullscreen (or press F). The 1920 × 1080 layout scales to the screen. Arrow keys move slides; Space pauses. Controls disappear after four seconds without input. Reduced-motion settings disable fades.
 
+## Current rotation
+
+The base playlist follows the homepage: opening, place, gardens, after the build, studio and beginning a garden. Gardens has three slides, one for each project in the website's `DESIGNS` array. Each of the eight base slides lasts 24 seconds; the selected Heirloom photograph brings the rotation to nine slides over three and a half minutes.
+
+Garden and studio images fill the entire slide using `object-fit: cover`. Quiet green gradients keep overlaid text readable. Project facts and status labels, including “In design”, are retained. Review crops and footpath readability on the physical screen.
+
+The player does not load journal headlines, features or images. It also removes journal entries from older saved playlists before restoring them, including when offline. QR scripts and QR rendering are no longer loaded; website actions remain readable, keyboard-accessible text links. Historic journal files remain in the repository but are independent of the display.
+
 ## Publishing content
 
-Edit `playlist.json` on a branch and review before merging. Increment `version` for each change. The display checks the published JSON every five minutes and applies a complete, image-tested update at the end of the rotation. Each slide has a `type` (brand, statement, image, website) and `duration` in seconds (8–120). Keep titles short (maximum 110 characters), labels under 90 characters and provide meaningful `alt` for images. Image paths are relative to this folder and must be same-origin JPEG, PNG or WebP. Use `dark: true` for dark screens.
+Edit `playlist.json` and `photos.json` on a branch and review before merging. Increment `version` for each change. The display checks these two sources every five minutes and applies a complete, image-tested update at the end of the rotation. Each slide has a `type` (brand, statement, image, website) and `duration` in seconds (8–120). Keep titles under 110 characters, labels under 90 characters and provide meaningful `alt` for images. Image paths must be same-origin JPEG, PNG or WebP. Use `dark: true` for dark screens.
 
-The base playlist follows the current homepage: opening, place, gardens, after the build, studio and beginning a garden. Gardens has three slides, one per project in the website's `DESIGNS` array. Each of the eight base slides lasts 24 seconds; the selected Heirloom photograph and three journal stories bring the current rotation to twelve slides (four and a half minutes). Project illustrations retain the website's status labels, including “In design”. Review imagery and readability on the physical screen from the footpath. Avoid publishing private client material without clearance. This playlist is the selection point: working files do not automatically become public display content.
+Website slides are an editorial snapshot of root `index.html`. Keep their text, facts and status labels in step with the website when editing. Each slide has a `section` and a `layout`: `hero`, `place`, `garden`, `care`, `studio` or `begin`. `body` is limited to 240 characters, `facts` to six label/value pairs, and `emphasis` must occur in the title. Newlines create deliberate line breaks; emphasis uses italic Fraunces rendered as text.
 
-Website slides are an editorial snapshot of root `index.html`, not an automatic scrape. Keep their text, project facts and status labels in step with the website when editing. Each slide has a `section` and a `layout`: `hero`, `place`, `garden`, `care`, `studio` or `begin`. `body` is limited to 240 characters, `facts` to six label/value pairs and `emphasis` must occur in the title. Newlines in titles create deliberate line breaks; emphasis is rendered as text with italic Fraunces, never injected HTML.
+Most website slides have one `links` entry. Care has two `cards`, each with a text link, for Tend and the Ecological Registry. Destinations are restricted to the studio website, Find My EVC and the Ecological Registry. The seasonal reading uses the homepage's southern-hemisphere month rules. `website-slides.js` and `website-slides.css` define these layouts.
 
-Most website slides have one `links` entry with a readable label and HTTPS URL. Care has two `cards`, each with its own link, for Tend and the Ecological Registry. QR destinations are restricted to the studio website, Find My EVC and the Ecological Registry. The seasonal reading follows the same southern-hemisphere month rules as the homepage. `website-slides.js` and `website-slides.css` define these layouts; their files and all four website images are included in the offline cache.
+`photos.json` selects additional studio photographs. Add local photographs, include an image entry and increment its version. Publish `"slides": []` with a new version to remove all selected photographs. Invalid entries or unavailable images retain the last working rotation.
+
+This playlist is the selection point: working files do not automatically become public display content. Review client imagery before publication.
 
 ## Offline behaviour
 
-Serve from HTTPS or localhost (not by double-clicking the HTML file). After a successful initial cache installation, the service worker saves the page, fonts and starter images. Subsequent successful requests are also cached. A validated playlist is saved locally. If an update has missing images or malformed data, the last usable rotation continues. Offline use requires the browser's stored data to remain intact; test it on the studio iMac before unattended use.
+Serve from HTTPS or localhost. After a successful initial installation, the service worker caches the player, layouts, fonts and images. Successful subsequent requests are also cached. A validated rotation is saved locally. Playback and refresh start independently of cache installation; offline reload requires a successful cache and retained browser data. Test this on the studio iMac before unattended use.
 
-## Local preview
+Include newly selected images in the service worker's `core` list and increment `CACHE` for first-install offline caching.
 
-From the repository root, run `python3 -m http.server 8080`, then open `http://localhost:8080/studio-screen/`.
+## Local preview and checks
+
+From the repository root, run `python3 -m http.server 8080`, then open `http://localhost:8080/studio-screen/`. Run `node studio-screen/tests/player.cjs` for rotation, journal-removal, cache-restoration and validation checks. The site needs no build step or framework.
 
 ## iMac setup
 
-Use an extended display and move the browser onto the Samsung. Configure the iMac to remain awake during display hours and open this page after login. Fullscreen and a wake-lock are not substitutes for the macOS power settings. No iMac settings are changed by this page.
-
-## Further sources
-
-The Gardener & Son journal and selected GitHub images are connected. Instagram and external photo libraries are not connected yet. Future importers should produce this same playlist plus studio-hosted images, with an explicit selection or approval step. Do not embed expiring social-media image URLs or expose account credentials. The website needs no framework or build step.
-
-## Connected journal and GitHub photos
-
-`photos.json` selects images already in GitHub. Add studio photographs to `studio-screen/photos/`, then add an image entry and increment the photo playlist version. Selected photographs join the rotation automatically after publication.
-
-To remove all selected studio photographs, publish `photos.json` with a new version and `"slides": []`. The base garden images continue playing. Invalid photo entries still reject the update and retain the saved rotation.
-
-Journal headlines are placed after image-bearing slides through the rotation. If there are no photographs, they are distributed after base slides; any remaining headlines are retained at the end. Each article with a `source` shows a QR code and readable article link. Sources must be HTTPS article URLs on `gardenerandson.substack.com/p/`. QR codes are generated locally using the bundled MIT-licensed `qrcode-generator` library (Kazuhiko Arase, `vendor/qrcode.js`); no external QR service or build step is required. Check scanning distance through the studio window on the physical screen.
-
-`journal-features.json` selects a photograph and a short, exact quote from each featured post. These are joined to the refreshed headlines by article URL, so hourly imports do not erase the selections. Current articles have a photograph beside their headline, quote and “Read more” QR/link. The photographs are compressed copies from the matching public posts, hosted in `journal-images/`; `imageSource` records their origin for reference and is never fetched by the display.
-
-For a new article, add its `source`, local `image`, meaningful `alt` and `excerpt` (maximum 180 characters) to `articles`, and increment the features `version`. Choose the quote from the article itself; do not invent or automatically summarise it. Include new featured images in the service worker's `core` list for first-install offline caching and increment `CACHE`. New headlines without a selected feature continue using the headline layout. All feature images are checked before an update replaces the rotation; missing images or invalid quotes retain the previous rotation.
-
-Playback and refresh start independently of service-worker installation. If offline cache installation fails, online content can still load; offline reload requires a successfully installed cache. The cache includes the QR library.
-
-`import-journal.py` reads the public Gardener & Son Substack RSS feed and stores the latest three suitable published headlines in `journal.json`. It imports titles only, not full articles or remote images. The scheduled GitHub Actions workflow runs hourly on the default branch; GitHub schedules can be delayed. It commits only changes to this generated file. Repository policy must permit its contents-write token to push; if branch protection prevents that, configure an approved publishing identity before enabling the workflow.
-
-The player checks the generated journal JSON on the main branch via GitHub's raw endpoint, so journal updates do not depend on triggering a GitHub Pages rebuild. If unavailable, it uses the local published snapshot. All sources are combined and checked before replacing the saved rotation. Local source and photo updates still require normal GitHub Pages publication.
-
-To refresh manually: `python3 studio-screen/import-journal.py` from the repository root. Never put Instagram or other account tokens into this public repository.
+Use an extended display and move the browser onto the Samsung. Configure the iMac to stay awake during display hours and open the page after login. Fullscreen is not a substitute for macOS power settings. The page does not change those settings.
