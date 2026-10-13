@@ -41,7 +41,7 @@
 .website-garden .website-link,.website-studio .website-link{left:1200px;right:120px;bottom:120px;text-align:left}
 .website.image-right .website-link{left:120px;right:auto;width:600px}
 .website-studio .website-figure img{inset:auto;left:50%;top:50%;height:115%;width:auto;transform:translate(-52%,-53%);object-fit:cover}
-.website-studio h2{font-size:86px;letter-spacing:-3px}
+.website-studio h2{font-family:var(--hero);font-size:86px;letter-spacing:-3px}
 .website-studio .website-body{font-size:30px;line-height:1.35;margin-top:30px}
 .website-studio .website-facts{font-size:18px;margin-top:26px}
 .website-studio .website-fact{padding:14px 0;gap:20px}

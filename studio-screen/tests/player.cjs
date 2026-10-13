@@ -33,7 +33,8 @@ async function scenario(register,saved=null,online=true){
   assert.ok(rendered.children.length>=(['care','begin'].includes(base.slides[i].layout)?2:3));assert.equal(hasSvg(rendered),false,'slides contain no QR SVG');
  }
  assert.throws(()=>vm.runInContext(`validate(${JSON.stringify(journal)})`,context),'journal source must be rejected');
- const posters=base.slides.filter(s=>s.layout==='poster');assert.deepEqual(posters.map(s=>s.phase),['discover','plant','measure']);
+ assert.equal(base.slides.some(s=>s.layout==='poster'),false,'wall posters are paused');
+ const posters=JSON.parse(fs.readFileSync(root+'wall-posters.json')).slides;assert.deepEqual(posters.map(s=>s.phase),['discover','plant','measure']);
  for(const phase of ['invalid',null]) {const badPoster={...posters[0],phase};assert.throws(()=>vm.runInContext(`validate({version:'bad',slides:[${JSON.stringify(badPoster)}]})`,context));}
  const badEmphasis={...posters[0],bodyEmphasis:'Missing phrase'};assert.throws(()=>vm.runInContext(`validate({version:'bad',slides:[${JSON.stringify(badEmphasis)}]})`,context));
  const badSide={...base.slides.find(s=>s.image),imageSide:'top'};assert.throws(()=>vm.runInContext(`validate({version:'bad',slides:[${JSON.stringify(badSide)}]})`,context));
@@ -44,5 +45,5 @@ async function scenario(register,saved=null,online=true){
  await scenario(()=>Promise.resolve({}));await scenario(()=>Promise.reject(Error('Cache failed')));await scenario(()=>new Promise(()=>{}));
  const legacy=JSON.stringify({version:'legacy',slides:[...base.slides,...photos.slides,...journal.slides]});
  await scenario(()=>Promise.resolve({}),legacy,false);
- console.log('PASS: twelve slides with three wall posters, no journal requests or QR codes, legacy cache removal, offline restore, content bounds, boundary updates and missing-image retention');
+ console.log('PASS: nine slides with wall posters paused, no journal requests or QR codes, legacy cache removal, offline restore, content bounds, boundary updates and missing-image retention');
 })().catch(e=>{console.error(e);process.exitCode=1});

@@ -4,7 +4,7 @@ Open `/studio-screen/` on the studio iMac, move the browser to the Samsung displ
 
 ## Current rotation
 
-The base playlist mixes opening, place, gardens, after the build, studio and beginning a garden with the three wall posters. The ordered sequence repeats continuously, with projects and posters spaced between other content. Gardens has three slides, one for each project in the website's `DESIGNS` array. Three matching studio wall posters appear throughout the loop in Discover → Plant → Measure order. Each of the eleven base slides lasts 24 seconds; the selected Heirloom photograph brings the rotation to twelve slides over four minutes and 42 seconds. The posters preserve the wall artwork’s wording, green-and-beige palette, highlighted phrases and website addresses in a landscape layout.
+The base playlist mixes opening, place, garden projects, after the build, studio and beginning a garden. Eight base slides last 24 seconds each; the Heirloom photograph brings the continuously repeating rotation to nine slides over three minutes and 30 seconds. The wall posters are paused and preserved in `wall-posters.json`, which the player does not load.
 
 Image-based slides use a portrait panel beside the text on a green background. `imageSide` selects `left` or `right`; the current image slides alternate sides. Panels sit 60 pixels inside the frame and clip their crops. The studio portrait keeps both founders centred within its panel, so its enlarged image cannot spill into the slide margins. Project facts and status labels, including “In design”, are retained. Review crops and footpath readability on the physical screen.
 
