@@ -24,17 +24,18 @@ async function scenario(register, qrAvailable = true) {
   qrcode:qrAvailable ? require(root+'vendor/qrcode.js') : undefined,
   fetch:async url=>{fetches++;return {ok:true,json:async()=>url==='playlist.json'?base:url==='photos.json'?photoData:url==='journal-features.json'?featureData:journal};}
  });
+ vm.runInContext(fs.readFileSync(root+'website-slides.js','utf8'),context);
  vm.runInContext(fs.readFileSync(root+'player.js','utf8'),context);
  for(let i=0;i<30;i++)await Promise.resolve();
- assert.equal(vm.runInContext('playlist.slides.length',context),11,'startup must load without serviceWorker.ready');
+ assert.equal(vm.runInContext('playlist.slides.length',context),base.slides.length+photos.slides.length+journal.slides.length,'startup must load without serviceWorker.ready');
  assert.ok(fetches>=4);
  const order=JSON.parse(vm.runInContext('JSON.stringify(playlist.slides)',context));
- for(let i=0;i<order.length;i++)if(order[i].source){assert.equal(order[i-1].type,'image');assert.ok(order[i].image);assert.ok(order[i].excerpt);}
+ for(let i=0;i<order.length;i++)if(order[i].source){assert.ok(order[i-1].image);assert.ok(order[i].image);assert.ok(order[i].excerpt);}
  photoData={version:'no-photos',slides:[]};
  await vm.runInContext('refresh()',context);
- assert.equal(vm.runInContext('pending.slides.length',context),10,'empty photo source removes selected photograph');
+ assert.equal(vm.runInContext('pending.slides.length',context),base.slides.length+journal.slides.length,'empty photo source removes selected photograph');
  vm.runInContext('position=playlist.slides.length-1; advance(1)',context);
- assert.equal(vm.runInContext('playlist.slides.length',context),10);
+ assert.equal(vm.runInContext('playlist.slides.length',context),base.slides.length+journal.slides.length);
  assert.equal(vm.runInContext('position',context),0);
  photoData={version:'bad',slides:[{type:'image',duration:18,image:'https://other.example/photo.jpg',alt:'Invalid',title:'Bad'}]};
  await vm.runInContext('refresh()',context);
@@ -50,6 +51,16 @@ async function scenario(register, qrAvailable = true) {
  featureData={version:'bad-feature',articles:[{...features.articles[0],excerpt:'x'.repeat(181)}]};
  await vm.runInContext('refresh()',context);
  assert.equal(vm.runInContext('pending',context),null,'oversized quote must retain saved rotation');
+ for(let i=0;i<base.slides.length;i++) {
+  vm.runInContext(`position=playlist.slides.findIndex(s=>s.type==='website' && s.title===${JSON.stringify(base.slides[i].title)});render()`,context);
+  assert.ok(elements['#stage'].lastElementChild.children.length>=3,'website section renders');
+ }
+ const badLink={...base.slides[0],links:[{label:'Bad',url:'https://evil.example/'}]};
+ assert.throws(()=>vm.runInContext(`validate({version:'bad',slides:[${JSON.stringify(badLink)}]})`,context));
+ const longBody={...base.slides[0],body:'x'.repeat(241)};
+ assert.throws(()=>vm.runInContext(`validate({version:'bad',slides:[${JSON.stringify(longBody)}]})`,context));
+ const missingImage={...base.slides.find(s=>s.layout==='studio')};delete missingImage.image;
+ assert.throws(()=>vm.runInContext(`validate({version:'bad',slides:[${JSON.stringify(missingImage)}]})`,context));
  const slide=vm.runInContext('playlist.slides.findIndex(s=>s.source)',context);
  vm.runInContext(`position=${slide};render()`,context);
  assert.ok(elements['#stage'].lastElementChild.children.some(e=>e.className==='journal-link'),'article link renders');
@@ -59,5 +70,5 @@ async function scenario(register, qrAvailable = true) {
  await scenario(()=>Promise.reject(Error('offline cache failed')));
  await scenario(()=>new Promise(()=>{}));
  await scenario(()=>Promise.resolve({}),false);
- console.log('PASS: cache startup, empty photos, featured quotes/images, interleaving, boundary updates, invalid content and missing-image retention, link fallback');
+ console.log('PASS: twelve-slide rotation, all website layouts, approved QR destinations, content bounds, cache startup, empty photos, journal features, boundary updates and invalid-image retention');
 })().catch(e=>{console.error(e);process.exitCode=1});

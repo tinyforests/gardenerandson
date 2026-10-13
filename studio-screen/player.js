@@ -10,9 +10,10 @@ const text = (tag, value, className) => {
 function validate(data, allowEmpty = false) {
   if (!data || typeof data.version !== 'string' || !Array.isArray(data.slides) || (!allowEmpty && !data.slides.length) || data.slides.length > 100) throw Error('Invalid playlist');
   for (const s of data.slides) {
-    if (!['brand','statement','image'].includes(s.type) || !Number.isFinite(s.duration) || s.duration < 8 || s.duration > 120) throw Error('Invalid slide');
+    if (!['brand','statement','image','website'].includes(s.type) || !Number.isFinite(s.duration) || s.duration < 8 || s.duration > 120) throw Error('Invalid slide');
     if (s.type !== 'brand' && (typeof s.title !== 'string' || s.title.length > 110)) throw Error('Title too long');
     if (s.label && (typeof s.label !== 'string' || s.label.length > 90)) throw Error('Label too long');
+    if (s.type === 'website') validateWebsiteSlide(s);
     if (s.source !== undefined) {
       if (typeof s.source !== 'string' || s.source.length > 300) throw Error('Invalid journal link');
       const url = new URL(s.source);
@@ -20,7 +21,7 @@ function validate(data, allowEmpty = false) {
     }
     if (s.excerpt !== undefined && (s.type !== 'statement' || !s.source || typeof s.excerpt !== 'string' || !s.excerpt.trim() || s.excerpt.length > 180)) throw Error('Invalid journal excerpt');
     if (s.type === 'image' || s.image !== undefined) {
-      if (s.type !== 'image' && (!s.source || !s.excerpt)) throw Error('Journal image needs a source and excerpt');
+      if (s.type !== 'image' && s.type !== 'website' && (!s.source || !s.excerpt)) throw Error('Journal image needs a source and excerpt');
       const url = new URL(s.image, location.href);
       if (url.origin !== location.origin || !/\.(webp|jpe?g|png)$/i.test(url.pathname) || typeof s.alt !== 'string' || !s.alt) throw Error('Use a local image with alt text');
     }
@@ -42,24 +43,24 @@ function enrichJournal(journal, features) {
 }
 function compose(base, photos, journal) {
   const slides = [...base.slides, ...photos.slides];
-  const imageCount = slides.filter(s => s.type === 'image').length;
+  const imageCount = slides.filter(s => s.image).length;
   const combined = [];
   let article = 0;
   for (const slide of slides) {
     combined.push(slide);
-    if (article < journal.slides.length && (slide.type === 'image' || imageCount === 0)) combined.push(journal.slides[article++]);
+    if (article < journal.slides.length && (slide.image || imageCount === 0)) combined.push(journal.slides[article++]);
   }
   // Preserve every article even when there are fewer photographs than headlines.
   combined.push(...journal.slides.slice(article));
   return validate({version:['rotation-2', base.version, photos.version, journal.version].join('|'), slides:combined});
 }
-function journalLink(source) {
+function journalLink(source, prompt = 'Read more') {
   const url = new URL(source);
   const link = text('a', '', 'journal-link');
   link.href = url.href;
   // The readable link remains usable if the QR asset cannot load.
   if (typeof qrcode !== 'function') {
-    link.append(text('span', 'Read more', 'journal-prompt'), text('span', url.hostname + url.pathname, 'journal-url'));
+    link.append(text('span', prompt, 'journal-prompt'), text('span', url.hostname + url.pathname, 'journal-url'));
     return link;
   }
   const code = qrcode(0, 'M');
@@ -76,7 +77,7 @@ function journalLink(source) {
   const modules = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   modules.setAttribute('d', path); modules.setAttribute('fill', 'currentColor'); svg.append(modules);
   const copy = text('span', '', 'journal-link-copy');
-  copy.append(text('span', 'Read more', 'journal-prompt'), text('span', url.hostname + url.pathname, 'journal-url'));
+  copy.append(text('span', prompt, 'journal-prompt'), text('span', url.hostname + url.pathname, 'journal-url'));
   link.append(svg, copy);
   return link;
 }
@@ -89,7 +90,8 @@ async function prepare(data) {
 function render() {
   const s = playlist.slides[position];
   const section = document.createElement('section'); section.className='slide'+(s.dark?' dark':'')+(s.type==='image'?' image':'');
-  if (s.source && s.image && s.excerpt) {
+  if (s.type === 'website') renderWebsite(s, section);
+  else if (s.source && s.image && s.excerpt) {
     section.classList.add('journal', 'feature');
     const img=document.createElement('img');img.src=s.image;img.alt=s.alt;img.className='journal-image';section.append(img);
     const story=text('div','','journal-story');

@@ -1,0 +1,59 @@
+.website{padding:0}
+.website .wordmark{top:70px;z-index:1}
+.website-copy{position:absolute;left:120px;top:230px;width:1050px}
+.website-title span{display:block}
+.website-title em{font-weight:400;color:var(--signal)}
+.website.dark .website-title em{color:var(--brass)}
+.website h1{font-size:168px;line-height:.94;letter-spacing:-6px}
+.website h2{font-size:120px;line-height:1;letter-spacing:-4px}
+.website-body{font:36px/1.35 var(--sans);max-width:1000px;margin:36px 0 0}
+.website-facts{margin:0;font:24px/1.35 var(--mono)}
+.website-fact{display:flex;justify-content:space-between;gap:28px;border-top:1px solid currentColor;padding:20px 0}
+.website-fact dt{flex:0 0 150px;text-transform:uppercase;letter-spacing:1px}
+.website-fact dd{margin:0;text-align:right}
+.website-hero>.website-facts,.website-place>.website-facts{position:absolute;left:1290px;right:120px;top:230px}
+.website-hero>.website-facts{font-size:28px}
+.website-hero>.website-facts .website-fact{padding:24px 0}
+.website-place .website-copy{top:210px;width:1030px}
+.website-place .website-body{font-size:34px;max-width:990px}
+.website-place>.website-facts{left:1230px;font-size:22px}
+.website-place .website-fact dt{flex-basis:130px}
+.website .website-link{left:1230px;right:120px;top:auto;bottom:80px;transform:none;width:auto;flex-direction:row;align-items:center;gap:30px}
+.website .website-link svg{width:222px;height:222px;flex-shrink:0}
+.website .journal-prompt{font-size:30px}
+.website .journal-url{font-size:18px}
+.website .journal-link-copy{min-width:0}
+.website-figure{position:absolute;inset:0 auto 0 0;width:1140px;margin:0;background:var(--beige);color:var(--green)}
+.website-figure img{position:absolute;left:40px;top:170px;width:1060px;height:760px;object-fit:contain}
+.website-figure figcaption{position:absolute;left:120px;right:80px;bottom:80px;font:20px/1.4 var(--mono);text-transform:uppercase;letter-spacing:1px}
+.website-garden .wordmark,.website-studio .wordmark{left:1230px;font-size:38px}
+.website-garden .website-copy,.website-studio .website-copy{left:1230px;top:190px;width:570px}
+.website-garden .label,.website-studio .label{font-size:20px;letter-spacing:2px;margin-bottom:28px}
+.website-garden h2{font-size:62px;line-height:1.06;letter-spacing:-2px}
+.website-garden .website-facts{margin-top:30px;font-size:20px}
+.website-garden .website-fact{padding:11px 0;gap:18px}
+.website-garden .website-fact dt{flex-basis:150px;font-size:16px}
+.website-garden .website-link,.website-studio .website-link{left:1230px}
+.website-garden .website-link svg,.website-studio .website-link svg{width:222px;height:222px}
+.website-studio .website-figure img{inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 55%}
+.website-studio h2{font-size:86px;letter-spacing:-3px}
+.website-studio .website-body{font-size:30px;line-height:1.35;margin-top:30px}
+.website-studio .website-facts{font-size:18px;margin-top:26px}
+.website-studio .website-fact{padding:14px 0;gap:20px}
+.website-studio .website-fact dt{flex-basis:100px}
+.website-care .website-copy{top:160px;width:1640px}
+.website-care h2{font-size:92px;max-width:1550px}
+.website-care .website-copy>.website-body{font-size:30px;max-width:1600px;margin-top:26px}
+.website-care-cards{position:absolute;inset:500px 120px 80px;display:grid;grid-template-columns:1fr 1fr;gap:120px}
+.website-care-card{position:relative;border-top:1px solid var(--green);padding-top:30px}
+.website-care-card .label{font-size:20px;margin-bottom:24px}
+.website-care-card .label:before{display:none}
+.website-care-card h3{font:50px/1.1 var(--serif);letter-spacing:-1px;margin:0}
+.website-care-card .website-body{font-size:30px;margin-top:24px}
+.website-care-card .website-link{left:0;right:0;bottom:0}
+.website-care-card .website-link svg{width:222px;height:222px}
+.website-begin .website-copy{top:250px;width:1050px}
+.website-begin .website-link{left:1280px;right:120px;top:360px;bottom:auto;flex-direction:column;align-items:flex-start;gap:32px}
+.website-begin .website-link svg{width:320px;height:320px}
+.website-begin .journal-prompt{font:42px/1.15 var(--serif)}
+.website-begin .journal-url{font-size:22px}
