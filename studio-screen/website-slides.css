@@ -83,3 +83,16 @@
 /* Supplied logo silhouette keeps the artwork intact in both brand colours. */
 .wordmark{width:230px;height:122px;background:var(--green);mask:url(logo-G_S.png) center/contain no-repeat;-webkit-mask:url(logo-G_S.png) center/contain no-repeat}
 .dark .wordmark,.side-image .wordmark{background:var(--beige)}
+
+/* Street-readable image-slide titles, matching the after-build headline. */
+.website-figure,.side-image img{width:900px}
+.website.image-right .website-figure,.side-image.image-right img{left:960px}
+.website-garden .website-copy,.website-studio .website-copy{left:1060px;top:110px;width:740px}
+.website.image-right .website-copy{left:120px}
+.website-garden h2,.website-studio h2,.side-image .caption h2{font-size:120px;line-height:1;letter-spacing:-4px}
+.website-garden .website-facts{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;margin-top:24px;font-size:18px}
+.website-garden .website-fact{display:block;padding:10px 0}
+.website-garden .website-fact dt{font-size:14px;margin-bottom:5px}
+.website-garden .website-fact dd{text-align:left}
+.side-image .caption{left:1060px;width:740px;top:350px}
+.side-image.image-right .caption{left:120px}
