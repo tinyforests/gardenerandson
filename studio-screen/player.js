@@ -91,10 +91,10 @@ document.addEventListener('keydown',e=>{if(e.target.closest('button'))return;if(
 let hide;function controls(){document.body.classList.add('controls');clearTimeout(hide);hide=setTimeout(()=>document.body.classList.remove('controls'),4000);}document.addEventListener('pointermove',controls);document.addEventListener('keydown',controls);controls();
 function resize(){stage.style.transform=`scale(${Math.min(document.querySelector("main").clientWidth/1920,document.querySelector("main").clientHeight/1080)})`;}addEventListener('resize',resize);resize();
 (async()=>{
-  render();
   // Cache installation is optional: a missing cached asset must never block playback or refresh.
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
-  try{const saved=localStorage.getItem('studio-playlist');if(saved){const data=withoutJournal(JSON.parse(saved));await prepare(data);playlist=data;position=0;render();}}catch{}
-  await refresh();if(pending){playlist=pending;pending=null;position=0;render();}
+  try{const saved=localStorage.getItem('studio-playlist');if(saved){const data=withoutJournal(JSON.parse(saved));await prepare(data);playlist=data;position=0;}}catch{}
+  await refresh();if(pending){playlist=pending;pending=null;position=0;}
+  render();
   setInterval(refresh,300000);addEventListener('online',refresh);
 })();

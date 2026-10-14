@@ -125,3 +125,6 @@
 .website.image-right .website-copy{left:120px}
 .side-image .caption{left:720px;width:1080px}
 .side-image.image-right .caption{left:120px}
+
+.website-original .website-copy{width:1680px;top:280px}
+.website-original .website-title span{white-space:nowrap}
