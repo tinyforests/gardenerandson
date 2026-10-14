@@ -146,3 +146,7 @@
 
 .website-garden:has(img[src*="victoria-grove"]) .website-figure{width:900px}
 .website-garden:has(img[src*="victoria-grove"]) .website-copy{left:1060px;width:740px}
+
+.website-garden:has(img[src*="victoria-grove"]) .website-figure{width:960px}
+.website-garden:has(img[src*="victoria-grove"]) .website-copy{left:1120px;width:680px}
+.website-studio .website-figure img{transform:translate(-58%,-53%)}
