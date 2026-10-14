@@ -55,6 +55,8 @@ function websiteLink(link) {
 
 function renderWebsite(s, section) {
   section.classList.add('website', 'website-' + s.layout);
+  if (s.label?.endsWith('Hawthorn East')) section.classList.add('garden-short-title');
+  if (s.section === 'original') section.classList.add('website-original');
   if (s.layout === 'poster') {renderPoster(s, section);return;}
   if (s.image) section.classList.add('image-' + (s.imageSide || 'left'));
 

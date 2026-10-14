@@ -15,6 +15,7 @@ async function scenario(register,saved=null,online=true){
  vm.runInContext(fs.readFileSync(root+'website-slides.js','utf8'),context);
  vm.runInContext(fs.readFileSync(root+'player.js','utf8'),context);
  for(let i=0;i<40;i++)await Promise.resolve();
+ assert.equal(elements['#stage'].children.length,1,'startup renders only the selected rotation');
  assert.equal(vm.runInContext('playlist.slides.length',context),base.slides.length+photos.slides.length);
  assert.equal(vm.runInContext('playlist.slides.some(s=>s.source||s.excerpt)',context),false);
  assert.ok(requested.every(url=>['playlist.json','photos.json'].includes(url)),'journal content must never be requested');
