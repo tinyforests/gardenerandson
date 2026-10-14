@@ -1,6 +1,6 @@
 'use strict';
-const CACHE='gardener-studio-screen-v22';
-const core=['./','index.html','player.js','player.js?v=22','website-slides.js','website-slides.css','website-slides.css?v=22','playlist.json','photos.json',
+const CACHE='gardener-studio-screen-v23';
+const core=['./','index.html','player.js','player.js?v=23','website-slides.js','website-slides.css','website-slides.css?v=23','playlist.json','photos.json',
   '../images/indigenous-forest-garden.webp',
   '../images/maylands-meadow.webp',
   '../images/victoria-grove-elevation.webp',

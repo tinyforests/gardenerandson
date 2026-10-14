@@ -58,7 +58,7 @@
 .website-care .website-copy{top:280px;width:1640px}
 .website-care h2{font-family:var(--hero);font-size:120px;max-width:1550px}
 .website-care .website-copy>.website-body{font-size:36px;max-width:1400px;margin-top:40px}
-.website-begin h2{font-family:var(--hero)}
+.website-begin h2{font-family:var(--hero);font-size:168px;line-height:.94;letter-spacing:-6px}
 .website-begin .website-copy{top:280px;width:1500px}
 .website-begin .website-body{max-width:1200px}
 .website-begin .website-link{left:120px;right:auto;bottom:150px;gap:24px}
