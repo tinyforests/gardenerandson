@@ -150,3 +150,6 @@
 .website-garden:has(img[src*="victoria-grove"]) .website-figure{width:960px}
 .website-garden:has(img[src*="victoria-grove"]) .website-copy{left:1120px;width:680px}
 .website-studio .website-figure img{transform:translate(-58%,-53%)}
+
+/* Centre each complete title/copy block within the display. */
+.website .website-copy,.website.website-original .website-copy,.side-image .caption{top:50%!important;bottom:auto;transform:translateY(-50%)}
