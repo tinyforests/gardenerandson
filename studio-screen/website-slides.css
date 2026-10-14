@@ -128,3 +128,21 @@
 
 .website-original .website-copy{width:1680px;top:280px}
 .website-original .website-title span{white-space:nowrap}
+
+/* Larger photographs where shorter headlines leave room. */
+.website-studio .website-figure{left:960px;width:900px}
+.website-studio .website-copy{left:120px;width:740px}
+.website-garden:has(.website-title em) .website-figure{width:740px}
+.website-garden .website-copy{left:900px;width:900px}
+.website-garden.image-right .website-figure{left:1120px}
+.website-garden.image-right .website-copy{left:120px}
+.website-garden .website-copy:has(.website-fact:nth-child(5):last-child){left:720px;width:1080px}
+.website-garden:has(.website-fact:nth-child(5):last-child) .website-figure{width:560px}
+.side-image img{width:900px}
+.side-image .caption{left:1060px;width:740px}
+
+.website-garden.garden-short-title .website-figure{width:900px}
+.website-garden.garden-short-title .website-copy{left:1060px;width:740px}
+
+.website-garden:has(img[src*="victoria-grove"]) .website-figure{width:900px}
+.website-garden:has(img[src*="victoria-grove"]) .website-copy{left:1060px;width:740px}
