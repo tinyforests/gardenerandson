@@ -99,3 +99,22 @@
 
 /* Keep the stork head in view on the Heirloom photograph. */
 .side-image img{object-position:center top}
+
+/* One headline scale throughout the rotation. */
+.website h1,.website h2,.side-image .caption h2{font-size:168px;line-height:.94;letter-spacing:-6px}
+.website-garden .website-copy,.website-studio .website-copy{left:1000px;top:90px;width:800px}
+.website-figure,.side-image img{width:840px}
+.website.image-right .website-figure,.side-image.image-right img{left:1020px}
+.website.image-right .website-copy{left:120px}
+.website-garden .website-facts{font-size:16px;margin-top:18px}
+.website-garden .website-fact{padding:6px 0}
+.side-image .caption{left:1000px;width:800px;top:280px}
+.side-image.image-right .caption{left:120px}
+.website-hero:has(.website-copy):not(:has(.website-facts)) .website-copy{width:1680px;top:280px}
+
+.website-garden .website-copy,.website-studio .website-copy{left:900px;width:900px}
+.website-figure,.side-image img{width:740px}
+.website.image-right .website-figure,.side-image.image-right img{left:1120px}
+.website.image-right .website-copy{left:120px}
+.side-image .caption{left:900px;width:900px}
+.side-image.image-right .caption{left:120px}

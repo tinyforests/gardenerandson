@@ -1,6 +1,16 @@
 {
-  "version": "website-street-native-nextdoor-2026-10-14",
+  "version": "studio-unified-headings-2026-10-14",
   "slides": [
+    {
+      "type": "website",
+      "layout": "hero",
+      "section": "original",
+      "title": "Ecological gardens.\nHeirloom objects.\nLiving systems.",
+      "emphasis": "Heirloom objects.",
+      "label": "Ecological design studio \u00b7 Melbourne",
+      "dark": true,
+      "duration": 24
+    },
     {
       "layout": "hero",
       "section": "top",
