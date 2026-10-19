@@ -776,6 +776,11 @@
             </div>
 
             <div>
+              <label for="phone" class="text-xs uppercase tracking-[0.18em] opacity-60">Phone number (optional)</label>
+              <input id="phone" name="phone" class="input mt-1" type="tel" placeholder="Your best contact number" autocomplete="tel" />
+            </div>
+
+            <div>
               <label class="text-xs uppercase tracking-[0.18em] opacity-60">Suburb</label>
               <input id="suburb" class="input mt-1" type="text" placeholder="e.g. Surrey Hills" autocomplete="address-level2" />
             </div>
@@ -1263,11 +1268,12 @@
     function buildSummary(){
       const name = (document.getElementById("name").value || "").trim();
       const email = (document.getElementById("email").value || "").trim();
+      const phone = (document.getElementById("phone").value || "").trim();
       const suburb = (document.getElementById("suburb").value || "").trim();
       const note = (document.getElementById("note").value || "").trim();
 
       return {
-        name, email, suburb, note,
+        name, email, phone, suburb, note,
         q1: state.q1,
         hopes: state.q2.slice(),
         help: state.q3,
@@ -1298,6 +1304,7 @@
         "",
         `Name: ${summary.name}`,
         `Email: ${summary.email}`,
+        `Phone: ${summary.phone || "Not provided"}`,
         `Suburb: ${summary.suburb}`,
         "",
         `Unfinished: ${summary.q1 || "—"}`,
