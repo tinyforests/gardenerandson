@@ -1270,9 +1270,7 @@
       const email = (document.getElementById("email").value || "").trim();
       const phone = (document.getElementById("phone").value || "").trim();
       const suburb = (document.getElementById("suburb").value || "").trim();
-      const gardenNote = (document.getElementById("note").value || "").trim();
-      // The existing Apps Script renders and stores note; keep phone visible until it supports a dedicated column.
-      const note = [gardenNote, phone ? `Contact phone: ${phone}` : ""].filter(Boolean).join("\n\n");
+      const note = (document.getElementById("note").value || "").trim();
 
       return {
         name, email, phone, suburb, note,
