@@ -90,6 +90,7 @@
           <span class="small" id="saveState"></span>
         </div>
       </div>
+      <div id="densitySummary" class="density-summary" aria-live="polite"></div>
       <div id="lines"></div>
     </div>
   </main>
@@ -208,7 +209,7 @@
           if (!p) { p = {project_id: 'PRJ-MOCK-' + self.tok().slice(0, 6), view_token: self.tok(), created_at: now, status: 'Draft'}; db.projects.unshift(p); }
           Object.keys(b.project).forEach(function (k) { if (k !== 'project_id' && b.project[k] != null) p[k] = b.project[k]; });
           p.updated_at = now; self.save(); return {ok: true, project: p};
-        case 'save_lines': db.lines[b.project_id] = b.lines; find(b.project_id).updated_at = now; self.save(); return {ok: true, count: b.lines.length, updated_at: now};
+        case 'save_lines': db.lines[b.project_id] = b.lines; if (b.areas) find(b.project_id).areas = b.areas; find(b.project_id).updated_at = now; self.save(); return {ok: true, count: b.lines.length, updated_at: now};
         case 'save_edits': b.edits.forEach(function (e) { db.edits.push(e); }); self.save(); return {ok: true, saved: b.edits.length};
         case 'rotate_token': var q = find(b.project_id); q.view_token = self.tok(); self.save(); return {ok: true, view_token: q.view_token};
         case 'import_projects':
@@ -338,6 +339,7 @@
   function areas() {
     var a = [];
     state.lines.forEach(function (l) { if (a.indexOf(l.area || '') < 0) a.push(l.area || ''); });
+    ((state.current && state.current.areas) || []).forEach(function (z) { if (a.indexOf(z.area) < 0) a.push(z.area); });
     if (state.area && a.indexOf(state.area) < 0) a.push(state.area);
     if (!a.length) a.push('');
     return a;
@@ -348,17 +350,37 @@
   $('targetArea').onchange = function () { state.area = this.value; };
   $('newArea').onclick = function () {
     var a = prompt('Area name (e.g. "Front garden", "Shady corner")'); if (!a) return;
-    state.area = a.trim(); renderAreas();
+    state.area = a.trim(); renderAreas(); renderLines();
   };
+
+  function densityText(d) {
+    var parts = [d.plants + (d.missing ? ' plants entered' : ' plants')];
+    if (d.area_m2) parts.push(d.area_m2.toLocaleString('en-AU', {maximumFractionDigits: 2}) + ' m²' + (d.unmeasured ? ' measured' : ''));
+    if (d.density !== null) parts.push(d.density.toLocaleString('en-AU', {maximumFractionDigits: 2}) + ' plants/m²');
+    if (d.missing) parts.push(d.missing + (d.missing === 1 ? ' quantity missing' : ' quantities missing'));
+    if (d.unmeasured) parts.push(d.unmeasured + (d.unmeasured === 1 ? ' zone needs m²' : ' zones need m²'));
+    else if (!d.area_m2) parts.push('Add planting area for density');
+    return parts.join(' · ');
+  }
+  function updateDensity() {
+    var summary = PL.plantingDensity(state.lines, state.current.areas || []);
+    $('densitySummary').textContent = densityText(summary);
+    document.querySelectorAll('[data-zone-summary]').forEach(function (el) {
+      var z = summary.zones.find(function (z) { return z.area === el.dataset.zoneSummary; });
+      el.textContent = z ? densityText(z) : 'Add planting area and quantities';
+    });
+  }
 
   function renderLines() {
     var by = {};
     state.lines.forEach(function (l, i) { l._i = i; (by[l.area || ''] = by[l.area || ''] || []).push(l); });
     var total = state.lines.reduce(function (s, l) { return s + (Number(l.qty) || 0); }, 0);
     $('lineCount').textContent = state.lines.length + ' species' + (total ? ' · ' + total + ' plants' : '');
-    if (!state.lines.length) { $('lines').innerHTML = '<div class="empty">No plants yet. Search the library on the right and press Add.</div>'; return; }
-    $('lines').innerHTML = areas().filter(function (a) { return by[a]; }).map(function (a) {
+    $('lines').innerHTML = areas().map(function (a) {
+      by[a] = by[a] || [];
+      var measured = (state.current.areas || []).find(function (z) { return z.area === a; });
       return '<section class="area"><div class="area-head"><h3>' + esc(a || 'Unsorted') + '</h3><span class="small">' + by[a].length + ' · <button class="btn ghost small" data-rename="' + esc(a) + '">Rename</button></span></div>' +
+        '<label class="zone-size"><span>Planted bed area (m²)</span><input type="number" min="0.01" step="any" max="10000000" placeholder="e.g. 42" data-area-size="' + esc(a) + '" value="' + (measured ? esc(measured.area_m2) : '') + '"></label><p class="small">Exclude paths, lawn and buildings. Enter each bed once.</p><p class="zone-density small" data-zone-summary="' + esc(a) + '"></p>' +
         by[a].map(function (l) {
           var r = PL.get(l.slug) || {botanical_name: l.slug, _missing: true};
           return '<div class="line" data-i="' + l._i + '">' +
@@ -370,14 +392,23 @@
           '</div>';
         }).join('') + '</section>';
     }).join('');
+    updateDensity();
   }
 
   $('lines').addEventListener('input', function (e) {
+    if (e.target.dataset.areaSize !== undefined) {
+      if (e.target.value !== '' && !e.target.validity.valid) { $('saveState').textContent = 'Enter a positive planting area'; return; }
+      var area = e.target.dataset.areaSize;
+      state.current.areas = (state.current.areas || []).filter(function (z) { return z.area !== area; });
+      if (e.target.value !== '') state.current.areas.push({area: area, area_m2: Number(e.target.value)});
+      updateDensity(); queueSave(); return;
+    }
     var f = e.target.dataset.f; if (!f) return;
+    if (f === 'qty' && !e.target.validity.valid) { $('saveState').textContent = 'Enter whole quantities of zero or more'; return; }
     var i = +e.target.closest('.line').dataset.i;
     state.lines[i][f] = f === 'qty' ? (e.target.value === '' ? null : +e.target.value) : e.target.value;
     queueSave();
-    if (f === 'qty') { var total = state.lines.reduce(function (s, l) { return s + (Number(l.qty) || 0); }, 0); $('lineCount').textContent = state.lines.length + ' species' + (total ? ' · ' + total + ' plants' : ''); }
+    if (f === 'qty') { updateDensity(); var total = state.lines.reduce(function (s, l) { return s + (Number(l.qty) || 0); }, 0); $('lineCount').textContent = state.lines.length + ' species' + (total ? ' · ' + total + ' plants' : ''); }
   });
   $('lines').addEventListener('click', function (e) {
     var rm = e.target.closest('[data-remove]'), op = e.target.closest('[data-open]'), rn = e.target.closest('[data-rename]');
@@ -385,6 +416,9 @@
     else if (op) openRecord(op.dataset.open);
     else if (rn) {
       var from = rn.dataset.rename, to = prompt('Rename area', from); if (to == null) return;
+      to = to.trim();
+      if (to !== from && areas().indexOf(to) >= 0) { toast('That area already exists; choose a different name'); return; }
+      (state.current.areas || []).forEach(function (z) { if (z.area === from) z.area = to; });
       state.lines.forEach(function (l) { if ((l.area || '') === from) l.area = to.trim(); });
       if (state.area === from) state.area = to.trim();
       renderLines(); renderAreas(); queueSave();
@@ -400,7 +434,7 @@
     var pid = state.current.project_id;
     var lines = state.lines.map(function (l) { return {slug: l.slug, area: l.area || '', qty: l.qty, size: l.size || '', note: l.note || ''}; });
     $('saveState').textContent = 'Saving…';
-    post('save_lines', {project_id: pid, lines: lines}).then(function () {
+    post('save_lines', {project_id: pid, lines: lines, areas: JSON.parse(JSON.stringify(state.current.areas || []))}).then(function () {
       $('saveState').textContent = 'Saved';
       var p = state.projects.filter(function (x) { return x.project_id === pid; })[0];
       if (p) { p.count = lines.length; p.updated_at = new Date().toISOString(); renderProjects(); }

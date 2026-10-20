@@ -169,3 +169,14 @@ details.more summary{cursor:pointer;font-size:12px;color:var(--muted);margin:6px
 .calendar-unknown{margin-top:16px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media print{.calendar-scroll{overflow:visible}.flower-calendar{min-width:0;font-size:9px}.flower-calendar th,.flower-calendar td{padding:6px 3px}.flower-calendar th:first-child{position:static;min-width:0}}
+
+.density-summary{padding:14px 0;border-top:1px solid var(--line);font-size:13px}
+.zone-size{display:flex;align-items:center;gap:12px;font-size:13px;margin-top:16px}
+.zone-size input[type=number]{max-width:140px}
+.zone-density{padding-bottom:10px;border-bottom:1px solid var(--line)}
+.cv-density{margin-bottom:36px;padding-top:24px;border-top:1px solid var(--line)}
+.cv-density h2{font:400 28px/1.2 var(--font-serif)}
+.cv-density h3{font:400 18px/1.3 var(--font-serif);margin:0 0 10px}
+.density-total{padding:18px 0;border-bottom:1px solid var(--line)}
+.density-values{display:flex;flex-wrap:wrap;gap:8px 24px;font:12px/1.6 var(--font-mono)}
+.density-zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;margin-top:22px}

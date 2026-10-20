@@ -172,6 +172,30 @@
     return {months: MONTHS, rows: rows, totals: totals, unknown: unknown};
   }
 
+  function plantingDensity(lines, areas) {
+    var zones = new Map();
+    function zone(name) {
+      if (!zones.has(name)) zones.set(name, {area: name, area_m2: null, plants: 0, missing: 0, lines: 0});
+      return zones.get(name);
+    }
+    (areas || []).forEach(function (a) {
+      if (typeof a.area_m2 === 'number' && Number.isFinite(a.area_m2) && a.area_m2 > 0) zone(a.area || '').area_m2 = a.area_m2;
+    });
+    (lines || []).forEach(function (line) {
+      var z = zone(line.area || ''); z.lines++;
+      if (typeof line.qty === 'number' && Number.isInteger(line.qty) && line.qty >= 0) z.plants += line.qty;
+      else z.missing++;
+    });
+    var result = {zones: Array.from(zones.values()), area_m2: 0, plants: 0, missing: 0, unmeasured: 0, density: null};
+    result.zones.forEach(function (z) {
+      z.density = z.area_m2 && !z.missing ? z.plants / z.area_m2 : null;
+      result.area_m2 += z.area_m2 || 0; result.plants += z.plants; result.missing += z.missing;
+      if (!z.area_m2) result.unmeasured++;
+    });
+    if (result.area_m2 && !result.missing && !result.unmeasured) result.density = result.plants / result.area_m2;
+    return result;
+  }
+
   function label(r) { return r.botanical_name + (r.common_name ? ' — ' + r.common_name : ''); }
 
   function esc(s) {
@@ -182,7 +206,7 @@
 
   root.PlantLibrary = {
     load: load, applyEdits: applyEdits, get: get, search: search, slugify: slugify,
-    floweringCalendar: floweringCalendar, layers: layers, size: size, flowering: flowering, label: label, esc: esc, BANDS: BANDS,
+    plantingDensity: plantingDensity, floweringCalendar: floweringCalendar, layers: layers, size: size, flowering: flowering, label: label, esc: esc, BANDS: BANDS,
     all: function () { return list; }
   };
 })(window);
