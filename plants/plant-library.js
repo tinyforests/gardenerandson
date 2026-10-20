@@ -53,6 +53,7 @@
         if (f === 'life_form') return;
         rec[f] = e[f];
       });
+      if (Object.prototype.hasOwnProperty.call(e, 'bloom_time')) delete rec.flowering;
       rec._edited = true;
       index(rec);
     });
@@ -130,6 +131,47 @@
     return (r.bloom_time || []).filter(function (b) { return b !== 'Evergreen'; }).join(', ');
   }
 
+  // Seasonal source timings use Melbourne seasons; shaded months are estimates.
+  function floweringCalendar(lines) {
+    var seasons = {summer: [12, 1, 2], autumn: [3, 4, 5], winter: [6, 7, 8], spring: [9, 10, 11]};
+    var names = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+    var seen = {}, rows = [], unknown = [], totals = Array(12).fill(0);
+    function valid(values) { return (Array.isArray(values) ? values : []).filter(function (m) { return Number.isInteger(m) && m >= 1 && m <= 12; }); }
+    function parse(text) {
+      text = String(text).toLowerCase().trim();
+      if (text === 'all year') return names.map(function (_, i) { return i + 1; });
+      if (seasons[text]) return seasons[text];
+      var partial = text.match(/^(early to mid|mid to late|early|mid|late) (summer|autumn|winter|spring)$/);
+      if (partial) {
+        var months = seasons[partial[2]], part = partial[1];
+        return part === 'early to mid' ? months.slice(0, 2) : part === 'mid to late' ? months.slice(1) : [months[{early:0,mid:1,late:2}[part]]];
+      }
+      var range = text.match(/^([a-z]+) (?:to|-) ([a-z]+)$/);
+      if (!range) return [];
+      var start = seasons[range[1]] ? seasons[range[1]][0] : names.indexOf(range[1]) + 1;
+      var end = seasons[range[2]] ? seasons[range[2]][2] : names.indexOf(range[2]) + 1;
+      if (!start || !end) return [];
+      var out = [start]; while (out[out.length - 1] !== end && out.length < 12) out.push(out[out.length - 1] % 12 + 1);
+      return out;
+    }
+    (lines || []).forEach(function (line) {
+      if (seen[line.slug]) return; seen[line.slug] = true;
+      var rec = get(line.slug) || {botanical_name: line.slug.replace(/-/g, ' ')};
+      var peak = valid(rec.flowering && rec.flowering.peak), shoulder = valid(rec.flowering && rec.flowering.shoulder);
+      var estimated = !peak.length && !shoulder.length;
+      if (estimated) {
+        var timing = Array.isArray(rec.bloom_time) ? rec.bloom_time : [rec.bloom_time];
+        peak = [].concat.apply([], timing.map(parse));
+      }
+      if (!peak.length && !shoulder.length) { unknown.push(rec.botanical_name); return; }
+      var months = names.map(function (_, i) { var m = i + 1; return peak.indexOf(m) >= 0 ? (estimated ? 'estimated' : 'peak') : shoulder.indexOf(m) >= 0 ? 'shoulder' : ''; });
+      months.forEach(function (value, i) { if (value) totals[i]++; });
+      rows.push({name: rec.botanical_name, months: months});
+    });
+    rows.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    return {months: MONTHS, rows: rows, totals: totals, unknown: unknown};
+  }
+
   function label(r) { return r.botanical_name + (r.common_name ? ' — ' + r.common_name : ''); }
 
   function esc(s) {
@@ -140,7 +182,7 @@
 
   root.PlantLibrary = {
     load: load, applyEdits: applyEdits, get: get, search: search, slugify: slugify,
-    layers: layers, size: size, flowering: flowering, label: label, esc: esc, BANDS: BANDS,
+    floweringCalendar: floweringCalendar, layers: layers, size: size, flowering: flowering, label: label, esc: esc, BANDS: BANDS,
     all: function () { return list; }
   };
 })(window);

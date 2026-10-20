@@ -47,3 +47,14 @@ represented and a distinct-species count for each. It uses canonical stratum
 forbs / flowering, groundcovers, and mats / spreading woody. Repeated species
 across areas count once, regardless of plant quantity. Missing classifications
 are shown as Unclassified and do not increase the layer total.
+
+## Flowering calendar
+
+The client view lists selected species against January–December, followed by
+monthly species totals. Duplicate species across areas count once. Recorded
+flowering.peak and flowering.shoulder months take precedence; seedhead months
+are not flowering. Where those are absent, bloom_time season/month ranges are
+shown as seasonal estimates using Melbourne seasons, including ranges over
+New Year. Evergreen and Inconspicuous do not imply a flowering period. Unknown
+timings are named separately. Editing bloom_time supersedes older structured
+timing in the client overlay. The calendar scrolls on small screens and prints.
