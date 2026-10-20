@@ -316,6 +316,8 @@
     $('pHeading').textContent = p.name || 'Untitled project';
     $('pName').value = p.name || ''; $('pTitle').value = p.client_title || ''; $('pIntro').value = p.intro || '';
     $('pStatus').value = p.status || 'Draft'; $('pGarden').value = p.garden_id || ''; $('pNotes').value = p.internal_notes || '';
+    $('pGarden').disabled = (p.source || '').indexOf('notion-design:') === 0;
+    $('pGarden').title = $('pGarden').disabled ? 'Change this match in Project journal archive to move its notes together' : '';
     $('pArchived').value = p.archived ? '1' : '';
     var url = VIEW_BASE + p.view_token + (MOCK ? '&mock=1' : '');
     $('shareUrl').textContent = url; $('openLink').href = url;
