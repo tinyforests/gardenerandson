@@ -127,6 +127,7 @@
   </div>
   <form class="body" id="dForm">
     <div class="ro" id="dSlug"></div>
+    <div id="dPhoto" class="record-photo"></div>
     <div class="grid2">
       <label class="field"><span>Botanical name</span><input type="text" name="botanical_name" required></label>
       <label class="field"><span>Common name</span><input type="text" name="common_name"></label>
@@ -172,6 +173,13 @@
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwGIau58khBRKYgq5SYwu0QjCWPa5h2dKyz4nPoeU9YMKlPN5BRXUz0LmzF7jZrqrRC/exec';
   var VIEW_BASE = location.origin + '/plants/view.html?p=';
   var PL = window.PlantLibrary, esc = PL.esc;
+  document.addEventListener('error', function (event) {
+    var image = event.target;
+    if (image.tagName === 'IMG') {
+      image.hidden = true;
+      if (image.parentElement.classList.contains('photo-thumb')) image.parentElement.textContent = '—';
+    }
+  }, true);
   var $ = function (id) { return document.getElementById(id); };
   var MOCK = /[?&]mock=1/.test(location.search);
 
@@ -483,7 +491,9 @@
     var shown = res.slice(0, 120);
     $('results').innerHTML = (shown.length ? shown.map(function (r) {
       var bits = [r.common_name, PL.size(r), r.display_band && PL.BANDS[r.display_band]].filter(Boolean).join(' · ');
-      return '<div class="res"><div class="nm" data-open="' + esc(r.slug) + '"><b>' + esc(r.botanical_name) + '</b><span>' + esc(bits) + '</span>' +
+      var photo = PL.imageUrl(r.image_url);
+      return '<div class="res"><button type="button" class="photo-thumb" data-open="' + esc(r.slug) + '" aria-label="View ' + esc(r.botanical_name) + '">' +
+        (photo ? '<img src="' + esc(photo) + '" alt="" width="56" height="56" loading="lazy" decoding="async">' : '<span aria-hidden="true">' + esc(r.botanical_name.charAt(0)) + '</span>') + '</button><div class="nm" data-open="' + esc(r.slug) + '"><b>' + esc(r.botanical_name) + '</b><span>' + esc(bits) + '</span>' +
         (inProj[r.slug] ? '<div class="in">In ' + esc(inProj[r.slug].join(', ')) + '</div>' : '') + '</div>' +
         '<button type="button" class="add' + (inProj[r.slug] ? ' done' : '') + '" data-add="' + esc(r.slug) + '">Add</button></div>';
     }).join('') : '<p class="small" style="padding:16px">Nothing matches. Add it as a new plant below.</p>') +
@@ -505,6 +515,8 @@
     $('dLabel').textContent = r ? (r._edited ? 'Plant record · edited in studio' : 'Plant record') : 'New plant';
     $('dTitle').textContent = r ? r.botanical_name : 'Add a plant to the library';
     $('dSlug').textContent = r ? 'Library key: ' + r.slug : 'The library key is made from the botanical name.';
+    var photo = PL.imageUrl(r && r.image_url);
+    $('dPhoto').innerHTML = photo ? '<img src="' + esc(photo) + '" alt="' + esc(r.botanical_name) + '" width="640" height="480">' + PL.photoCredit(r) : '<p class="small">No photo recorded yet.</p>';
     $('dArchive').hidden = !r;
     [].forEach.call(f.elements, function (el) {
       if (!el.name) return;

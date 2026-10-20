@@ -75,3 +75,17 @@ figures describe the selection and do not recommend spacing for any species.
 The backend stores measurements separately in Plant Areas (project_id, area,
 area_m2, updated_at). Existing rows and client tokens are unchanged. Older clients
 that omit areas on save_lines preserve existing measurements.
+
+## Shared plant photographs
+
+The canonical plant library supplies image_url, image_credit, image_license and
+image_source_url. The studio picker shows thumbnails; open a plant record for a
+larger image and its attribution/source link. Client cards show the image and
+credit. Images load lazily with an aspect ratio reserved to limit layout shift.
+
+The canonical photo manifest uses exact botanical matches from iNaturalist and
+reuses eligible FMEG photos. No genus-only or cultivar substitution is made.
+Existing studio photo choices win. Changing a photo URL clears stale source and
+licence metadata in the overlay so another photographer is not misattributed.
+Legacy Notion attachments with unrecorded provenance are not in the public
+projection; the original files remain preserved.
