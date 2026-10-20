@@ -49,6 +49,7 @@
         rec = by[slug] = {slug: slug, _new: true};
         list.push(rec);
       }
+      if (Object.prototype.hasOwnProperty.call(e, 'image_url') && e.image_url !== rec.image_url) { delete rec.image_source_url; delete rec.image_license; }
       Object.keys(e).forEach(function (f) {
         if (f === 'life_form') return;
         rec[f] = e[f];
@@ -196,6 +197,19 @@
     return result;
   }
 
+  function imageUrl(value) {
+    var url = String(value || '').trim();
+    return /^https?:\/\//i.test(url) ? url : '';
+  }
+
+  function photoCredit(rec) {
+    var credit = rec.image_credit ? 'Photo: ' + esc(rec.image_credit) : '';
+    var source = imageUrl(rec.image_source_url);
+    if (source) credit += (credit ? ' · ' : '') + '<a href="' + esc(source) + '" target="_blank" rel="noopener noreferrer">Source' +
+      (rec.image_license ? ' · ' + esc(rec.image_license.toUpperCase()) : '') + '</a>';
+    return credit ? '<div class="credit">' + credit + '</div>' : '';
+  }
+
   function label(r) { return r.botanical_name + (r.common_name ? ' — ' + r.common_name : ''); }
 
   function esc(s) {
@@ -206,7 +220,7 @@
 
   root.PlantLibrary = {
     load: load, applyEdits: applyEdits, get: get, search: search, slugify: slugify,
-    plantingDensity: plantingDensity, floweringCalendar: floweringCalendar, layers: layers, size: size, flowering: flowering, label: label, esc: esc, BANDS: BANDS,
+    imageUrl: imageUrl, photoCredit: photoCredit, plantingDensity: plantingDensity, floweringCalendar: floweringCalendar, layers: layers, size: size, flowering: flowering, label: label, esc: esc, BANDS: BANDS,
     all: function () { return list; }
   };
 })(window);

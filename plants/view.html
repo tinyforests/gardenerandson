@@ -29,6 +29,13 @@
   'use strict';
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwGIau58khBRKYgq5SYwu0QjCWPa5h2dKyz4nPoeU9YMKlPN5BRXUz0LmzF7jZrqrRC/exec';
   var PL = window.PlantLibrary, esc = PL.esc;
+  document.addEventListener('error', function (event) {
+    var image = event.target;
+    if (image.tagName === 'IMG') {
+      image.hidden = true;
+      if (image.parentElement.classList.contains('photo-thumb')) image.parentElement.textContent = '—';
+    }
+  }, true);
   var token = (location.search.match(/[?&]p=([A-Za-z0-9]+)/) || [])[1] || '';
   var MOCK = /[?&]mock=1/.test(location.search);
 
@@ -78,8 +85,9 @@
     if (r.evcs && r.evcs.length) tags.push('<span class="chip native">Indigenous</span>');
     else if (r.australian_native) tags.push('<span class="chip native">Australian native</span>');
     if (r.display_band) tags.push('<span class="chip">' + esc(PL.BANDS[r.display_band]) + '</span>');
-    var img = r.image_url
-      ? '<div class="img" role="img" aria-label="' + esc(r.botanical_name) + '" style="background-image:url(&quot;' + esc(r.image_url) + '&quot;)"></div>' + (r.image_credit ? '<div class="credit">Photo: ' + esc(r.image_credit) + '</div>' : '')
+    var photo = PL.imageUrl(r.image_url);
+    var img = photo
+      ? '<img class="img" src="' + esc(photo) + '" alt="' + esc(r.botanical_name) + '" width="640" height="480" loading="lazy" decoding="async">' + PL.photoCredit(r)
       : '<div class="img none" aria-hidden="true"><span>' + esc((r.botanical_name || '?').charAt(0)) + '</span></div>';
     var desc = r.description || r.blurb || '';
     return '<article class="card">' + img + '<div class="txt">' +
