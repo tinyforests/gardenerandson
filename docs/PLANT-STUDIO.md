@@ -89,3 +89,14 @@ Existing studio photo choices win. Changing a photo URL clears stale source and
 licence metadata in the overlay so another photographer is not misattributed.
 Legacy Notion attachments with unrecorded provenance are not in the public
 projection; the original files remain preserved.
+
+## Private project journal archive
+
+`/plants/import-notion.html` imports a local text-only `gs-notion-text-v1` bundle
+through the existing admin session. The bundle is private and is never committed
+to this repository. Projects keep source, Notion status and narrative in internal
+notes. Journals are held in the Registry's private Field Records store. Only
+verified stewards can publish from their Registry garden profile. The archive
+lets admins review and explicitly match unlinked projects; this resets moved
+notes to private. Import batches skip existing source IDs, so retries are safe.
+Original photo/video references are retained privately for a later media phase.
