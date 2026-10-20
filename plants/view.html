@@ -106,6 +106,26 @@
       '<ul>' + items.join('') + '</ul></div>';
   }
 
+  function calendarSummary(lines) {
+    if (!lines.length) return '';
+    var cal = PL.floweringCalendar(lines);
+    var labels = {peak: 'Recorded flowering', shoulder: 'Shoulder flowering', estimated: 'Seasonal estimate'};
+    var html = '<section class="cv-calendar" aria-labelledby="calendar-title"><h2 id="calendar-title">Flowering calendar.</h2>' +
+      '<p class="small">Typical timing for Melbourne. Weather, position and plant maturity can shift flowering.</p>';
+    if (cal.rows.length) {
+      html += '<p class="calendar-key small"><span class="peak">●</span> Recorded months <span class="shoulder">○</span> Shoulder <span class="estimated">▧</span> Seasonal estimate</p>' +
+        '<div class="calendar-scroll" role="region" aria-label="Flowering calendar, scroll for all months" tabindex="0"><table class="flower-calendar"><caption class="sr-only">Flowering months by species</caption><thead><tr><th scope="col">Species</th>' +
+        cal.months.map(function (month) { return '<th scope="col">' + month + '</th>'; }).join('') + '</tr></thead><tbody>' +
+        cal.rows.map(function (row) {
+          return '<tr><th scope="row">' + esc(row.name) + '</th>' + row.months.map(function (value, i) {
+            return '<td class="' + value + '">' + (value ? '<span aria-label="' + labels[value] + ' in ' + cal.months[i] + '">' + (value === 'shoulder' ? '○' : value === 'estimated' ? '▧' : '●') + '</span>' : '<span class="sr-only">No flowering timing recorded</span>') + '</td>';
+          }).join('') + '</tr>';
+        }).join('') + '</tbody><tfoot><tr><th scope="row">Species in flower</th>' + cal.totals.map(function (n) { return '<td>' + n + '</td>'; }).join('') + '</tr></tfoot></table></div>';
+    } else html += '<p class="small">Flowering timing hasn’t been recorded for these plants yet.</p>';
+    if (cal.unknown.length) html += '<p class="small calendar-unknown">Timing not recorded: ' + cal.unknown.map(esc).join(', ') + '.</p>';
+    return html + '</section>';
+  }
+
   function render(p, lines) {
     document.title = p.title + ' · Gardener & Son';
     var areas = [], by = {};
@@ -119,7 +139,7 @@
       '<div class="cv-stats"><div><strong>' + species.length + '</strong><span>species</span></div>' +
       (total ? '<div><strong>' + total + '</strong><span>plants</span></div>' : '') +
       (indig ? '<div><strong>' + indig + '</strong><span>indigenous to Victoria</span></div>' : '') +
-      (named.length > 1 ? '<div><strong>' + named.length + '</strong><span>planting areas</span></div>' : '') + '</div>' + layerSummary(lines) + '</section>';
+      (named.length > 1 ? '<div><strong>' + named.length + '</strong><span>planting areas</span></div>' : '') + '</div>' + layerSummary(lines) + '</section>' + calendarSummary(lines);
     if (named.length > 1) {
       html += '<nav class="cv-tools" aria-label="Planting areas">' + areas.map(function (a, i) { return '<a class="btn" href="#a' + i + '">' + esc(a || 'Other plants') + '</a>'; }).join('') + '<button class="btn ghost" type="button" onclick="print()">Print</button></nav>';
     }
