@@ -43,7 +43,7 @@
       var p = db.projects.filter(function (x) { return x.view_token === token && !x.archived; })[0];
       if (!p) return Promise.resolve({ok: false});
       var edits = {}; db.edits.forEach(function (e) { (edits[e.slug] = edits[e.slug] || {})[e.field] = e.value; });
-      return Promise.resolve({ok: true, project: {title: p.client_title || 'Your planting', intro: p.intro || '', updated_at: p.updated_at}, lines: db.lines[p.project_id] || [], edits: edits});
+      return Promise.resolve({ok: true, project: {title: p.client_title || 'Your planting', intro: p.intro || '', updated_at: p.updated_at, areas: p.areas || []}, lines: db.lines[p.project_id] || [], edits: edits});
     }
     return fetch(ENDPOINT + '?action=plants_view&t=' + encodeURIComponent(token)).then(function (r) { return r.json(); });
   }
@@ -126,6 +126,22 @@
     return html + '</section>';
   }
 
+  function densitySummary(project, lines) {
+    var d = PL.plantingDensity(lines, project.areas || []);
+    if (!lines.length && !d.zones.length) return '';
+    function number(n) { return n.toLocaleString('en-AU', {maximumFractionDigits: 2}); }
+    function values(z) {
+      return '<span>' + z.plants + (z.missing ? ' plants entered' : ' plants') + '</span>' +
+        '<span>' + (z.area_m2 ? number(z.area_m2) + ' m²' : 'Area not recorded') + '</span>' +
+        '<span>' + (z.density !== null ? number(z.density) + ' plants/m²' : 'Density pending') + '</span>' +
+        (z.missing ? '<span>' + z.missing + (z.missing === 1 ? ' quantity missing</span>' : ' quantities missing</span>') : '');
+    }
+    return '<section class="cv-density"><h2>Planting area &amp; density.</h2><p class="small">Planted beds only, excluding paths, lawn and buildings. Density describes this selection; it isn’t a spacing recommendation.</p>' +
+      '<div class="density-total"><h3>Whole project</h3><div class="density-values">' + values(d) + '</div>' +
+      (d.unmeasured ? '<p class="small">' + d.unmeasured + (d.unmeasured === 1 ? ' zone needs an area.' : ' zones need an area.') + ' The area shown covers measured zones only.</p>' : '') + '</div>' +
+      '<div class="density-zones">' + d.zones.map(function (z) { return '<div><h3>' + esc(z.area || 'Unsorted') + '</h3><div class="density-values">' + values(z) + '</div></div>'; }).join('') + '</div></section>';
+  }
+
   function render(p, lines) {
     document.title = p.title + ' · Gardener & Son';
     var areas = [], by = {};
@@ -139,7 +155,7 @@
       '<div class="cv-stats"><div><strong>' + species.length + '</strong><span>species</span></div>' +
       (total ? '<div><strong>' + total + '</strong><span>plants</span></div>' : '') +
       (indig ? '<div><strong>' + indig + '</strong><span>indigenous to Victoria</span></div>' : '') +
-      (named.length > 1 ? '<div><strong>' + named.length + '</strong><span>planting areas</span></div>' : '') + '</div>' + layerSummary(lines) + '</section>' + calendarSummary(lines);
+      (named.length > 1 ? '<div><strong>' + named.length + '</strong><span>planting areas</span></div>' : '') + '</div>' + layerSummary(lines) + '</section>' + densitySummary(p, lines) + calendarSummary(lines);
     if (named.length > 1) {
       html += '<nav class="cv-tools" aria-label="Planting areas">' + areas.map(function (a, i) { return '<a class="btn" href="#a' + i + '">' + esc(a || 'Other plants') + '</a>'; }).join('') + '<button class="btn ghost" type="button" onclick="print()">Print</button></nav>';
     }

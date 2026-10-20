@@ -58,3 +58,20 @@ shown as seasonal estimates using Melbourne seasons, including ranges over
 New Year. Evergreen and Inconspicuous do not imply a flowering period. Unknown
 timings are named separately. Editing bloom_time supersedes older structured
 timing in the client overlay. The calendar scrolls on small screens and prints.
+
+## Planting area and density
+
+Enter the planted bed area in m² beneath each zone heading in the studio, then
+enter whole plant quantities on its plant rows. Areas autosave with the lines;
+clearing an area removes its measurement. Renaming a zone keeps its measurement.
+Paths, lawn and buildings are excluded. Each bed is measured once.
+
+Studio and client views show per-zone and whole-project plants/m². The whole
+project uses total entered plants divided by the sum of measured zones, and is
+shown only when all zones are measured and all quantities are supplied. Missing
+quantities are not treated as zero. Explicit zero quantities are valid. The
+figures describe the selection and do not recommend spacing for any species.
+
+The backend stores measurements separately in Plant Areas (project_id, area,
+area_m2, updated_at). Existing rows and client tokens are unchanged. Older clients
+that omit areas on save_lines preserve existing measurements.
