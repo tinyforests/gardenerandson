@@ -59,6 +59,23 @@
     list = list.filter(function (r) { return !r.archived; });
   }
 
+  // Count distinct species, including species repeated across planting areas.
+  function layers(lines) {
+    var labels = ['Canopy', 'Sub-canopy / tall shrubs', 'Mid shrubs',
+      'Grasses & strappy', 'Forbs & flowering', 'Groundcovers', 'Mats & spreading woody'];
+    var counts = [0, 0, 0, 0, 0, 0, 0], seen = {}, unknown = 0;
+    (lines || []).forEach(function (line) {
+      if (seen[line.slug]) return;
+      seen[line.slug] = true;
+      var rec = get(line.slug), stratum = rec && rec.stratum;
+      if (Number.isInteger(stratum) && stratum >= 1 && stratum <= 7) counts[stratum - 1]++;
+      else unknown++;
+    });
+    return {count: counts.filter(Boolean).length, unknown: unknown,
+      items: labels.map(function (label, i) { return {label: label, count: counts[i]}; })
+        .filter(function (item) { return item.count > 0; })};
+  }
+
   function get(slug) { return by[slug] || null; }
 
   /* Ranked search. Exact genus or word-start matches first, then contains. */
@@ -123,7 +140,7 @@
 
   root.PlantLibrary = {
     load: load, applyEdits: applyEdits, get: get, search: search, slugify: slugify,
-    size: size, flowering: flowering, label: label, esc: esc, BANDS: BANDS,
+    layers: layers, size: size, flowering: flowering, label: label, esc: esc, BANDS: BANDS,
     all: function () { return list; }
   };
 })(window);

@@ -94,19 +94,32 @@
       '</div></article>';
   }
 
+  function layerSummary(lines) {
+    if (!lines.length) return '';
+    var layers = PL.layers(lines);
+    var items = layers.items.map(function (item) {
+      return '<li><span class="layer-count">' + item.count + '</span> ' + esc(item.label) + '</li>';
+    });
+    if (layers.unknown) items.push('<li><span class="layer-count">' + layers.unknown + '</span> Unclassified</li>');
+    return '<div class="cv-layers"><h2>' + layers.count + ' planting ' +
+      (layers.count === 1 ? 'layer' : 'layers') + '</h2><p class="small">Species in each layer</p>' +
+      '<ul>' + items.join('') + '</ul></div>';
+  }
+
   function render(p, lines) {
     document.title = p.title + ' · Gardener & Son';
     var areas = [], by = {};
     lines.forEach(function (l) { var a = l.area || ''; if (!by[a]) { by[a] = []; areas.push(a); } by[a].push(l); });
     var total = lines.reduce(function (s, l) { return s + (Number(l.qty) || 0); }, 0);
-    var indig = lines.filter(function (l) { var r = PL.get(l.slug); return r && r.evcs && r.evcs.length; }).length;
+    var species = lines.filter(function (line, i) { return lines.findIndex(function (other) { return other.slug === line.slug; }) === i; });
+    var indig = species.filter(function (l) { var r = PL.get(l.slug); return r && r.evcs && r.evcs.length; }).length;
     var named = areas.filter(Boolean);
     var html = '<section class="cv-intro"><span class="label">Gardener &amp; Son · plant list' + (p.updated_at ? ' · updated ' + new Date(p.updated_at).toLocaleDateString('en-AU', {day: 'numeric', month: 'short', year: 'numeric'}) : '') + '</span>' +
       '<h1>' + esc(p.title) + '</h1>' + (p.intro ? '<p>' + esc(p.intro) + '</p>' : '') +
-      '<div class="cv-stats"><div><strong>' + lines.length + '</strong><span>species</span></div>' +
+      '<div class="cv-stats"><div><strong>' + species.length + '</strong><span>species</span></div>' +
       (total ? '<div><strong>' + total + '</strong><span>plants</span></div>' : '') +
       (indig ? '<div><strong>' + indig + '</strong><span>indigenous to Victoria</span></div>' : '') +
-      (named.length > 1 ? '<div><strong>' + named.length + '</strong><span>planting areas</span></div>' : '') + '</div></section>';
+      (named.length > 1 ? '<div><strong>' + named.length + '</strong><span>planting areas</span></div>' : '') + '</div>' + layerSummary(lines) + '</section>';
     if (named.length > 1) {
       html += '<nav class="cv-tools" aria-label="Planting areas">' + areas.map(function (a, i) { return '<a class="btn" href="#a' + i + '">' + esc(a || 'Other plants') + '</a>'; }).join('') + '<button class="btn ghost" type="button" onclick="print()">Print</button></nav>';
     }

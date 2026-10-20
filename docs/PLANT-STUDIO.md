@@ -38,3 +38,12 @@ in this browser origin and never sent to Apps Script. Generated client mock link
 Gardener & Son owns these frontend pages. Registry keeps its current pages for
 existing links, plus the shared backend and public library. This addition does
 not change the homepage, DNS, CNAME, or Pages settings.
+
+## Client layer summary
+
+Below the headline totals, the client view shows the number of planting layers
+represented and a distinct-species count for each. It uses canonical stratum
+1–7: canopy, sub-canopy / tall shrubs, mid shrubs, grasses / strappy,
+forbs / flowering, groundcovers, and mats / spreading woody. Repeated species
+across areas count once, regardless of plant quantity. Missing classifications
+are shown as Unclassified and do not increase the layer total.
