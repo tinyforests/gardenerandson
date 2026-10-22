@@ -1,8 +1,8 @@
 /* Plant studio + customer plant pages. Scoped to Plant Studio; the main site styles stay independent. */
-:root{--green:#3d4535;--beige:#fff0dc;--font-hero:'Abril Fatface',serif;--font-serif:'Fraunces',Georgia,serif;--font-sans:'IBM Plex Sans',sans-serif;--font-mono:'IBM Plex Mono',monospace;--bg:var(--beige);--fg:var(--green);--panel:#f7ead6;--line:#d7ccb9;--signal:#7a9e5f;--muted:rgba(61,69,53,.72);--warn:#a6533f}
-html.dark{--bg:var(--green);--fg:var(--beige);--panel:#485141;--line:rgba(255,240,220,.16);--muted:rgba(255,240,220,.72);--warn:#e2a08c}
+:root{--green:#3d4535;--beige:#fff0dc;--font-hero:'Abril Fatface',serif;--font-serif:'Fraunces',Georgia,serif;--font-sans:'IBM Plex Sans',sans-serif;--font-mono:'IBM Plex Mono',monospace;--bg:var(--beige);--fg:var(--green);--panel:#f7ead6;--line:#d7ccb9;--signal:#7C9A52;--brass:#B49A63;--clay:#9A6A4F;--rule:#B49A63;--muted:rgba(61,69,53,.68);--warn:#a6533f}
+html.dark{--bg:var(--green);--fg:var(--beige);--panel:#485141;--line:rgba(255,240,220,.16);--rule:rgba(180,154,99,.6);--muted:rgba(255,240,220,.72);--warn:#e2a08c}
 *{box-sizing:border-box;border-radius:0!important}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--font-sans)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 var(--font-sans)}
 a{color:inherit;text-underline-offset:4px}
 button,input,textarea,select{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -16,9 +16,11 @@ h1,h2,h3{font-family:var(--font-serif);font-weight:400;line-height:1.1;letter-sp
 
 /* header */
 .top{position:sticky;top:0;z-index:20;background:var(--bg);border-top:3px solid var(--signal);border-bottom:1px solid var(--line);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
-.brand{font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+.brand{font:400 15px/1.2 var(--font-serif);letter-spacing:.01em;text-decoration:none}
+.brand i{font-style:italic;color:var(--signal)}
+html.dark .brand i{color:var(--brass)}
 .top nav{display:flex;gap:18px;align-items:center;font-size:12px}
-.top nav button{border:0;background:none;font-size:12px;padding:4px}
+.top nav button{border:0;background:none;font:11px/1.6 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;padding:4px}
 
 /* controls */
 .btn{border:1px solid var(--line);background:transparent;padding:9px 14px;font-size:13px;line-height:1.2;white-space:nowrap}
@@ -32,7 +34,7 @@ textarea{resize:vertical;min-height:70px}
 .field{display:block;margin:0 0 12px}
 .field>span{display:block;font-size:12px;font-weight:500;margin-bottom:5px}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.chip{display:inline-block;font:10px/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;padding:5px 7px;border:1px solid var(--line);margin:0 4px 4px 0}
+.chip{display:inline-block;font:10px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;padding:5px 7px;border:1px solid var(--line);margin:0 4px 4px 0}
 .chip.on{background:var(--signal);border-color:var(--signal);color:var(--beige)}
 .chip.native{border-color:var(--signal);color:var(--signal)}
 button.chip{background:transparent}
@@ -67,7 +69,7 @@ details.more summary{cursor:pointer;font-size:12px;color:var(--muted);margin:6px
 .area-head h3{font-size:20px}
 .line{display:grid;grid-template-columns:minmax(0,1fr) 64px 92px 28px;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
 .line .nm{min-width:0;cursor:pointer}
-.line .nm b{display:block;font-weight:500;font-style:italic;font-size:14px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.line .nm b{display:block;font:400 13px/1.35 var(--font-mono);letter-spacing:.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .line .nm span{font-size:12px;color:var(--muted)}
 .line input{min-height:32px;padding:4px 7px;font-size:13px}
 .line .note{grid-column:1/-1;min-height:30px;font-size:12px;border-style:dashed}
@@ -82,7 +84,7 @@ details.more summary{cursor:pointer;font-size:12px;color:var(--muted);margin:6px
 .res{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line)}
 .res:hover{background:var(--panel)}
 .res .nm{min-width:0;cursor:pointer}
-.res b{display:block;font-weight:500;font-style:italic;font-size:14px;line-height:1.3}
+.res b{display:block;font:400 13px/1.35 var(--font-mono);letter-spacing:.01em}
 .res span{font-size:12px;color:var(--muted)}
 .res .in{font-size:11px;color:var(--signal)}
 .add{border:1px solid var(--signal);color:var(--signal);background:none;padding:5px 10px;font-size:12px}
@@ -96,39 +98,48 @@ details.more summary{cursor:pointer;font-size:12px;color:var(--muted);margin:6px
 .drawer .head{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:start;gap:12px}
 .drawer .body{padding:18px 22px;overflow:auto;flex:1}
 .drawer .foot{padding:14px 22px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end}
-.drawer h2{font-size:26px;font-style:italic;font-family:'IBM Plex Sans',sans-serif;font-weight:500;letter-spacing:-.01em}
+.drawer h2{font:400 20px/1.35 var(--font-mono);letter-spacing:0}
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:39}
 .ro{font-size:12px;color:var(--muted);margin:-4px 0 14px}
 
 /* customer page */
 .cv{max-width:1100px;margin:auto;padding:0 28px 80px}
-.cv-intro{padding:64px 0 28px;border-bottom:1px solid var(--line)}
-.cv-intro h1{font-size:clamp(40px,6vw,72px);margin:18px 0 18px}
+.cv-intro{padding:72px 0 30px;border-bottom:1px solid var(--rule)}
+.cv-intro h1{font-size:clamp(64px,8vw,92px);margin:20px 0}
 .cv-intro p{max-width:640px;color:var(--muted);font-size:16px;white-space:pre-line}
-.cv-stats{display:flex;gap:36px;margin-top:26px;flex-wrap:wrap}
-.cv-stats strong{display:block;font:36px/1 'Abril Fatface',serif}
-.cv-stats span{font-size:12px;color:var(--muted)}
+.cv-stats{display:flex;gap:40px;margin-top:30px;flex-wrap:wrap}
+.cv-stats>div::before{content:'';display:block;width:44px;height:1px;background:var(--rule);margin-bottom:12px}
+.cv-stats strong{display:block;font:400 34px/1.1 var(--font-mono);letter-spacing:-.02em}
+.cv-stats span{font:10px/1.7 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .cv-tools{display:flex;gap:8px;flex-wrap:wrap;padding:20px 0;position:sticky;top:50px;background:var(--bg);z-index:5;border-bottom:1px solid var(--line)}
 .cv-area{padding:36px 0 8px}
-.cv-area>h2{font-size:30px;margin-bottom:6px}
+.cv-area>h2{font-size:clamp(32px,3.6vw,42px);letter-spacing:-.045em;margin:6px 0 0}
+.cv-area>.label{display:block;padding-bottom:8px;border-bottom:1px solid var(--rule)}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:18px}
-.card{border:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;border-top:2px solid var(--signal)}
+.card{border:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column}
 .card .img{aspect-ratio:4/3;background:var(--bg) center/cover no-repeat;border-bottom:1px solid var(--line)}
 .card .img.none{aspect-ratio:auto;height:72px;display:flex;align-items:flex-end;padding:10px 18px;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--line) 10px 11px)}
-.card .img.none span{font:34px/1 'Abril Fatface',serif;opacity:.55}
+.card .img.none span{font:italic 32px/1 var(--font-serif);opacity:.6}
 .card .txt{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column}
-.card h3{font:500 italic 18px/1.25 'IBM Plex Sans',sans-serif;letter-spacing:-.01em}
-.card .common{font-size:14px;margin:2px 0 10px}
-.card .facts{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:12px;margin:8px 0 10px}
-.card .facts dt{color:var(--muted)}
+.card h3{font:400 15px/1.35 var(--font-mono);letter-spacing:.01em}
+.card .common{font:italic 17px/1.3 var(--font-serif);margin:3px 0 11px}
+.card .facts{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13px;margin:10px 0;padding-top:10px;border-top:1px solid var(--line)}
+.card .facts dt{font:9.5px/1.7 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:2px}
 .card .facts dd{margin:0}
-.card p{font-size:13px;margin:6px 0;white-space:pre-line}
+.card p{font-size:14px;margin:8px 0;white-space:pre-line}
+/* long descriptions pull the grid out of rhythm — folded, never truncated */
+.card p.desc.clamped{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.card .more{align-self:flex-start;border:0;background:none;padding:4px 0;font:10px var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--signal)}
+.card .more:hover{text-decoration:underline;text-underline-offset:3px}
 .card details{font-size:13px;margin-top:auto;padding-top:8px}
-.card details summary{cursor:pointer;font-size:12px;color:var(--muted)}
-.card .qty{font:10px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--signal);margin-bottom:6px}
+.card details summary{cursor:pointer;font:10px var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.card .qty{font:10px var(--font-mono);letter-spacing:.13em;text-transform:uppercase;color:var(--signal);margin-bottom:6px}
 .card .note{font-size:12px;border-left:2px solid var(--signal);padding-left:10px;margin:8px 0}
 .credit{font-size:10px;color:var(--muted);padding:4px 18px 0}
-.cv-foot{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.cv-foot{margin-top:64px;padding-top:26px;border-top:1px solid var(--rule);font-size:12px;color:var(--muted)}
+/* Acknowledgement of Country — the editorial voice, not fine print */
+.cv-foot .ack{margin:0 0 26px;padding-bottom:24px;border-bottom:1px solid var(--line);max-width:760px}
+.cv-foot .ack p{font:italic 15px/1.65 var(--font-serif);color:var(--fg);margin:10px 0 0}
 .cv-missing{padding:80px 0;text-align:center}
 
 @media (max-width:1180px){.studio{grid-template-columns:240px minmax(0,1fr)}.picker{grid-column:1/-1;position:static;max-height:none;border-top:1px solid var(--line)}.results{max-height:60vh}}
@@ -141,10 +152,13 @@ details.more summary{cursor:pointer;font-size:12px;color:var(--muted);margin:6px
 @media print{
   .top,.cv-tools,.card details summary{display:none}
   .card details{display:block}.card details>*{display:block}
+  .card p.desc.clamped{-webkit-line-clamp:unset;display:block}.card .more{display:none}
   body{background:#fff;color:#000}.card{break-inside:avoid;background:#fff}
 }
 
-.gate h1,.cv-intro h1{font-family:var(--font-hero)}
+/* Abril is hero-only and never below 64px (brand book). The gate heading
+   and the stat numerals are not heroes — Fraunces and mono carry those. */
+.cv-intro h1{font-family:var(--font-hero);letter-spacing:-.02em}
 
 /* Planting structure beneath the species and indigenous totals. */
 .cv-layers{margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
@@ -157,7 +171,10 @@ details.more summary{cursor:pointer;font-size:12px;color:var(--muted);margin:6px
 .cv-calendar{margin:0 0 40px;padding-top:24px;border-top:1px solid var(--line)}
 .cv-calendar h2{font:400 28px/1.2 var(--font-serif)}
 .calendar-key{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.calendar-scroll{overflow-x:auto;margin-top:18px}
+/* contain:paint stops the 740px table leaking its width to the document —
+   without it the whole client page drags ~344px sideways on a phone.
+   The internal scroll and the sticky species column are unaffected. */
+.calendar-scroll{overflow-x:auto;margin-top:18px;contain:paint}
 .flower-calendar{width:100%;min-width:740px;border-collapse:collapse;font-size:12px}
 .flower-calendar th,.flower-calendar td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:center}
 .flower-calendar th:first-child{text-align:left;min-width:180px;background:var(--bg);position:sticky;left:0;z-index:1}
