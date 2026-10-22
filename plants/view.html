@@ -15,7 +15,7 @@
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="https://www.gardenerandson.com" rel="noopener">Gardener &amp; Son</a>
+  <a class="brand" href="https://www.gardenerandson.com" rel="noopener">Gardener <i>&amp;</i> Son</a>
   <nav><button type="button" id="themeToggle">Understory</button></nav>
 </header>
 
@@ -96,7 +96,8 @@
       '<div class="common">' + esc(r.common_name || '') + '</div>' +
       '<div>' + tags.join('') + '</div>' +
       facts(r) +
-      (desc ? '<p>' + esc(desc) + '</p>' : '') +
+      (desc ? '<p class="desc' + (desc.length > 240 ? ' clamped' : '') + '">' + esc(desc) + '</p>'
+            + (desc.length > 240 ? '<button class="more" type="button">Read more</button>' : '') : '') +
       (l.note ? '<div class="note">' + esc(l.note) + '</div>' : '') +
       (r.maintenance ? '<details><summary>Looking after it</summary><p>' + esc(r.maintenance) + '</p></details>' : '') +
       '</div></article>';
@@ -172,8 +173,16 @@
         '<div class="cards">' + by[a].map(card).join('') + '</div></section>';
     }).join('');
     if (!lines.length) html += '<p class="cv-missing small">The studio hasn’t added plants to this list yet.</p>';
-    html += '<footer class="cv-foot">Prepared by Gardener &amp; Son, 140 Auburn Road, Hawthorn. Plant details describe each species in general; how it grows in your garden depends on your soil, light and water. Questions — hello@gardenerandson.com</footer>';
-    document.getElementById('cv').innerHTML = html;
+    html += '<footer class="cv-foot">'
+      + '<div class="ack"><div class="label">ACKNOWLEDGEMENT OF COUNTRY</div><p>At Gardener &amp; Son, we acknowledge the Wurundjeri Woi Wurrung people of the Kulin Nation, the Traditional Custodians of the land on which we live and work. We honour their enduring connection to Country — and the grasslands, woodlands, and wetlands that once flourished here through generations of care and balance. These living systems were not lost to time, but to disconnection. Our work seeks to rekindle that relationship, restoring native ecologies and weaving biodiversity back into the urban fabric — each garden a quiet act of remembrance and renewal.</p></div>'
+      + 'Prepared by Gardener &amp; Son, 140 Auburn Road, Hawthorn. Plant details describe each species in general; how it grows in your garden depends on your soil, light and water. Questions — hello@gardenerandson.com</footer>';
+    var cv = document.getElementById('cv');
+    cv.innerHTML = html;
+    cv.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('.more') : null;
+      if (!b) return;
+      b.textContent = b.previousElementSibling.classList.toggle('clamped') ? 'Read more' : 'Read less';
+    });
   }
 })();
 </script>
