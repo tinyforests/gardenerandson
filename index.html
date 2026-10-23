@@ -153,6 +153,7 @@ nav .begin-link{color:var(--signal)}
 .care{margin:40px 20px 20px;border:1px solid var(--line-l)}
 .care-row{display:grid;grid-template-columns:minmax(110px,.7fr) minmax(220px,1.4fr) minmax(260px,2fr) auto;gap:24px;align-items:center;padding:22px 20px}
 .care-row+.care-row{border-top:1px solid var(--line-l)}
+.care-row h3{font-family:var(--serif);font-weight:400}
 .care-row p{font-size:14px;line-height:1.55;margin:0;max-width:430px}
 .care-row .btn{white-space:nowrap}
 
@@ -179,7 +180,9 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
 .foot-grid a:hover{color:var(--signal);border-color:var(--signal)}
 .ack{margin-top:34px;padding-top:20px;border-top:1px solid var(--line-d);display:grid;grid-template-columns:1.3fr 3fr;gap:24px}
 .ack p{margin:0;font-size:13px;line-height:1.65;max-width:720px}
-.base{margin-top:28px;display:flex;justify-content:space-between;font:9px var(--mono);letter-spacing:.1em}
+.base a{border-bottom:1px solid var(--line-d)}
+.base a:hover{color:var(--signal);border-color:var(--signal)}
+.base{margin-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 24px;font:9px var(--mono);letter-spacing:.1em}
 
 /* ── Mobile ───────────────────────────────────────────────── */
 /* Gardens section fits one screen on desktop (nav clearance + gutter) */
@@ -383,15 +386,16 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
       <p>140 Auburn Road, Hawthorn VIC 3122<br>2 Churchill Street, Mont Albert VIC 3127</p>
     </div>
     <div>
-      <div class="label">ALSO FROM US</div>
-      <p><a href="https://plantsofplace.com/">Plants of Place — nursery</a><br><a href="https://heirloomgardenobjects.com/">Heirloom — objects</a><br><a href="https://ecologicalregistry.org/">Ecological Registry</a><br><a href="https://guide.gardenerandson.com/">Field Guide — practice</a></p>
+      <div class="label">OUR WIDER PRACTICE</div>
+      <p><a href="https://plantsofplace.com/">Plants of Place — nursery</a><br><a href="https://heirloomgardenobjects.com/">Heirloom — objects</a><br><a href="https://guide.gardenerandson.com/">Field Guide — practice</a></p>
+      <p><a href="https://findmyevc.com/">Find My EVC</a><br><a href="https://findmyecologicalgarden.com/">Find My Ecological Garden</a><br><a href="https://findmynativeplants.com.au/">Find My Native Plants</a><br><a href="https://ecologicalregistry.org/">Ecological Registry</a></p>
     </div>
   </div>
   <div class="ack">
     <div class="label">ACKNOWLEDGEMENT OF COUNTRY</div>
     <p>At Gardener &amp; Son, we acknowledge the Wurundjeri Woi Wurrung people of the Kulin Nation, the Traditional Custodians of the land on which we live and work. We honour their enduring connection to Country — and the grasslands, woodlands, and wetlands that once flourished here through generations of care and balance. These living systems were not lost to time, but to disconnection. Our work seeks to rekindle that relationship, restoring native ecologies and weaving biodiversity back into the urban fabric — each garden a quiet act of remembrance and renewal.</p>
   </div>
-  <div class="base"><span>GARDENER &amp; SON © 2026</span><span>HAWTHORN ✢ MONT ALBERT ✢ MELBOURNE</span></div>
+  <div class="base"><span>GARDENER &amp; SON © 2026</span><a href="/brand.html">Brand book</a><span>HAWTHORN ✢ MONT ALBERT ✢ MELBOURNE</span></div>
 </footer>
 
 <script>
