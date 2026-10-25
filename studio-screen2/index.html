@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en-AU">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="The Gardener & Son studio window display — Field Guide edition.">
+<title>Studio window · Field Guide · Gardener & Son</title>
+<style>
+@font-face{font-family:Abril;src:url(../presentation/maylands/fonts/AbrilFatface-Regular.ttf)}
+@font-face{font-family:Fraunces;src:url(../presentation/maylands/fonts/Fraunces-Regular.ttf)}
+@font-face{font-family:Fraunces;font-style:italic;src:url(../presentation/maylands/fonts/Fraunces-Italic.ttf)}
+@font-face{font-family:Plex;src:url(../presentation/maylands/fonts/IBMPlexSans-Regular.ttf)}
+@font-face{font-family:Mono;src:url(../presentation/maylands/fonts/IBMPlexMono-Regular.ttf)}
+:root{--green:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63;--hero:Abril,Georgia,serif;--serif:Fraunces,Georgia,serif;--sans:Plex,Arial,sans-serif;--mono:Mono,monospace}
+*{box-sizing:border-box;border-radius:0}
+body{margin:0;background:var(--green);color:var(--beige);font-family:var(--sans);overflow:hidden}
+main{position:fixed;inset:0;overflow:hidden;display:grid;place-items:center;transition:background 1.4s ease}
+#stage{width:1920px;height:1080px;position:absolute;transform-origin:center}
+
+/* Slide frame — identical to studio-screen */
+.slide{position:absolute;inset:0;background:var(--beige);color:var(--green);opacity:0;transition:opacity 1.4s ease}
+.slide.active{opacity:1}
+.slide.dark{background:var(--green);color:var(--beige)}
+.wordmark{position:absolute;left:120px;top:70px;width:230px;height:122px;background:var(--green);mask:url(../studio-screen/logo-G_S.png) center/contain no-repeat;-webkit-mask:url(../studio-screen/logo-G_S.png) center/contain no-repeat}
+.dark .wordmark{background:var(--beige)}
+.label{font:24px var(--mono);text-transform:uppercase;letter-spacing:3px;margin:0 0 30px}
+.label:before{content:"";display:block;width:100px;height:5px;background:var(--signal);margin-bottom:24px}
+.footer{position:absolute;left:120px;right:120px;bottom:76px;display:flex;justify-content:space-between;font:24px var(--mono);letter-spacing:2px}
+.footer .url{text-transform:none}
+
+/* Headline scale — 168px/.94 Abril, italic Fraunces emphasis (as studio-screen) */
+.title{font:400 168px/.94 var(--serif);letter-spacing:-6px;margin:0}
+h1.title{font-family:var(--hero)}  /* Abril is hero-only (CLAUDE.md §5); sections use Fraunces */
+.title em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-5px;color:var(--signal)}
+.title.mid{font-size:140px;letter-spacing:-5px}
+.title.small{font-size:120px;line-height:1;letter-spacing:-4px}
+.body{font:36px/1.35 var(--sans);margin:0;white-space:pre-line}
+.body p{margin:0 0 .7em}.body p:last-child{margin:0}
+
+/* Section: headline left, guide text right */
+.copy{position:absolute;left:120px;top:50%;transform:translateY(-50%);width:1000px}
+.text{position:absolute;left:1200px;right:120px;top:50%;transform:translateY(-50%)}
+.text:before{content:"";display:block;width:100%;height:1px;background:currentColor;opacity:.35;margin-bottom:40px}
+
+/* Opening and acknowledgement — full width */
+.wide .copy{width:1680px}
+.wide .body{max-width:1500px;margin-top:40px}
+.entry .body{font:48px/1.15 var(--serif);margin-top:44px}
+.ack .title{font-size:120px;line-height:1;letter-spacing:-4px}
+.ack .body{font-size:32px}
+
+#controls{position:fixed;z-index:5;bottom:18px;left:50%;transform:translateX(-50%);background:var(--green);padding:12px;display:flex;gap:12px;opacity:0;transition:opacity .2s;max-width:96vw;flex-wrap:wrap}
+body.controls #controls,#controls:focus-within{opacity:1}
+button{font:14px var(--sans);background:var(--beige);color:var(--green);border:1px solid var(--brass);padding:10px 15px;cursor:pointer}
+button:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+#status{font:12px var(--mono);align-self:center;max-width:280px}
+@media(prefers-reduced-motion:reduce){.slide,main,#controls{transition:none}}
+</style>
+<main aria-label="Studio window display — Field Guide"><div id="stage"></div></main>
+<nav id="controls" aria-label="Display controls"><button id="previous">Previous</button><button id="pause">Pause</button><button id="next">Next</button><button id="fullscreen">Fullscreen</button><span id="status" role="status">Loading Field Guide</span></nav>
+<script>
+'use strict';
+// Content comes live from the Field Guide; guide.json is the bundled fallback.
+const SOURCES = ['https://guide.gardenerandson.com/slides.json', 'guide.json'];
+const SKIP = ['entry']; // the guide's "Enter" screen is replaced by our own opener
+const stage = document.querySelector('#stage'), status = document.querySelector('#status');
+let slides = [], pending = null, position = 0, timer, paused = false, version = '';
+
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
+
+// "Gardens as *Systems*" → Abril with italic Fraunces emphasis
+function heading(src, tag = 'h2') {
+  const h = el(tag, 'title');
+  src.split(/(\*[^*]+\*)/).forEach(part => {
+    if (/^\*[^*]+\*$/.test(part)) h.append(el('em', '', part.slice(1, -1)));
+    else if (part) h.append(document.createTextNode(part));
+  });
+  const n = src.replace(/\*/g, '').length;
+  if (n > 22) h.classList.add('small'); else if (n > 14) h.classList.add('mid');
+  return h;
+}
+function body(src) {
+  const d = el('div', 'body');
+  src.split(/\n\s*\n/).forEach(p => d.append(el('p', '', p.trim())));
+  return d;
+}
+// Reading time: ~24s base (as studio-screen), longer passages get longer.
+const duration = s => Math.min(45, Math.max(20, Math.round(12 + (s.body || '').length / 18)));
+
+function build(data) {
+  if (!data || !Array.isArray(data.slides)) throw Error('Invalid guide');
+  const sections = data.slides.filter(s => !SKIP.includes(s.id) && s.heading && s.body);
+  if (sections.length < 5) throw Error('Guide too short');
+  const total = sections.filter(s => s.type !== 'ack').length;
+  let n = 0;
+  const out = [{ kind: 'entry', duration: 20,
+    heading: 'Field *Guide*', body: 'A working book of practice, culture, and care.' }];
+  sections.forEach(s => {
+    if (s.type === 'ack') out.push({ kind: 'ack', heading: s.heading, body: s.body, duration: duration(s) });
+    else out.push({ kind: 'section', n: ++n, total, heading: s.heading, body: s.body, duration: duration(s) });
+  });
+  return out;
+}
+
+function fit(box, min) { // shrink body text until the slide fits the frame
+  const b = box.querySelector('.body'); if (!b) return;
+  let size = parseFloat(getComputedStyle(b).fontSize);
+  while (box.offsetHeight > 820 && size > min) { size -= 2; b.style.fontSize = size + 'px'; }
+}
+
+function render() {
+  const s = slides[position];
+  const dark = s.kind !== 'section' || s.n % 2 === 1;
+  document.querySelector('main').style.background = dark ? 'var(--green)' : 'var(--beige)';
+  const sec = el('section', 'slide ' + s.kind + (dark ? ' dark' : '') + (s.kind !== 'section' ? ' wide' : ''));
+  sec.append(el('div', 'wordmark'));
+  const copy = el('div', 'copy');
+  if (s.kind === 'entry') {
+    copy.append(el('p', 'label', 'Gardener & Son · Ecological design studio'), heading(s.heading, 'h1'), body(s.body));
+  } else if (s.kind === 'ack') {
+    copy.append(el('p', 'label', 'Wurundjeri Woi Wurrung Country / Melbourne'), heading(s.heading), body(s.body));
+  } else {
+    copy.append(el('p', 'label', 'Field Guide · ' + String(s.n).padStart(2, '0') + ' / ' + s.total), heading(s.heading));
+  }
+  sec.append(copy);
+  let text;
+  if (s.kind === 'section') { text = el('div', 'text'); text.append(body(s.body)); sec.append(text); }
+  const foot = el('div', 'footer');
+  foot.append(el('span', '', 'Read slowly'), el('span', 'url', 'guide.gardenerandson.com'));
+  sec.append(foot);
+  const old = stage.lastElementChild; stage.append(sec);
+  fit(text || copy, 28);
+  requestAnimationFrame(() => requestAnimationFrame(() => sec.classList.add('active')));
+  if (old) { old.classList.remove('active'); old.setAttribute('aria-hidden', 'true'); setTimeout(() => old.remove(), 1500); }
+  schedule();
+}
+function schedule() { clearTimeout(timer); if (!paused) timer = setTimeout(() => advance(1), slides[position].duration * 1000); }
+function advance(d) {
+  if (d === 1 && position === slides.length - 1 && pending) { slides = pending; pending = null; position = 0; }
+  else position = (position + d + slides.length) % slides.length;
+  render();
+}
+
+async function refresh() {
+  for (const url of SOURCES) {
+    try {
+      const r = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(15000) });
+      if (!r.ok) throw 0;
+      const raw = await r.text(); const next = build(JSON.parse(raw));
+      if (raw !== version) {
+        version = raw;
+        if (slides.length) pending = next; else slides = next;
+        try { localStorage.setItem('studio2-guide', raw); } catch {}
+      }
+      status.textContent = (url.startsWith('http') ? 'Live guide' : 'Bundled guide') + ' · ' + slides.length + ' slides · checks every 5 min';
+      return;
+    } catch {}
+  }
+  status.textContent = 'Keeping saved guide · retrying';
+}
+
+document.querySelector('#previous').onclick = () => advance(-1);
+document.querySelector('#next').onclick = () => advance(1);
+document.querySelector('#pause').onclick = () => { paused = !paused; document.querySelector('#pause').textContent = paused ? 'Play' : 'Pause'; schedule(); };
+document.querySelector('#fullscreen').onclick = async () => { try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); } catch { status.textContent = 'Use your browser’s fullscreen command'; } };
+document.addEventListener('keydown', e => { if (e.target.closest('button')) return; if (e.key === 'ArrowRight') advance(1); if (e.key === 'ArrowLeft') advance(-1); if (e.code === 'Space') { e.preventDefault(); document.querySelector('#pause').click(); } if (e.key.toLowerCase() === 'f') document.querySelector('#fullscreen').click(); });
+let hide; function controls() { document.body.classList.add('controls'); clearTimeout(hide); hide = setTimeout(() => document.body.classList.remove('controls'), 4000); }
+document.addEventListener('pointermove', controls); document.addEventListener('keydown', controls); controls();
+function resize() { const m = document.querySelector('main'); stage.style.transform = `scale(${Math.min(m.clientWidth / 1920, m.clientHeight / 1080)})`; }
+addEventListener('resize', resize); resize();
+
+(async () => {
+  try { const saved = localStorage.getItem('studio2-guide'); if (saved) { slides = build(JSON.parse(saved)); version = saved; } } catch {}
+  await refresh();
+  await document.fonts.ready;
+  if (pending) { slides = pending; pending = null; }
+  if (!slides.length) { status.textContent = 'Field Guide unavailable'; return; }
+  const start = new URLSearchParams(location.search).get('slide');
+  if (start) position = Math.min(slides.length - 1, Math.max(0, +start));
+  render();
+  setInterval(refresh, 300000); addEventListener('online', refresh);
+})();
+</script>
+</html>
