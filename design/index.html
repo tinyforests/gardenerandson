@@ -115,6 +115,7 @@ html.dark .stage-head h2 em{color:var(--brass)}
         <span class="label">Gardens</span>
         <button class="btn signal" type="button" id="newProject">New garden</button>
       </div>
+      <form id="newForm" class="row" style="margin-bottom:10px;flex-wrap:nowrap" hidden><input type="text" id="newName" placeholder="e.g. Hill Street rear garden" aria-label="Garden name" required><button class="btn primary" type="submit">Start</button></form>
       <input type="search" id="projectSearch" placeholder="Find a garden" aria-label="Find a garden">
       <label class="row small" style="margin-top:8px;gap:6px"><input type="checkbox" id="showArchived"> Show archived</label>
     </div>
@@ -332,13 +333,15 @@ html.dark .stage-head h2 em{color:var(--brass)}
   $('projectList').onclick = function (e) { var b = e.target.closest('.pitem'); if (b) guard(function () { openProject(b.dataset.id); }); };
 
   $('newProject').onclick = function () {
-    guard(function () {
-      var name = prompt('Name this garden (e.g. "Hill Street rear garden")');
-      if (!name) return;
-      post('create_project', {name: name.trim()}).then(function (d) {
-        return refreshLists().then(function () { openProject(d.project.id); });
-      }).catch(function (e) { toast(e.message); });
-    });
+    guard(function () { $('newForm').hidden = !$('newForm').hidden; if (!$('newForm').hidden) $('newName').focus(); });
+  };
+  $('newForm').onsubmit = function (e) {
+    e.preventDefault();
+    var name = $('newName').value.trim(); if (!name) return;
+    post('create_project', {name: name}).then(function (d) {
+      $('newName').value = ''; $('newForm').hidden = true;
+      return refreshLists().then(function () { openProject(d.project.id); });
+    }).catch(function (err) { toast(err.message); });
   };
 
   function guard(fn) {
