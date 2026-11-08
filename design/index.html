@@ -30,7 +30,7 @@
 .rail .t{display:block;font-size:13px;line-height:1.3}
 .rail .dot{position:absolute;top:12px;right:10px;width:7px;height:7px;border:1px solid var(--muted);border-radius:50%!important}
 .rail .done .dot{background:var(--signal);border-color:var(--signal)}
-.rail .active .dot{border-color:var(--brass);box-shadow:0 0 0 3px rgba(180,154,99,.25)}
+.rail .active .dot{border-color:var(--brass);box-shadow:0 0 0 3px color-mix(in srgb,var(--brass) 25%,transparent)}
 .rail .g{position:absolute;bottom:8px;right:10px;font:10px/1 var(--font-mono);color:var(--brass)}
 .rail .sel{background:var(--panel);box-shadow:inset 0 -2px 0 var(--fg)}
 
@@ -64,7 +64,7 @@ html.dark .stage-head h2 em{color:var(--brass)}
 .areas .x{border:0;background:none;color:var(--muted);font-size:18px}
 .photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:8px}
 .photos figure{margin:0;aspect-ratio:4/3;background:var(--panel) center/cover no-repeat;border:1px solid var(--line);position:relative}
-.photos figcaption{position:absolute;left:0;right:0;bottom:0;font:10px/1.4 var(--font-mono);padding:3px 5px;background:rgba(42,47,37,.7);color:var(--beige);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.photos figcaption{position:absolute;left:0;right:0;bottom:0;font:10px/1.4 var(--font-mono);padding:3px 5px;background:color-mix(in srgb,var(--green) 75%,transparent);color:var(--beige);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .plantlink{padding:14px;border:1px solid var(--line);background:var(--panel)}
 
 .stage-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--fg);padding-top:14px;margin-top:8px}
