@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en-AU" class="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Design Studio · Gardener &amp; Son</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,wght@0,400;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/plants/plants.css">
+<script>
+(function(){try{var m=localStorage.getItem('gs-plants-theme');if(m==='light')document.documentElement.classList.remove('dark');}catch(e){}})();
+</script>
+<style>
+/* Design Studio additions. Tokens and base controls come from /plants/plants.css. */
+.studio.ds{grid-template-columns:260px minmax(0,1fr) 340px}
+.demo{background:var(--brass);color:var(--green);font:11px/1.6 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 24px}
+.pitem .who{display:block;font-size:12px;color:var(--muted)}
+.pitem .flags{display:flex;gap:6px;margin-top:4px}
+.flag{font:10px/1 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;padding:3px 5px;border:1px solid var(--line)}
+.flag.ghost{border-color:var(--brass);color:var(--brass)}
+.flag.ask{border-style:dashed}
+
+/* stage rail */
+.rail{display:flex;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:4px 0 28px;overflow-x:auto}
+.rail button{flex:1 0 92px;border:0;border-right:1px solid var(--line);background:none;text-align:left;padding:10px 10px 12px;position:relative}
+.rail button:last-child{border-right:0}
+.rail button:hover{background:var(--panel)}
+.rail .n{display:block;font:10px/1.6 var(--font-mono);letter-spacing:.12em;color:var(--muted)}
+.rail .t{display:block;font-size:13px;line-height:1.3}
+.rail .dot{position:absolute;top:12px;right:10px;width:7px;height:7px;border:1px solid var(--muted);border-radius:50%!important}
+.rail .done .dot{background:var(--signal);border-color:var(--signal)}
+.rail .active .dot{border-color:var(--brass);box-shadow:0 0 0 3px color-mix(in srgb,var(--brass) 25%,transparent)}
+.rail .g{position:absolute;bottom:8px;right:10px;font:10px/1 var(--font-mono);color:var(--brass)}
+.rail .sel{background:var(--panel);box-shadow:inset 0 -2px 0 var(--fg)}
+
+.stage-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.stage-head h2{font-size:clamp(26px,2.6vw,34px)}
+.stage-head h2 em{font-style:italic;color:var(--clay)}
+html.dark .stage-head h2 em{color:var(--brass)}
+.lede{color:var(--muted);margin:0 0 22px;max-width:620px}
+
+/* ghosts */
+.draft{border:1px dashed var(--brass);background:transparent;padding:16px 18px;margin:0 0 22px;position:relative}
+.draft::before{content:'Ghost draft';position:absolute;top:-9px;left:14px;background:var(--bg);padding:0 6px;font:10px/1.6 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--brass)}
+.draft h3{font:italic 400 19px/1.35 var(--font-serif);margin:4px 0 10px}
+.draft .gf{display:grid;grid-template-columns:22px 150px minmax(0,1fr);gap:4px 10px;padding:7px 0;border-top:1px solid var(--line);font-size:13px;opacity:.86}
+.draft .gf b{font-weight:500}
+.draft .gf div{white-space:pre-line}
+.draft .notes{white-space:pre-line;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:4px}
+.draft .qs{margin:10px 0 0;padding-left:18px;font-size:13px}
+.draft .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.draft.old{border-color:var(--line);opacity:.6}
+.draft.old::before{color:var(--muted);content:'Earlier draft'}
+.draft.asked{border-style:dotted;border-color:var(--line)}
+.draft.asked::before{color:var(--muted);content:'Waiting on a ghost'}
+
+/* areas + photos */
+.areas{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:6px}
+.areas th{font:10px/1.6 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;text-align:left;color:var(--muted);font-weight:400;padding:0 6px 4px 0}
+.areas td{padding:3px 6px 3px 0}
+.areas input{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--fg);min-height:34px;padding:5px 8px;font-size:13px}
+.areas td.m2{font:12px var(--font-mono);white-space:nowrap}
+.areas .x{border:0;background:none;color:var(--muted);font-size:18px}
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:8px}
+.photos figure{margin:0;aspect-ratio:4/3;background:var(--panel) center/cover no-repeat;border:1px solid var(--line);position:relative}
+.photos figcaption{position:absolute;left:0;right:0;bottom:0;font:10px/1.4 var(--font-mono);padding:3px 5px;background:color-mix(in srgb,var(--green) 75%,transparent);color:var(--beige);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.plantlink{padding:14px;border:1px solid var(--line);background:var(--panel)}
+
+.stage-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--fg);padding-top:14px;margin-top:8px}
+.askbox{margin-top:30px;padding:16px;border:1px solid var(--line);background:var(--panel)}
+.askbox .row select{width:auto;min-height:36px}
+
+/* loop column */
+.loop{padding:18px 18px 60px;max-height:calc(100vh - 56px);overflow:auto;position:sticky;top:56px}
+.loop h3{font-size:19px;margin:0 0 4px}
+.loop section{margin-bottom:28px}
+.req{border-bottom:1px solid var(--line);padding:9px 0;font-size:13px}
+.req b{font-weight:500}
+.req span{display:block;font-size:12px;color:var(--muted);white-space:pre-line}
+.req .st{font:10px/1.6 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brass)}
+.ev{font-size:12px;padding:6px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+.ev time{display:block;font:10px/1.6 var(--font-mono);letter-spacing:.06em}
+.cmd{font:11px/1.5 var(--font-mono);background:var(--bg);border:1px solid var(--line);padding:8px;white-space:pre-wrap;word-break:break-all}
+
+@media (max-width:1180px){.studio.ds{grid-template-columns:230px minmax(0,1fr)}.loop{grid-column:1/-1;position:static;max-height:none;border-top:1px solid var(--line)}}
+@media (max-width:760px){.studio.ds{grid-template-columns:1fr}.areas thead{display:none}.areas tr{display:grid;grid-template-columns:1fr 1fr auto 28px;gap:6px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}.areas td{padding:0}.areas td:nth-child(1){grid-column:1/-1}.areas td:nth-child(5){grid-column:1/-1;order:2}.areas td:nth-child(6){order:1}.draft .gf{grid-template-columns:22px minmax(0,1fr)}.draft .gf div{grid-column:2}.demo{padding:6px 16px}}
+</style>
+</head>
+<body>
+<div class="demo" id="demoBar" hidden>Demo mode · kept in this browser only · nothing is sent anywhere</div>
+<header class="top">
+  <a class="brand" href="/">Gardener <i>&amp;</i> Son · Design Studio</a>
+  <nav>
+    <a href="/plants/studio.html" id="plantStudioLink">Plant Studio</a>
+    <button type="button" id="themeToggle">Canopy</button>
+    <button type="button" id="signOut" hidden>Sign out</button>
+  </nav>
+</header>
+
+<section class="gate" id="gate" hidden>
+  <span class="label">Gardener &amp; Son · studio only</span>
+  <h1>Design Studio</h1>
+  <p class="small">Every garden, from first enquiry to the Registry. Uses the same admin key as Plant Studio.</p>
+  <form id="gateForm">
+    <label class="field"><span>Admin key</span><input type="password" id="gateKey" autocomplete="current-password" required></label>
+    <div class="row"><button class="btn primary" type="submit">Open studio</button><span class="small" id="gateMsg"></span></div>
+  </form>
+</section>
+
+<div class="studio ds" id="app" hidden>
+  <aside class="col projects">
+    <div class="head">
+      <div class="row" style="justify-content:space-between;margin-bottom:10px">
+        <span class="label">Gardens</span>
+        <button class="btn signal" type="button" id="newProject">New garden</button>
+      </div>
+      <form id="newForm" class="row" style="margin-bottom:10px;flex-wrap:nowrap" hidden><input type="text" id="newName" placeholder="e.g. Hill Street rear garden" aria-label="Garden name" required><button class="btn primary" type="submit">Start</button></form>
+      <input type="search" id="projectSearch" placeholder="Find a garden" aria-label="Find a garden">
+      <label class="row small" style="margin-top:8px;gap:6px"><input type="checkbox" id="showArchived"> Show archived</label>
+    </div>
+    <div class="plist" id="projectList"></div>
+  </aside>
+
+  <main class="col main" id="main">
+    <div class="empty" id="noProject">Open a garden from the list, or start a new one.</div>
+    <div id="projectView" hidden>
+      <span class="label" id="pMeta"></span>
+      <h1 id="pHeading"></h1>
+      <nav class="rail" id="rail" aria-label="Stages"></nav>
+      <div id="stage"></div>
+    </div>
+  </main>
+
+  <aside class="col loop" id="loop">
+    <section>
+      <span class="label">The loop</span>
+      <h3>Waiting on ghosts.</h3>
+      <p class="small">Asks the agents haven't drafted yet, across every garden.</p>
+      <div id="queue"></div>
+    </section>
+    <section>
+      <span class="label">Run the ghosts</span>
+      <p class="small">On the studio iMac, open Claude and say:</p>
+      <div class="cmd">Run the Design Studio ghosts — follow design/AGENTS.md</div>
+    </section>
+    <section id="activityWrap" hidden>
+      <span class="label">This garden</span>
+      <h3>Activity.</h3>
+      <div id="activity"></div>
+    </section>
+  </aside>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="/design/engine.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* Set after deploying design/backend/Code.gs as a web app. Empty = demo mode. */
+  var ENDPOINT = '';
+  var PLANT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwGIau58khBRKYgq5SYwu0QjCWPa5h2dKyz4nPoeU9YMKlPN5BRXUz0LmzF7jZrqrRC/exec';
+  var TOKEN_KEY = 'gs-plants-admin-token'; // shared with Plant Studio: one sign-in for both
+  var MOCK = !ENDPOINT || /[?&]mock=1/.test(location.search);
+
+  var AGENTS = Engine.AGENTS;
+
+  /* Field definitions per stage. Keys are the contract the agents write to (see AGENTS.md). */
+  var FIELDS = {
+    enquiry: {lede: 'Who the stewards are, where the garden is, and how they found us.', fields: [
+      ['client_name', 'Stewards', 'text'], ['email', 'Email', 'email'], ['phone', 'Phone', 'text'],
+      ['address', 'Site address', 'text'], ['lga', 'Council', 'text'], ['source', 'How they found us', 'text'],
+      ['notes', 'First conversation', 'textarea']]},
+    site: {lede: 'What is there now: measurements, trees, light, soil, and what has to stay.', fields: [
+      ['areas', 'Garden areas', 'areas'], ['aspect', 'Aspect and light', 'textarea'],
+      ['trees', 'Existing trees', 'textarea'], ['soil', 'Soil and drainage', 'textarea'],
+      ['existing', 'Structures and plants to keep', 'textarea'], ['weeds', 'Weeds present', 'textarea'],
+      ['constraints', 'Constraints and overlays', 'textarea'], ['photos', 'Site photos', 'photos']]},
+    brief: {lede: 'What the stewards want the garden to do, and the care they can give it.', fields: [
+      ['purpose', 'What the garden is for', 'textarea'], ['feel', 'Mood and references', 'textarea'],
+      ['musts', 'Must-haves', 'textarea'], ['avoid', 'Avoid', 'textarea'],
+      ['care', 'Care they will give', 'textarea'], ['budget', 'Budget', 'text'], ['timing', 'Timing', 'text'],
+      ['wgb', 'Where Gardens Begin response', 'url']]},
+    ecology: {lede: 'The place the garden belongs to, read before any plant is chosen.', fields: [
+      ['evc_code', 'EVC code', 'text'], ['evc_name', 'EVC name', 'text'], ['bioregion', 'Bioregion', 'text'],
+      ['reference', 'Reference species', 'textarea'], ['habitat', 'Habitat links nearby', 'textarea'],
+      ['observations', 'Fauna observed', 'textarea']]},
+    palette: {lede: 'Plants chosen in Plant Studio. Set out on site, never on a placement plan.', fields: [
+      ['plant_project_id', 'Plant list', 'plantlink'], ['approach', 'Planting approach', 'textarea'],
+      ['density', 'Plants per m² by area', 'textarea']]},
+    presentation: {lede: 'What we show the stewards, and what they said.', fields: [
+      ['deck_url', 'Deck', 'url'], ['sheets_url', 'A3 sheets', 'url'], ['site_url', 'Client mini-site', 'url'],
+      ['presented_on', 'Presented on', 'date'], ['feedback', 'What they said', 'textarea']]},
+    estimate: {lede: 'Person-days in, price out. Built with the install estimate rates.', fields: [
+      ['days', 'Person-days', 'number'], ['total', 'Total inc GST', 'text'], ['estimate_url', 'Estimate page', 'url'],
+      ['sent_on', 'Sent on', 'date'], ['accepted_on', 'Accepted on', 'date'], ['notes', 'Notes', 'textarea']]},
+    install: {lede: 'The build, and what changed on site.', fields: [
+      ['start', 'Start', 'date'], ['finish', 'Finish', 'date'], ['changes', 'Changes on site', 'textarea'],
+      ['notes', 'Install notes', 'textarea']]},
+    registry: {lede: 'The garden enters the Ecological Registry and the stewardship begins.', fields: [
+      ['garden_id', 'Registry garden ID', 'text'], ['enrolled_on', 'Enrolled on', 'date'],
+      ['notes', 'Steward notes', 'textarea']]}
+  };
+  var TITLES = {enquiry: 'The <em>enquiry</em>.', site: 'The <em>site</em>.', brief: 'The <em>brief</em>.',
+    ecology: 'The <em>place</em>.', palette: 'The <em>plants</em>.', presentation: 'The <em>presentation</em>.',
+    estimate: 'The <em>estimate</em>.', install: 'The <em>build</em>.', registry: 'The <em>Registry</em>.'};
+
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]; }); }
+  var toastT;
+  function toast(msg) { var t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, 2600); }
+  function when(s) {
+    var d = new Date(s); if (isNaN(d)) return '';
+    return d.toLocaleDateString('en-AU', {day: 'numeric', month: 'short'}) + ' ' + d.toLocaleTimeString('en-AU', {hour: 'numeric', minute: '2-digit'});
+  }
+
+  var state = {token: '', projects: [], current: null, ghosts: [], requests: [], events: [], photos: [], view: null, queue: [], dirty: false, thumbs: {}};
+  try { state.token = localStorage.getItem(TOKEN_KEY) || ''; } catch (e) {}
+
+  /* ---------- backend ---------- */
+  var Mock = {
+    KEY: 'gs-design-mock',
+    load: function () {
+      var db = null;
+      try { db = JSON.parse(localStorage.getItem(this.KEY) || 'null'); } catch (e) {}
+      this.db = db || this.seed();
+    },
+    save: function () { try { localStorage.setItem(this.KEY, JSON.stringify(this.db)); } catch (e) { toast('Demo storage is full'); } },
+    ctx: function () {
+      return {now: new Date().toISOString(), who: 'studio', role: 'admin',
+        id: function (p) { return p + '-' + Math.random().toString(36).slice(2, 8).toUpperCase(); },
+        putPhoto: function (data) { var id = 'blob-' + Math.random().toString(36).slice(2, 10); Mock.blobs[id] = data; try { localStorage.setItem('gs-design-' + id, data); } catch (e) {} return {file_id: id}; },
+        getPhoto: function (id) { return Mock.blobs[id] || (function () { try { return localStorage.getItem('gs-design-' + id); } catch (e) { return null; } })(); }};
+    },
+    blobs: {},
+    handle: function (body) {
+      if (!this.db) this.load();
+      var out = Engine.handle(this.db, body, this.ctx());
+      if (out.dirty.length) this.save();
+      return JSON.parse(JSON.stringify(out.res));
+    },
+    // An example garden so the loop can be walked through before the backend exists. Not a real record.
+    seed: function () {
+      var db = Engine.emptyDb(), t = Date.now(), iso = function (m) { return new Date(t - m * 60000).toISOString(); };
+      var status = {}; Engine.STAGES.forEach(function (s) { status[s.key] = 'todo'; });
+      status.enquiry = 'done'; status.site = 'active';
+      db.projects.push({id: 'GD-DEMO01', name: 'Hill Street (example)', stage: 'site', status: status, archived: false,
+        created_at: iso(240), updated_at: iso(20),
+        data: {enquiry: {client_name: 'Example stewards', address: 'Hill Street, Whitehorse', lga: 'Whitehorse',
+          source: 'Studio visit', notes: 'Rear garden under three mature eucalypts. Want to lose most of the lawn and bring the bush in.'},
+          site: {areas: [{name: 'Rear garden', length: 14.8, width: 8.8, notes: 'Mostly lawn under canopy'}]}}});
+      db.ghosts.push({ghost_id: 'GH-DEMO01', project_id: 'GD-DEMO01', stage: 'site', agent: 'site', request_id: '',
+        summary: 'Site read from 15 photos and the tape measurements', state: 'open', created_at: iso(18), resolved_at: '', resolved_by: '',
+        fields: {
+          areas: [{name: 'Rear garden', length: 14.8, width: 8.8, notes: 'About 130 m², almost all lawn; length from the 17.1 m diagonal'}],
+          trees: 'Three mature eucalypts in the lawn plus one large on the eastern fence. Rough fibrous bark, long narrow grey-green adult leaves — peppermint or stringybark type. Species unconfirmed: needs a bud or gumnut photo.',
+          existing: 'Pergola over pavers off the conservatory and verandah. Sleeper posts along the house side. Brush fencing on the shed side. Metal shed in the back corner.',
+          weeds: 'Acanthus mollis around the tree bases (spreading environmental weed — replace). Yellow-leaf heuchera and pots.',
+          constraints: 'Tree protection zones over most of the yard: no-dig, mulch-up planting, no level changes, no irrigation trenching near trunks. NTV-classified street in Whitehorse — check title overlays before tree work or major ground disturbance.',
+          aspect: 'Dappled canopy shade across most of the lawn; brighter strip along the house.'},
+        notes: 'Magpie moth (Nyctemera amica) seen on a leaf — a good first Registry observation.',
+        questions: ['Street number and suburb?', 'Can we get a gumnut or bud photo of the lawn eucalypts?']});
+      db.events.push({at: iso(240), project_id: 'GD-DEMO01', who: 'studio', what: 'Project started'});
+      db.events.push({at: iso(60), project_id: 'GD-DEMO01', who: 'studio', what: 'Enquiry marked done'});
+      db.events.push({at: iso(18), project_id: 'GD-DEMO01', who: 'site-agent', what: 'Site ghost drafted site: Site read from 15 photos and the tape measurements'});
+      db.requests.push({request_id: 'REQ-DEMO01', project_id: 'GD-DEMO01', stage: 'site', agent: 'comms', state: 'open',
+        ask: 'Draft a short note to the stewards asking for the street number and a gumnut photo.', created_at: iso(10), created_by: 'studio', claimed_by: '', claimed_at: ''});
+      return db;
+    }
+  };
+
+  function post(op, data) {
+    var body = Object.assign({op: op, admin_token: state.token}, data || {});
+    if (MOCK) return Promise.resolve(Mock.handle(body)).then(check);
+    return fetch(ENDPOINT, {method: 'POST', body: JSON.stringify(body)}).then(function (r) { return r.json(); }).then(check);
+  }
+  function check(d) { if (!d || !d.ok) throw new Error((d && d.error) || 'Request failed'); return d; }
+
+  /* ---------- sign in ---------- */
+  function showGate(msg) { $('gate').hidden = false; $('app').hidden = true; $('signOut').hidden = true; $('gateMsg').textContent = msg || ''; }
+  $('gateForm').onsubmit = function (e) { e.preventDefault(); state.token = $('gateKey').value.trim(); start(); };
+  $('signOut').onclick = function () { try { localStorage.removeItem(TOKEN_KEY); } catch (e) {} state.token = ''; showGate(); };
+  function setTheme(m) {
+    document.documentElement.classList.toggle('dark', m !== 'light');
+    $('themeToggle').textContent = m === 'light' ? 'Understory' : 'Canopy';
+    try { localStorage.setItem('gs-plants-theme', m); } catch (e) {}
+  }
+  $('themeToggle').onclick = function () { setTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark'); };
+  setTheme(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+
+  function start() {
+    if (!state.token && !MOCK) return showGate();
+    $('gateMsg').textContent = 'Opening…';
+    Promise.all([post('list_projects'), post('queue', {include_claimed: true})]).then(function (res) {
+      try { if (!MOCK) localStorage.setItem(TOKEN_KEY, state.token); } catch (e) {}
+      state.projects = res[0].projects; state.queue = res[1].requests;
+      $('gate').hidden = true; $('app').hidden = false; $('signOut').hidden = MOCK; $('demoBar').hidden = !MOCK;
+      if (MOCK) $('plantStudioLink').href = '/plants/studio.html?mock=1';
+      renderProjects(); renderQueue();
+      var want = (location.hash.match(/g=([\w-]+)/) || [])[1];
+      if (want) openProject(want);
+      else if (MOCK && state.projects[0]) openProject(state.projects[0].id);
+    }).catch(function (err) {
+      showGate(/Unauthori[sz]ed/.test(err.message) ? 'That key was not accepted.' : 'Could not reach the studio: ' + err.message);
+    });
+  }
+
+  function refreshLists() {
+    return Promise.all([post('list_projects'), post('queue', {include_claimed: true})]).then(function (res) {
+      state.projects = res[0].projects; state.queue = res[1].requests; renderProjects(); renderQueue();
+    });
+  }
+
+  /* ---------- garden list ---------- */
+  function renderProjects() {
+    var q = $('projectSearch').value.toLowerCase(), arch = $('showArchived').checked;
+    var ps = state.projects.filter(function (p) {
+      if (p.archived && !arch) return false;
+      return !q || (p.name + ' ' + p.client + ' ' + p.address).toLowerCase().indexOf(q) >= 0;
+    }).sort(function (a, b) { return String(b.updated_at).localeCompare(String(a.updated_at)); });
+    $('projectList').innerHTML = ps.length ? ps.map(function (p) {
+      var st = Engine.STAGES[Engine.stageIndex(p.stage)];
+      return '<button type="button" class="pitem' + (state.current && state.current.id === p.id ? ' active' : '') + '" data-id="' + esc(p.id) + '">' +
+        '<b>' + esc(p.name) + '</b><span class="who">' + esc(p.client || p.address || '') + '</span>' +
+        '<span>' + esc(st ? st.title : '') + ' · ' + when(p.updated_at) + '</span>' +
+        ((p.ghosts || p.asks) ? '<span class="flags">' + (p.ghosts ? '<span class="flag ghost">' + p.ghosts + ' to review</span>' : '') +
+          (p.asks ? '<span class="flag ask">' + p.asks + ' asked</span>' : '') + '</span>' : '') + '</button>';
+    }).join('') : '<p class="small" style="padding:16px">No gardens yet.</p>';
+  }
+  $('projectSearch').oninput = renderProjects;
+  $('showArchived').onchange = renderProjects;
+  $('projectList').onclick = function (e) { var b = e.target.closest('.pitem'); if (b) guard(function () { openProject(b.dataset.id); }); };
+
+  $('newProject').onclick = function () {
+    guard(function () { $('newForm').hidden = !$('newForm').hidden; if (!$('newForm').hidden) $('newName').focus(); });
+  };
+  $('newForm').onsubmit = function (e) {
+    e.preventDefault();
+    var name = $('newName').value.trim(); if (!name) return;
+    post('create_project', {name: name}).then(function (d) {
+      $('newName').value = ''; $('newForm').hidden = true;
+      return refreshLists().then(function () { openProject(d.project.id); });
+    }).catch(function (err) { toast(err.message); });
+  };
+
+  function guard(fn) {
+    if (state.dirty && !confirm('This stage has unsaved changes. Leave without saving?')) return;
+    state.dirty = false; fn();
+  }
+  window.addEventListener('beforeunload', function (e) { if (state.dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+  function openProject(id, view) {
+    return post('get_project', {project_id: id}).then(function (d) {
+      state.current = d.project; state.ghosts = d.ghosts; state.requests = d.requests; state.events = d.events; state.photos = d.photos;
+      state.view = view || (state.current && state.view && state.lastId === id ? state.view : d.project.stage);
+      state.lastId = id; state.dirty = false;
+      history.replaceState(null, '', (MOCK && ENDPOINT ? '?mock=1' : location.search) + '#g=' + id);
+      renderProjects(); renderProject();
+    }).catch(function (e) { toast(e.message); });
+  }
+
+  /* ---------- garden ---------- */
+  function renderProject() {
+    var p = state.current;
+    $('noProject').hidden = !!p; $('projectView').hidden = !p; $('activityWrap').hidden = !p;
+    if (!p) return;
+    var enq = p.data.enquiry || {};
+    $('pMeta').textContent = p.id + (enq.address ? ' · ' + enq.address : '') + (enq.client_name ? ' · ' + enq.client_name : '');
+    $('pHeading').textContent = p.name;
+    $('rail').innerHTML = Engine.STAGES.map(function (s, i) {
+      var open = state.ghosts.filter(function (g) { return g.stage === s.key && g.state === 'open'; }).length;
+      return '<button type="button" data-k="' + s.key + '" class="' + (p.status[s.key] || 'todo') + (state.view === s.key ? ' sel' : '') + '">' +
+        '<span class="n">' + String(i + 1).padStart(2, '0') + '</span><span class="t">' + s.title + '</span><span class="dot" aria-hidden="true"></span>' +
+        (open ? '<span class="g" title="Ghost drafts to review">' + open + ' ◌</span>' : '') +
+        '<span class="small" style="position:absolute;left:-9999px">' + (p.status[s.key] || 'todo') + '</span></button>';
+    }).join('');
+    renderStage();
+    renderActivity();
+  }
+  $('rail').onclick = function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    guard(function () { state.view = b.dataset.k; renderProject(); });
+  };
+
+  function fieldsFor(k) { return FIELDS[k].fields; }
+  function labelFor(stage, key) { var f = fieldsFor(stage).filter(function (x) { return x[0] === key; })[0]; return f ? f[1] : key; }
+
+  function renderStage() {
+    var p = state.current, k = state.view, def = FIELDS[k], st = Engine.STAGES[Engine.stageIndex(k)];
+    var vals = p.data[k] || {}, status = p.status[k] || 'todo';
+    var ghosts = state.ghosts.filter(function (g) { return g.stage === k; });
+    var open = ghosts.filter(function (g) { return g.state === 'open'; }).reverse();
+    var asks = state.requests.filter(function (r) { return r.stage === k; });
+    var html = '<div class="stage-head"><h2>' + TITLES[k] + '</h2><span class="label">' + status + ' · drafted by the ' + AGENTS[st.agent] + ' ghost</span></div>' +
+      '<p class="lede">' + esc(def.lede) + '</p>';
+    html += open.map(ghostCard).join('');
+    html += asks.map(function (r) {
+      return '<div class="draft asked"><h3>Asked the ' + esc(AGENTS[r.agent]) + ' ghost' + (r.state === 'claimed' ? ' — working on it' : '') + '.</h3>' +
+        '<div class="notes">' + esc(r.ask || 'Draft this stage from what we know.') + '</div>' +
+        '<div class="acts"><button class="btn small ghost" type="button" data-cancel="' + esc(r.request_id) + '">Withdraw</button></div></div>';
+    }).join('');
+    html += '<form id="stageForm">' + def.fields.map(function (f) { return field(f, vals[f[0]]); }).join('') +
+      '<div class="stage-foot"><div class="row"><button class="btn primary" type="submit">Save</button><span class="small" id="saveMsg"></span></div>' +
+      '<div class="row">' + (status === 'done'
+        ? '<button class="btn" type="button" id="reopen">Reopen stage</button>'
+        : '<button class="btn signal" type="button" id="markDone">Mark ' + st.title.toLowerCase() + ' done</button>') + '</div></div></form>';
+    html += '<div class="askbox"><span class="label">Ask the ghost</span>' +
+      '<p class="small" style="margin:4px 0 10px">The ask joins the queue. An agent drafts it on the next run and the draft appears here for you to accept.</p>' +
+      '<textarea id="askText" placeholder="e.g. Read the photos and fill in the trees and constraints"></textarea>' +
+      '<div class="row" style="margin-top:8px"><select id="askAgent" aria-label="Agent">' + Object.keys(AGENTS).map(function (a) {
+        return '<option value="' + a + '"' + (a === st.agent ? ' selected' : '') + '>' + AGENTS[a] + ' ghost</option>';
+      }).join('') + '</select><button class="btn" type="button" id="askBtn">Ask</button></div></div>';
+    var old = ghosts.filter(function (g) { return g.state !== 'open'; });
+    if (old.length) html += '<details style="margin-top:28px"><summary class="small">Earlier drafts (' + old.length + ')</summary>' +
+      old.reverse().map(function (g) { return '<div class="draft old" style="margin-top:18px"><h3>' + esc(g.summary) + '</h3><p class="small">' + esc(AGENTS[g.agent]) + ' · ' + g.state + ' ' + when(g.resolved_at) + '</p></div>'; }).join('') + '</details>';
+    $('stage').innerHTML = html;
+    wireStage();
+  }
+
+  function preview(v) {
+    if (Array.isArray(v)) {
+      if (v.length && typeof v[0] === 'object') return v.map(function (a) {
+        var m2 = areaM2(a);
+        return (a.name || 'Area') + (a.length && a.width ? ' — ' + a.length + ' × ' + a.width + ' m' : '') + (m2 ? ' = ' + m2 + ' m²' : '') + (a.notes ? '\n  ' + a.notes : '');
+      }).join('\n');
+      return v.join(', ');
+    }
+    return v == null ? '' : String(v);
+  }
+
+  function ghostCard(g) {
+    var keys = Object.keys(g.fields || {});
+    return '<div class="draft" data-ghost="' + esc(g.ghost_id) + '"><span class="label">' + esc(AGENTS[g.agent]) + ' ghost · ' + when(g.created_at) + '</span>' +
+      '<h3>' + esc(g.summary) + '</h3>' +
+      keys.map(function (key) {
+        return '<label class="gf"><input type="checkbox" checked data-key="' + esc(key) + '" aria-label="Accept ' + esc(labelFor(g.stage, key)) + '"><b>' + esc(labelFor(g.stage, key)) + '</b><div>' + esc(preview(g.fields[key])) + '</div></label>';
+      }).join('') +
+      (g.notes ? '<div class="notes">' + esc(g.notes) + '</div>' : '') +
+      (g.questions && g.questions.length ? '<ol class="qs">' + g.questions.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('') + '</ol>' : '') +
+      '<div class="acts">' + (keys.length ? '<button class="btn signal" type="button" data-accept>Accept ticked</button>' : '') +
+      '<button class="btn" type="button" data-dismiss>' + (keys.length ? 'Dismiss' : 'Done with this') + '</button></div></div>';
+  }
+
+  function areaM2(a) {
+    if (a.m2) return +a.m2;
+    var l = parseFloat(a.length), w = parseFloat(a.width);
+    return l && w ? Math.round(l * w * 10) / 10 : 0;
+  }
+
+  function field(f, v) {
+    var key = f[0], label = f[1], type = f[2], id = 'f_' + key;
+    if (type === 'areas') {
+      var rows = Array.isArray(v) && v.length ? v : [{}];
+      return '<div class="field"><span>' + esc(label) + '</span><table class="areas" data-areas><thead><tr><th>Area</th><th>Length m</th><th>Width m</th><th>m²</th><th>Notes</th><th></th></tr></thead><tbody>' +
+        rows.map(areaRow).join('') + '</tbody></table><button class="btn small ghost" type="button" data-addarea>Add area</button> <span class="small" data-areatotal></span></div>';
+    }
+    if (type === 'photos') {
+      var ps = state.photos.filter(function (x) { return x.stage === state.view; });
+      return '<div class="field"><span>' + esc(label) + '</span><div class="photos">' + ps.map(function (x) {
+        return '<figure data-photo="' + esc(x.photo_id) + '" role="img" aria-label="' + esc(x.caption || x.name || 'Site photo') + '"><figcaption>' + esc(x.caption || x.name) + '</figcaption></figure>';
+      }).join('') + '</div><label class="btn small" style="display:inline-block">Add photos<input type="file" accept="image/*" multiple hidden data-upload></label> <span class="small" data-upmsg></span></div>';
+    }
+    if (type === 'plantlink') {
+      var href = '/plants/studio.html' + (MOCK ? '?mock=1' : '') + '#p=' + encodeURIComponent(v || '');
+      return '<div class="field"><span>' + esc(label) + '</span><div class="plantlink">' + (v
+        ? '<div class="row" style="justify-content:space-between"><span><span class="label">Plant Studio</span><br><b style="font-weight:500">' + esc(v) + '</b> <span class="small" data-plantcount></span></span><a class="btn" href="' + href + '" target="_blank" rel="noopener">Open in Plant Studio</a></div>'
+        : '<div class="row" style="justify-content:space-between"><span class="small">No plant list yet. Starting one creates a Plant Studio project with the site areas as zones.</span><button class="btn signal" type="button" data-startplants>Start plant list</button></div>') +
+        '<input type="hidden" name="' + key + '" value="' + esc(v || '') + '"></div></div>';
+    }
+    var input = type === 'textarea'
+      ? '<textarea id="' + id + '" name="' + key + '" rows="3">' + esc(v || '') + '</textarea>'
+      : '<input id="' + id + '" name="' + key + '" type="' + (type || 'text') + '" value="' + esc(v == null ? '' : v) + '"' + (type === 'number' ? ' step="any"' : '') + '>';
+    return '<label class="field" for="' + id + '"><span>' + esc(label) + '</span>' + input + '</label>';
+  }
+  function areaRow(a) {
+    a = a || {};
+    return '<tr><td><input data-a="name" value="' + esc(a.name || '') + '" aria-label="Area name"></td>' +
+      '<td><input data-a="length" type="number" step="any" value="' + esc(a.length == null ? '' : a.length) + '" aria-label="Length in metres"></td>' +
+      '<td><input data-a="width" type="number" step="any" value="' + esc(a.width == null ? '' : a.width) + '" aria-label="Width in metres"></td>' +
+      '<td class="m2"></td><td><input data-a="notes" value="' + esc(a.notes || '') + '" aria-label="Notes"></td>' +
+      '<td><button class="x" type="button" data-delarea aria-label="Remove area">×</button></td></tr>';
+  }
+
+  function readAreas(table) {
+    return Array.prototype.map.call(table.querySelectorAll('tbody tr'), function (tr) {
+      var a = {};
+      tr.querySelectorAll('[data-a]').forEach(function (i) {
+        var v = i.value.trim(); if (v === '') return;
+        a[i.dataset.a] = i.type === 'number' ? +v : v;
+      });
+      return a;
+    }).filter(function (a) { return Object.keys(a).length; });
+  }
+  function updateAreaTotals(table) {
+    var total = 0;
+    table.querySelectorAll('tbody tr').forEach(function (tr) {
+      var a = {}; tr.querySelectorAll('[data-a]').forEach(function (i) { a[i.dataset.a] = i.value; });
+      var m2 = areaM2(a); total += m2; tr.querySelector('.m2').textContent = m2 ? m2 + ' m²' : '—';
+    });
+    var t = table.parentNode.querySelector('[data-areatotal]'); if (t) t.textContent = total ? 'Total ' + Math.round(total * 10) / 10 + ' m²' : '';
+  }
+
+  function wireStage() {
+    var form = $('stageForm'), p = state.current, k = state.view;
+    form.addEventListener('input', function (e) {
+      state.dirty = true; $('saveMsg').textContent = 'Unsaved';
+      var t = e.target.closest('[data-areas]'); if (t) updateAreaTotals(t);
+    });
+    form.querySelectorAll('[data-areas]').forEach(updateAreaTotals);
+    form.onclick = function (e) {
+      if (e.target.matches('[data-addarea]')) { var tb = form.querySelector('[data-areas] tbody'); tb.insertAdjacentHTML('beforeend', areaRow({})); }
+      if (e.target.matches('[data-delarea]')) { var tbl = e.target.closest('table'); e.target.closest('tr').remove(); updateAreaTotals(tbl); state.dirty = true; }
+      if (e.target.matches('[data-startplants]')) startPlants(e.target);
+    };
+    form.onsubmit = function (e) { e.preventDefault(); saveStage().catch(function (err) { toast(err.message); }); };
+    var done = $('markDone'), reopen = $('reopen');
+    if (done) done.onclick = function () {
+      var go = state.dirty ? saveStage() : Promise.resolve();
+      go.then(function () { return post('set_status', {project_id: p.id, stage: k, status: 'done'}); })
+        .then(function (d) {
+          toast(d.project.stage !== k ? 'Done. The ' + AGENTS[Engine.STAGES[Engine.stageIndex(d.project.stage)].agent] + ' ghost is asked to draft ' + d.project.stage + '.' : 'Done.');
+          return refreshLists().then(function () { return openProject(p.id, d.project.stage); });
+        }).catch(function (err) { toast(err.message); });
+    };
+    if (reopen) reopen.onclick = function () {
+      post('set_status', {project_id: p.id, stage: k, status: 'active'}).then(function () { return openProject(p.id, k); }).catch(function (err) { toast(err.message); });
+    };
+    $('askBtn').onclick = function () {
+      var ask = $('askText').value.trim();
+      post('ask', {project_id: p.id, stage: k, agent: $('askAgent').value, ask: ask}).then(function () {
+        toast('Asked. It will be drafted on the next ghost run.');
+        return refreshLists().then(function () { return openProject(p.id, k); });
+      }).catch(function (err) { toast(err.message); });
+    };
+    $('stage').querySelectorAll('[data-cancel]').forEach(function (b) {
+      b.onclick = function () { post('cancel_request', {request_id: b.dataset.cancel}).then(function () { return refreshLists().then(function () { return openProject(p.id, k); }); }).catch(function (err) { toast(err.message); }); };
+    });
+    $('stage').querySelectorAll('.draft[data-ghost]').forEach(function (card) {
+      var id = card.dataset.ghost, acc = card.querySelector('[data-accept]'), dis = card.querySelector('[data-dismiss]');
+      if (acc) acc.onclick = function () {
+        if (state.dirty && !confirm('Accepting replaces what you have typed in these fields. Continue?')) return;
+        var keys = Array.prototype.map.call(card.querySelectorAll('input[data-key]:checked'), function (i) { return i.dataset.key; });
+        if (!keys.length) return toast('Tick at least one field');
+        post('resolve_ghost', {ghost_id: id, action: 'accept', keys: keys}).then(function () {
+          state.dirty = false; toast('Accepted into ' + k); return refreshLists().then(function () { return openProject(p.id, k); });
+        }).catch(function (err) { toast(err.message); });
+      };
+      dis.onclick = function () {
+        post('resolve_ghost', {ghost_id: id, action: 'dismiss'}).then(function () { return refreshLists().then(function () { return openProject(p.id, k); }); }).catch(function (err) { toast(err.message); });
+      };
+    });
+    var up = form.querySelector('[data-upload]');
+    if (up) up.onchange = function () { uploadPhotos(Array.prototype.slice.call(up.files), form.querySelector('[data-upmsg]')); };
+    loadThumbs();
+    var count = form.querySelector('[data-plantcount]');
+    if (count) plantCount(form.querySelector('input[name=plant_project_id]').value, count);
+  }
+
+  function collect() {
+    var form = $('stageForm'), fields = {};
+    fieldsFor(state.view).forEach(function (f) {
+      if (f[2] === 'photos') return;
+      if (f[2] === 'areas') { fields[f[0]] = readAreas(form.querySelector('[data-areas]')); return; }
+      var el = form.elements[f[0]]; if (!el) return;
+      var v = el.value.trim();
+      fields[f[0]] = f[2] === 'number' && v !== '' ? +v : v;
+    });
+    return fields;
+  }
+  function saveStage() {
+    var p = state.current, k = state.view;
+    $('saveMsg').textContent = 'Saving…';
+    return post('save_stage', {project_id: p.id, stage: k, fields: collect()}).then(function (d) {
+      state.current = d.project; state.dirty = false; $('saveMsg').textContent = 'Saved'; refreshLists();
+    });
+  }
+
+  /* ---------- photos ---------- */
+  function shrink(file) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image(), url = URL.createObjectURL(file);
+      img.onload = function () {
+        var max = MOCK ? 900 : 1600, s = Math.min(1, max / Math.max(img.width, img.height));
+        var c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+        resolve({data: c.toDataURL('image/jpeg', MOCK ? 0.7 : 0.82), width: c.width, height: c.height});
+      };
+      img.onerror = function () { reject(new Error('Could not read ' + file.name)); };
+      img.src = url;
+    });
+  }
+  function uploadPhotos(files, msg) {
+    var p = state.current, k = state.view, n = 0;
+    var next = function () {
+      if (!files.length) { msg.textContent = n + ' added'; return openProject(p.id, k); }
+      var f = files.shift(); msg.textContent = 'Uploading ' + f.name + '…';
+      return shrink(f).then(function (s) {
+        return post('add_photo', {project_id: p.id, stage: k, name: f.name, data: s.data, width: s.width, height: s.height});
+      }).then(function () { n++; return next(); });
+    };
+    next().catch(function (e) { msg.textContent = ''; toast(e.message); });
+  }
+  function loadThumbs() {
+    document.querySelectorAll('[data-photo]').forEach(function (fig) {
+      var id = fig.dataset.photo;
+      var set = function (data) { if (data) fig.style.backgroundImage = 'url("' + data + '")'; };
+      if (state.thumbs[id]) return set(state.thumbs[id]);
+      post('get_photo', {photo_id: id}).then(function (d) { state.thumbs[id] = d.data; set(d.data); }).catch(function () {});
+    });
+  }
+
+  /* ---------- Plant Studio ---------- */
+  // Plant Studio has its own backend; the shared admin key opens both.
+  function plantPost(op, data) {
+    if (MOCK) {
+      var db; try { db = JSON.parse(localStorage.getItem('pl-mock') || 'null'); } catch (e) {}
+      db = db || {projects: [], lines: {}, edits: []};
+      if (op === 'save_project') {
+        var p = {project_id: 'PRJ-MOCK-' + Math.random().toString(36).slice(2, 8), view_token: Math.random().toString(36).slice(2), created_at: new Date().toISOString(), updated_at: new Date().toISOString(), status: 'Draft', name: data.project.name, client_title: data.project.client_title || ''};
+        db.projects.unshift(p); db.lines[p.project_id] = [];
+        try { localStorage.setItem('pl-mock', JSON.stringify(db)); } catch (e) {}
+        return Promise.resolve({ok: true, project: p});
+      }
+      if (op === 'save_lines') { if (data.areas) { var q = db.projects.filter(function (x) { return x.project_id === data.project_id; })[0]; if (q) q.areas = data.areas; } try { localStorage.setItem('pl-mock', JSON.stringify(db)); } catch (e) {} return Promise.resolve({ok: true}); }
+      if (op === 'get_project') return Promise.resolve({ok: true, lines: db.lines[data.project_id] || []});
+    }
+    var body = Object.assign({submission_type: 'plant_studio', admin_token: state.token, op: op}, data);
+    return fetch(PLANT_ENDPOINT, {method: 'POST', body: JSON.stringify(body)}).then(function (r) { return r.json(); }).then(check);
+  }
+  function startPlants(btn) {
+    var p = state.current, enq = p.data.enquiry || {}, areas = (p.data.site || {}).areas || [];
+    btn.disabled = true;
+    plantPost('save_project', {project: {name: p.name, client_title: enq.address || p.name, status: 'Draft', design_id: p.id}}).then(function (d) {
+      var pid = d.project.project_id, zones = [];
+      areas.forEach(function (a) { var m2 = areaM2(a); if (a.name && m2) zones.push({area: a.name, area_m2: m2}); });
+      var seed = zones.length ?plantPost('save_lines', {project_id: pid, lines: [], areas: zones}).catch(function () {}) : Promise.resolve();
+      return seed.then(function () { return post('save_stage', {project_id: p.id, stage: 'palette', fields: {plant_project_id: pid}}); });
+    }).then(function () { toast('Plant list started in Plant Studio'); return openProject(p.id, 'palette'); })
+      .catch(function (e) { btn.disabled = false; toast('Plant Studio: ' + e.message); });
+  }
+  function plantCount(pid, el) {
+    if (!pid) return;
+    plantPost('get_project', {project_id: pid}).then(function (d) {
+      var n = (d.lines || []).length; el.textContent = '· ' + n + ' plant' + (n === 1 ? '' : 's');
+    }).catch(function () {});
+  }
+
+  /* ---------- loop column ---------- */
+  function renderQueue() {
+    $('queue').innerHTML = state.queue.length ? state.queue.map(function (r) {
+      return '<div class="req"><span class="st">' + esc(AGENTS[r.agent]) + ' · ' + esc(r.stage) + (r.state === 'claimed' ? ' · working' : '') + '</span>' +
+        '<b><a href="#g=' + esc(r.project_id) + '" data-open="' + esc(r.project_id) + '" data-stage="' + esc(r.stage) + '">' + esc(r.project_name) + '</a></b>' +
+        (r.ask ? '<span>' + esc(r.ask) + '</span>' : '<span>Draft this stage from what we know.</span>') + '</div>';
+    }).join('') : '<p class="small">Nothing waiting.</p>';
+  }
+  $('queue').onclick = function (e) {
+    var a = e.target.closest('[data-open]'); if (!a) return;
+    e.preventDefault(); guard(function () { openProject(a.dataset.open, a.dataset.stage); });
+  };
+  function renderActivity() {
+    $('activity').innerHTML = state.events.slice().reverse().slice(0, 30).map(function (ev) {
+      return '<div class="ev"><time>' + when(ev.at) + ' · ' + esc(ev.who) + '</time>' + esc(ev.what) + '</div>';
+    }).join('') || '<p class="small">Nothing yet.</p>';
+  }
+
+  start();
+})();
+</script>
+</body>
+</html>
