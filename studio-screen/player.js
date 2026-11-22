@@ -57,7 +57,7 @@ function render() {
     }
     section.append(text('p','Ecological design studio · Melbourne','footer'));
   }
-  const old=stage.lastElementChild;stage.append(section);requestAnimationFrame(()=>requestAnimationFrame(()=>section.classList.add('active')));
+  const old=stage.lastElementChild;stage.append(section);fitSlideLeading(section);requestAnimationFrame(()=>requestAnimationFrame(()=>section.classList.add('active')));
   if(old){old.classList.remove('active');old.setAttribute('aria-hidden','true');setTimeout(()=>old.remove(),1500);}
   schedule();
 }
