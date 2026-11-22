@@ -165,10 +165,8 @@ Do not add a new font without a written reason and explicit approval.
   and ask whether the complexity is justified. This repo must stay immediately
   legible to the next developer or Claude Code session.
 
-**Open issue — `index2.html`:** the repo currently contains both `index.html`
-and `index2.html` (the brand-aligned rebuild). This duplicate must be resolved
-into a single `index.html` — see `docs/DEPLOYMENT.md`. Until it is, do not edit
-both files; treat `index.html` as live and `index2.html` as pending promotion.
+**`index2.html` — resolved:** the old duplicate homepage was deleted in
+November 2026. `index.html` is the single live homepage.
 
 **Unconfirmed pages:** `gardens.html`, `auburn.html`, `montalbert.html` sit at
 the repo root with unclear status. Do not edit or rely on them until their

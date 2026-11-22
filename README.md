@@ -30,7 +30,6 @@ Served by GitHub Pages on the custom domain configured in `CNAME`.
 ```txt
 /
 ├── index.html          # main public homepage (production)
-├── index2.html         # SEE "Known issues" — duplicate homepage, must be resolved
 ├── brand.html           # the brand book (protected — footer links to it)
 ├── gardens.html         # standalone page  [VERIFY status — live? old?]
 ├── auburn.html          # standalone page  [VERIFY status — live? old?]
