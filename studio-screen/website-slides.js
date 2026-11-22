@@ -97,3 +97,35 @@ function renderPoster(s, section) {
   const signature = text('footer', '', 'poster-signature');
   signature.append(text('span','Gardener'),text('span','&Son.'));section.append(signature);
 }
+
+/* Fit each headline's leading to its own letters. Abril's g, j, p and y
+   tails run deep: lines sit tight (BASE) unless a tail actually lands over
+   a tall letter in the line below, and then open just enough to clear it. */
+const LEADING_BASE = 0.84, LEADING_GAP = 0.04;
+function fitLeading(el) {
+  const cs = getComputedStyle(el), size = parseFloat(cs.fontSize);
+  if (!size) return;
+  const ctx = document.createElement('canvas').getContext('2d');
+  ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${size}px ${cs.fontFamily}`;
+  const glyphs = [], walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  for (let node; (node = walker.nextNode());) {
+    for (let i = 0; i < node.length; i++) {
+      const ch = node.data[i]; if (!ch.trim()) continue;
+      const range = document.createRange(); range.setStart(node, i); range.setEnd(node, i + 1);
+      const r = range.getClientRects()[0]; if (!r) continue;
+      const m = ctx.measureText(ch);
+      glyphs.push({ top: Math.round(r.top), x0: r.left, x1: r.right, asc: m.actualBoundingBoxAscent, desc: m.actualBoundingBoxDescent });
+    }
+  }
+  const tops = [...new Set(glyphs.map(g => g.top))].sort((a, b) => a - b);
+  let need = 0;
+  for (let i = 0; i < tops.length - 1; i++) {
+    const upper = glyphs.filter(g => g.top === tops[i]), lower = glyphs.filter(g => g.top === tops[i + 1]);
+    for (const a of upper) for (const b of lower)
+      if (a.x1 > b.x0 && b.x1 > a.x0) need = Math.max(need, (a.desc + b.asc) / size);
+  }
+  el.style.lineHeight = Math.max(LEADING_BASE, need + LEADING_GAP).toFixed(3);
+}
+function fitSlideLeading(section) {
+  document.fonts.ready.then(() => section.querySelectorAll('.website-title, .caption h2').forEach(fitLeading));
+}
