@@ -110,8 +110,6 @@ These items remain and should be worked through early:
 
 **Blocking / high priority:**
 
-- **Resolve the `index2.html` duplicate.** Promote the brand-aligned rebuild to
-  `index.html` and delete `index2.html`. Procedure in `docs/DEPLOYMENT.md`.
 - **Decide the canonical domain** — `www` vs apex. `index.html` uses `www`; the
   footer brand-book link uses the apex. Pick one, apply it everywhere
   (canonical tag, OG URLs, internal links, `sitemap.xml`, `CNAME`), record it
