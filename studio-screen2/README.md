@@ -10,12 +10,12 @@ Text is fetched live from `https://guide.gardenerandson.com/slides.json` (repo `
 
     cp ../booklet/slides.json studio-screen2/guide.json
 
-`*word*` in a heading renders as italic Fraunces in Signal Green. The guide's "Enter" screen is replaced by a Field Guide opener; the Acknowledgement of Country is shown as written in the guide, full width.
+`*word*` in a heading renders as `<em>`, which inherits the heading's face and colour (headings are one colour). The guide's "Enter" screen is replaced by a Field Guide opener; the Acknowledgement of Country is shown as written in the guide, full width.
 
 ## Type
 
 - Opener: Abril 168px (hero only, per CLAUDE.md).
-- Section headings: Fraunces at 168 / 140 / 120px by heading length.
+- Section headings: Literata at 168 / 140 / 120px by heading length.
 - Body: Plex Sans 36px/1.35, shrinking to no smaller than 28px if a passage would overflow.
 - Labels and footer: Plex Mono 24px.
 

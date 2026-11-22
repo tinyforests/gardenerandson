@@ -145,6 +145,9 @@ Do not add a new font without a written reason and explicit approval.
   Preserve that rhythm if editing section backgrounds.
 - Preserve the green/beige identity and the light/dark theme toggle logic.
 - No stock icons. No heavy drop shadows. No template-like sections.
+- No noise or grain overlays, no marquee or ticker strips, and no numbered
+  section labels (`01 /`, `01.1`). These were removed in Nov 2026 as
+  template tells; do not reintroduce them.
 - The hero background is a hand-built topographic SVG. Do not replace it with a
   stock pattern or image without approval.
 

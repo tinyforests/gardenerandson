@@ -7,11 +7,11 @@
 <title>Studio window · Field Guide · Gardener & Son</title>
 <style>
 @font-face{font-family:Abril;src:url(../presentation/maylands/fonts/AbrilFatface-Regular.ttf)}
-@font-face{font-family:Fraunces;src:url(../presentation/maylands/fonts/Fraunces-Regular.ttf)}
-@font-face{font-family:Fraunces;font-style:italic;src:url(../presentation/maylands/fonts/Fraunces-Italic.ttf)}
+@font-face{font-family:Literata;src:url(../presentation/maylands/fonts/Literata-Regular.woff2) format('woff2')}
+@font-face{font-family:Literata;font-style:italic;src:url(../presentation/maylands/fonts/Literata-Italic.woff2) format('woff2')}
 @font-face{font-family:Plex;src:url(../presentation/maylands/fonts/IBMPlexSans-Regular.ttf)}
 @font-face{font-family:Mono;src:url(../presentation/maylands/fonts/IBMPlexMono-Regular.ttf)}
-:root{--green:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63;--hero:Abril,Georgia,serif;--serif:Fraunces,Georgia,serif;--sans:Plex,Arial,sans-serif;--mono:Mono,monospace}
+:root{--green:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63;--hero:Abril,Georgia,serif;--serif:Literata,Georgia,serif;--sans:Plex,Arial,sans-serif;--mono:Mono,monospace}
 *{box-sizing:border-box;border-radius:0}
 body{margin:0;background:var(--green);color:var(--beige);font-family:var(--sans);overflow:hidden}
 main{position:fixed;inset:0;overflow:hidden;display:grid;place-items:center;transition:background 1.4s ease}
@@ -28,10 +28,10 @@ main{position:fixed;inset:0;overflow:hidden;display:grid;place-items:center;tran
 .footer{position:absolute;left:120px;right:120px;bottom:76px;display:flex;justify-content:space-between;font:24px var(--mono);letter-spacing:2px}
 .footer .url{text-transform:none}
 
-/* Headline scale — 168px/.94 Abril, italic Fraunces emphasis (as studio-screen) */
+/* Headline scale — 168px/.94 Abril; emphasis words inherit the heading (as studio-screen) */
 .title{font:400 168px/.94 var(--serif);letter-spacing:-6px;margin:0}
-h1.title{font-family:var(--hero)}  /* Abril is hero-only (CLAUDE.md §5); sections use Fraunces */
-.title em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-5px;color:var(--signal)}
+h1.title{font-family:var(--hero)}  /* Abril is hero-only (CLAUDE.md §5); sections use Literata */
+.title em{font-family:inherit;font-style:normal;font-weight:inherit;color:inherit}
 .title.mid{font-size:140px;letter-spacing:-5px}
 .title.small{font-size:120px;line-height:1;letter-spacing:-4px}
 .body{font:36px/1.35 var(--sans);margin:0;white-space:pre-line}
@@ -68,7 +68,7 @@ let slides = [], pending = null, position = 0, timer, paused = false, version = 
 
 const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
 
-// "Gardens as *Systems*" → Abril with italic Fraunces emphasis
+// "Gardens as *Systems*" → <em>, which inherits the heading face and colour
 function heading(src, tag = 'h2') {
   const h = el(tag, 'title');
   src.split(/(\*[^*]+\*)/).forEach(part => {

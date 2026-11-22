@@ -141,7 +141,7 @@ public pages and should never appear in search results.
 brand system (old palette, old fonts — not the current four-font token system).
 
 **Scheduled for brand migration** to the current system (Abril Fatface hero
-only, Fraunces for all h2/h3, IBM Plex Sans body, IBM Plex Mono labels;
+only, Literata for all h2/h3, IBM Plex Sans body, IBM Plex Mono labels;
 `--green`, `--beige`, `--accent`, `--clay` tokens). Until that migration is
 done:
 

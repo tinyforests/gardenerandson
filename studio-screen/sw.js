@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='gardener-studio-screen-v29';
+const CACHE='gardener-studio-screen-v30';
 const core=['./','index.html','player.js','player.js?v=29','website-slides.js?v=29','website-slides.css','website-slides.css?v=29','playlist.json','photos.json',
   '../images/indigenous-forest-garden.webp',
   '../images/maylands-meadow.webp',
@@ -7,8 +7,8 @@ const core=['./','index.html','player.js','player.js?v=29','website-slides.js?v=
   '../images/natasha-tyson.webp',
   '../images/heirloom/heirloom-mont-albert-1.jpeg',
   '../presentation/maylands/fonts/AbrilFatface-Regular.ttf',
-  '../presentation/maylands/fonts/Fraunces-Regular.ttf',
-  '../presentation/maylands/fonts/Fraunces-Italic.ttf',
+  '../presentation/maylands/fonts/Literata-Regular.woff2',
+  '../presentation/maylands/fonts/Literata-Italic.woff2',
   '../presentation/maylands/fonts/IBMPlexSans-Regular.ttf',
   '../presentation/maylands/fonts/IBMPlexMono-Regular.ttf',
   '../presentation/maylands/images/hero.webp',

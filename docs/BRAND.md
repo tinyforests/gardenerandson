@@ -76,6 +76,13 @@ inherits its colour and face. Fraunces is retired; do not reintroduce it. The wo
 G&S logo face, with an upright ampersand in `--accent`. Do not introduce
 `<strong>`/bold for emphasis.
 
+### Retired template details
+
+Removed in November 2026 because they read as generic AI-built editorial
+sites: Fraunces, italic or coloured heading accents, noise and grain overlays,
+marquee and ticker strips, and numbered section labels (`01 /`, `01.1`). Do not
+reintroduce them.
+
 Do not add another font without a strong written reason and approval.
 
 ---
