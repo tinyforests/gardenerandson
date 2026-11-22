@@ -105,7 +105,7 @@ Never hard-code a brand colour outside the token definitions.
 | `--green`        | `#3d4535` | Gardener Green — primary              |
 | `--beige`        | `#fff0dc` | Nostalgic Beige — primary             |
 | `--accent`       | `#B49A63` | Dry Grass Brass — emphasis, CTAs      |
-| `--clay`         | `#9A6A4F` | Weathered Clay — italic emphasis      |
+| `--clay`         | `#9A6A4F` | Weathered Clay — warmth reserve       |
 | `--green-subtle` | `#465040` | Subtle green tone                     |
 | `--green-deep`   | `#2a2f25` | Deepest green                         |
 
@@ -117,16 +117,18 @@ Do not introduce neon, corporate blue, or generic eco-green.
 | Family            | Token          | Role                                              |
 |-------------------|----------------|---------------------------------------------------|
 | Abril Fatface     | `--font-hero`  | **Hero `<h1>` ONLY.** Used sparingly. Never on h2+ |
-| Fraunces          | `--font-serif` | All `h2`/`h3`/`h4`, pull-quotes, editorial moments |
+| Literata          | `--font-serif` | All `h2`/`h3`/`h4`, pull-quotes, editorial moments |
 | IBM Plex Sans     | `--font-sans`  | Body copy, navigation, general readability        |
 | IBM Plex Mono     | `--font-mono`  | Labels, numerals, URLs, registry-style metadata   |
 
 **The single most important typography rule:** Abril Fatface is hero-only. If
 Abril appears on a section heading, that is a brand error. All section headings
-are Fraunces. This mirrors the brand book exactly.
+are Literata. This mirrors the brand book exactly.
 
-Italic Fraunces in `--clay` is the brand's emphasis device — it replaces bold.
-Never bold a word for emphasis; use italic Fraunces inline instead.
+Headings are one colour, upright, in one face. No coloured, italic or bold
+words inside a heading; any existing `<em>` in a heading inherits its colour
+and face. Fraunces is retired: do not reintroduce it.
+The wordmark is Abril Fatface with an upright ampersand.
 
 Do not add a new font without a written reason and explicit approval.
 
@@ -274,7 +276,8 @@ When working in this repo, Claude Code should:
 
 - The page still feels unmistakably like Gardener & Son.
 - The site still loads with no build step.
-- Abril appears only in the hero; all other headings are Fraunces.
+- Abril appears only in the hero; all other headings are Literata.
+- No Fraunces anywhere; headings are one colour with no italic or coloured words.
 - Brand tokens used — no stray hard-coded colours.
 - Mobile layout considered.
 - Light/dark theme still works if global styles were touched.
