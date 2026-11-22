@@ -16,26 +16,25 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
 :root{
   --green:#3d4535; --beige:#fff0dc; --accent:#B49A63; --signal-green:#7C9A52; --signal-green-hover:#6A8544;
   --green-deep:#2a2f25; --green-subtle:#465040;
   --line:rgba(255,240,220,.22); --panel:rgba(255,240,220,.065); --panel2:rgba(255,240,220,.10);
-  --font-hero:'Abril Fatface',serif; --font-serif:'Fraunces','Abril Fatface',serif;
+  --font-hero:'Abril Fatface',serif; --font-serif:'Literata',Georgia,serif;
   --font-sans:'IBM Plex Sans',sans-serif; --font-mono:'IBM Plex Mono',ui-monospace,monospace;
   --max:1180px; --pad:clamp(1.4rem,5vw,5rem);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--font-sans);background:var(--green);color:var(--beige);-webkit-font-smoothing:antialiased}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:128px}
 a{color:inherit;text-decoration:none}
 p{line-height:1.75}
 .container{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
 .nav{position:sticky;top:0;z-index:10;background:rgba(61,69,53,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:2rem}
-.wordmark{font-family:var(--font-serif);font-size:1.1rem}.wordmark em{font-style:italic;color:var(--accent)}
+.wordmark{font-family:var(--font-hero);font-size:1.1rem}.wordmark em{font-style:normal;color:var(--accent)}
 .sub{display:block;font-family:var(--font-mono);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;opacity:.55;margin-top:2px}
 .nav-links{display:flex;gap:1.25rem;align-items:center;list-style:none}.nav-links a{font-size:.78rem;opacity:.7}.nav-links a:hover{opacity:1}
 .btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid currentColor;padding:.78rem 1.25rem;font-size:.82rem;letter-spacing:.03em;transition:.2s}
@@ -47,7 +46,7 @@ p{line-height:1.75}
 .label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;opacity:.58}
 .rule{width:2.5rem;height:2px;background:var(--accent);display:block;margin-bottom:1.5rem}
 h1{font-family:var(--font-hero);font-size:clamp(2.6rem,7vw,6.4rem);line-height:.98;letter-spacing:-.025em;font-weight:400;max-width:980px;margin:.9rem 0 1.4rem}
-h1 em{font-family:var(--font-serif);font-style:italic;color:var(--signal-green)}
+h1 em{font-family:inherit;font-style:normal;color:inherit}
 .lede{font-size:clamp(1rem,1.4vw,1.25rem);max-width:740px;opacity:.76;font-weight:300}
 .hero .container{width:100%}
 .ctas{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}
@@ -64,9 +63,9 @@ h3{font-family:var(--font-serif);font-weight:400}
 .list{display:grid;gap:.75rem;margin-top:1.5rem}.list li{list-style:none;border-top:1px solid var(--line);padding-top:.8rem;opacity:.78;line-height:1.65}
 .kicker{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;opacity:.55;margin-bottom:.65rem}
 
-/* ─── Fraunces italic in Signal Green — the brand's emphasis device ─── */
+/* ─── Signal Green emphasis: upright, in the headline face ─── */
 /* Used inline with class="em-signal-green" on a single phrase, not for bold. */
-.em-signal-green{font-family:var(--font-serif);font-style:italic;color:var(--signal-green)}
+.em-signal-green{font-family:inherit;font-style:normal;color:var(--signal-green)}
 
 /* ─── Accept grid — what we collect (two columns: yes / no) ─── */
 .accept-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);margin-top:2rem;align-items:start}
@@ -97,9 +96,9 @@ h3{font-family:var(--font-serif);font-weight:400}
 /* ─── Footer (homepage 4-column pattern) ─── */
 footer{border-top:1px solid var(--line);padding:4rem 0 3rem}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
-.footer-brand-name{font-family:var(--font-serif);font-size:1.125rem;margin-bottom:.75rem}
+.footer-brand-name{font-family:var(--font-hero);font-size:1.125rem;margin-bottom:.75rem}
 .footer-brand-desc{font-family:var(--font-serif);font-size:.9375rem;line-height:1.6;opacity:.75;max-width:30ch;font-weight:300;letter-spacing:-.005em}
-.footer-brand-desc em{font-style:italic;color:var(--signal-green);opacity:1}
+.footer-brand-desc em{font-style:normal;color:var(--signal-green);opacity:1}
 .footer-brandbook-link{display:inline-block;margin-top:1.25rem;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.02em;opacity:.55;border-bottom:1px solid var(--line);padding-bottom:1px;transition:opacity .2s}
 .footer-brandbook-link:hover{opacity:1}
 .footer-col-title{font-size:.6125rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;opacity:.4;margin-bottom:1.25rem}

@@ -18,7 +18,8 @@
 - [ ] I read `CLAUDE.md` and the relevant `/docs` files.
 - [ ] The page still feels unmistakably like Gardener & Son.
 - [ ] Brand tokens used — no stray hard-coded colours outside `:root`.
-- [ ] Abril Fatface appears only in the hero; all other headings are Fraunces.
+- [ ] Abril Fatface appears only in the hero; all other headings are Literata.
+- [ ] No Fraunces; headings are one colour with no italic or coloured words.
 - [ ] No unapproved fonts.
 - [ ] `border-radius` is still `0`; no SaaS-style rounding crept in.
 - [ ] Headings are sentence case (section headings keep their full stop).

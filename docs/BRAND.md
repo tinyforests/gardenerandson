@@ -43,7 +43,7 @@ Supporting colours, used only where they serve the design:
 
 ```css
 --accent:       #B49A63;   /* Dry Grass Brass — emphasis, CTAs, accent rules */
---clay:         #9A6A4F;   /* Weathered Clay — italic editorial emphasis */
+--clay:         #9A6A4F;   /* Weathered Clay — warmth reserve */
 --green-subtle: #465040;   /* subtle green tone */
 --green-deep:   #2a2f25;   /* deepest green */
 ```
@@ -60,20 +60,21 @@ is a brand error.
 | Family          | Role                                                          |
 |-----------------|---------------------------------------------------------------|
 | **Abril Fatface** | The hero `<h1>` only. Used sparingly. Never on `h2`/`h3`/`h4`. |
-| **Fraunces**      | All section headings (`h2`–`h4`), pull-quotes, editorial moments, the wordmark, garden and story titles. |
+| **Literata**      | All section headings (`h2`–`h4`), pull-quotes, editorial moments, garden and story titles. |
 | **IBM Plex Sans** | Body copy, navigation links, general interface text.          |
 | **IBM Plex Mono** | Labels, eyebrows, numerals, URLs, registry-style metadata.     |
 
 **The rule that matters most:** Abril is hero-only. The brand book is explicit
 that Abril, used everywhere, stops being a hero treatment. Every section
-heading on the site is Fraunces. If you see Abril on an `h2`, that is a bug.
+heading on the site is Literata. If you see Abril on an `h2`, that is a bug.
 
 ### The emphasis device
 
-Bold is never used for emphasis. The brand's emphasis device is **italic
-Fraunces in `--clay`**, used inline on a single phrase. The hero does this with
-"Heirloom objects." The wordmark ampersand does this in `--accent`. Follow that
-pattern; do not introduce `<strong>`/bold for emphasis.
+Headings carry no emphasis device: **one colour, upright, one face**. No
+coloured, italic or bold words inside a heading; an existing `<em>` in a heading
+inherits its colour and face. Fraunces is retired; do not reintroduce it. The wordmark is Abril Fatface, the
+G&S logo face, with an upright ampersand in `--accent`. Do not introduce
+`<strong>`/bold for emphasis.
 
 Do not add another font without a strong written reason and approval.
 
@@ -166,4 +167,4 @@ All canonical tags, Open Graph URLs, internal links, and the sitemap use the
    Registry?
 3. Is the copy calm and specific?
 4. Does the design feel crafted rather than templated?
-5. Is Abril confined to the hero, with Fraunces on every other heading?
+5. Is Abril confined to the hero, with Literata on every other heading, no Fraunces, and every heading in one colour with no italic or coloured words?

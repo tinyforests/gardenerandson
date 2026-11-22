@@ -19,7 +19,7 @@
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -45,7 +45,7 @@
   --line-l:#3d453540;   /* hairline on light */
   --mono:'IBM Plex Mono',monospace;
   --sans:'IBM Plex Sans',Arial,sans-serif;
-  --serif:'Fraunces',Georgia,serif;
+  --serif:'Literata',Georgia,serif;
   --hero:'Abril Fatface',Georgia,serif;
   --gut:20px;
   --ink:#1e2419;        /* deep green — text on Signal Green (5:1) */
@@ -56,16 +56,12 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--green);color:var(--beige);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-body::before{ /* noise texture */
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.07;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
 .label{font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase}
 h1{font-family:var(--hero);font-weight:400;font-size:clamp(60px,9.6vw,152px);line-height:.92;letter-spacing:-.04em;margin:40px 0;max-width:1200px}
 h2,h3{font-weight:400;letter-spacing:-.035em;margin:0}
 h2{font-family:var(--hero);font-size:clamp(52px,7.4vw,118px);line-height:.98}
 h3{font-family:var(--sans);font-size:clamp(26px,2.4vw,38px);line-height:1.04;letter-spacing:-.02em}
-em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--signal)}
+em{font-family:inherit;font-style:normal;font-weight:inherit;color:inherit}
 .btn{display:inline-flex;align-items:center;gap:10px;font:500 11px var(--mono);letter-spacing:.08em;padding:14px 20px;border:1px solid currentColor;border-radius:0;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
 .btn:hover,.btn.primary:hover{background:var(--signal);border-color:var(--signal);color:var(--ink)}
 .btn.primary{background:var(--beige);border-color:var(--beige);color:var(--green)}
@@ -78,7 +74,7 @@ em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--signal
 /* ── Nav ──────────────────────────────────────────────────── */
 nav{position:fixed;z-index:50;inset:0 0 auto;height:58px;display:flex;justify-content:space-between;align-items:center;padding:0 var(--gut);font:10px var(--mono);letter-spacing:.08em;border-bottom:1px solid var(--line-d);background:#3d4535e8;backdrop-filter:blur(6px);transition:height .3s}
 nav.scrolled{height:48px}
-nav .brand em{font-style:normal;font-family:var(--mono)}
+nav .brand em{font-style:normal;font-family:var(--mono);color:var(--signal)}
 nav .links{display:flex;gap:22px;align-items:center}
 nav .links a:hover{color:var(--signal)}
 nav .begin-link{color:var(--signal)}
@@ -94,12 +90,6 @@ nav .begin-link{color:var(--signal)}
 
 .read{display:flex;justify-content:space-between;border-bottom:1px solid var(--line-d);padding:12px 0;font:10px var(--mono);letter-spacing:.08em}
 .read b{font-weight:400}
-
-/* ── Ticker ───────────────────────────────────────────────── */
-.ticker{border-block:1px solid var(--line-d);padding:12px;overflow:hidden;white-space:nowrap;font:10px var(--mono);letter-spacing:.1em}
-.ticker div{animation:marq 30s linear infinite;width:max-content}
-@keyframes marq{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.ticker div{animation:none}}
 
 /* ── Light panel (01) ─────────────────────────────────────── */
 .light{background:var(--beige);color:var(--green);padding:var(--gut)}
@@ -262,13 +252,11 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
   </aside>
 </section>
 
-<div class="ticker" aria-hidden="true"><div>PLACE ✢ SOIL ✢ WATER ✢ CANOPY ✢ INDIGENOUS PLANTS ✢ HABITAT ✢ TIME ✢ &nbsp;&nbsp;&nbsp; PLACE ✢ SOIL ✢ WATER ✢ CANOPY ✢ INDIGENOUS PLANTS ✢ HABITAT ✢ TIME ✢ &nbsp;&nbsp;&nbsp;</div></div>
-
 <!-- 01 PLACE -->
 <section class="light" id="place">
   <div class="place reveal">
     <div class="copy">
-      <div class="label">01 / START WITH THE ADDRESS</div>
+      <div class="label">START WITH THE ADDRESS</div>
       <div>
         <h2>Before the<br>garden,<br><em>the place.</em></h2>
         <div class="brass-rule"></div>
@@ -276,12 +264,12 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
       </div>
     </div>
     <div class="nodes">
-      <div class="node"><span>01.1</span><strong>Place</strong><span>COUNTRY / BIOREGION / EVC</span></div>
-      <div class="node"><span>01.2</span><strong>Soil</strong><span>STRUCTURE / LIFE / INPUTS</span></div>
-      <div class="node"><span>01.3</span><strong>Water</strong><span>FLOW / HOLD / INFILTRATE</span></div>
-      <div class="node"><span>01.4</span><strong>Plants</strong><span>GROUND → SHRUB → CANOPY</span></div>
-      <div class="node"><span>01.5</span><strong>Habitat</strong><span>LOGS / ROCK / LITTER / WATER</span></div>
-      <div class="node"><span>01.6</span><strong>Time</strong><span>ESTABLISH / CHANGE / REMEMBER</span></div>
+      <div class="node"><strong>Place</strong><span>COUNTRY / BIOREGION / EVC</span></div>
+      <div class="node"><strong>Soil</strong><span>STRUCTURE / LIFE / INPUTS</span></div>
+      <div class="node"><strong>Water</strong><span>FLOW / HOLD / INFILTRATE</span></div>
+      <div class="node"><strong>Plants</strong><span>GROUND → SHRUB → CANOPY</span></div>
+      <div class="node"><strong>Habitat</strong><span>LOGS / ROCK / LITTER / WATER</span></div>
+      <div class="node"><strong>Time</strong><span>ESTABLISH / CHANGE / REMEMBER</span></div>
     </div>
   </div>
   <div class="after"><a class="btn" href="https://findmyevc.com/">DISCOVER WHAT GREW AT YOUR ADDRESS →</a></div>
@@ -290,7 +278,7 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
 <!-- 02 DESIGNS — add entries to the DESIGNS array at the bottom of the page -->
 <section class="dark" id="gardens">
   <div class="section-head reveal">
-    <div class="label">02 / OUR WORK</div>
+    <div class="label">OUR WORK</div>
     <div class="label"><span id="dCount"></span></div>
   </div>
   <div class="garden reveal">
@@ -321,18 +309,18 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
 
 <!-- 03 AFTER THE BUILD -->
 <section class="after-build reveal">
-  <div class="label">03 / AFTER THE BUILD</div>
+  <div class="label">AFTER THE BUILD</div>
   <h2>A garden isn't<br>finished <em>when we leave.</em></h2>
   <p>New plantings take a few seasons to settle. We can stay on through that time — watching how the garden responds and stepping in when it needs us.</p>
   <div class="care">
     <div class="care-row">
-      <div class="label">TEND / 01</div>
+      <div class="label">TEND</div>
       <h3>Care while it establishes.</h3>
       <p>Ongoing ecological garden care, observation and seasonal intervention from the people who built it.</p>
       <a class="btn" href="/tend/">EXPLORE TEND →</a>
     </div>
     <div class="care-row">
-      <div class="label">REGISTRY / 02</div>
+      <div class="label">REGISTRY</div>
       <h3>Measure what it gives back.</h3>
       <p>A living ecological record of the garden, following its contribution to biodiversity and habitat over time.</p>
       <a class="btn" href="https://ecologicalregistry.org/">VIEW THE REGISTRY →</a>
@@ -347,7 +335,7 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
       <img src="/images/natasha-tyson.webp" alt="Natasha and Tyson, co-founders of Gardener &amp; Son, standing together on a grass path through a mature native garden" width="1600" height="900" loading="lazy" decoding="async" style="object-position:52% 55%">
     </figure>
     <div class="copy">
-      <div class="label">04 / CRAFT, NOT SCALE</div>
+      <div class="label">CRAFT, NOT SCALE</div>
       <div>
         <h2>The two<br><em>of us.</em></h2>
         <p>Gardener &amp; Son is a small practice by design. We read the place, build the garden with our own hands, and keep coming back to see what it does.</p>
@@ -361,7 +349,7 @@ footer{border-top:1px solid var(--line-d);padding:34px var(--gut) 24px}
 <!-- 05 BEGIN -->
 <section class="begin">
   <a class="begin-box reveal" href="/where-gardens-begin.html">
-    <div class="label">05 / WHERE GARDENS BEGIN</div>
+    <div class="label">WHERE GARDENS BEGIN</div>
     <h2>Your garden<br><em>begins here.</em></h2>
     <div class="foot">
       <p>Tell us about your place. We'll start with what's already there, what once belonged there, and what the garden could become.</p>
