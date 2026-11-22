@@ -77,7 +77,7 @@ definitions themselves.
 
 ```css
 --font-hero:  'Abril Fatface', serif;          /* hero <h1> only */
---font-serif: 'Fraunces', 'Abril Fatface', serif;  /* all other headings */
+--font-serif: 'Literata', Georgia, serif;  /* all other headings (Fraunces retired) */
 --font-sans:  'IBM Plex Sans', sans-serif;     /* body */
 --font-mono:  'IBM Plex Mono', ui-monospace, monospace;  /* labels, numerals */
 ```

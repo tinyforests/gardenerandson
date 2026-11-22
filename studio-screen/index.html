@@ -7,17 +7,17 @@
 <title>Studio window · Gardener & Son</title>
 <style>
 @font-face{font-family:Abril;src:url(../presentation/maylands/fonts/AbrilFatface-Regular.ttf)}
-@font-face{font-family:Fraunces;src:url(../presentation/maylands/fonts/Fraunces-Regular.ttf)}
-@font-face{font-family:Fraunces;font-style:italic;src:url(../presentation/maylands/fonts/Fraunces-Italic.ttf)}
+@font-face{font-family:Literata;src:url(../presentation/maylands/fonts/Literata-Regular.woff2) format('woff2')}
+@font-face{font-family:Literata;font-style:italic;src:url(../presentation/maylands/fonts/Literata-Italic.woff2) format('woff2')}
 @font-face{font-family:Plex;src:url(../presentation/maylands/fonts/IBMPlexSans-Regular.ttf)}
 @font-face{font-family:Mono;src:url(../presentation/maylands/fonts/IBMPlexMono-Regular.ttf)}
-:root{--green:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63;--shade:#3d4535e8;--qr-paper:#fff;--qr-ink:#000;--hero:Abril,Georgia,serif;--serif:Fraunces,Georgia,serif;--sans:Plex,Arial,sans-serif;--mono:Mono,monospace}
+:root{--green:#3d4535;--beige:#fff0dc;--signal:#7C9A52;--brass:#B49A63;--shade:#3d4535e8;--qr-paper:#fff;--qr-ink:#000;--hero:Abril,Georgia,serif;--serif:Literata,Georgia,serif;--sans:Plex,Arial,sans-serif;--mono:Mono,monospace}
 *{box-sizing:border-box;border-radius:0}body{margin:0;background:var(--green);color:var(--beige);font-family:var(--sans);overflow:hidden}
 main{position:fixed;inset:0;overflow:hidden;display:grid;place-items:center;transition:background 1.4s ease}#stage{width:1920px;height:1080px;position:absolute;transform-origin:center}
 .slide{position:absolute;inset:0;background:var(--beige);color:var(--green);opacity:0;transition:opacity 1.4s ease;padding:100px 120px;display:flex;flex-direction:column;justify-content:center}
 .slide.active{opacity:1}.slide.dark{background:var(--green);color:var(--beige)}
-.wordmark{position:absolute;left:120px;top:80px;font:44px var(--serif);letter-spacing:-1.5px}.wordmark em{color:var(--signal)}.dark .wordmark em{color:var(--brass)}
-h1{font:400 145px/.98 var(--hero);letter-spacing:-6px;margin:0}h1 span{display:block}h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-5px}
+.wordmark{position:absolute;left:120px;top:80px;font:44px var(--hero);letter-spacing:-.5px}.wordmark em{font-style:normal;color:var(--signal)}.dark .wordmark em{color:var(--brass)}
+h1{font:400 145px/.98 var(--hero);letter-spacing:-6px;margin:0}h1 span{display:block}h1 em{font-family:inherit;font-style:normal;font-weight:inherit;letter-spacing:inherit;color:inherit}
 h2{font:400 126px/1.05 var(--serif);letter-spacing:-4px;margin:0;max-width:1550px}
 .label:before{content:"";display:block;width:100px;height:5px;background:var(--signal);margin-bottom:24px}.label{font:24px var(--mono);text-transform:uppercase;letter-spacing:3px;margin:0 0 30px}.footer{position:absolute;left:120px;bottom:76px;font:24px var(--mono);letter-spacing:2px}
 .image{padding:0}.image img{width:100%;height:100%;object-fit:cover}.caption{position:absolute;left:90px;bottom:80px;max-width:1560px;background:var(--shade);color:var(--beige);padding:32px 44px}.caption h2{font-size:70px;letter-spacing:-2px}.caption .label{font-size:22px;margin-bottom:16px}

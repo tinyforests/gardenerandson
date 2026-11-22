@@ -1,5 +1,5 @@
 /* Plant studio + customer plant pages. Scoped to Plant Studio; the main site styles stay independent. */
-:root{--green:#3d4535;--beige:#fff0dc;--font-hero:'Abril Fatface',serif;--font-serif:'Fraunces',Georgia,serif;--font-sans:'IBM Plex Sans',sans-serif;--font-mono:'IBM Plex Mono',monospace;--bg:var(--beige);--fg:var(--green);--panel:#f7ead6;--line:#d7ccb9;--signal:#7C9A52;--brass:#B49A63;--clay:#9A6A4F;--rule:#B49A63;--muted:rgba(61,69,53,.68);--warn:#a6533f}
+:root{--green:#3d4535;--beige:#fff0dc;--font-hero:'Abril Fatface',serif;--font-serif:'Literata',Georgia,serif;--font-sans:'IBM Plex Sans',sans-serif;--font-mono:'IBM Plex Mono',monospace;--bg:var(--beige);--fg:var(--green);--panel:#f7ead6;--line:#d7ccb9;--signal:#7C9A52;--brass:#B49A63;--clay:#9A6A4F;--rule:#B49A63;--muted:rgba(61,69,53,.68);--warn:#a6533f}
 html.dark{--bg:var(--green);--fg:var(--beige);--panel:#485141;--line:rgba(255,240,220,.16);--rule:rgba(180,154,99,.6);--muted:rgba(255,240,220,.72);--warn:#e2a08c}
 *{box-sizing:border-box;border-radius:0!important}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 var(--font-sans)}
@@ -17,7 +17,7 @@ h1,h2,h3{font-family:var(--font-serif);font-weight:400;line-height:1.1;letter-sp
 /* header */
 .top{position:sticky;top:0;z-index:20;background:var(--bg);border-top:3px solid var(--signal);border-bottom:1px solid var(--line);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .brand{font:400 15px/1.2 var(--font-serif);letter-spacing:.01em;text-decoration:none}
-.brand i{font-style:italic;color:var(--signal)}
+.brand i{font-style:normal;color:var(--signal)}
 html.dark .brand i{color:var(--brass)}
 .top nav{display:flex;gap:18px;align-items:center;font-size:12px}
 .top nav button{border:0;background:none;font:11px/1.6 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;padding:4px}
@@ -157,7 +157,7 @@ details.more summary{cursor:pointer;font-size:12px;color:var(--muted);margin:6px
 }
 
 /* Abril is hero-only and never below 64px (brand book). The gate heading
-   and the stat numerals are not heroes — Fraunces and mono carry those. */
+   and the stat numerals are not heroes — Literata and mono carry those. */
 .cv-intro h1{font-family:var(--font-hero);letter-spacing:-.02em}
 
 /* Planting structure beneath the species and indigenous totals. */
