@@ -1,6 +1,14 @@
 {
-  "version": "e79723cd587dc55b",
+  "version": "d04bf1cae96df396",
   "slides": [
+    {
+      "type": "statement",
+      "duration": 20,
+      "title": "A small garden studio, a very big stage",
+      "label": "From the journal · Gardener & Son",
+      "dark": true,
+      "source": "https://gardenerandson.substack.com/p/a-small-garden-studio-a-very-big"
+    },
     {
       "type": "statement",
       "duration": 20,
@@ -16,14 +24,6 @@
       "label": "From the journal · Gardener & Son",
       "dark": true,
       "source": "https://gardenerandson.substack.com/p/what-were-building-this-year"
-    },
-    {
-      "type": "statement",
-      "duration": 20,
-      "title": "Designing Interactions, Not Gardens.",
-      "label": "From the journal · Gardener & Son",
-      "dark": true,
-      "source": "https://gardenerandson.substack.com/p/designing-interactions-not-gardens"
     }
   ]
 }
